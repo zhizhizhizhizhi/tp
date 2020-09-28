@@ -42,7 +42,9 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
    * **`delete`**`3` : Deletes the 3rd phrase shown in the glossary.
 
-   * **`clear`** : Deletes all phrases.
+   * **`quiz`** : Starts a round of vocabulary testing.
+   
+   * **`end quiz`** : Ends a round of vocabulary testing.
 
    * **`exit`** : Exits the app.
 
@@ -70,13 +72,7 @@ Format: `add <ENGLISH WORD> | <GERMAN WORD>`
 Example:
 * `add forgetfulness | Vergesslichkeit`
 
-### Listing all phrases : `list`
-
-Shows a list of all phrases in the glossary.
-
-Format: `list`
-
-### Deleting a person : `delete`
+### Deleting a phrase : `delete`
 
 Deletes the specified phrase from the glossary.
 
@@ -88,6 +84,18 @@ Format: `delete <INDEX>`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
+
+### Listing all phrases : `list`
+
+Shows a list of all phrases in the glossary.
+
+Format: `list`
+
+### Test Yourself : `quiz` `end quiz`
+
+Starts a round of vocabulary testing and ends a round of vocabulary testing respectively.
+
+Format: `quiz` `end quiz`
 
 ### Exiting the program : `exit`
 
