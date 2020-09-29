@@ -1,32 +1,31 @@
-# **Developer Guide for ForgetfulNUS**
+# **ForgetfulNUS: Developer Guide**
 
-**Target user profile**:
+## Product scope
+#### **Target user profile**:
 
-ForgetfulNUS is targeted at students taking level 1000-2000 German language modules at the NUS Center of Language Studies who can type fast and prefers typing to mouse interactions.
+ForgetfulNUS is targeted at students taking level 1000-2000 German language modules at the NUS Center of Language Studies who can type fast and prefer typing to mouse interactions.
 
-**Value proposition**: 
+#### **Value proposition**: 
 
 A flashcard CLI app designed to cater to the specific needs of the target user to help them learn their German vocabularies.  
 
-## User stories
+## User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     | I want to …​                                                    | So that I …​                                                 |
-| -------- | ------------------------------------------ | ---------------------------------------------------------------| ------------------------------------------------------------|
-| `* * *`  | user                                       | add a flashcard with german phrase and meaning                 | can refer it or use it to test myself later.                |
-| `* * *`  | user                                       | list out all the flashcards with index                         | can look through the phrases and their meanings to study.   |                                                  |
-| `* * *`  | user                                       | delete a flash card by index                                   |                                                             |
-| `* * *`  | user                                       | test myself with the flashcards                                | can be quizzed on the phrases and their meanings.           |
-| `* *`    | user                                       | my flashcards to be saved (storage)                            | can use them when I next launch the app.                    |
+Priority | As a... | I want to... | So that I...
+--- | ---------- | --------- | ---- |
+*** | user |add a flashcard with German phrase and meaning | can refer it or use it to test myself later.
+*** | user | list out all the flashcards with index | can look through the phrases and their meanings to study.
+*** | user | delete a flash card by index
+*** | user | test myself with the flashcards | can be quizzed on the phrases and their meanings.
+** | user | my flashcards to be saved (storage) | can use them when I next launch the app.
 
-*{More to be added soon}*
+## Use Cases
 
-## Use cases
+(For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-(For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `User`, unless specified otherwise)
-
-### Use case: UC1 - Adding a flashcard
+#### **Use Case: UC1- Add a flashcard**
 
 **MSS:**
 
@@ -39,15 +38,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. ForgetfulNUS detects less than 2 fields for the flashcard.
 
-    - 1a1. ForgetfulNUS requests the User to input phrase and meaning for the flashcard. 
-    
+    - 1a1. ForgetfulNUS requests the User to input phrase and meaning for the flashcard.     
     - 1a2. User enters a new flashcard or terminates the process.
     
-    Steps 1a1-1a2 are repeated until the User input is correct, or the User terminates the process.
+    Steps 1a1-1a2 are repeated until the user input is correct or the user terminates the process.
 
    Use case ends.
 
-### Use case: UC2 - Listing the flashcards
+#### **Use case: UC2 - List all flashcards**
 
 **MSS:**
 
@@ -66,7 +64,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC3 - Delete a flashcard
+#### **Use case: UC3 - Delete a flashcard**
 
 **MSS:**
 
@@ -85,7 +83,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
    Use case ends.
    
-### Use case: UC4 - Self-testing with the flashcards
+### **Use case: UC4 - Self-testing with flashcards**
 
 **MSS:**
 
@@ -100,14 +98,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
    
-- *a. At any time, User chooses to stop self-testing.
+- 4a. At any time, User chooses to stop self-testing.
       
-   - *a1. ForgetfulNUS stops self-testing.
+   - 4a1. ForgetfulNUS stops self-testing.
       
    Use case ends.
-   
 
 *{More to be added soon}*
     
+## Non-Functional Requirements
 
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. German diacritics (eg. ä) should be fully supported in being saved and displayed by the UI.
+4. Verification of user input in testing mode should not take more than 2 seconds.
+
+## Glossary
+
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
+* **Flashcard:** An item containing (a) a German phrase (b) the corresponding English definition
+* **German phrase:** German text of any length
+* **Index:** Position of flashcard in the list of flashcards displayed to the user
+* **CLI:** Command Line Interface
 --------------------------------------------------------------------------------------------------------------------
