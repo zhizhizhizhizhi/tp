@@ -9,14 +9,14 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 - [Quick Start](#qs)
 - [Features](#features)
-    - Add Phrase (not done yet)
-    - Delete Phrase (not done yet)
-    - View All Phrases (not done yet)
-    - Test Yourself (not done yet)
-        - Start Testing (not done yet)
-        - Testing (not done yet)
-        - End Testing (not done yet)
-    - Save and Exit (not done yet)
+    - Add Phrase (coming soon)
+    - Delete Phrase (coming soon)
+    - View All Phrases (coming soon)
+    - Test Yourself (coming soon)
+        - Start Testing (coming soon)
+        - Testing (coming soon)
+        - End Testing (coming soon)
+    - Save and Exit (coming soon)
 - [FAQ](#faq)
 - [Command Summary](#cmdsum)
 
@@ -31,7 +31,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 1. Copy the file to the folder you want to use as the _home folder_ for your ForgetfulNUS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   [GUI coming soon!]
+   [GUI coming soon]
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -117,7 +117,8 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `ENGLISH WORD \ GERMAN WORD` <br> e.g., `add forgetfulness \ Vergesslichkeit`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**End Quiz** | `end quiz`
+**Exit** | `exit`
 **List** | `list`
-**Help** | `help`
+**Start Quiz** | `quiz`
