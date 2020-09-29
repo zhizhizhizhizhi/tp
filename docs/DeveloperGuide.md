@@ -22,7 +22,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | test myself with the flashcards                                | can be quizzed on the phrases and their meanings.           |
 | `* *`    | user                                       | my flashcards to be saved (storage)                            | can use them when I next launch the app.                    |
 
-*{More to be added}*
+*{More to be added soon}*
 
 ### Use cases
 
