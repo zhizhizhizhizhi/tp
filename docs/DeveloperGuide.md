@@ -1,4 +1,27 @@
 # **Developer Guide for ForgetfulNUS**
+
+**Target user profile**:
+
+ForgetfulNUS is targeted at students taking level 1000-2000 German language modules at the NUS Center of Language Studies who can type fast and prefers typing to mouse interactions.
+
+**Value proposition**: 
+
+A flashcard CLI app designed to cater to the specific needs of the target user to help them learn their German vocabularies.  
+
+## User stories
+
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
+| Priority | As a …​                                     | I want to …​                                                    | So that I …​                                                 |
+| -------- | ------------------------------------------ | ---------------------------------------------------------------| ------------------------------------------------------------|
+| `* * *`  | user                                       | add a flashcard with german phrase and meaning                 | can refer it or use it to test myself later.                |
+| `* * *`  | user                                       | list out all the flashcards with index                         | can look through the phrases and their meanings to study.   |                                                  |
+| `* * *`  | user                                       | delete a flash card by index                                   |                                                             |
+| `* * *`  | user                                       | test myself with the flashcards                                | can be quizzed on the phrases and their meanings.           |
+| `* *`    | user                                       | my flashcards to be saved (storage)                            | can use them when I next launch the app.                    |
+
+*{More to be added soon}*
+
 ## Use cases
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `User`, unless specified otherwise)
