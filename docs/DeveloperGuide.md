@@ -25,7 +25,7 @@ Priority | As a... | I want to... | So that I...
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use Case: Add a flashcard**
+#### **Use Case: UC1- Add a flashcard**
 
 **MSS:**
 
@@ -45,7 +45,7 @@ Priority | As a... | I want to... | So that I...
 
    Use case ends.
 
-#### **Use case: UC2 - Listing all flashcards**
+#### **Use case: UC2 - List all flashcards**
 
 **MSS:**
 
@@ -83,7 +83,7 @@ Priority | As a... | I want to... | So that I...
     
    Use case ends.
    
-### Use case: UC4 - Self-testing with the flashcards
+### **Use case: UC4 - Self-testing with flashcards**
 
 **MSS:**
 
