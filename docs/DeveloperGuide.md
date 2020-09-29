@@ -1,6 +1,4 @@
-## **Developer Guide for ForgetfulNUS**
-
-### Product scope
+# **Developer Guide for ForgetfulNUS**
 
 **Target user profile**:
 
@@ -10,7 +8,7 @@ ForgetfulNUS is targeted at students taking level 1000-2000 German language modu
 
 A flashcard CLI app designed to cater to the specific needs of the target user to help them learn their German vocabularies.  
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -24,11 +22,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added soon}*
 
-### Use cases
+## Use cases
 
-(For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC1 - Adding a flashcard**
+### Use case: UC1 - Adding a flashcard
 
 **MSS:**
 
@@ -39,17 +37,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-* 1a. System detects less than 2 fields for flashcard.
+* 1a. System detects less than 2 fields for the flashcard.
 
-    1a1. System requests the user to input phrase and meaning for flashcard. 
+    1a1. System requests the User to input phrase and meaning for the flashcard. 
     
     1a2. User enters a new flashcard or terminates the process.
     
-    Steps 1a1-1a2 are repeated until the user input is correct or the user terminates the process.
+    Steps 1a1-1a2 are repeated until the User input is correct, or the User terminates the process.
 
    Use case ends.
 
-**Use case: UC2 - Listing the flashcards**
+### Use case: UC2 - Listing the flashcards
 
 **MSS:**
 
@@ -68,11 +66,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC3 - Delete a flashcard**
+### Use case: UC3 - Delete a flashcard
 
 **MSS:**
 
-1.  User deletes a flashcard by index.
+1.  User deletes a flashcard by the index.
 2.  System displays the flashcard to be deleted and asks for confirmation.
 3.  User confirms deletion of flashcard.
 4.  System deletes the flashcard.
@@ -86,5 +84,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     3a1. System terminates the process. 
     
    Use case ends.
+   
+### Use case: UC4 - Self-testing with the flashcards
+
+**MSS:**
+
+1. User requests to start self-testing.
+2. System displays a german word.
+3. User inputs the corresponding english translation.
+4. System displays the results of User's answer.
+    
+    Steps 2-4 are repeated until there are no more words to be tested.    
+    
+    Use case ends.
+
+**Extensions:**
+   
+* *a. At any time, User chooses to stop self-testing.
+      
+   *a1. System stops self-testing.
+      
+   Use case ends.
+    
 
 --------------------------------------------------------------------------------------------------------------------
