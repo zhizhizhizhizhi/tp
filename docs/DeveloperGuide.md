@@ -1,4 +1,15 @@
 ## **Developer Guide for ForgetfulNUS**
+
+### Product scope
+
+**Target user profile**:
+
+ForgetfulNUS is targeted at students taking level 1000-2000 German language modules at the NUS Center of Language Studies who can type fast and prefers typing to mouse interactions.
+
+**Value proposition**: 
+
+A flashcard CLI app designed to cater to the specific needs of the target user to help them learn their German vocabularies.  
+
 ### Use cases
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
