@@ -91,7 +91,8 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        GermanPhrase updatedGermanPhrase = editPersonDescriptor.getName().orElse(personToEdit.getGermanPhrase());
+        GermanPhrase updatedGermanPhrase = editPersonDescriptor.getGermanPhrase()
+                .orElse(personToEdit.getGermanPhrase());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
             this.germanPhrase = germanPhrase;
         }
 
-        public Optional<GermanPhrase> getName() {
+        public Optional<GermanPhrase> getGermanPhrase() {
             return Optional.ofNullable(germanPhrase);
         }
 
@@ -214,7 +215,7 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getGermanPhrase().equals(e.getGermanPhrase())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
