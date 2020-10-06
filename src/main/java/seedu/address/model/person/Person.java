@@ -10,13 +10,13 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Phrase in the Glossary.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final GermanPhrase germanPhrase;
     private final Phone phone;
     private final Email email;
 
@@ -27,17 +27,17 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Person(GermanPhrase germanPhrase, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, phone, email, address, tags);
+        this.germanPhrase = germanPhrase;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public GermanPhrase getGermanPhrase() {
+        return germanPhrase;
     }
 
     public Phone getPhone() {
@@ -70,7 +70,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
+                && otherPerson.getGermanPhrase().equals(getGermanPhrase())
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
@@ -89,7 +89,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getGermanPhrase().equals(getGermanPhrase())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -99,13 +99,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(germanPhrase, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getGermanPhrase())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
