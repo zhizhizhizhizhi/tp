@@ -1,12 +1,12 @@
 {
   "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
+    "germanPhrase": "Valid Person",
+    "englishPhrase": "englishphrase",
     "email": "hans@example.com",
     "address": "4th street"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "germanPhrase": "Person With Invalid English phrase Field",
+    "englishPhrase": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street"
   } ]

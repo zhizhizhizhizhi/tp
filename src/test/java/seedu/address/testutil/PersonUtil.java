@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -31,7 +31,7 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_GERMAN_PHRASE + person.getGermanPhrase().fullGermanPhrase + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_ENGLISH_PHRASE + person.getEnglishPhrase().fullEnglishPhrase + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
@@ -46,8 +46,11 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getGermanPhrase()
-                .ifPresent(name -> sb.append(PREFIX_GERMAN_PHRASE).append(name.fullGermanPhrase).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+                .ifPresent(germanPhrase -> sb.append(PREFIX_GERMAN_PHRASE)
+                        .append(germanPhrase.fullGermanPhrase).append(" "));
+        descriptor.getEnglishPhrase()
+                .ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE)
+                        .append(englishPhrase.fullEnglishPhrase).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
