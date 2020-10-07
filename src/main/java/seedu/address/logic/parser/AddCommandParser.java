@@ -3,9 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -15,9 +14,9 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,20 +32,21 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                        .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE,
+                                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ADDRESS, PREFIX_ENGLISH_PHRASE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(germanPhrase, phone, email, address, tagList);
+        Person person = new Person(germanPhrase, englishPhrase, email, address, tagList);
 
         return new AddCommand(person);
     }

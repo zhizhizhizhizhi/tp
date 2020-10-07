@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PHRASES;
 
@@ -20,9 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,12 +35,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -93,7 +90,7 @@ public class EditCommand extends Command {
 
         GermanPhrase updatedGermanPhrase = editPersonDescriptor.getGermanPhrase()
                 .orElse(personToEdit.getGermanPhrase());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        EnglishPhrase updatedPhone = editPersonDescriptor.getEnglishPhrase().orElse(personToEdit.getEnglishPhrase());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -125,7 +122,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private GermanPhrase germanPhrase;
-        private Phone phone;
+        private EnglishPhrase englishPhrase;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -138,7 +135,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setGermanPhrase(toCopy.germanPhrase);
-            setPhone(toCopy.phone);
+            setEnglishPhrase(toCopy.englishPhrase);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -148,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, email, address, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -159,12 +156,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(germanPhrase);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setEnglishPhrase(EnglishPhrase englishPhrase) {
+            this.englishPhrase = englishPhrase;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<EnglishPhrase> getEnglishPhrase() {
+            return Optional.ofNullable(englishPhrase);
         }
 
         public void setEmail(Email email) {
@@ -216,7 +213,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getGermanPhrase().equals(e.getGermanPhrase())
-                    && getPhone().equals(e.getPhone())
+                    && getEnglishPhrase().equals(e.getEnglishPhrase())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());

@@ -11,8 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String German phrase} into a {@code German Phrase}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code German Phrase} is invalid.
      */
-    public static GermanPhrase parseGermanPhrase(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!GermanPhrase.isValidGermanPhrase(trimmedName)) {
+    public static GermanPhrase parseGermanPhrase(String germanPhrase) throws ParseException {
+        requireNonNull(germanPhrase);
+        String trimmedGermanPhrase = germanPhrase.trim();
+        if (!GermanPhrase.isValidGermanPhrase(trimmedGermanPhrase)) {
             throw new ParseException(GermanPhrase.MESSAGE_CONSTRAINTS);
         }
-        return new GermanPhrase(trimmedName);
+        return new GermanPhrase(trimmedGermanPhrase);
     }
 
     /**
@@ -56,13 +56,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static EnglishPhrase parseEnglishPhrase(String englishPhrase) throws ParseException {
+        requireNonNull(englishPhrase);
+        String trimmedEnglishPhrase = englishPhrase.trim();
+        if (!EnglishPhrase.isValidEnglishPhrase(trimmedEnglishPhrase)) {
+            throw new ParseException(EnglishPhrase.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new EnglishPhrase(trimmedEnglishPhrase);
     }
 
     /**

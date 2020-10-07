@@ -49,7 +49,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getGermanPhrase().fullGermanPhrase);
-        phone.setText(person.getPhone().value);
+        phone.setText(person.getEnglishPhrase().fullEnglishPhrase);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()

@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final GermanPhrase germanPhrase;
-    private final Phone phone;
+    private final EnglishPhrase englishPhrase;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(GermanPhrase germanPhrase, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, phone, email, address, tags);
+    public Person(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, email, address, tags);
         this.germanPhrase = germanPhrase;
-        this.phone = phone;
+        this.englishPhrase = englishPhrase;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Person {
         return germanPhrase;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public EnglishPhrase getEnglishPhrase() {
+        return englishPhrase;
     }
 
     public Email getEmail() {
@@ -71,7 +71,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getGermanPhrase().equals(getGermanPhrase())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
+                || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -90,7 +91,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getGermanPhrase().equals(getGermanPhrase())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
@@ -99,15 +100,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, phone, email, address, tags);
+        return Objects.hash(germanPhrase, englishPhrase, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getGermanPhrase())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" English phrase: ")
+                .append(getEnglishPhrase())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
