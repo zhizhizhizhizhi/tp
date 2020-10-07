@@ -20,14 +20,13 @@ public class EnglishPhraseTest {
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidEnglishPhrase() {
         // null English phrase
         assertThrows(NullPointerException.class, () -> EnglishPhrase.isValidEnglishPhrase(null));
 
         // invalid English Phrase
         assertFalse(EnglishPhrase.isValidEnglishPhrase("")); // empty string
         assertFalse(EnglishPhrase.isValidEnglishPhrase(" ")); // spaces only
-        assertFalse(EnglishPhrase.isValidEnglishPhrase("999")); // numeric only
         assertFalse(EnglishPhrase.isValidEnglishPhrase("^")); // only non-alphabet characters
         assertFalse(EnglishPhrase.isValidEnglishPhrase("peter*")); // contains non-alphabet characters
 

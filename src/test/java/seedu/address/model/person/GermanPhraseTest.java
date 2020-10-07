@@ -22,17 +22,17 @@ public class GermanPhraseTest {
     //TODO change constraints to english alphabets only
     //change examples
     @Test
-    public void isValidName() {
+    public void isValidGermanPhrase() {
         // null name
         assertThrows(NullPointerException.class, () -> GermanPhrase.isValidGermanPhrase(null));
 
-        // invalid name
+        // invalid German phrase
         assertFalse(GermanPhrase.isValidGermanPhrase("")); // empty string
         assertFalse(GermanPhrase.isValidGermanPhrase(" ")); // spaces only
         assertFalse(GermanPhrase.isValidGermanPhrase("^")); // only non-alphanumeric characters
         assertFalse(GermanPhrase.isValidGermanPhrase("peter*")); // contains non-alphanumeric characters
 
-        // valid name
+        // valid German phrase
         assertTrue(GermanPhrase.isValidGermanPhrase("peter jack")); // alphabets only
         assertTrue(GermanPhrase.isValidGermanPhrase("12345")); // numbers only
         assertTrue(GermanPhrase.isValidGermanPhrase("peter the 2nd")); // alphanumeric characters

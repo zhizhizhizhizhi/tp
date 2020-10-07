@@ -6,7 +6,7 @@
     "address": "4th street"
   }, {
     "germanPhrase": "Person With Invalid English phrase Field",
-    "englishPhrase": "948asdf2424",
+    "englishPhrase": "948@@@@2424",
     "email": "hans@example.com",
     "address": "4th street"
   } ]
