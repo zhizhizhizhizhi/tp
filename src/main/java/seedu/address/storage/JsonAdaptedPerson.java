@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
@@ -27,7 +26,6 @@ class JsonAdaptedPerson {
     private final String germanPhrase;
     private final String englishPhrase;
     private final String email;
-    private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +34,11 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("germanPhrase") String germanPhrase,
                              @JsonProperty("englishPhrase") String englishPhrase,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.email = email;
-        this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,7 +51,6 @@ class JsonAdaptedPerson {
         germanPhrase = source.getGermanPhrase().fullGermanPhrase;
         englishPhrase = source.getEnglishPhrase().fullEnglishPhrase;
         email = source.getEmail().value;
-        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -97,16 +93,8 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelGermanPhrase, modelEnglishPhrase, modelEmail, modelAddress, modelTags);
+        return new Person(modelGermanPhrase, modelEnglishPhrase, modelEmail, modelTags);
     }
 
 }

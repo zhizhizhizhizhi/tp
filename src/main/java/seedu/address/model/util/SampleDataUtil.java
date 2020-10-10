@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
@@ -20,23 +19,17 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new GermanPhrase("Alex Yeoh"), new EnglishPhrase("englishphrase"),
-                    new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends")),
+                    new Email("alexyeoh@example.com"), getTagSet("friends")),
             new Person(new GermanPhrase("Bernice Yu"), new EnglishPhrase("englishphrase"),
-                    new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends")),
+                    new Email("berniceyu@example.com"), getTagSet("colleagues", "friends")),
             new Person(new GermanPhrase("Charlotte Oliveiro"), new EnglishPhrase("englishphrase"),
-                    new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours")),
+                    new Email("charlotte@example.com"), getTagSet("neighbours")),
             new Person(new GermanPhrase("David Li"), new EnglishPhrase("englishphrase"),
-                    new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family")),
+                    new Email("lidavid@example.com"), getTagSet("family")),
             new Person(new GermanPhrase("Irfan Ibrahim"), new EnglishPhrase("englishphrase"),
-                    new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates")),
+                    new Email("irfan@example.com"), getTagSet("classmates")),
             new Person(new GermanPhrase("Roy Balakrishnan"), new EnglishPhrase("englishphrase"),
-                    new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"))
+                    new Email("royb@example.com"), getTagSet("colleagues"))
         };
     }
 

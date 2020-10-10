@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PHRASES;
@@ -17,7 +16,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
@@ -36,7 +34,6 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -92,10 +89,9 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getGermanPhrase());
         EnglishPhrase updatedPhone = editPersonDescriptor.getEnglishPhrase().orElse(personToEdit.getEnglishPhrase());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedGermanPhrase, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedGermanPhrase, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -124,7 +120,6 @@ public class EditCommand extends Command {
         private GermanPhrase germanPhrase;
         private EnglishPhrase englishPhrase;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -137,7 +132,6 @@ public class EditCommand extends Command {
             setGermanPhrase(toCopy.germanPhrase);
             setEnglishPhrase(toCopy.englishPhrase);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -145,7 +139,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, email, address, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, email, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -170,14 +164,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -215,7 +201,6 @@ public class EditCommand extends Command {
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

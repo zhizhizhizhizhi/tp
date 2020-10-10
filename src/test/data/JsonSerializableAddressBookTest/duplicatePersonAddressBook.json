@@ -3,12 +3,10 @@
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "email": "pauline@example.com"
   } ]
 }

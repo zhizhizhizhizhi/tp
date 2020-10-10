@@ -20,19 +20,16 @@ public class Person {
     private final EnglishPhrase englishPhrase;
     private final Email email;
 
-    // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, email, address, tags);
+    public Person(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, email, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -46,10 +43,6 @@ public class Person {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -93,14 +86,13 @@ public class Person {
         return otherPerson.getGermanPhrase().equals(getGermanPhrase())
                 && otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, englishPhrase, email, address, tags);
+        return Objects.hash(germanPhrase, englishPhrase, email, tags);
     }
 
     @Override
@@ -111,8 +103,6 @@ public class Person {
                 .append(getEnglishPhrase())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

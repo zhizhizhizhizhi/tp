@@ -2,7 +2,6 @@
   "persons": [ {
     "germanPhrase": "Hans Muster",
     "englishPhrase": "englishPhrase",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "email": "invalid@email!3e"
   } ]
 }
