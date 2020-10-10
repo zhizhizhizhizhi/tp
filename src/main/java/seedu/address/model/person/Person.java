@@ -10,14 +10,14 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Phrase in the Glossary.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
+    private final GermanPhrase germanPhrase;
+    private final EnglishPhrase englishPhrase;
     private final Email email;
 
     private final Set<Tag> tags = new HashSet<>();
@@ -25,20 +25,20 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
-        this.name = name;
-        this.phone = phone;
+    public Person(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, email, tags);
+        this.germanPhrase = germanPhrase;
+        this.englishPhrase = englishPhrase;
         this.email = email;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public GermanPhrase getGermanPhrase() {
+        return germanPhrase;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public EnglishPhrase getEnglishPhrase() {
+        return englishPhrase;
     }
 
     public Email getEmail() {
@@ -63,8 +63,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && otherPerson.getGermanPhrase().equals(getGermanPhrase())
+                && (otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
+                || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -82,8 +83,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+        return otherPerson.getGermanPhrase().equals(getGermanPhrase())
+                && otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -91,15 +92,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(germanPhrase, englishPhrase, email, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+        builder.append(getGermanPhrase())
+                .append(" English phrase: ")
+                .append(getEnglishPhrase())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Tags: ");

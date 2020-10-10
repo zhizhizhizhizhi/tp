@@ -1,12 +1,12 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "germanPhrase": "Alice Pauline",
+    "englishPhrase": "englishPhrase",
     "email": "alice@example.com",
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "germanPhrase": "Alice Pauline",
+    "englishPhrase": "englishPhrase",
     "email": "pauline@example.com"
   } ]
 }

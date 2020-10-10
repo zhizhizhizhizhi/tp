@@ -46,8 +46,8 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
+        name.setText(person.getGermanPhrase().fullGermanPhrase);
+        phone.setText(person.getEnglishPhrase().fullEnglishPhrase);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
