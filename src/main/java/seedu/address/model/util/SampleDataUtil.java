@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.EnglishPhrase;
 import seedu.address.model.person.GermanPhrase;
 import seedu.address.model.person.Person;
@@ -19,17 +18,17 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new GermanPhrase("Alex Yeoh"), new EnglishPhrase("englishphrase"),
-                    new Email("alexyeoh@example.com"), getTagSet("friends")),
+                    getTagSet("friends")),
             new Person(new GermanPhrase("Bernice Yu"), new EnglishPhrase("englishphrase"),
-                    new Email("berniceyu@example.com"), getTagSet("colleagues", "friends")),
+                    getTagSet("colleagues", "friends")),
             new Person(new GermanPhrase("Charlotte Oliveiro"), new EnglishPhrase("englishphrase"),
-                    new Email("charlotte@example.com"), getTagSet("neighbours")),
+                    getTagSet("neighbours")),
             new Person(new GermanPhrase("David Li"), new EnglishPhrase("englishphrase"),
-                    new Email("lidavid@example.com"), getTagSet("family")),
+                    getTagSet("family")),
             new Person(new GermanPhrase("Irfan Ibrahim"), new EnglishPhrase("englishphrase"),
-                    new Email("irfan@example.com"), getTagSet("classmates")),
+                    getTagSet("classmates")),
             new Person(new GermanPhrase("Roy Balakrishnan"), new EnglishPhrase("englishphrase"),
-                    new Email("royb@example.com"), getTagSet("colleagues"))
+                    getTagSet("colleagues"))
         };
     }
 

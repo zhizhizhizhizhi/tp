@@ -2,11 +2,10 @@
   "persons": [ {
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
-    "email": "alice@example.com",
     "tagged": [ "friends" ]
   }, {
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
-    "email": "pauline@example.com"
+    "tagged": [ "friends" ]
   } ]
 }
