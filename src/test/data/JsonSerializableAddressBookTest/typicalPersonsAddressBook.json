@@ -3,37 +3,30 @@
   "persons" : [ {
     "germanPhrase" : "Alice Pauline",
     "englishPhrase" : "englishPhrase",
-    "email" : "alice@example.com",
     "tagged" : [ "friends" ]
   }, {
     "germanPhrase" : "Benson Meier",
     "englishPhrase" : "englishPhrase",
-    "email" : "johnd@example.com",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "germanPhrase" : "Carl Kurz",
     "englishPhrase" : "englishPhrase",
-    "email" : "heinz@example.com",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "Daniel Meier",
     "englishPhrase" : "englishPhrase",
-    "email" : "cornelia@example.com",
     "tagged" : [ "friends" ]
   }, {
     "germanPhrase" : "Elle Meyer",
     "englishPhrase" : "englishPhrase",
-    "email" : "werner@example.com",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "Fiona Kunz",
     "englishPhrase" : "englishPhrase",
-    "email" : "lydia@example.com",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "George Best",
     "englishPhrase" : "englishPhrase",
-    "email" : "anna@example.com",
     "tagged" : [ ]
   } ]
 }
