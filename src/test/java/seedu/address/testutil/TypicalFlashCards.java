@@ -14,60 +14,60 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.FlashCard;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code FlashCard} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalFlashCards {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final FlashCard ALICE = new FlashCardBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withPhone("englishPhrase")
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final FlashCard BENSON = new FlashCardBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("englishPhrase")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("englishPhrase")
+    public static final FlashCard CARL = new FlashCardBuilder().withName("Carl Kurz").withPhone("englishPhrase")
             .withEmail("heinz@example.com").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("englishPhrase")
+    public static final FlashCard DANIEL = new FlashCardBuilder().withName("Daniel Meier").withPhone("englishPhrase")
             .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("englishPhrase")
+    public static final FlashCard ELLE = new FlashCardBuilder().withName("Elle Meyer").withPhone("englishPhrase")
             .withEmail("werner@example.com").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("englishPhrase")
+    public static final FlashCard FIONA = new FlashCardBuilder().withName("Fiona Kunz").withPhone("englishPhrase")
             .withEmail("lydia@example.com").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("englishPhrase")
+    public static final FlashCard GEORGE = new FlashCardBuilder().withName("George Best").withPhone("englishPhrase")
             .withEmail("anna@example.com").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("englishPhrase")
+    public static final FlashCard HOON = new FlashCardBuilder().withName("Hoon Meier").withPhone("englishPhrase")
             .withEmail("stefan@example.com").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("englishPhrase")
+    public static final FlashCard IDA = new FlashCardBuilder().withName("Ida Mueller").withPhone("englishPhrase")
             .withEmail("hans@example.com").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    // Manually added - FlashCard's details found in {@code CommandTestUtil}
+    public static final FlashCard AMY = new FlashCardBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final FlashCard BOB = new FlashCardBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalFlashCards() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (FlashCard flashCard : getTypicalPersons()) {
+            ab.addPerson(flashCard);
         }
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
+    public static List<FlashCard> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

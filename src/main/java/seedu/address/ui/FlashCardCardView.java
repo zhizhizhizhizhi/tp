@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.FlashCard;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code FlashCard}.
  */
-public class PersonCard extends UiPart<Region> {
+public class FlashCardCardView extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final FlashCard flashCard;
 
     @FXML
     private HBox cardPane;
@@ -40,16 +40,16 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code FlashCard} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public FlashCardCardView(FlashCard flashCard, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.flashCard = flashCard;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getGermanPhrase().fullGermanPhrase);
-        phone.setText(person.getEnglishPhrase().fullEnglishPhrase);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(flashCard.getGermanPhrase().fullGermanPhrase);
+        phone.setText(flashCard.getEnglishPhrase().fullEnglishPhrase);
+        email.setText(flashCard.getEmail().value);
+        flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -62,13 +62,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof FlashCardCardView)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        FlashCardCardView card = (FlashCardCardView) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && flashCard.equals(card.flashCard);
     }
 }

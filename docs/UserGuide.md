@@ -83,7 +83,7 @@ Format: `delete <INDEX>`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd flashCard in the address book.
 
 ### Listing all phrases : `list`
 

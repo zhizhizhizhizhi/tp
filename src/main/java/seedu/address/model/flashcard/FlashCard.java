@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.flashcard;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Phrase in the Glossary.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class FlashCard {
 
     // Identity fields
     private final GermanPhrase germanPhrase;
@@ -25,7 +25,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Set<Tag> tags) {
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Set<Tag> tags) {
         requireAllNonNull(germanPhrase, englishPhrase, email, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
@@ -57,15 +57,15 @@ public class Person {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(FlashCard otherFlashCard) {
+        if (otherFlashCard == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getGermanPhrase().equals(getGermanPhrase())
-                && (otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
-                || otherPerson.getEmail().equals(getEmail()));
+        return otherFlashCard != null
+                && otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
+                && (otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
+                || otherFlashCard.getEmail().equals(getEmail()));
     }
 
     /**
@@ -78,15 +78,15 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof FlashCard)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getGermanPhrase().equals(getGermanPhrase())
-                && otherPerson.getEnglishPhrase().equals(getEnglishPhrase())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTags().equals(getTags());
+        FlashCard otherFlashCard = (FlashCard) other;
+        return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
+                && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
+                && otherFlashCard.getEmail().equals(getEmail())
+                && otherFlashCard.getTags().equals(getTags());
     }
 
     @Override

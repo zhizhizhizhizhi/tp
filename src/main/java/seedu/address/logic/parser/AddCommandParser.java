@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.EnglishPhrase;
-import seedu.address.model.person.GermanPhrase;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.Email;
+import seedu.address.model.flashcard.EnglishPhrase;
+import seedu.address.model.flashcard.FlashCard;
+import seedu.address.model.flashcard.GermanPhrase;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,9 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(germanPhrase, englishPhrase, email, tagList);
+        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, email, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(flashCard);
     }
 
     /**
