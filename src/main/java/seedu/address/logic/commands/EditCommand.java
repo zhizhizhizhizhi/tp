@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PHRASES;
 
@@ -16,7 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -33,10 +31,8 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed flashcard list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited FlashCard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -91,10 +87,9 @@ public class EditCommand extends Command {
         EnglishPhrase updatedPhone = editFlashCardDescriptor
                 .getEnglishPhrase()
                 .orElse(flashCardToEdit.getEnglishPhrase());
-        Email updatedEmail = editFlashCardDescriptor.getEmail().orElse(flashCardToEdit.getEmail());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
-        return new FlashCard(updatedGermanPhrase, updatedPhone, updatedEmail, updatedTags);
+        return new FlashCard(updatedGermanPhrase, updatedPhone, updatedTags);
     }
 
     @Override
@@ -122,7 +117,6 @@ public class EditCommand extends Command {
     public static class EditFlashCardDescriptor {
         private GermanPhrase germanPhrase;
         private EnglishPhrase englishPhrase;
-        private Email email;
         private Set<Tag> tags;
 
         public EditFlashCardDescriptor() {}
@@ -134,7 +128,6 @@ public class EditCommand extends Command {
         public EditFlashCardDescriptor(EditFlashCardDescriptor toCopy) {
             setGermanPhrase(toCopy.germanPhrase);
             setEnglishPhrase(toCopy.englishPhrase);
-            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -142,7 +135,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, email, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -159,14 +152,6 @@ public class EditCommand extends Command {
 
         public Optional<EnglishPhrase> getEnglishPhrase() {
             return Optional.ofNullable(englishPhrase);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         /**
@@ -203,7 +188,6 @@ public class EditCommand extends Command {
 
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
-                    && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }
     }

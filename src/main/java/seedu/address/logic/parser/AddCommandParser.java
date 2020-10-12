@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -11,7 +10,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -31,19 +29,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
                         .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE,
-                                PREFIX_EMAIL, PREFIX_TAG);
+                                PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
         EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, email, tagList);
+        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, tagList);
 
         return new AddCommand(flashCard);
     }

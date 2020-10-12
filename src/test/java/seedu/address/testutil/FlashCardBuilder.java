@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -17,12 +16,10 @@ public class FlashCardBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "englishphrase1";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
-    private Email email;
     private Set<Tag> tags;
 
     /**
@@ -31,7 +28,6 @@ public class FlashCardBuilder {
     public FlashCardBuilder() {
         germanPhrase = new GermanPhrase(DEFAULT_NAME);
         englishPhrase = new EnglishPhrase(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
     }
 
@@ -41,7 +37,6 @@ public class FlashCardBuilder {
     public FlashCardBuilder(FlashCard flashCardToCopy) {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
-        email = flashCardToCopy.getEmail();
         tags = new HashSet<>(flashCardToCopy.getTags());
     }
 
@@ -73,12 +68,11 @@ public class FlashCardBuilder {
      * Sets the {@code Email} of the {@code FlashCard} that we are building.
      */
     public FlashCardBuilder withEmail(String email) {
-        this.email = new Email(email);
         return this;
     }
 
     public FlashCard build() {
-        return new FlashCard(germanPhrase, englishPhrase, email, tags);
+        return new FlashCard(germanPhrase, englishPhrase, tags);
     }
 
 }

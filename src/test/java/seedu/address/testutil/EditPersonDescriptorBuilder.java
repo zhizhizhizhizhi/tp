@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditFlashCardDescriptor;
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -33,7 +32,6 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditFlashCardDescriptor();
         descriptor.setGermanPhrase(flashCard.getGermanPhrase());
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
-        descriptor.setEmail(flashCard.getEmail());
         descriptor.setTags(flashCard.getTags());
     }
 
@@ -50,14 +48,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setEnglishPhrase(new EnglishPhrase(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditFlashCardDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 

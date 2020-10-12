@@ -18,18 +18,15 @@ public class FlashCard {
     // Identity fields
     private final GermanPhrase germanPhrase;
     private final EnglishPhrase englishPhrase;
-    private final Email email;
-
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Email email, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, email, tags);
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
-        this.email = email;
         this.tags.addAll(tags);
     }
 
@@ -39,10 +36,6 @@ public class FlashCard {
 
     public EnglishPhrase getEnglishPhrase() {
         return englishPhrase;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     /**
@@ -64,8 +57,7 @@ public class FlashCard {
 
         return otherFlashCard != null
                 && otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
-                && (otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
-                || otherFlashCard.getEmail().equals(getEmail()));
+                && (otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase()));
     }
 
     /**
@@ -85,14 +77,13 @@ public class FlashCard {
         FlashCard otherFlashCard = (FlashCard) other;
         return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
                 && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
-                && otherFlashCard.getEmail().equals(getEmail())
                 && otherFlashCard.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, englishPhrase, email, tags);
+        return Objects.hash(germanPhrase, englishPhrase, tags);
     }
 
     @Override
@@ -101,11 +92,8 @@ public class FlashCard {
         builder.append(getGermanPhrase())
                 .append(" English phrase: ")
                 .append(getEnglishPhrase())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

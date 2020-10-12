@@ -1,7 +1,6 @@
 {
   "persons": [ {
     "germanPhrase": "Person with invalid name field: Ha!ns Mu@ster",
-    "englishPhrase": "englishPhrase",
-    "email": "hans@example.com"
+    "englishPhrase": "englishPhrase"
   } ]
 }

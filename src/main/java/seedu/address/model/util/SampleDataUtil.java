@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -19,17 +18,17 @@ public class SampleDataUtil {
     public static FlashCard[] getSampleFlashCards() {
         return new FlashCard[] {
             new FlashCard(new GermanPhrase("Alex Yeoh"), new EnglishPhrase("englishphrase"),
-                    new Email("alexyeoh@example.com"), getTagSet("friends")),
+                    getTagSet("friends")),
             new FlashCard(new GermanPhrase("Bernice Yu"), new EnglishPhrase("englishphrase"),
-                    new Email("berniceyu@example.com"), getTagSet("colleagues", "friends")),
+                    getTagSet("colleagues", "friends")),
             new FlashCard(new GermanPhrase("Charlotte Oliveiro"), new EnglishPhrase("englishphrase"),
-                    new Email("charlotte@example.com"), getTagSet("neighbours")),
+                    getTagSet("neighbours")),
             new FlashCard(new GermanPhrase("David Li"), new EnglishPhrase("englishphrase"),
-                    new Email("lidavid@example.com"), getTagSet("family")),
+                    getTagSet("family")),
             new FlashCard(new GermanPhrase("Irfan Ibrahim"), new EnglishPhrase("englishphrase"),
-                    new Email("irfan@example.com"), getTagSet("classmates")),
+                    getTagSet("classmates")),
             new FlashCard(new GermanPhrase("Roy Balakrishnan"), new EnglishPhrase("englishphrase"),
-                    new Email("royb@example.com"), getTagSet("colleagues"))
+                    getTagSet("colleagues"))
         };
     }
 

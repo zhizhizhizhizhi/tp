@@ -35,8 +35,6 @@ public class FlashCardCardView extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -48,7 +46,6 @@ public class FlashCardCardView extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(flashCard.getGermanPhrase().fullGermanPhrase);
         phone.setText(flashCard.getEnglishPhrase().fullEnglishPhrase);
-        email.setText(flashCard.getEmail().value);
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

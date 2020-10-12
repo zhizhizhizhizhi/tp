@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.flashcard.Email;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
@@ -25,7 +24,6 @@ class JsonAdaptedPerson {
 
     private final String germanPhrase;
     private final String englishPhrase;
-    private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,11 +32,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("germanPhrase") String germanPhrase,
                              @JsonProperty("englishPhrase") String englishPhrase,
-                             @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
-        this.email = email;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,7 +46,6 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(FlashCard source) {
         germanPhrase = source.getGermanPhrase().fullGermanPhrase;
         englishPhrase = source.getEnglishPhrase().fullEnglishPhrase;
-        email = source.getEmail().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -84,17 +79,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(EnglishPhrase.MESSAGE_CONSTRAINTS);
         }
         final EnglishPhrase modelEnglishPhrase = new EnglishPhrase(englishPhrase);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelEmail, modelTags);
+        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelTags);
     }
 
 }
