@@ -4,39 +4,39 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.EnglishPhrase;
-import seedu.address.model.person.GermanPhrase;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.EditCommand.EditFlashCardDescriptor;
+import seedu.address.model.flashcard.EnglishPhrase;
+import seedu.address.model.flashcard.FlashCard;
+import seedu.address.model.flashcard.GermanPhrase;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditFlashCardDescriptor objects.
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditFlashCardDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditFlashCardDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditFlashCardDescriptor descriptor) {
+        this.descriptor = new EditFlashCardDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditFlashCardDescriptor} with fields containing {@code flashCard}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
-        descriptor.setGermanPhrase(person.getGermanPhrase());
-        descriptor.setEnglishPhrase(person.getEnglishPhrase());
-        descriptor.setTags(person.getTags());
+    public EditPersonDescriptorBuilder(FlashCard flashCard) {
+        descriptor = new EditFlashCardDescriptor();
+        descriptor.setGermanPhrase(flashCard.getGermanPhrase());
+        descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
+        descriptor.setTags(flashCard.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditFlashCardDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setGermanPhrase(new GermanPhrase(name));
@@ -44,7 +44,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditFlashCardDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setEnglishPhrase(new EnglishPhrase(phone));
@@ -52,7 +52,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFlashCardDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
@@ -61,7 +61,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditFlashCardDescriptor build() {
         return descriptor;
     }
 }

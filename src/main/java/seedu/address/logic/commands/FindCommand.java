@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.flashcard.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all phrases in glossary which contain any of the argument keywords.
@@ -30,7 +30,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPhraseList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PHRASES_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PHRASES_LISTED_OVERVIEW, model.getFilteredFlashCardList().size()));
     }
 
     @Override

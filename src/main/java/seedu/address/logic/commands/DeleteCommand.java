@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.FlashCard;
 
 /**
  * Deletes a phrase identified using it's displayed index from the glossary.
@@ -33,14 +33,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<FlashCard> lastShownList = model.getFilteredFlashCardList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
         }
 
-        Person phraseToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(phraseToDelete);
+        FlashCard phraseToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteFlashCard(phraseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PHRASE_SUCCESS, phraseToDelete));
     }
 

@@ -15,78 +15,81 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.EnglishPhrase;
-import seedu.address.model.person.GermanPhrase;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.EnglishPhrase;
+import seedu.address.model.flashcard.FlashCard;
+import seedu.address.model.flashcard.GermanPhrase;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing flashcard in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
+            + "by the index number used in the displayed flashcard list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited FlashCard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This flashcard already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditFlashCardDescriptor editFlashCardDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the flashcard in the filtered flashcard list to edit
+     * @param editFlashCardDescriptor details to edit the flashcard with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditFlashCardDescriptor editFlashCardDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editFlashCardDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editFlashCardDescriptor = new EditFlashCardDescriptor(editFlashCardDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<FlashCard> lastShownList = model.getFilteredFlashCardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        FlashCard flashCardToEdit = lastShownList.get(index.getZeroBased());
+        FlashCard editedFlashCard = createEditedPerson(flashCardToEdit, editFlashCardDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!flashCardToEdit.isSamePerson(editedFlashCard) && model.hasFlashCard(editedFlashCard)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setFlashCard(flashCardToEdit, editedFlashCard);
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_PHRASES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFlashCard));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code FlashCard} with the details of {@code flashCardToEdit}
+     * edited with {@code editFlashCardDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static FlashCard createEditedPerson(FlashCard flashCardToEdit,
+                                                EditFlashCardDescriptor editFlashCardDescriptor) {
+        assert flashCardToEdit != null;
 
-        GermanPhrase updatedGermanPhrase = editPersonDescriptor.getGermanPhrase()
-                .orElse(personToEdit.getGermanPhrase());
-        EnglishPhrase updatedPhone = editPersonDescriptor.getEnglishPhrase().orElse(personToEdit.getEnglishPhrase());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        GermanPhrase updatedGermanPhrase = editFlashCardDescriptor.getGermanPhrase()
+                .orElse(flashCardToEdit.getGermanPhrase());
+        EnglishPhrase updatedPhone = editFlashCardDescriptor
+                .getEnglishPhrase()
+                .orElse(flashCardToEdit.getEnglishPhrase());
+        Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
-        return new Person(updatedGermanPhrase, updatedPhone, updatedTags);
+        return new FlashCard(updatedGermanPhrase, updatedPhone, updatedTags);
     }
 
     @Override
@@ -104,25 +107,25 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editFlashCardDescriptor.equals(e.editFlashCardDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the flashcard with. Each non-empty field value will replace the
+     * corresponding field value of the flashcard.
      */
-    public static class EditPersonDescriptor {
+    public static class EditFlashCardDescriptor {
         private GermanPhrase germanPhrase;
         private EnglishPhrase englishPhrase;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditFlashCardDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditFlashCardDescriptor(EditFlashCardDescriptor toCopy) {
             setGermanPhrase(toCopy.germanPhrase);
             setEnglishPhrase(toCopy.englishPhrase);
             setTags(toCopy.tags);
@@ -176,12 +179,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditFlashCardDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditFlashCardDescriptor e = (EditFlashCardDescriptor) other;
 
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())

@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.flashcard.FlashCard;
 
 /**
  * Adds a phrase to the glossary.
@@ -27,27 +27,27 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "hard ";
 
     public static final String MESSAGE_SUCCESS = "New phrase added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This phrase already exists in the glossary";
+    public static final String MESSAGE_DUPLICATE_PHRASE = "This phrase already exists in the glossary";
 
-    private final Person toAdd;
+    private final FlashCard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code FlashCard}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(FlashCard flashCard) {
+        requireNonNull(flashCard);
+        toAdd = flashCard;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasFlashCard(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHRASE);
         }
 
-        model.addPerson(toAdd);
+        model.addFlashCard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
