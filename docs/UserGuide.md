@@ -9,10 +9,10 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 - [Quick Start](#qs)
 - [Features](#features)
-    - Add Phrase (coming soon)
-    - Delete Phrase (coming soon)
-    - View All Phrases (coming soon)
-    - Test Yourself (coming soon)
+    - [Add Flashcard](#add)
+    - [Delete Flashcard](#delete)
+    - [View All Flashcards](#list)
+    - [Test Yourself](#quiz) (coming soon)
         - Start Testing (coming soon)
         - Testing (coming soon)
         - End Testing (coming soon)
@@ -36,11 +36,11 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all phrases.
+   * **`list`** : Lists all flashcards.
 
-   * **`add`**`forgetfulness | Vergesslichkeit` : Adds a phrase with English word `forgetfulness` with German translation `Vergesslichkeit` to the glossary.
+   * **`add`**`g/Vergesslichkeit ee/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
-   * **`delete`**`3` : Deletes the 3rd phrase shown in the glossary.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
 
    * **`quiz`** : Starts a round of vocabulary testing.
    
@@ -59,39 +59,39 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add <ENGLISH WORD> | <GERMAN WORD>`, `ENGLISH WORD` and `GERMAN WORD` are parameters which can be used as `add forgetfulness | Vergesslichkeit`.
+  e.g. in `add g/<GERMAN WORD> ee/<ENGLISH WORD>`, `GERMAN WORD` and `ENGLISH WORD` are parameters which can be used as `add g/Vergesslichkeit ee/Forgetfulness`.
 
 </div>
 
-### Adding a phrase: `add`
+### <a name="add"></a>Adding a flashcard: `add`
 
-Adds a phrase to the glossary.
+Adds a flashcard to the glossary.
 
-Format: `add <ENGLISH WORD> | <GERMAN WORD>`
+Format: `add g/<GERMAN WORD> ee/<ENGLISH WORD>`
 
 Example:
-* `add forgetfulness | Vergesslichkeit`
+* `add g/Vergesslichkeit ee/Forgetfulness`
 
-### Deleting a phrase : `delete`
+### <a name="delete"></a>Deleting a flashcard : `delete`
 
-Deletes the specified phrase from the glossary.
+Deletes the specified flashcard from the glossary.
 
 Format: `delete <INDEX>`
 
-* Deletes the phrase at the specified `INDEX`.
+* Deletes the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed glossary.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd flashcard in the glossary.
 
-### Listing all phrases : `list`
+### <a name="list"></a>Listing all flashcards : `list`
 
-Shows a list of all phrases in the glossary.
+Shows a list of all flashcards in the glossary.
 
 Format: `list`
 
-### Test Yourself : `quiz` `end quiz`
+### <a name="quiz"></a>Test Yourself : `quiz` `end quiz`
 
 Starts a round of vocabulary testing and ends a round of vocabulary testing respectively.
 
@@ -116,7 +116,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `ENGLISH WORD \ GERMAN WORD` <br> e.g., `add forgetfulness \ Vergesslichkeit`
+**Add** | `g/<GERMAN WORD> ee/<ENGLISH WORD>` <br> e.g., `add g/Vergesslichkeit ee/Forgetfulness`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **End Quiz** | `end quiz`
 **Exit** | `exit`
