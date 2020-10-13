@@ -38,7 +38,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
    * **`list`** : Lists all flashcards.
 
-   * **`add`**`g/Vergesslichkeit ee/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
+   * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
 
@@ -59,7 +59,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add g/<GERMAN WORD> ee/<ENGLISH WORD>`, `GERMAN WORD` and `ENGLISH WORD` are parameters which can be used as `add g/Vergesslichkeit ee/Forgetfulness`.
+  e.g. in `add g/<GERMAN WORD> e/<ENGLISH WORD>`, `GERMAN WORD` and `ENGLISH WORD` are parameters which can be used as `add g/Vergesslichkeit e/Forgetfulness`.
 
 </div>
 
@@ -67,10 +67,10 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 Adds a flashcard to the glossary.
 
-Format: `add g/<GERMAN WORD> ee/<ENGLISH WORD>`
+Format: `add g/<GERMAN WORD> e/<ENGLISH WORD>`
 
 Example:
-* `add g/Vergesslichkeit ee/Forgetfulness`
+* `add g/Vergesslichkeit e/Forgetfulness`
 
 ### <a name="delete"></a>Deleting a flashcard : `delete`
 
@@ -116,7 +116,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `g/<GERMAN WORD> ee/<ENGLISH WORD>` <br> e.g., `add g/Vergesslichkeit ee/Forgetfulness`
+**Add** | `g/<GERMAN WORD> e/<ENGLISH WORD>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **End Quiz** | `end quiz`
 **Exit** | `exit`

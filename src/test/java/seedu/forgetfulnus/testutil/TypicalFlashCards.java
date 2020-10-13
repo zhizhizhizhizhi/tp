@@ -24,11 +24,12 @@ public class TypicalFlashCards {
             .withTags("day").build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
-            .withTags("day", "hard").build();
+            .withTags("hard", "day").build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
             .withEnglishPhrase("Wednesday").build();
     public static final FlashCard THUSRDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
-            .withEnglishPhrase("Thursday").withTags("friends").build();
+            .withEnglishPhrase("Thursday")
+            .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
             .withEnglishPhrase("Friday").build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
