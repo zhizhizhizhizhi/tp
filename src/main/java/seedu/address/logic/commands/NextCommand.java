@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.flashcard.FlashCard;
 
 public class NextCommand extends Command {
+
     public static final String COMMAND_WORD = "next";
     public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
@@ -22,7 +23,7 @@ public class NextCommand extends Command {
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
         int index = model.getQuizModeIndex();
         if (index < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         } else if (!model.isQuizMode()) {
             return new CommandResult(QUIZMODE_REMINDER);
         } else if (model.getQuizModeIndex() < lastShownList.size()) {

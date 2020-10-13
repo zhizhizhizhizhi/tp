@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashCards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +24,8 @@ public class NextCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
+        expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class NextCommandTest {
             model.updateQuizModeIndex(-1);
             new NextCommand().execute(model);
         } catch (CommandException e) {
-            Assertions.assertEquals(e.getMessage(), Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
+            Assertions.assertEquals(e.getMessage(), Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         model.updateQuizModeIndex(0);
