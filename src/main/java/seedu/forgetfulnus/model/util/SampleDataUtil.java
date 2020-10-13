@@ -22,7 +22,7 @@ public class SampleDataUtil {
             new FlashCard(new GermanPhrase("Dienstag"), new EnglishPhrase("Tuesday"),
                     getTagSet("day", "hard")),
             new FlashCard(new GermanPhrase("Mittwoch"), new EnglishPhrase("Wednesday"),
-                    getTagSet("day", "veryHard")),
+                    getTagSet("day", "veryhard")),
             new FlashCard(new GermanPhrase("Donnerstag"), new EnglishPhrase("Thursday"),
                     getTagSet("day")),
             new FlashCard(new GermanPhrase("Freitag"), new EnglishPhrase("Friday"),
