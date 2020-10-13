@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.flashcard.FlashCard;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a glossary.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyGlossary {
 
     /**
      * Returns an unmodifiable view of the flashcards list.

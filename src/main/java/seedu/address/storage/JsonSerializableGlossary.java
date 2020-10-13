@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Glossary;
+import seedu.address.model.ReadOnlyGlossary;
 import seedu.address.model.flashcard.FlashCard;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Glossary that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "glossary")
+class JsonSerializableGlossary {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableGlossary(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableGlossary(ReadOnlyGlossary source) {
         persons.addAll(source.getFlashCardList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Glossary toModelType() throws IllegalValueException {
+        Glossary glossary = new Glossary();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             FlashCard flashCard = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasFlashCard(flashCard)) {
+            if (glossary.hasFlashCard(flashCard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            addressBook.addFlashCard(flashCard);
+            glossary.addPerson(flashCard);
         }
-        return addressBook;
+        return glossary;
     }
 
 }

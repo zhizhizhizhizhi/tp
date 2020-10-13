@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PHRASES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -59,7 +59,7 @@ public class EditCommand extends Command {
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         FlashCard flashCardToEdit = lastShownList.get(index.getZeroBased());
@@ -70,7 +70,7 @@ public class EditCommand extends Command {
         }
 
         model.setFlashCard(flashCardToEdit, editedFlashCard);
-        model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_PHRASES);
+        model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard));
     }
 

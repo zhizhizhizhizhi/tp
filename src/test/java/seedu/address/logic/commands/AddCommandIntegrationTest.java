@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashCards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         FlashCard validFlashCard = new FlashCardBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
         expectedModel.addFlashCard(validFlashCard);
 
         assertCommandSuccess(new AddCommand(validFlashCard), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        FlashCard flashCardInList = model.getAddressBook().getFlashCardList().get(0);
+        FlashCard flashCardInList = model.getGlossary().getFlashCardList().get(0);
         assertCommandFailure(new AddCommand(flashCardInList), model, AddCommand.MESSAGE_DUPLICATE_PHRASE);
     }
 
