@@ -20,6 +20,8 @@ public class FlashCard {
     private final EnglishPhrase englishPhrase;
     private final Set<Tag> tags = new HashSet<>();
 
+    private boolean showingEnglish = true;
+
     /**
      * Every field must be present and not null.
      */
@@ -95,5 +97,17 @@ public class FlashCard {
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    public void updateShowingEnglish(boolean showingEnglish) {
+        this.showingEnglish = showingEnglish;
+    }
+
+    public boolean isShowingEnglish() {
+        return showingEnglish;
+    }
+
+    public FlashCard copy() {
+        return new FlashCard(germanPhrase, englishPhrase, tags);
     }
 }

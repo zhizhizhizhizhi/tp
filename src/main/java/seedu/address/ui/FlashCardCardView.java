@@ -45,7 +45,7 @@ public class FlashCardCardView extends UiPart<Region> {
         this.flashCard = flashCard;
         id.setText(displayedIndex + ". ");
         name.setText(flashCard.getGermanPhrase().fullGermanPhrase);
-        phone.setText(flashCard.getEnglishPhrase().fullEnglishPhrase);
+        phone.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().fullEnglishPhrase : "");
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

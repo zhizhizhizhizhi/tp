@@ -85,4 +85,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPhraseList(Predicate<FlashCard> predicate);
+
+    /**
+     * Updates the filter of the filtered flashcard list to filter by the predicate in the class.
+     */
+    void updateFilteredPhraseList();
+
+    void updateQuizModeIndex(int index);
+
+    int getQuizModeIndex();
+
+    void setQuizMode(boolean quizMode);
+
+    boolean isQuizMode();
 }

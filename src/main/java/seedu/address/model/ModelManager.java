@@ -23,6 +23,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<FlashCard> filteredFlashCards;
 
+    private Predicate predicate = PREDICATE_SHOW_ALL_PHRASES;
+
+    private int quizModeIndex = 0;
+    private boolean quizMode = false;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -126,7 +131,34 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPhraseList(Predicate<FlashCard> predicate) {
         requireNonNull(predicate);
+        this.predicate = predicate;
         filteredFlashCards.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPhraseList() {
+        requireAllNonNull(predicate);
+        filteredFlashCards.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateQuizModeIndex(int index) {
+        quizModeIndex = index;
+    }
+
+    @Override
+    public int getQuizModeIndex() {
+        return quizModeIndex;
+    }
+
+    @Override
+    public void setQuizMode(boolean quizMode) {
+        this.quizMode = quizMode;
+    }
+
+    @Override
+    public boolean isQuizMode() {
+        return quizMode;
     }
 
     @Override
