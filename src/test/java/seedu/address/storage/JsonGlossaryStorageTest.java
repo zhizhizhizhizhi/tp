@@ -72,14 +72,14 @@ public class JsonGlossaryStorageTest {
         assertEquals(original, new Glossary(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addFlashCard(HOON);
+        original.removeFlashCard(ALICE);
         jsonGlossaryStorage.saveGlossary(original, filePath);
         readBack = jsonGlossaryStorage.readGlossary(filePath).get();
         assertEquals(original, new Glossary(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addFlashCard(IDA);
         jsonGlossaryStorage.saveGlossary(original); // file path not specified
         readBack = jsonGlossaryStorage.readGlossary().get(); // file path not specified
         assertEquals(original, new Glossary(readBack));

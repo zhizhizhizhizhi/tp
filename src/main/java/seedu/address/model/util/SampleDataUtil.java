@@ -35,7 +35,7 @@ public class SampleDataUtil {
     public static ReadOnlyGlossary getSampleGlossary() {
         Glossary sampleG = new Glossary();
         for (FlashCard sampleFlashCard : getSampleFlashCards()) {
-            sampleG.addPerson(sampleFlashCard);
+            sampleG.addFlashCard(sampleFlashCard);
         }
         return sampleG;
     }

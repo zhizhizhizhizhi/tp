@@ -40,7 +40,7 @@ public class ModelManager implements Model {
 
         this.glossary = new Glossary(glossary);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashCards = new FilteredList<>(this.glossary.getPersonList());
+        filteredFlashCards = new FilteredList<>(this.glossary.getFlashCardList());
     }
 
     public ModelManager() {
@@ -97,17 +97,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasFlashCard(FlashCard flashCard) {
         requireNonNull(flashCard);
-        return glossary.hasPerson(flashCard);
+        return glossary.hasFlashCard(flashCard);
     }
 
     @Override
     public void deleteFlashCard(FlashCard target) {
-        glossary.removePerson(target);
+        glossary.removeFlashCard(target);
     }
 
     @Override
     public void addFlashCard(FlashCard flashCard) {
-        glossary.addPerson(flashCard);
+        glossary.addFlashCard(flashCard);
         updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
     public void setFlashCard(FlashCard target, FlashCard editedFlashCard) {
         requireAllNonNull(target, editedFlashCard);
 
-        glossary.setPerson(target, editedFlashCard);
+        glossary.setFlashCard(target, editedFlashCard);
     }
 
     //=========== Filtered FlashCard List Accessors =============================================================

@@ -26,26 +26,26 @@ import seedu.address.testutil.FlashCardBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullFlashCard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_flashCardAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingFlashCardAdded modelStub = new ModelStubAcceptingFlashCardAdded();
         FlashCard validFlashCard = new FlashCardBuilder().build();
 
         CommandResult commandResult = new AddCommand(validFlashCard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFlashCard), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFlashCard), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validFlashCard), modelStub.flashCardsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         FlashCard validFlashCard = new FlashCardBuilder().build();
         AddCommand addCommand = new AddCommand(validFlashCard);
-        ModelStub modelStub = new ModelStubWithPerson(validFlashCard);
+        ModelStub modelStub = new ModelStubWithFlashCard(validFlashCard);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PHRASE, () -> addCommand.execute(modelStub));
     }
@@ -181,10 +181,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single flashCard.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithFlashCard extends ModelStub {
         private final FlashCard flashCard;
 
-        ModelStubWithPerson(FlashCard flashCard) {
+        ModelStubWithFlashCard(FlashCard flashCard) {
             requireNonNull(flashCard);
             this.flashCard = flashCard;
         }
@@ -192,26 +192,26 @@ public class AddCommandTest {
         @Override
         public boolean hasFlashCard(FlashCard flashCard) {
             requireNonNull(flashCard);
-            return this.flashCard.isSamePerson(flashCard);
+            return this.flashCard.isSameFlashCard(flashCard);
         }
     }
 
     /**
      * A Model stub that always accept the flashCard being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<FlashCard> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingFlashCardAdded extends ModelStub {
+        final ArrayList<FlashCard> flashCardsAdded = new ArrayList<>();
 
         @Override
         public boolean hasFlashCard(FlashCard flashCard) {
             requireNonNull(flashCard);
-            return personsAdded.stream().anyMatch(flashCard::isSamePerson);
+            return flashCardsAdded.stream().anyMatch(flashCard::isSameFlashCard);
         }
 
         @Override
         public void addFlashCard(FlashCard flashCard) {
             requireNonNull(flashCard);
-            personsAdded.add(flashCard);
+            flashCardsAdded.add(flashCard);
         }
 
         @Override

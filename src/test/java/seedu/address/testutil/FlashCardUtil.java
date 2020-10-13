@@ -14,19 +14,19 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for FlashCard.
  */
-public class PersonUtil {
+public class FlashCardUtil {
 
     /**
      * Returns an add command string for adding the {@code flashCard}.
      */
     public static String getAddCommand(FlashCard flashCard) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(flashCard);
+        return AddCommand.COMMAND_WORD + " " + getFlashCardDetails(flashCard);
     }
 
     /**
      * Returns the part of command string for the given {@code flashCard}'s details.
      */
-    public static String getPersonDetails(FlashCard flashCard) {
+    public static String getFlashCardDetails(FlashCard flashCard) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_GERMAN_PHRASE + flashCard.getGermanPhrase().fullGermanPhrase + " ");
         sb.append(PREFIX_ENGLISH_PHRASE + flashCard.getEnglishPhrase().fullEnglishPhrase + " ");
@@ -39,7 +39,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditFlashCardDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditFlashCardDescriptor descriptor) {
+    public static String getEditFlashCardDescriptorDetails(EditCommand.EditFlashCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getGermanPhrase()
                 .ifPresent(germanPhrase -> sb.append(PREFIX_GERMAN_PHRASE)

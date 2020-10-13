@@ -19,7 +19,7 @@ import seedu.address.model.flashcard.FlashCard;
 @JsonRootName(value = "glossary")
 class JsonSerializableGlossary {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate flashcard(s).";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -37,7 +37,7 @@ class JsonSerializableGlossary {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableGlossary(ReadOnlyGlossary source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getFlashCardList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableGlossary {
         Glossary glossary = new Glossary();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             FlashCard flashCard = jsonAdaptedPerson.toModelType();
-            if (glossary.hasPerson(flashCard)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (glossary.hasFlashCard(flashCard)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            glossary.addPerson(flashCard);
+            glossary.addFlashCard(flashCard);
         }
         return glossary;
     }

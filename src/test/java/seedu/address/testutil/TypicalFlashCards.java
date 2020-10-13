@@ -54,17 +54,17 @@ public class TypicalFlashCards {
     private TypicalFlashCards() {} // prevents instantiation
 
     /**
-     * Returns an {@code Glossary} with all the typical persons.
+     * Returns an {@code Glossary} with all the typical flashcards.
      */
     public static Glossary getTypicalGlossary() {
         Glossary ab = new Glossary();
-        for (FlashCard flashCard : getTypicalPersons()) {
-            ab.addPerson(flashCard);
+        for (FlashCard flashCard : getTypicalFlashCards()) {
+            ab.addFlashCard(flashCard);
         }
         return ab;
     }
 
-    public static List<FlashCard> getTypicalPersons() {
+    public static List<FlashCard> getTypicalFlashCards() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

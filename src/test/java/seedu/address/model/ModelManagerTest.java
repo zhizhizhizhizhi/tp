@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Glossary glossary = new GlossaryBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Glossary glossary = new GlossaryBuilder().withFlashCard(ALICE).withFlashCard(BENSON).build();
         Glossary differentGlossary = new Glossary();
         UserPrefs userPrefs = new UserPrefs();
 

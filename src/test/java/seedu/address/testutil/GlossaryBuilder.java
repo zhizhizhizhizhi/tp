@@ -16,15 +16,15 @@ public class GlossaryBuilder {
         glossary = new Glossary();
     }
 
-    public GlossaryBuilder(Glossary Glossary) {
+    public GlossaryBuilder(Glossary glossary) {
         this.glossary = glossary;
     }
 
     /**
      * Adds a new {@code FlashCard} to the {@code Glossary} that we are building.
      */
-    public GlossaryBuilder withPerson(FlashCard flashCard) {
-        glossary.addPerson(flashCard);
+    public GlossaryBuilder withFlashCard(FlashCard flashCard) {
+        glossary.addFlashCard(flashCard);
         return this;
     }
 

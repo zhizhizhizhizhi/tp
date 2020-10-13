@@ -30,7 +30,7 @@ public interface Logic {
      */
     ReadOnlyGlossary getGlossary();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<FlashCard> getFilteredFlashCardList();
 
     /**

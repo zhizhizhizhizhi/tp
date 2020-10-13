@@ -22,31 +22,31 @@ public class FlashCardTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameFlashCard() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameFlashCard(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameFlashCard(null));
 
         // different phone and email -> returns false
         FlashCard editedAlice = new FlashCardBuilder(ALICE)
                 .withPhone(VALID_PHONE_BOB)
                 .build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameFlashCard(editedAlice));
 
         // different name -> returns false
         editedAlice = new FlashCardBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameFlashCard(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new FlashCardBuilder(ALICE)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameFlashCard(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new FlashCardBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameFlashCard(editedAlice));
     }
 
     @Test

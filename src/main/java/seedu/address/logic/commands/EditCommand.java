@@ -34,9 +34,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited FlashCard: %1$s";
+    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited FlashCard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This flashcard already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book.";
 
     private final Index index;
     private final EditFlashCardDescriptor editFlashCardDescriptor;
@@ -63,23 +63,23 @@ public class EditCommand extends Command {
         }
 
         FlashCard flashCardToEdit = lastShownList.get(index.getZeroBased());
-        FlashCard editedFlashCard = createEditedPerson(flashCardToEdit, editFlashCardDescriptor);
+        FlashCard editedFlashCard = createEditedFlashCard(flashCardToEdit, editFlashCardDescriptor);
 
-        if (!flashCardToEdit.isSamePerson(editedFlashCard) && model.hasFlashCard(editedFlashCard)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!flashCardToEdit.isSameFlashCard(editedFlashCard) && model.hasFlashCard(editedFlashCard)) {
+            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
         model.setFlashCard(flashCardToEdit, editedFlashCard);
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFlashCard));
+        return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard));
     }
 
     /**
      * Creates and returns a {@code FlashCard} with the details of {@code flashCardToEdit}
      * edited with {@code editFlashCardDescriptor}.
      */
-    private static FlashCard createEditedPerson(FlashCard flashCardToEdit,
-                                                EditFlashCardDescriptor editFlashCardDescriptor) {
+    private static FlashCard createEditedFlashCard(FlashCard flashCardToEdit,
+                                                   EditFlashCardDescriptor editFlashCardDescriptor) {
         assert flashCardToEdit != null;
 
         GermanPhrase updatedGermanPhrase = editFlashCardDescriptor.getGermanPhrase()

@@ -27,7 +27,7 @@ public class GlossaryTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), glossary.getPersonList());
+        assertEquals(Collections.emptyList(), glossary.getFlashCardList());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class GlossaryTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateFlashCards_throwsDuplicateFlashCardException() {
         // Two flashCards with the same identity fields
         FlashCard editedAlice = new FlashCardBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -54,32 +54,32 @@ public class GlossaryTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> glossary.hasPerson(null));
+    public void hasFlashCard_nullFlashCard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> glossary.hasFlashCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(glossary.hasPerson(ALICE));
+    public void hasFlashCard_flashCardNotInAddressBook_returnsFalse() {
+        assertFalse(glossary.hasFlashCard(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        glossary.addPerson(ALICE);
-        assertTrue(glossary.hasPerson(ALICE));
+    public void hasFlashCard_flashCardInAddressBook_returnsTrue() {
+        glossary.addFlashCard(ALICE);
+        assertTrue(glossary.hasFlashCard(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        glossary.addPerson(ALICE);
+    public void hasFlashCard_flashCardWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        glossary.addFlashCard(ALICE);
         FlashCard editedAlice = new FlashCardBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(glossary.hasPerson(editedAlice));
+        assertTrue(glossary.hasFlashCard(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> glossary.getPersonList().remove(0));
+    public void getFlashCardList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> glossary.getFlashCardList().remove(0));
     }
 
     /**
@@ -93,7 +93,7 @@ public class GlossaryTest {
         }
 
         @Override
-        public ObservableList<FlashCard> getPersonList() {
+        public ObservableList<FlashCard> getFlashCardList() {
             return flashCards;
         }
     }
