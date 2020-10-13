@@ -57,7 +57,8 @@ public class AddressBookParserTest {
         FlashCard flashCard = new FlashCardBuilder().build();
         EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder(flashCard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_FLASHCARD.getOneBased() + " " + FlashCardUtil.getEditFlashCardDescriptorDetails(descriptor));
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+                + FlashCardUtil.getEditFlashCardDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     }
 

@@ -34,7 +34,8 @@ public class EditFlashCardDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditFlashCardDescriptor editedAmy = new EditFlashCardDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditFlashCardDescriptor editedAmy = new EditFlashCardDescriptorBuilder(DESC_AMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

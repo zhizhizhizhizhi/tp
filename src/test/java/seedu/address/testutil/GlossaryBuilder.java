@@ -16,7 +16,7 @@ public class GlossaryBuilder {
         glossary = new Glossary();
     }
 
-    public GlossaryBuilder(Glossary Glossary) {
+    public GlossaryBuilder(Glossary glossary) {
         this.glossary = glossary;
     }
 
