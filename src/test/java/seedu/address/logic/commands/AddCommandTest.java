@@ -147,6 +147,34 @@ public class AddCommandTest {
         public void updateFilteredPhraseList(Predicate<FlashCard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        /**
+         * Updates the filter of the filtered flashcard list to filter by the predicate in the class.
+         */
+        @Override
+        public void updateFilteredPhraseList() {
+
+        }
+
+        @Override
+        public void updateQuizModeIndex(int index) {
+
+        }
+
+        @Override
+        public int getQuizModeIndex() {
+            return 0;
+        }
+
+        @Override
+        public void setQuizMode(boolean quizMode) {
+
+        }
+
+        @Override
+        public boolean isQuizMode() {
+            return false;
+        }
     }
 
     /**
