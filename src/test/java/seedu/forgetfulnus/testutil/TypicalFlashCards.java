@@ -1,15 +1,15 @@
 package seedu.forgetfulnus.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.flashcard.FlashCard;

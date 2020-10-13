@@ -12,8 +12,8 @@ import static seedu.forgetfulnus.logic.commands.CommandTestUtil.PREAMBLE_NON_EMP
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.TAG_DESC_CHAPTER_ONE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.TAG_DESC_HARD;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.forgetfulnus.logic.parser.CommandParserTestUtil.assertParseFailure;
