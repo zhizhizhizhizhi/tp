@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Model;
-import seedu.address.model.flashcard.FlashCard;
-
 import java.util.List;
 import java.util.ListIterator;
+
+import seedu.address.model.Model;
+import seedu.address.model.flashcard.FlashCard;
 
 public class QuizCommand extends Command {
     public static final String COMMAND_WORD = "quiz";

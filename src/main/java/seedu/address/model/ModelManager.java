@@ -128,24 +128,6 @@ public class ModelManager implements Model {
         return filteredFlashCards;
     }
 
-//    @Override
-//    public void startQuiz() {
-//        ListIterator<FlashCard> iterator = filteredFlashCards.listIterator();
-//        while (iterator.hasNext()) {
-//            iterator.next().setShowEnglish(false);
-//        }
-//        updateFilteredPhraseList(predicate);
-//    }
-//
-//    @Override
-//    public void endQuiz() {
-//        ListIterator<FlashCard> iterator = filteredFlashCards.listIterator();
-//        while (iterator.hasNext()) {
-//            iterator.next().setShowEnglish(true);
-//        }
-//        updateFilteredPhraseList(predicate);
-//    }
-
     @Override
     public void updateFilteredPhraseList(Predicate<FlashCard> predicate) {
         requireNonNull(predicate);

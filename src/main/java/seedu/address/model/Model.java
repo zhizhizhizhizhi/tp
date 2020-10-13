@@ -98,8 +98,4 @@ public interface Model {
     void setQuizMode(boolean quizMode);
 
     boolean isQuizMode();
-//
-//    void startQuiz();
-//
-//    void endQuiz();
 }

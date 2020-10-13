@@ -2,20 +2,19 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.FlashCard;
 
-import java.util.List;
-
 public class NextCommand extends Command {
     public static final String COMMAND_WORD = "next";
-
-    public static String germanWord;
+    public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
+            + "Enter 'quiz' to start quizzing.";
     public static final String MESSAGE_SUCCESS = "next card: ";
-    public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. " +
-            "Enter 'quiz' to start quizzing.";
+    private static String germanWord;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
