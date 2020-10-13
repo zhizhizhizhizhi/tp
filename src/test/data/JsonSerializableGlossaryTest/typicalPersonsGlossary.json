@@ -1,32 +1,32 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "germanPhrase" : "Alice Pauline",
-    "englishPhrase" : "englishPhrase",
+    "germanPhrase" : "Montag",
+    "englishPhrase" : "Monday",
+    "tagged" : [ "day" ]
+  }, {
+    "germanPhrase" : "Dienstag",
+    "englishPhrase" : "Tuesday",
+    "tagged" : [ "hard", "day" ]
+  }, {
+    "germanPhrase" : "Mittwoch",
+    "englishPhrase" : "Wednesday",
+    "tagged" : [ ]
+  }, {
+    "germanPhrase" : "Donnerstag",
+    "englishPhrase" : "Thursday",
     "tagged" : [ "friends" ]
   }, {
-    "germanPhrase" : "Benson Meier",
-    "englishPhrase" : "englishPhrase",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "germanPhrase" : "Carl Kurz",
-    "englishPhrase" : "englishPhrase",
+    "germanPhrase" : "Freitag",
+    "englishPhrase" : "Friday",
     "tagged" : [ ]
   }, {
-    "germanPhrase" : "Daniel Meier",
-    "englishPhrase" : "englishPhrase",
-    "tagged" : [ "friends" ]
-  }, {
-    "germanPhrase" : "Elle Meyer",
-    "englishPhrase" : "englishPhrase",
+    "germanPhrase" : "Samstag",
+    "englishPhrase" : "Saturday",
     "tagged" : [ ]
   }, {
-    "germanPhrase" : "Fiona Kunz",
-    "englishPhrase" : "englishPhrase",
-    "tagged" : [ ]
-  }, {
-    "germanPhrase" : "George Best",
-    "englishPhrase" : "englishPhrase",
+    "germanPhrase" : "Sonntag",
+    "englishPhrase" : "Sunday",
     "tagged" : [ ]
   } ]
 }
