@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Glossary;
+import seedu.address.model.ReadOnlyGlossary;
 import seedu.address.model.flashcard.EnglishPhrase;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.GermanPhrase;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Glossary} with sample data.
  */
 public class SampleDataUtil {
     public static FlashCard[] getSampleFlashCards() {
@@ -32,12 +32,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyGlossary getSampleGlossary() {
+        Glossary sampleG = new Glossary();
         for (FlashCard sampleFlashCard : getSampleFlashCards()) {
-            sampleAb.addPerson(sampleFlashCard);
+            sampleG.addPerson(sampleFlashCard);
         }
-        return sampleAb;
+        return sampleG;
     }
 
     /**

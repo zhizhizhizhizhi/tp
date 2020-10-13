@@ -11,18 +11,18 @@ import seedu.address.model.Model;
 import seedu.address.model.flashcard.FlashCard;
 
 /**
- * Deletes a phrase identified using it's displayed index from the glossary.
+ * Deletes a flashcard identified using it's displayed index from the glossary.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the phrase identified by the index number used in the glossary.\n"
+            + ": Deletes the flashcard identified by the index number used in the glossary.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PHRASE_SUCCESS = "Deleted Phrase: %1$s";
+    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Phrase: %1$s";
 
     private final Index targetIndex;
 
@@ -36,12 +36,12 @@ public class DeleteCommand extends Command {
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PHRASE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         FlashCard phraseToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteFlashCard(phraseToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PHRASE_SUCCESS, phraseToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, phraseToDelete));
     }
 
     @Override
