@@ -91,9 +91,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseEnglishPhrase_validValueWithWhitespace_returnsTrimmedEnglishPhrase() throws Exception {
-        String EnglishPhraseWithWhitespace = WHITESPACE + VALID_ENGLISH_PHRASE + WHITESPACE;
+        String englishPhraseWithWhitespace = WHITESPACE + VALID_ENGLISH_PHRASE + WHITESPACE;
         EnglishPhrase expectedEnglishPhrase = new EnglishPhrase(VALID_ENGLISH_PHRASE);
-        assertEquals(expectedEnglishPhrase, ParserUtil.parseEnglishPhrase(EnglishPhraseWithWhitespace));
+        assertEquals(expectedEnglishPhrase, ParserUtil.parseEnglishPhrase(englishPhraseWithWhitespace));
     }
 
     @Test

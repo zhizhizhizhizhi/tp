@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DESC_TABLE;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,10 +54,11 @@ public class EditCommandTest {
         FlashCard lastFlashCard = model.getFilteredFlashCardList().get(indexLastFlashCard.getZeroBased());
 
         FlashCardBuilder flashCardInList = new FlashCardBuilder(lastFlashCard);
-        FlashCard editedFlashCard = flashCardInList.withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
-                .withTags(VALID_TAG_CHAPTER_ONE).build();
+        FlashCard editedFlashCard = flashCardInList.withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE).withTags(VALID_TAG_CHAPTER_ONE).build();
 
-        EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
+        EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
+                .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE).withTags(VALID_TAG_CHAPTER_ONE).build();
         EditCommand editCommand = new EditCommand(indexLastFlashCard, descriptor);
 
@@ -86,7 +87,8 @@ public class EditCommandTest {
         showFlashCardsAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         FlashCard flashCardInFilteredList = model.getFilteredFlashCardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        FlashCard editedFlashCard = new FlashCardBuilder(flashCardInFilteredList).withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).build();
+        FlashCard editedFlashCard = new FlashCardBuilder(flashCardInFilteredList)
+                .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
                 new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).build());
 
@@ -122,7 +124,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidFlashCardIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashCardList().size() + 1);
-        EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).build();
+        EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
+                .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);

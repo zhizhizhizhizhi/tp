@@ -3,8 +3,8 @@ package seedu.forgetfulnus.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.FORGETFULNESS;
 

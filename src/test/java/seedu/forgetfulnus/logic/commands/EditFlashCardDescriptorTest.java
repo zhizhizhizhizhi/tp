@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DESC_TABLE;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,8 @@ public class EditFlashCardDescriptorTest {
         assertFalse(DESC_FORGETFULNESS.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditFlashCardDescriptorBuilder(DESC_FORGETFULNESS).withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE).build();
+        editedAmy = new EditFlashCardDescriptorBuilder(DESC_FORGETFULNESS)
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE).build();
         assertFalse(DESC_FORGETFULNESS.equals(editedAmy));
 
         // different tags -> returns false

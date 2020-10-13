@@ -1,13 +1,13 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_GERMAN_PHRASE_DESC;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_GERMAN_PHRASE_DESC;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.TAG_DESC_CHAPTER_ONE;

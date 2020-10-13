@@ -18,14 +18,17 @@ public class GermanPhraseContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        GermanPhraseContainsKeywordsPredicate firstPredicate = new GermanPhraseContainsKeywordsPredicate(firstPredicateKeywordList);
-        GermanPhraseContainsKeywordsPredicate secondPredicate = new GermanPhraseContainsKeywordsPredicate(secondPredicateKeywordList);
+        GermanPhraseContainsKeywordsPredicate firstPredicate =
+                new GermanPhraseContainsKeywordsPredicate(firstPredicateKeywordList);
+        GermanPhraseContainsKeywordsPredicate secondPredicate =
+                new GermanPhraseContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        GermanPhraseContainsKeywordsPredicate firstPredicateCopy = new GermanPhraseContainsKeywordsPredicate(firstPredicateKeywordList);
+        GermanPhraseContainsKeywordsPredicate firstPredicateCopy =
+                new GermanPhraseContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class GermanPhraseContainsKeywordsPredicateTest {
     @Test
     public void test_germanPhraseContainsKeywords_returnsTrue() {
         // One keyword
-        GermanPhraseContainsKeywordsPredicate predicate = new GermanPhraseContainsKeywordsPredicate(Collections.singletonList("Kaffee"));
+        GermanPhraseContainsKeywordsPredicate predicate =
+                new GermanPhraseContainsKeywordsPredicate(Collections.singletonList("Kaffee"));
         assertTrue(predicate.test(new FlashCardBuilder().withGermanPhrase("Kaffee Tee").build()));
 
         // Multiple keywords
@@ -60,7 +64,8 @@ public class GermanPhraseContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        GermanPhraseContainsKeywordsPredicate predicate = new GermanPhraseContainsKeywordsPredicate(Collections.emptyList());
+        GermanPhraseContainsKeywordsPredicate predicate =
+                new GermanPhraseContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new FlashCardBuilder().withGermanPhrase("Kaffee").build()));
 
         // Non-matching keyword

@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
+
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
-
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code FlashCard} objects to be used in tests.
@@ -32,13 +37,15 @@ public class TypicalFlashCards {
             .withEnglishPhrase("Sunday").build();
 
     // Manually added
-    public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen").withEnglishPhrase("Morning")
+    public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")
+            .withEnglishPhrase("Morning")
             .build();
     public static final FlashCard NOON = new FlashCardBuilder().withGermanPhrase("Mittag").withEnglishPhrase("Noon")
             .build();
 
     // Manually added - FlashCard's details found in {@code CommandTestUtil}
-    public static final FlashCard FORGETFULNESS = new FlashCardBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
+    public static final FlashCard FORGETFULNESS = new FlashCardBuilder()
+            .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
             .withTags(VALID_TAG_HARD).build();
     public static final FlashCard TABLE = new FlashCardBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)

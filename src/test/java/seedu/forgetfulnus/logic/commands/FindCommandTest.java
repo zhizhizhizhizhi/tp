@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_PHRASES_LISTED_OVERVIEW;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.WEDNESDAY;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.FRIDAY;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.SATURDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.WEDNESDAY;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import java.util.Arrays;

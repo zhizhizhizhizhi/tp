@@ -1,17 +1,18 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_GERMAN_PHRASE_DESC;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.TAG_DESC_CHAPTER_ONE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.TAG_DESC_HARD;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
@@ -100,7 +101,8 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + ENGLISH_DESC_TABLE + TAG_DESC_HARD
                 + GERMAN_DESC_FORGETFULNESS + TAG_DESC_CHAPTER_ONE;
 
-        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
+        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
+                .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
                 .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -113,7 +115,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ENGLISH_DESC_TABLE;
 
-        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
+        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -150,7 +153,8 @@ public class EditCommandParserTest {
                 + TAG_DESC_CHAPTER_ONE + ENGLISH_DESC_FORGETFULNESS + TAG_DESC_CHAPTER_ONE
                 + ENGLISH_DESC_TABLE + TAG_DESC_HARD;
 
-        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
+        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
+                .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
                 .withTags(VALID_TAG_HARD, VALID_TAG_CHAPTER_ONE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
