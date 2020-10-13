@@ -4,8 +4,8 @@ import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PH
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import java.util.ArrayList;
 import java.util.Arrays;
