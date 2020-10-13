@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +24,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.FlashCard;
 import seedu.address.model.flashcard.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditFlashCardDescriptorBuilder;
 import seedu.address.testutil.FlashCardBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.FlashCardUtil;
 
 public class AddressBookParserTest {
 
@@ -35,7 +35,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         FlashCard flashCard = new FlashCardBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(flashCard));
+        AddCommand command = (AddCommand) parser.parseCommand(FlashCardUtil.getAddCommand(flashCard));
         assertEquals(new AddCommand(flashCard), command);
     }
 
@@ -48,17 +48,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         FlashCard flashCard = new FlashCardBuilder().build();
-        EditCommand.EditFlashCardDescriptor descriptor = new EditPersonDescriptorBuilder(flashCard).build();
+        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder(flashCard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " " + FlashCardUtil.getEditFlashCardDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     }
 
     @Test

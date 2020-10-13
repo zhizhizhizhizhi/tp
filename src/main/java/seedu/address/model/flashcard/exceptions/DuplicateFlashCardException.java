@@ -1,8 +1,8 @@
 package seedu.address.model.flashcard.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
- * identity).
+ * Signals that the operation will result in duplicate FlashCards (FlashCards are considered duplicates
+ * if they have the same contents).
  */
 public class DuplicateFlashCardException extends RuntimeException {
     public DuplicateFlashCardException() {

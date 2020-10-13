@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        FlashCard flashCardInList = model.getAddressBook().getPersonList().get(0);
+        FlashCard flashCardInList = model.getAddressBook().getFlashCardList().get(0);
         assertCommandFailure(new AddCommand(flashCardInList), model, AddCommand.MESSAGE_DUPLICATE_PHRASE);
     }
 

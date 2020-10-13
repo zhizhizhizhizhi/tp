@@ -35,7 +35,7 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (FlashCard sampleFlashCard : getSampleFlashCards()) {
-            sampleAb.addPerson(sampleFlashCard);
+            sampleAb.addFlashCard(sampleFlashCard);
         }
         return sampleAb;
     }

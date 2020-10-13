@@ -39,7 +39,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashCards = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFlashCards = new FilteredList<>(this.addressBook.getFlashCardList());
     }
 
     public ModelManager() {
@@ -96,17 +96,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasFlashCard(FlashCard flashCard) {
         requireNonNull(flashCard);
-        return addressBook.hasPerson(flashCard);
+        return addressBook.hasFlashCard(flashCard);
     }
 
     @Override
     public void deleteFlashCard(FlashCard target) {
-        addressBook.removePerson(target);
+        addressBook.removeFlashCard(target);
     }
 
     @Override
     public void addFlashCard(FlashCard flashCard) {
-        addressBook.addPerson(flashCard);
+        addressBook.addFlashCard(flashCard);
         updateFilteredPhraseList(PREDICATE_SHOW_ALL_PHRASES);
     }
 
@@ -114,7 +114,7 @@ public class ModelManager implements Model {
     public void setFlashCard(FlashCard target, FlashCard editedFlashCard) {
         requireAllNonNull(target, editedFlashCard);
 
-        addressBook.setPerson(target, editedFlashCard);
+        addressBook.setFlashCard(target, editedFlashCard);
     }
 
     //=========== Filtered FlashCard List Accessors =============================================================

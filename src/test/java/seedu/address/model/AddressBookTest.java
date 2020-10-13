@@ -27,7 +27,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getFlashCardList());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateFlashCards_throwsDuplicateFlashCardException() {
         // Two flashCards with the same identity fields
         FlashCard editedAlice = new FlashCardBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -54,32 +54,32 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasFlashCard_nullFlashCard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasFlashCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasFlashCard_flashCardNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasFlashCard(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasFlashCard_flashCardInAddressBook_returnsTrue() {
+        addressBook.addFlashCard(ALICE);
+        assertTrue(addressBook.hasFlashCard(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasFlashCard_flashCardWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addFlashCard(ALICE);
         FlashCard editedAlice = new FlashCardBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasFlashCard(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getFlashCardList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getFlashCardList().remove(0));
     }
 
     /**
@@ -93,7 +93,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<FlashCard> getPersonList() {
+        public ObservableList<FlashCard> getFlashCardList() {
             return flashCards;
         }
     }

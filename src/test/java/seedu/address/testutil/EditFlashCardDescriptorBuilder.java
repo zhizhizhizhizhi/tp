@@ -13,22 +13,22 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building EditFlashCardDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditFlashCardDescriptorBuilder {
 
     private EditFlashCardDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditFlashCardDescriptorBuilder() {
         descriptor = new EditFlashCardDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditFlashCardDescriptor descriptor) {
+    public EditFlashCardDescriptorBuilder(EditFlashCardDescriptor descriptor) {
         this.descriptor = new EditFlashCardDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditFlashCardDescriptor} with fields containing {@code flashCard}'s details
      */
-    public EditPersonDescriptorBuilder(FlashCard flashCard) {
+    public EditFlashCardDescriptorBuilder(FlashCard flashCard) {
         descriptor = new EditFlashCardDescriptor();
         descriptor.setGermanPhrase(flashCard.getGermanPhrase());
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
@@ -38,7 +38,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditFlashCardDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditFlashCardDescriptorBuilder withName(String name) {
         descriptor.setGermanPhrase(new GermanPhrase(name));
         return this;
     }
@@ -46,7 +46,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditFlashCardDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditFlashCardDescriptorBuilder withPhone(String phone) {
         descriptor.setEnglishPhrase(new EnglishPhrase(phone));
         return this;
     }
@@ -55,7 +55,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFlashCardDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditFlashCardDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
