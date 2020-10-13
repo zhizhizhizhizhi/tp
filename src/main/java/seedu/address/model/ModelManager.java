@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     @Override
     public void addFlashCard(FlashCard flashCard) {
         glossary.addFlashCard(flashCard);
-        updateFilteredPhraseList(PREDICATE_SHOW_ALL_PHRASES);
+        updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
     @Override

@@ -52,7 +52,7 @@ class JsonSerializableGlossary {
             if (glossary.hasFlashCard(flashCard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            glossary.addPerson(flashCard);
+            glossary.addFlashCard(flashCard);
         }
         return glossary;
     }

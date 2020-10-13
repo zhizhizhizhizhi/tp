@@ -23,8 +23,8 @@ public class GlossaryBuilder {
     /**
      * Adds a new {@code FlashCard} to the {@code Glossary} that we are building.
      */
-    public GlossaryBuilder withPerson(FlashCard flashCard) {
-        glossary.addPerson(flashCard);
+    public GlossaryBuilder withFlashCard(FlashCard flashCard) {
+        glossary.addFlashCard(flashCard);
         return this;
     }
 
