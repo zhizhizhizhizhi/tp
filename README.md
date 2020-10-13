@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 # Welcome to ForgetfulNUS!
-  ForgetfulNUS is a **flash card-styled application** designed to assist students currently learning the **German Language**,
+  ForgetfulNUS is a **flashcard application** designed to assist students currently learning the **German Language**,
   specifically those undertaking the **NUS modules LAG1201 and LAG2201**, as a **memory aid for vocabulary**.
 * Example usages:
   * Self-testing with a scoring system
