@@ -26,15 +26,20 @@ public class TypicalFlashCards {
             .withEnglishPhrase("Tuesday")
             .withTags("day", "hard").build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
-            .withEnglishPhrase("Wednesday").build();
+            .withEnglishPhrase("Wednesday")
+            .withTags("day", "very hard").build();
     public static final FlashCard THUSRDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
-            .withEnglishPhrase("Thursday").withTags("friends").build();
+            .withEnglishPhrase("Thursday")
+            .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
-            .withEnglishPhrase("Friday").build();
+            .withEnglishPhrase("Friday")
+            .withTags("day").build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
-            .withEnglishPhrase("Saturday").build();
+            .withEnglishPhrase("Saturday")
+            .withTags("day").build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
-            .withEnglishPhrase("Sunday").build();
+            .withEnglishPhrase("Sunday")
+            .withTags("day").build();
 
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")

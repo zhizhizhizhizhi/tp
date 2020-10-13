@@ -17,18 +17,20 @@ import seedu.forgetfulnus.model.tag.Tag;
 public class SampleDataUtil {
     public static FlashCard[] getSampleFlashCards() {
         return new FlashCard[] {
-            new FlashCard(new GermanPhrase("Alex Yeoh"), new EnglishPhrase("englishphrase"),
-                    getTagSet("friends")),
-            new FlashCard(new GermanPhrase("Bernice Yu"), new EnglishPhrase("englishphrase"),
-                    getTagSet("colleagues", "friends")),
-            new FlashCard(new GermanPhrase("Charlotte Oliveiro"), new EnglishPhrase("englishphrase"),
-                    getTagSet("neighbours")),
-            new FlashCard(new GermanPhrase("David Li"), new EnglishPhrase("englishphrase"),
-                    getTagSet("family")),
-            new FlashCard(new GermanPhrase("Irfan Ibrahim"), new EnglishPhrase("englishphrase"),
-                    getTagSet("classmates")),
-            new FlashCard(new GermanPhrase("Roy Balakrishnan"), new EnglishPhrase("englishphrase"),
-                    getTagSet("colleagues"))
+            new FlashCard(new GermanPhrase("Montag"), new EnglishPhrase("Monday"),
+                    getTagSet("day")),
+            new FlashCard(new GermanPhrase("Dienstag"), new EnglishPhrase("Tuesday"),
+                    getTagSet("day", "hard")),
+            new FlashCard(new GermanPhrase("Mittwoch"), new EnglishPhrase("Wednesday"),
+                    getTagSet("day", "veryHard")),
+            new FlashCard(new GermanPhrase("Donnerstag"), new EnglishPhrase("Thursday"),
+                    getTagSet("day")),
+            new FlashCard(new GermanPhrase("Freitag"), new EnglishPhrase("Friday"),
+                    getTagSet("day")),
+            new FlashCard(new GermanPhrase("Samstag"), new EnglishPhrase("Saturday"),
+                        getTagSet("day")),
+            new FlashCard(new GermanPhrase("Sonntag"), new EnglishPhrase("Sunday"),
+                        getTagSet("day"))
         };
     }
 
