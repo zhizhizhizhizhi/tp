@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Glossary;
 import seedu.address.model.flashcard.FlashCard;
 
 /**
@@ -54,10 +54,10 @@ public class TypicalFlashCards {
     private TypicalFlashCards() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Glossary} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Glossary getTypicalGlossary() {
+        Glossary ab = new Glossary();
         for (FlashCard flashCard : getTypicalPersons()) {
             ab.addPerson(flashCard);
         }

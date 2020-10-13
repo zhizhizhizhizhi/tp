@@ -12,7 +12,7 @@ import seedu.address.model.flashcard.FlashCard;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<FlashCard> PREDICATE_SHOW_ALL_PHRASES = unused -> true;
+    Predicate<FlashCard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,45 +35,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' glossary file path.
      */
-    Path getAddressBookFilePath();
+    Path getGlossaryFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' glossary file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setGlossaryFilePath(Path glossaryFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces glossary data with the data in {@code glossary}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setGlossary(ReadOnlyGlossary glossary);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Glossary */
+    ReadOnlyGlossary getGlossary();
 
     /**
-     * Returns true if a flashCard with the same identity as {@code flashCard} exists in the address book.
+     * Returns true if a flashCard with the same identity as {@code flashCard} exists in the glossary.
      */
     boolean hasFlashCard(FlashCard flashCard);
 
     /**
      * Deletes the given flashcard.
-     * The flashcard must exist in the address book.
+     * The flashcard must exist in the glossary.
      */
     void deleteFlashCard(FlashCard target);
 
     /**
      * Adds the given flashCard.
-     * {@code flashCard} must not already exist in the address book.
+     * {@code flashCard} must not already exist in the glossary.
      */
     void addFlashCard(FlashCard flashCard);
 
     /**
      * Replaces the given flashcard {@code target} with {@code editedFlashCard}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the glossary.
      * The flashcard identity of {@code editedFlashCard} must not be the same as
-     * another existing flashcard in the address book.
+     * another existing flashcard in the glossary.
      */
     void setFlashCard(FlashCard target, FlashCard editedFlashCard);
 

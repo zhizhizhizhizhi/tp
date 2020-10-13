@@ -17,33 +17,34 @@ import seedu.address.model.flashcard.FlashCard;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Glossary glossary;
     private final UserPrefs userPrefs;
     private final FilteredList<FlashCard> filteredFlashCards;
 
-    private Predicate predicate = PREDICATE_SHOW_ALL_PHRASES;
+    private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
     private int quizModeIndex = 0;
     private boolean quizMode = false;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given glossary and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGlossary glossary, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(glossary, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initialising with glossary: " + glossary + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.glossary = new Glossary(glossary);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashCards = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFlashCards = new FilteredList<>(this.glossary.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Glossary(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,50 +72,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getGlossaryFilePath() {
+        return userPrefs.getGlossaryFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setGlossaryFilePath(Path glossaryFilePath) {
+        requireNonNull(glossaryFilePath);
+        userPrefs.setGlossaryFilePath(glossaryFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Glossary ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setGlossary(ReadOnlyGlossary addressBook) {
+        this.glossary.resetData(glossary);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyGlossary getGlossary() {
+        return glossary;
     }
 
     @Override
     public boolean hasFlashCard(FlashCard flashCard) {
         requireNonNull(flashCard);
-        return addressBook.hasPerson(flashCard);
+        return glossary.hasPerson(flashCard);
     }
 
     @Override
     public void deleteFlashCard(FlashCard target) {
-        addressBook.removePerson(target);
+        glossary.removePerson(target);
     }
 
     @Override
     public void addFlashCard(FlashCard flashCard) {
-        addressBook.addPerson(flashCard);
-        updateFilteredPhraseList(PREDICATE_SHOW_ALL_PHRASES);
+        glossary.addPerson(flashCard);
+        updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
     @Override
     public void setFlashCard(FlashCard target, FlashCard editedFlashCard) {
         requireAllNonNull(target, editedFlashCard);
 
-        addressBook.setPerson(target, editedFlashCard);
+        glossary.setPerson(target, editedFlashCard);
     }
 
     //=========== Filtered FlashCard List Accessors =============================================================
@@ -175,7 +176,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return glossary.equals(other.glossary)
                 && userPrefs.equals(other.userPrefs)
                 && filteredFlashCards.equals(other.filteredFlashCards);
     }
