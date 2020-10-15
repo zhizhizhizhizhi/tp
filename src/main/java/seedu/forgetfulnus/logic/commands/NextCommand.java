@@ -10,12 +10,12 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class NextCommand extends Command {
-
     public static final String COMMAND_WORD = "next";
     public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
     public static final String MESSAGE_SUCCESS = "Next card: ";
 
+    private static final CommandType type = CommandType.QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -25,13 +25,12 @@ public class NextCommand extends Command {
         int index = model.getQuizModeIndex();
         if (index < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-        } else if (!model.isQuizMode()) {
-            return new CommandResult(QUIZMODE_REMINDER);
-        } else if (model.getQuizModeIndex() < lastShownList.size()) {
+        } else if (model.getQuizModeIndex() < lastShownList.size() - 1) {
             FlashCard toEdit = lastShownList.get(index);
-            FlashCard nextCard = index == lastShownList.size() - 1 ? null : lastShownList.get(index + 1);
+            FlashCard nextCard = lastShownList.get(index + 1);
+            assert (nextCard != null);
             FlashCard changeTo = toEdit.copy();
-            germanWord = nextCard == null ? "End of quiz!" : nextCard.getGermanPhrase().fullGermanPhrase;
+            germanWord = nextCard.getGermanPhrase().fullGermanPhrase;
             changeTo.updateShowingEnglish(true);
             model.setFlashCard(toEdit, changeTo);
             model.updateQuizModeIndex(index + 1);
@@ -41,5 +40,15 @@ public class NextCommand extends Command {
             Command endQuiz = new EndQuizCommand();
             return endQuiz.execute(model);
         }
+    }
+
+    @Override
+    public String getQuizModeReminder() {
+        return QUIZMODE_REMINDER;
+    }
+
+    @Override
+    public CommandType isQuizModeCommand() {
+        return type;
     }
 }
