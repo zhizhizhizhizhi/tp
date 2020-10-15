@@ -9,12 +9,12 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class EndQuizCommand extends Command {
-    private static final CommandType type = CommandType.QUIZ_MODE;
-
     public static final String COMMAND_WORD = "end";
 
     public static final String MESSAGE_SUCCESS = "Quiz ended!";
     public static final String QUIZMODE_REMINDER = "Quiz has ended.";
+
+    private static final CommandType type = CommandType.QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) {

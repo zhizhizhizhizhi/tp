@@ -10,11 +10,12 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class NextCommand extends Command {
-    private static final CommandType type = CommandType.QUIZ_MODE;
     public static final String COMMAND_WORD = "next";
     public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
     public static final String MESSAGE_SUCCESS = "Next card: ";
+
+    private static final CommandType type = CommandType.QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

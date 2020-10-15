@@ -24,8 +24,6 @@ import seedu.forgetfulnus.model.tag.Tag;
  * Edits the details of an existing flashcard in the address book.
  */
 public class EditCommand extends Command {
-    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
@@ -41,6 +39,7 @@ public class EditCommand extends Command {
     public static final String QUIZMODE_REMINDER = "Flashcards cannot be edited in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
     private final Index index;
     private final EditFlashCardDescriptor editFlashCardDescriptor;
 

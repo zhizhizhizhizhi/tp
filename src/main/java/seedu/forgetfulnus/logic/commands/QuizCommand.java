@@ -4,18 +4,18 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Queue;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class QuizCommand extends Command {
-    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
     public static final String COMMAND_WORD = "quiz";
 
     public static final String MESSAGE_SUCCESS = "Quiz started!";
     public static final String QUIZMODE_REMINDER = "Quiz has started. "
             + "Enter 'end' to end quizzing.";
+
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) {

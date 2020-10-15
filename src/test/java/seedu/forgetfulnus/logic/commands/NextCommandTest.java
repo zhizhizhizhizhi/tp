@@ -12,7 +12,6 @@ import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.UserPrefs;
-import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

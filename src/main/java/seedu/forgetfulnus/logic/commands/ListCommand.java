@@ -9,12 +9,11 @@ import seedu.forgetfulnus.model.Model;
  * Lists all phrases in the address book to the user.
  */
 public class ListCommand extends Command {
-    private static final CommandType type = CommandType.ANY_MODE;
-
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards";
 
+    private static final CommandType type = CommandType.ANY_MODE;
 
     @Override
     public CommandResult execute(Model model) {

@@ -6,11 +6,11 @@ import seedu.forgetfulnus.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
-    private static final CommandType type = CommandType.ANY_MODE;
-
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting as requested ...";
+
+    private static final CommandType type = CommandType.ANY_MODE;
 
     @Override
     public CommandResult execute(Model model) {

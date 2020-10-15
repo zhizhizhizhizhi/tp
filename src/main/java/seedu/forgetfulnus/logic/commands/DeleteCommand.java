@@ -14,8 +14,6 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
  * Deletes a flashcard identified using it's displayed index from the glossary.
  */
 public class DeleteCommand extends Command {
-    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
-
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -27,6 +25,8 @@ public class DeleteCommand extends Command {
 
     public static final String QUIZMODE_REMINDER = "Flashcards cannot be deleted in quiz mode. "
             + "Enter 'end' to end quizzing.";
+
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final Index targetIndex;
 
