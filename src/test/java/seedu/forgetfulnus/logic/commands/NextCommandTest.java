@@ -34,25 +34,28 @@ public class NextCommandTest {
     }
 
     @Test
-    public void execute_indexCheck() {
-        new QuizCommand().execute(model);
+    public void execute_indexCheck() throws CommandException {
+        new QuizCommand().executeWithChecks(model);
         Assertions.assertEquals(model.getQuizModeIndex(), 0);
 
         try {
             model.updateQuizModeIndex(-1);
-            new NextCommand().execute(model);
+            new NextCommand().executeWithChecks(model);
         } catch (CommandException e) {
             Assertions.assertEquals(e.getMessage(), Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
         model.updateQuizModeIndex(0);
         try {
-            for (FlashCard f : model.getFilteredFlashCardList()) {
-                new NextCommand().execute(model);
+            int i = model.getFilteredFlashCardList().size();
+            while (i > 1) {
+                new NextCommand().executeWithChecks(model);
+                i--;
             }
-            Assertions.assertEquals(model.getQuizModeIndex(), model.getFilteredFlashCardList().size());
+            System.out.println("hng: " + model.getFilteredFlashCardList().size());
+            Assertions.assertEquals(model.getQuizModeIndex() + 1, model.getFilteredFlashCardList().size());
 
-            new NextCommand().execute(model);
+            new NextCommand().executeWithChecks(model);
             Assertions.assertEquals(model.getQuizModeIndex(), 0);
         } catch (CommandException e) {
             System.out.println(e.getMessage());
