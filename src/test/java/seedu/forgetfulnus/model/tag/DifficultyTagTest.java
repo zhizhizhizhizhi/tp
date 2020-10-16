@@ -1,7 +1,5 @@
 package seedu.forgetfulnus.model.tag;
 
-import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,22 +14,18 @@ public class DifficultyTagTest {
         assertThrows(NullPointerException.class, () -> new Tag(null));
     }
 
-    // TODO
-    //should create default difficulty tag as medium,
     @Test
-    public void constructor_invalidDifficultyTagName_throwsIllegalArgumentException() {
+    public void constructor_invalidDifficultyTag_throwsIllegalArgumentException() {
         String invalidTagName = "EasyPeasy";
         assertThrows(IllegalArgumentException.class, () -> new DifficultyTag(invalidTagName));
     }
 
     @Test
-    public void constructor_defaultTagName() {
+    public void constructor_defaultTag() {
         // Default tag name should be medium
         assertEquals(new DifficultyTag(), new DifficultyTag(DifficultyTag.MEDIUM_TAG));
     }
 
-    //TODO
-    //change default tag to MEDIUM
     @Test
     public void isValidDifficultyTagName() {
         // null difficulty tag

@@ -17,7 +17,7 @@ public class DifficultyTag {
     public final String tagName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Difficulty Tag}.
      * Default difficulty tag is MEDIUM
      */
     public DifficultyTag() {
@@ -25,7 +25,7 @@ public class DifficultyTag {
     }
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Difficulty Tag}.
      *
      * @param tagName A valid tag name.
      */
