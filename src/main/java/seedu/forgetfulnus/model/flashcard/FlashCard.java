@@ -19,9 +19,7 @@ public class FlashCard {
     // Identity fields
     private final GermanPhrase germanPhrase;
     private final EnglishPhrase englishPhrase;
-    //TODO
-    //change to private final
-    private DifficultyTag difficultyTag;
+    private final DifficultyTag difficultyTag;
     private final Set<Tag> tags = new HashSet<>();
 
     private boolean showingEnglish = true;
@@ -31,25 +29,12 @@ public class FlashCard {
      */
     public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
                      DifficultyTag difficultyTag, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, tags);
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
         this.tags.addAll(tags);
     }
-
-    //TODO
-    //remove this constructor
-//    /**
-//     * Every field must be present and not null.
-//     */
-//    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
-//                      Set<Tag> tags) {
-//        requireAllNonNull(germanPhrase, englishPhrase, tags);
-//        this.germanPhrase = germanPhrase;
-//        this.englishPhrase = englishPhrase;
-//        this.tags.addAll(tags);
-//    }
 
     public GermanPhrase getGermanPhrase() {
         return germanPhrase;

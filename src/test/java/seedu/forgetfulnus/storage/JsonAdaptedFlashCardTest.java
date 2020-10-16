@@ -75,8 +75,6 @@ public class JsonAdaptedFlashCardTest {
         assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
-    //TODO
-    //check if can allow null? or wil change to default.
     @Test
     public void toModelType_nullDifficultyTag_throwsIllegalValueException() {
         JsonAdaptedFlashCard flashcard = new JsonAdaptedFlashCard(VALID_GERMAN_PHRASE, VALID_ENGLISH_PHRASE,
