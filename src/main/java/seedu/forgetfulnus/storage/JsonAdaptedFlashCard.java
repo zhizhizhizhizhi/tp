@@ -13,6 +13,7 @@ import seedu.forgetfulnus.commons.exceptions.IllegalValueException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -24,6 +25,7 @@ class JsonAdaptedFlashCard {
 
     private final String germanPhrase;
     private final String englishPhrase;
+    private final String difficultyTag;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -32,9 +34,11 @@ class JsonAdaptedFlashCard {
     @JsonCreator
     public JsonAdaptedFlashCard(@JsonProperty("germanPhrase") String germanPhrase,
                                 @JsonProperty("englishPhrase") String englishPhrase,
+                                @JsonProperty("difficultyTag") String difficultyTag,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
+        this.difficultyTag = difficultyTag;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -46,6 +50,7 @@ class JsonAdaptedFlashCard {
     public JsonAdaptedFlashCard(FlashCard source) {
         germanPhrase = source.getGermanPhrase().fullGermanPhrase;
         englishPhrase = source.getEnglishPhrase().fullEnglishPhrase;
+        difficultyTag = source.getDifficultyTag().tagName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -79,8 +84,19 @@ class JsonAdaptedFlashCard {
             throw new IllegalValueException(EnglishPhrase.MESSAGE_CONSTRAINTS);
         }
         final EnglishPhrase modelEnglishPhrase = new EnglishPhrase(englishPhrase);
+
+        if (difficultyTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DifficultyTag.class.getSimpleName()));
+        }
+
+        if (!DifficultyTag.isValidDifficultyTag(difficultyTag)) {
+            throw new IllegalValueException(DifficultyTag.MESSAGE_CONSTRAINTS);
+        }
+        final DifficultyTag modelDifficultyTag = new DifficultyTag(difficultyTag);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelTags);
+        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelDifficultyTag, modelTags);
     }
 
 }

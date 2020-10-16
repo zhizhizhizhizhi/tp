@@ -40,16 +40,16 @@ public class FlashCard {
 
     //TODO
     //remove this constructor
-    /**
-     * Every field must be present and not null.
-     */
-    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
-                      Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, tags);
-        this.germanPhrase = germanPhrase;
-        this.englishPhrase = englishPhrase;
-        this.tags.addAll(tags);
-    }
+//    /**
+//     * Every field must be present and not null.
+//     */
+//    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
+//                      Set<Tag> tags) {
+//        requireAllNonNull(germanPhrase, englishPhrase, tags);
+//        this.germanPhrase = germanPhrase;
+//        this.englishPhrase = englishPhrase;
+//        this.tags.addAll(tags);
+//    }
 
     public GermanPhrase getGermanPhrase() {
         return germanPhrase;

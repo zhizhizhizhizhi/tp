@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
 
@@ -19,6 +20,7 @@ public class FlashCardBuilder {
 
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
+    private DifficultyTag difficultyTag;
     private Set<Tag> tags;
 
     /**
@@ -27,6 +29,7 @@ public class FlashCardBuilder {
     public FlashCardBuilder() {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
+        difficultyTag = new DifficultyTag();
         tags = new HashSet<>();
     }
 
@@ -36,11 +39,12 @@ public class FlashCardBuilder {
     public FlashCardBuilder(FlashCard flashCardToCopy) {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
+        difficultyTag = flashCardToCopy.getDifficultyTag();
         tags = new HashSet<>(flashCardToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code FlashCard} that we are building.
+     * Sets the {@code gphrase} of the {@code FlashCard} that we are building.
      */
     public FlashCardBuilder withGermanPhrase(String gphrase) {
         this.germanPhrase = new GermanPhrase(gphrase);
@@ -56,14 +60,23 @@ public class FlashCardBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code FlashCard} that we are building.
+     * Sets the {@code ephrase} of the {@code FlashCard} that we are building.
      */
     public FlashCardBuilder withEnglishPhrase(String ephrase) {
         this.englishPhrase = new EnglishPhrase(ephrase);
         return this;
     }
+
+    /**
+     * Sets the {@code difficultyTag} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withDifficultyTag(String difficultyTag) {
+        this.difficultyTag = new DifficultyTag(difficultyTag);
+        return this;
+    }
+
     public FlashCard build() {
-        return new FlashCard(germanPhrase, englishPhrase, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
     }
 
 }

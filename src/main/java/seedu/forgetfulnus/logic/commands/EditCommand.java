@@ -18,6 +18,7 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -94,14 +95,18 @@ public class EditCommand extends Command {
                                                    EditFlashCardDescriptor editFlashCardDescriptor) {
         assert flashCardToEdit != null;
 
-        GermanPhrase updatedGermanPhrase = editFlashCardDescriptor.getGermanPhrase()
+        GermanPhrase updatedGermanPhrase = editFlashCardDescriptor
+                .getGermanPhrase()
                 .orElse(flashCardToEdit.getGermanPhrase());
-        EnglishPhrase updatedPhone = editFlashCardDescriptor
+        EnglishPhrase updatedEnglishPhrase = editFlashCardDescriptor
                 .getEnglishPhrase()
                 .orElse(flashCardToEdit.getEnglishPhrase());
+        DifficultyTag updatedDifficultyTag = editFlashCardDescriptor
+                .getDifficultyTag()
+                .orElse(flashCardToEdit.getDifficultyTag());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
-        return new FlashCard(updatedGermanPhrase, updatedPhone, updatedTags);
+        return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase, updatedDifficultyTag, updatedTags);
     }
 
     @Override
@@ -129,6 +134,7 @@ public class EditCommand extends Command {
     public static class EditFlashCardDescriptor {
         private GermanPhrase germanPhrase;
         private EnglishPhrase englishPhrase;
+        private DifficultyTag difficultyTag;
         private Set<Tag> tags;
 
         public EditFlashCardDescriptor() {}
@@ -140,6 +146,7 @@ public class EditCommand extends Command {
         public EditFlashCardDescriptor(EditFlashCardDescriptor toCopy) {
             setGermanPhrase(toCopy.germanPhrase);
             setEnglishPhrase(toCopy.englishPhrase);
+            setDifficultyTag(toCopy.difficultyTag);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -164,6 +171,14 @@ public class EditCommand extends Command {
 
         public Optional<EnglishPhrase> getEnglishPhrase() {
             return Optional.ofNullable(englishPhrase);
+        }
+
+        public void setDifficultyTag(DifficultyTag difficultyTag) {
+            this.difficultyTag = difficultyTag;
+        }
+
+        public Optional<DifficultyTag> getDifficultyTag() {
+            return Optional.ofNullable(difficultyTag);
         }
 
         /**
@@ -200,6 +215,7 @@ public class EditCommand extends Command {
 
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
+                    && getDifficultyTag().equals(e.getDifficultyTag())
                     && getTags().equals(e.getTags());
         }
     }

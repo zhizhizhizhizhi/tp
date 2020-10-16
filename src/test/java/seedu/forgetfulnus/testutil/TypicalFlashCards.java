@@ -1,5 +1,6 @@
 package seedu.forgetfulnus.testutil;
 
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_DIFFICULTY_TAG_HARD;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
@@ -21,36 +22,52 @@ public class TypicalFlashCards {
 
     public static final FlashCard MONDAY = new FlashCardBuilder().withGermanPhrase("Montag")
             .withEnglishPhrase("Monday")
+            .withDifficultyTag("Easy")
             .withTags("day").build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
+            .withDifficultyTag("Easy")
             .withTags("hard", "day").build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
-            .withEnglishPhrase("Wednesday").build();
-    public static final FlashCard THUSRDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
+            .withEnglishPhrase("Wednesday")
+            .withDifficultyTag("Medium")
+            .build();
+    public static final FlashCard THURSDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
             .withEnglishPhrase("Thursday")
+            .withDifficultyTag("Medium")
             .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
-            .withEnglishPhrase("Friday").build();
+            .withEnglishPhrase("Friday")
+            .withDifficultyTag("Medium")
+            .build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
-            .withEnglishPhrase("Saturday").build();
+            .withEnglishPhrase("Saturday")
+            .withDifficultyTag("Hard")
+            .build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
-            .withEnglishPhrase("Sunday").build();
+            .withEnglishPhrase("Sunday")
+            .withDifficultyTag("Hard")
+            .build();
 
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")
             .withEnglishPhrase("Morning")
+            .withDifficultyTag("Medium")
             .build();
     public static final FlashCard NOON = new FlashCardBuilder().withGermanPhrase("Mittag").withEnglishPhrase("Noon")
+            .withDifficultyTag("Medium")
             .build();
 
     // Manually added - FlashCard's details found in {@code CommandTestUtil}
     public static final FlashCard FORGETFULNESS = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
+            .withDifficultyTag(VALID_DIFFICULTY_TAG_HARD)
             .withTags(VALID_TAG_HARD).build();
-    public static final FlashCard TABLE = new FlashCardBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
+    public static final FlashCard TABLE = new FlashCardBuilder()
+            .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
+            .withDifficultyTag(VALID_DIFFICULTY_TAG_HARD)
             .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -69,6 +86,6 @@ public class TypicalFlashCards {
     }
 
     public static List<FlashCard> getTypicalFlashCards() {
-        return new ArrayList<>(Arrays.asList(MONDAY, TUESDAY, WEDNESDAY, THUSRDAY, FRIDAY, SATURDAY, SUNDAY));
+        return new ArrayList<>(Arrays.asList(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY));
     }
 }
