@@ -6,6 +6,7 @@ import static seedu.forgetfulnus.logic.parser.CommandParserTestUtil.assertParseS
 import static seedu.forgetfulnus.testutil.TypicalIndexes.INDEX_FIVE_FLASHCARDS;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
 
 /**
