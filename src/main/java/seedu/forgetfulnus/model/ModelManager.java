@@ -27,9 +27,11 @@ public class ModelManager implements Model {
 
     private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
+    private boolean isQuizMode = false;
     private int quizModeIndex = 0;
-    private boolean quizMode = false;
     private boolean isRandomQuiz = false;
+    private int quizScore = 0;
+    private int quizTotalQuestions = 0;
 
     /**
      * Initializes a ModelManager with the given glossary and userPrefs.
@@ -155,13 +157,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setQuizMode(boolean quizMode) {
-        this.quizMode = quizMode;
+    public void setQuizMode(boolean isQuizMode) {
+        this.isQuizMode = isQuizMode;
+        if (isQuizMode) {
+            quizModeIndex = 0;
+            quizScore = 0;
+            quizTotalQuestions = 0;
+        }
     }
 
     @Override
     public boolean isQuizMode() {
-        return quizMode;
+        return isQuizMode;
     }
 
     @Override
