@@ -1,6 +1,7 @@
 {
   "persons": [ {
     "germanPhrase": "Person with invalid name field: Ha!ns Mu@ster",
-    "englishPhrase": "englishPhrase"
+    "englishPhrase": "englishPhrase",
+    "difficultyTag" : "MEDIUM"
   } ]
 }

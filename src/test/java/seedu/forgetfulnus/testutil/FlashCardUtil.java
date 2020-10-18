@@ -1,5 +1,6 @@
 package seedu.forgetfulnus.testutil;
 
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,6 +31,7 @@ public class FlashCardUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_GERMAN_PHRASE + flashCard.getGermanPhrase().fullGermanPhrase + " ");
         sb.append(PREFIX_ENGLISH_PHRASE + flashCard.getEnglishPhrase().fullEnglishPhrase + " ");
+        sb.append(PREFIX_DIFFICULTY_TAG + flashCard.getDifficultyTag().tagName + " ");
         flashCard.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -47,6 +49,9 @@ public class FlashCardUtil {
         descriptor.getEnglishPhrase()
                 .ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE)
                         .append(englishPhrase.fullEnglishPhrase).append(" "));
+        descriptor.getDifficultyTag()
+                .ifPresent(difficultyTag -> sb.append(PREFIX_DIFFICULTY_TAG)
+                        .append(difficultyTag.tagName).append((" ")));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -3,30 +3,37 @@
   "persons" : [ {
     "germanPhrase" : "Montag",
     "englishPhrase" : "Monday",
+    "difficultyTag" : "EASY",
     "tagged" : [ "day" ]
   }, {
     "germanPhrase" : "Dienstag",
     "englishPhrase" : "Tuesday",
-    "tagged" : [ "hard", "day" ]
+    "difficultyTag" : "EASY",
+    "tagged" : [ "day" ]
   }, {
     "germanPhrase" : "Mittwoch",
     "englishPhrase" : "Wednesday",
+    "difficultyTag" : "MEDIUM",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "Donnerstag",
     "englishPhrase" : "Thursday",
+    "difficultyTag" : "MEDIUM",
     "tagged" : [ "day" ]
   }, {
     "germanPhrase" : "Freitag",
     "englishPhrase" : "Friday",
+    "difficultyTag" : "MEDIUM",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "Samstag",
     "englishPhrase" : "Saturday",
+    "difficultyTag" : "HARD",
     "tagged" : [ ]
   }, {
     "germanPhrase" : "Sonntag",
     "englishPhrase" : "Sunday",
+    "difficultyTag" : "HARD",
     "tagged" : [ ]
   } ]
 }

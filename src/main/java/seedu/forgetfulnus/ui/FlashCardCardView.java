@@ -35,6 +35,8 @@ public class FlashCardCardView extends UiPart<Region> {
     @FXML
     private Label englishPhrase;
     @FXML
+    private Label difficultyTag;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,6 +48,7 @@ public class FlashCardCardView extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         germanPhrase.setText(flashCard.getGermanPhrase().fullGermanPhrase);
         englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().fullEnglishPhrase : "");
+        difficultyTag.setText(flashCard.getDifficultyTag().tagName);
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

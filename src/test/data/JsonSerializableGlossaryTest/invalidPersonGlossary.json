@@ -1,6 +1,7 @@
 {
   "persons": [ {
     "germanPhrase": "inv@lidPers000n",
-    "englishPhrase": "englishPhrase"
+    "englishPhrase": "englishPhrase",
+    "difficultyTag" : "MEDIUM"
   } ]
 }

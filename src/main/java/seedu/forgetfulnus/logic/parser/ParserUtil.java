@@ -73,10 +73,10 @@ public class ParserUtil {
     public static DifficultyTag parseDifficultyTag(String difficultyTag) throws ParseException {
         requireNonNull(difficultyTag);
         String trimmedDifficultyTag = difficultyTag.trim();
-        if (!EnglishPhrase.isValidEnglishPhrase(trimmedDifficultyTag)) {
+        if (!DifficultyTag.isValidDifficultyTag(trimmedDifficultyTag)) {
             throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
         }
-        return new DifficultyTag(trimmedDifficultyTag);
+        return new DifficultyTag(trimmedDifficultyTag.toUpperCase());
     }
 
     /**

@@ -33,6 +33,7 @@ public class EditFlashCardDescriptorBuilder {
         descriptor = new EditFlashCardDescriptor();
         descriptor.setGermanPhrase(flashCard.getGermanPhrase());
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
+        descriptor.setDifficultyTag(flashCard.getDifficultyTag());
         descriptor.setTags(flashCard.getTags());
     }
 

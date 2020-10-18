@@ -1,9 +1,11 @@
 {
   "persons": [ {
     "germanPhrase": "Valid Person",
-    "englishPhrase": "englishphrase"
+    "englishPhrase": "englishphrase",
+    "difficultyTag" : "MEDIUM"
   }, {
     "germanPhrase": "Person With Invalid English phrase Field",
-    "englishPhrase": "948@@@@2424"
+    "englishPhrase": "948@@@@2424",
+    "difficultyTag" : "MEDIUM"
   } ]
 }
