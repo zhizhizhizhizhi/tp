@@ -1,9 +1,9 @@
 package seedu.forgetfulnus.logic.parser;
 
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
