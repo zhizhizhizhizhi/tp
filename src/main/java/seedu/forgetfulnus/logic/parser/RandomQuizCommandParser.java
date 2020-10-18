@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.forgetfulnus.commons.core.index.Index;
+
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 
