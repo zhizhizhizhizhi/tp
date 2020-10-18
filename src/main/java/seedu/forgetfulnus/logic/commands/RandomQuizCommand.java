@@ -1,19 +1,18 @@
 package seedu.forgetfulnus.logic.commands;
 
-import javafx.collections.transformation.FilteredList;
-import seedu.forgetfulnus.commons.core.Messages;
-import seedu.forgetfulnus.commons.core.index.Index;
-import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
-import seedu.forgetfulnus.model.Glossary;
-import seedu.forgetfulnus.model.Model;
-import seedu.forgetfulnus.model.flashcard.FlashCard;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
-import static java.util.Objects.requireNonNull;
+import seedu.forgetfulnus.commons.core.Messages;
+import seedu.forgetfulnus.commons.core.index.Index;
+import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
+import seedu.forgetfulnus.model.Glossary;
+import seedu.forgetfulnus.model.Model;
+import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class RandomQuizCommand extends Command {
 

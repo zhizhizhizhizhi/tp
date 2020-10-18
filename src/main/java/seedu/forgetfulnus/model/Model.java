@@ -1,11 +1,9 @@
 package seedu.forgetfulnus.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.forgetfulnus.commons.core.GuiSettings;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
