@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.logic.commands.SortCommand.MESSAGE_SORT_SUCCESS;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +12,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.UserPrefs;
+import seedu.forgetfulnus.model.flashcard.FlashCard;
 
-
-
-
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 public class SortCommandTest {
     private Model model;
@@ -38,7 +35,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_stringGerman_success() { ;
+    public void execute_stringGerman_success() {
         SortCommand command = new SortCommand("german");
         CommandResult result = command.execute(model);
         List<FlashCard> expectedList = new ArrayList<>(expectedModel.getGlossary().getFlashCardList());
