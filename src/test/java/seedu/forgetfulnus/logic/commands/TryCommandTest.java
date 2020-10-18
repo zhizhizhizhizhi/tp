@@ -1,8 +1,7 @@
 package seedu.forgetfulnus.logic.commands;
 
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

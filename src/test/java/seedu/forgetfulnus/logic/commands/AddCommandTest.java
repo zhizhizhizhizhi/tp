@@ -105,7 +105,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setGlossaryFilePath(Path GlossaryFilePath) {
+        public void setGlossaryFilePath(Path glossaryFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

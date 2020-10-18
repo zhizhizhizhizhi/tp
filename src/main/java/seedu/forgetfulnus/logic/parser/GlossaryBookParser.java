@@ -21,7 +21,6 @@ import seedu.forgetfulnus.logic.commands.QuizCommand;
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
 import seedu.forgetfulnus.logic.commands.SortCommand;
 import seedu.forgetfulnus.logic.commands.TryCommand;
-
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 
 /**

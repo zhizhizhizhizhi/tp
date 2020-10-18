@@ -1,22 +1,22 @@
 package seedu.forgetfulnus.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.forgetfulnus.commons.core.Messages;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class TryCommand extends Command {
     public static final String COMMAND_WORD = "try";
     public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
     public static final String CORRECT_ATTEMPT = "Correct! ";
-    public static final String INCORRECT_ATTEMPT = "Not correct. " +
-            "Enter 'try <english phrase>' to try again " +
-            "or 'next' to skip to next card";
+    public static final String INCORRECT_ATTEMPT = "Not correct. "
+            + "Enter 'try <english phrase>' to try again "
+            + "or 'next' to skip to next card";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.forgetfulnus.commons.core.Messages;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;

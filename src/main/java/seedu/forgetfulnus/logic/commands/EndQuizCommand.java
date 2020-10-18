@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.ListIterator;
-import java.util.function.Predicate;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -35,9 +34,8 @@ public class EndQuizCommand extends Command {
             model.setQuizMode(false);
             model.updateFilteredPhraseList(unused -> true);
             return new CommandResult(String.format(MESSAGE_SUCCESS
-                            + " Your score: %s / %s"
-                    , model.getQuizScore()
-                    , model.getQuizTotalQuestions()));
+                            + " Your score: %s / %s",
+                    model.getQuizScore(), model.getQuizTotalQuestions()));
         } else {
             return new CommandResult(QUIZMODE_REMINDER);
         }
