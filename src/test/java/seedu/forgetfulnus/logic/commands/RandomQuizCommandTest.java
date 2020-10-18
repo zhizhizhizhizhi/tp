@@ -1,14 +1,15 @@
 package seedu.forgetfulnus.logic.commands;
 
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
-
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

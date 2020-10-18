@@ -1,12 +1,12 @@
 package seedu.forgetfulnus.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
-
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.forgetfulnus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.forgetfulnus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.forgetfulnus.testutil.TypicalIndexes.INDEX_FIVE_FLASHCARDS;
+
+import org.junit.jupiter.api.Test;
+import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
