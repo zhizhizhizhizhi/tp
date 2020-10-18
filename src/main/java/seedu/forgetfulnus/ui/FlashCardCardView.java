@@ -44,8 +44,8 @@ public class FlashCardCardView extends UiPart<Region> {
         super(FXML);
         this.flashCard = flashCard;
         id.setText(displayedIndex + ". ");
-        germanPhrase.setText(flashCard.getGermanPhrase().fullGermanPhrase);
-        englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().fullEnglishPhrase : "");
+        germanPhrase.setText(flashCard.getGermanPhrase().toString());
+        englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
