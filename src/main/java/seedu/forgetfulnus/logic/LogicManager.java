@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = glossaryBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.executeWithChecks(model);
 
         try {
             storage.saveGlossary(model.getGlossary());

@@ -24,7 +24,6 @@ import seedu.forgetfulnus.model.tag.Tag;
  * Edits the details of an existing flashcard in the address book.
  */
 public class EditCommand extends Command {
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
@@ -37,7 +36,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited FlashCard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book.";
+    public static final String QUIZMODE_REMINDER = "Flashcards cannot be edited in quiz mode. "
+            + "Enter 'end' to end quizzing.";
 
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
     private final Index index;
     private final EditFlashCardDescriptor editFlashCardDescriptor;
 
@@ -72,6 +74,16 @@ public class EditCommand extends Command {
         model.setFlashCard(flashCardToEdit, editedFlashCard);
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard));
+    }
+
+    @Override
+    public String getQuizModeReminder() {
+        return QUIZMODE_REMINDER;
+    }
+
+    @Override
+    public CommandType isQuizModeCommand() {
+        return type;
     }
 
     /**

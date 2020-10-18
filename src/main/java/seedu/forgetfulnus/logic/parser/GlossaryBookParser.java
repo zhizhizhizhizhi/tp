@@ -19,6 +19,7 @@ import seedu.forgetfulnus.logic.commands.ListCommand;
 import seedu.forgetfulnus.logic.commands.NextCommand;
 import seedu.forgetfulnus.logic.commands.QuizCommand;
 import seedu.forgetfulnus.logic.commands.SortCommand;
+import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,6 +84,9 @@ public class GlossaryBookParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case RandomQuizCommand.COMMAND_WORD:
+            return new RandomQuizCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

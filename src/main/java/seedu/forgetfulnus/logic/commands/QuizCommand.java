@@ -12,7 +12,10 @@ public class QuizCommand extends Command {
     public static final String COMMAND_WORD = "quiz";
 
     public static final String MESSAGE_SUCCESS = "Quiz started!";
+    public static final String QUIZMODE_REMINDER = "Quiz has started. "
+            + "Enter 'end' to end quizzing.";
 
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) {
@@ -28,5 +31,15 @@ public class QuizCommand extends Command {
         model.setQuizMode(true);
         model.updateFilteredPhraseList();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
+    }
+
+    @Override
+    public String getQuizModeReminder() {
+        return QUIZMODE_REMINDER;
+    }
+
+    @Override
+    public CommandType isQuizModeCommand() {
+        return type;
     }
 }

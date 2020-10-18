@@ -11,7 +11,6 @@ import seedu.forgetfulnus.model.flashcard.GermanPhraseContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
-
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all phrases which contain any of "
@@ -19,6 +18,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    private static final CommandType type = CommandType.ANY_MODE;
     private final GermanPhraseContainsKeywordsPredicate predicate;
 
     public FindCommand(GermanPhraseContainsKeywordsPredicate predicate) {
@@ -31,6 +31,16 @@ public class FindCommand extends Command {
         model.updateFilteredPhraseList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PHRASES_LISTED_OVERVIEW, model.getFilteredFlashCardList().size()));
+    }
+
+    @Override
+    public String getQuizModeReminder() {
+        return "";
+    }
+
+    @Override
+    public CommandType isQuizModeCommand() {
+        return type;
     }
 
     @Override

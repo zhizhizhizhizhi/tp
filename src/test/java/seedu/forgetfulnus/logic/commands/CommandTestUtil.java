@@ -69,7 +69,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.executeWithChecks(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -99,7 +99,7 @@ public class CommandTestUtil {
         Glossary expectedGlossary = new Glossary(actualModel.getGlossary());
         List<FlashCard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFlashCardList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.executeWithChecks(actualModel));
         assertEquals(expectedGlossary, actualModel.getGlossary());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashCardList());
     }

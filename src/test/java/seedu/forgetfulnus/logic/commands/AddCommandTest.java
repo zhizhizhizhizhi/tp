@@ -176,6 +176,16 @@ public class AddCommandTest {
         public boolean isQuizMode() {
             return false;
         }
+
+        @Override
+        public void setRandomQuizMode(boolean isRandomQuiz) {
+
+        }
+
+        @Override
+        public boolean isRandomQuizMode() {
+            return false;
+        }
     }
 
     /**

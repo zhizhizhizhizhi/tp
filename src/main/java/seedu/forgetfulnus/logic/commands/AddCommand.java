@@ -13,7 +13,6 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
  * Adds a phrase to the glossary.
  */
 public class AddCommand extends Command {
-
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a phrase to the glossary. "
@@ -28,6 +27,10 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New phrase added: %1$s";
     public static final String MESSAGE_DUPLICATE_PHRASE = "This phrase already exists in the glossary";
+    public static final String QUIZMODE_REMINDER = "Flashcards cannot be added in quiz mode. "
+            + "Enter 'end' to end quizzing.";
+
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final FlashCard toAdd;
 
@@ -49,6 +52,16 @@ public class AddCommand extends Command {
 
         model.addFlashCard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public String getQuizModeReminder() {
+        return QUIZMODE_REMINDER;
+    }
+
+    @Override
+    public CommandType isQuizModeCommand() {
+        return type;
     }
 
     @Override
