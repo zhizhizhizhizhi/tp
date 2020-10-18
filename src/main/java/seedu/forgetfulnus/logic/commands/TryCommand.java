@@ -13,7 +13,10 @@ public class TryCommand extends Command {
     public static final String COMMAND_WORD = "try";
     public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
-    public static final String MESSAGE_SUCCESS = "Next card: ";
+    public static final String CORRECT_ATTEMPT = "Correct! ";
+    public static final String INCORRECT_ATTEMPT = "Not correct. " +
+            "Enter 'try <english phrase>' to try again " +
+            "or 'next' to skip to next card";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
@@ -30,26 +33,19 @@ public class TryCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String germanWord;
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
         int index = model.getQuizModeIndex();
-        if (index < 0) {
+        if (index < 0 || index >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-        } else if (model.getQuizModeIndex() < lastShownList.size() - 1) {
-            FlashCard toEdit = lastShownList.get(index);
-            FlashCard nextCard = lastShownList.get(index + 1);
-            assert (nextCard != null);
-            FlashCard changeTo = toEdit.copy();
-            germanWord = nextCard.getGermanPhrase().fullGermanPhrase;
-            changeTo.updateShowingEnglish(true);
-            model.setFlashCard(toEdit, changeTo);
-            model.updateQuizModeIndex(index + 1);
-            model.updateFilteredPhraseList();
-            return new CommandResult(MESSAGE_SUCCESS + germanWord);
-        } else {
-            Command endQuiz = new EndQuizCommand();
-            return endQuiz.execute(model);
         }
+        FlashCard flashCard = lastShownList.get(index);
+        assert (flashCard != null);
+        if (flashCard.getEnglishPhrase().isCorrectAttempt(attempt)) {
+            model.updateWithCorrectAttempt();
+            return new CommandResult(CORRECT_ATTEMPT
+                    + new NextCommand().executeWithChecks(model).toString());
+        }
+        return new CommandResult(INCORRECT_ATTEMPT);
     }
 
     @Override

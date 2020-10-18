@@ -34,6 +34,15 @@ public class EnglishPhrase {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if the given string is equivalent to the full english phrase, case insensitive.
+     */
+    public boolean isCorrectAttempt(String attempt) {
+        assert (attempt != null);
+        return attempt.trim().replaceAll("( )+", " ")
+                .toLowerCase().equals(fullEnglishPhrase.toLowerCase());
+    }
+
     @Override
     public String toString() {
         return fullEnglishPhrase;
@@ -50,5 +59,4 @@ public class EnglishPhrase {
     public int hashCode() {
         return fullEnglishPhrase.hashCode();
     }
-
 }

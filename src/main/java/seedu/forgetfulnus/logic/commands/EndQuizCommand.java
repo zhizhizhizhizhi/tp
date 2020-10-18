@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.function.Predicate;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -20,10 +21,9 @@ public class EndQuizCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (model.isRandomQuizMode()) {
-            model.setQuizMode(false);
             model.setRandomQuizMode(false);
-            return new CommandResult(String.format(MESSAGE_SUCCESS));
-        } else if (model.isQuizMode()) {
+        }
+        if (model.isQuizMode()) {
             List<FlashCard> lastShownList = model.getFilteredFlashCardList();
             ListIterator<FlashCard> iterator = lastShownList.listIterator();
             while (iterator.hasNext()) {
@@ -33,9 +33,11 @@ public class EndQuizCommand extends Command {
                 model.setFlashCard(toEdit, changeTo);
             }
             model.setQuizMode(false);
-            model.updateQuizModeIndex(0);
-            model.updateFilteredPhraseList();
-            return new CommandResult(String.format(MESSAGE_SUCCESS));
+            model.updateFilteredPhraseList(unused -> true);
+            return new CommandResult(String.format(MESSAGE_SUCCESS
+                            + " Your score: %s / %s"
+                    , model.getQuizScore()
+                    , model.getQuizTotalQuestions()));
         } else {
             return new CommandResult(QUIZMODE_REMINDER);
         }

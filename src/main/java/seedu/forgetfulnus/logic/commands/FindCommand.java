@@ -18,7 +18,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private static final CommandType type = CommandType.ANY_MODE;
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
+    public static final String QUIZMODE_REMINDER = "'find' command cannot be used in quiz mode. "
+            + "Enter 'end' to end quizzing.";
     private final GermanPhraseContainsKeywordsPredicate predicate;
 
     public FindCommand(GermanPhraseContainsKeywordsPredicate predicate) {
@@ -35,7 +37,7 @@ public class FindCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return "";
+        return QUIZMODE_REMINDER;
     }
 
     @Override

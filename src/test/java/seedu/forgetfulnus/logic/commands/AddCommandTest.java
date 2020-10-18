@@ -157,8 +157,11 @@ public class AddCommandTest {
 
         }
 
+        /**
+         * Increments index of the current flashcard in the filtered list in quiz mode.
+         */
         @Override
-        public void updateQuizModeIndex(int index) {
+        public void incrementQuizModeIndex() {
 
         }
 
@@ -185,6 +188,42 @@ public class AddCommandTest {
         @Override
         public boolean isRandomQuizMode() {
             return false;
+        }
+
+        /**
+         * Increments the number of correct attempts in current quiz.
+         */
+        @Override
+        public void updateWithCorrectAttempt() {
+
+        }
+
+        /**
+         * Returns the number of correct attempts in this quiz.
+         *
+         * @return quizScore
+         */
+        @Override
+        public int getQuizScore() {
+            return 0;
+        }
+
+        /**
+         * Returns the total questions in this quiz.
+         *
+         * @return quizTotalQuestions
+         */
+        @Override
+        public int getQuizTotalQuestions() {
+            return 0;
+        }
+
+        /**
+         * Resets the program at the end of a quiz.
+         */
+        @Override
+        public void resetQuiz() {
+
         }
     }
 

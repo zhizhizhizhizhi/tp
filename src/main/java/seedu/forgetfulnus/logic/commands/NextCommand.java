@@ -30,15 +30,16 @@ public class NextCommand extends Command {
             FlashCard nextCard = lastShownList.get(index + 1);
             assert (nextCard != null);
             FlashCard changeTo = toEdit.copy();
-            germanWord = nextCard == null ? "End of quiz!" : nextCard.getGermanPhrase().toString();
+            germanWord = nextCard.getGermanPhrase().toString();
             changeTo.updateShowingEnglish(true);
             model.setFlashCard(toEdit, changeTo);
-            model.updateQuizModeIndex(index + 1);
+            model.incrementQuizModeIndex();
             model.updateFilteredPhraseList();
             return new CommandResult(MESSAGE_SUCCESS + germanWord);
         } else {
+            model.incrementQuizModeIndex();
             Command endQuiz = new EndQuizCommand();
-            return endQuiz.execute(model);
+            return endQuiz.executeWithChecks(model);
         }
     }
 

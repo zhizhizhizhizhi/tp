@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private boolean isQuizMode = false;
     private int quizModeIndex = 0;
     private boolean isRandomQuiz = false;
+
     private int quizScore = 0;
     private int quizTotalQuestions = 0;
 
@@ -122,6 +123,25 @@ public class ModelManager implements Model {
         glossary.setFlashCard(target, editedFlashCard);
     }
 
+    @Override
+    public int getQuizScore() {
+        return quizScore;
+    }
+
+    @Override
+    public int getQuizTotalQuestions() {
+        return quizTotalQuestions;
+    }
+
+    /**
+     * Resets the program at the end of a quiz.
+     */
+    @Override
+    public void resetQuiz() {
+        quizScore = 0;
+        quizTotalQuestions = 0;
+        quizModeIndex = 0;
+    }
     //=========== Filtered FlashCard List Accessors =============================================================
 
     /**
@@ -147,8 +167,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateQuizModeIndex(int index) {
-        quizModeIndex = index;
+    public void incrementQuizModeIndex() {
+        quizModeIndex++;
+        quizTotalQuestions++;
     }
 
     @Override
@@ -186,6 +207,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isRandomQuizMode() {
         return isRandomQuiz;
+    }
+
+    @Override
+    public void updateWithCorrectAttempt() {
+        quizScore++;
     }
 
     @Override
