@@ -60,4 +60,15 @@ public class SortCommand extends Command {
     public String getQuizModeReminder() {
         return "";
     }
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
+        SortCommand otherCommand = (SortCommand) other;
+        return this.comp.equals(otherCommand.comp);
+    }
 }
