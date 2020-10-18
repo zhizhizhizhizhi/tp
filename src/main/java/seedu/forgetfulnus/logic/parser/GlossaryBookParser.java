@@ -18,8 +18,8 @@ import seedu.forgetfulnus.logic.commands.HelpCommand;
 import seedu.forgetfulnus.logic.commands.ListCommand;
 import seedu.forgetfulnus.logic.commands.NextCommand;
 import seedu.forgetfulnus.logic.commands.QuizCommand;
-import seedu.forgetfulnus.logic.commands.SortCommand;
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
+import seedu.forgetfulnus.logic.commands.SortCommand;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 
 /**
