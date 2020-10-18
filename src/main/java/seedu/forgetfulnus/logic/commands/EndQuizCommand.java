@@ -23,8 +23,7 @@ public class EndQuizCommand extends Command {
             model.setQuizMode(false);
             model.setRandomQuizMode(false);
             return new CommandResult(String.format(MESSAGE_SUCCESS));
-        }
-        else if (model.isQuizMode()) {
+        } else if (model.isQuizMode()) {
             List<FlashCard> lastShownList = model.getFilteredFlashCardList();
             ListIterator<FlashCard> iterator = lastShownList.listIterator();
             while (iterator.hasNext()) {
