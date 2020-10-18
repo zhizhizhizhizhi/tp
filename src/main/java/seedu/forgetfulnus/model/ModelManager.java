@@ -85,7 +85,7 @@ public class ModelManager implements Model {
     //=========== Glossary ================================================================================
 
     @Override
-    public void setGlossary(ReadOnlyGlossary addressBook) {
+    public void setGlossary(ReadOnlyGlossary glossary) {
         this.glossary.resetData(glossary);
     }
 

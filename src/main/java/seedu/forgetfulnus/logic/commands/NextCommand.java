@@ -31,7 +31,7 @@ public class NextCommand extends Command {
             FlashCard toEdit = lastShownList.get(index);
             FlashCard nextCard = index == lastShownList.size() - 1 ? null : lastShownList.get(index + 1);
             FlashCard changeTo = toEdit.copy();
-            germanWord = nextCard == null ? "End of quiz!" : nextCard.getGermanPhrase().fullGermanPhrase;
+            germanWord = nextCard == null ? "End of quiz!" : nextCard.getGermanPhrase().toString();
             changeTo.updateShowingEnglish(true);
             model.setFlashCard(toEdit, changeTo);
             model.updateQuizModeIndex(index + 1);

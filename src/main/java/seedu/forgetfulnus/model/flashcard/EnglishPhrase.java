@@ -14,7 +14,7 @@ public class EnglishPhrase {
             "English phrases should only contain alphabets and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public final String fullEnglishPhrase;
+    private final String fullEnglishPhrase;
 
     /**
      * Constructs a {@code English phrase}.

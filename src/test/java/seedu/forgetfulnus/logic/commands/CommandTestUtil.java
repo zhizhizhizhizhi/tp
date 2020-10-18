@@ -111,7 +111,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashCardList().size());
 
         FlashCard flashCard = model.getFilteredFlashCardList().get(targetIndex.getZeroBased());
-        final String[] splitName = flashCard.getGermanPhrase().fullGermanPhrase.split("\\s+");
+        final String[] splitName = flashCard.getGermanPhrase().toString().split("\\s+");
         model.updateFilteredPhraseList(new GermanPhraseContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFlashCardList().size());

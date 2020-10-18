@@ -28,8 +28,8 @@ public class FlashCardUtil {
      */
     public static String getFlashCardDetails(FlashCard flashCard) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_GERMAN_PHRASE + flashCard.getGermanPhrase().fullGermanPhrase + " ");
-        sb.append(PREFIX_ENGLISH_PHRASE + flashCard.getEnglishPhrase().fullEnglishPhrase + " ");
+        sb.append(PREFIX_GERMAN_PHRASE + flashCard.getGermanPhrase().toString() + " ");
+        sb.append(PREFIX_ENGLISH_PHRASE + flashCard.getEnglishPhrase().toString() + " ");
         flashCard.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -43,10 +43,10 @@ public class FlashCardUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getGermanPhrase()
                 .ifPresent(germanPhrase -> sb.append(PREFIX_GERMAN_PHRASE)
-                        .append(germanPhrase.fullGermanPhrase).append(" "));
+                        .append(germanPhrase.toString()).append(" "));
         descriptor.getEnglishPhrase()
                 .ifPresent(englishPhrase -> sb.append(PREFIX_ENGLISH_PHRASE)
-                        .append(englishPhrase.fullEnglishPhrase).append(" "));
+                        .append(englishPhrase.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

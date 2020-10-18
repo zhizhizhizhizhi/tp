@@ -18,7 +18,7 @@ public class GermanPhrase {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullGermanPhrase;
+    private final String fullGermanPhrase;
 
     /**
      * Constructs a {@code German phrase}.
