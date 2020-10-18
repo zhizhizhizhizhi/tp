@@ -6,18 +6,7 @@ import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.forgetfulnus.logic.commands.AddCommand;
-import seedu.forgetfulnus.logic.commands.ClearCommand;
-import seedu.forgetfulnus.logic.commands.Command;
-import seedu.forgetfulnus.logic.commands.DeleteCommand;
-import seedu.forgetfulnus.logic.commands.EditCommand;
-import seedu.forgetfulnus.logic.commands.EndQuizCommand;
-import seedu.forgetfulnus.logic.commands.ExitCommand;
-import seedu.forgetfulnus.logic.commands.FindCommand;
-import seedu.forgetfulnus.logic.commands.HelpCommand;
-import seedu.forgetfulnus.logic.commands.ListCommand;
-import seedu.forgetfulnus.logic.commands.NextCommand;
-import seedu.forgetfulnus.logic.commands.QuizCommand;
+import seedu.forgetfulnus.logic.commands.*;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 
 /**
@@ -79,6 +68,9 @@ public class GlossaryBookParser {
 
         case NextCommand.COMMAND_WORD:
             return new NextCommand();
+
+        case TryCommand.COMMAND_WORD:
+            return new TryCommand(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
