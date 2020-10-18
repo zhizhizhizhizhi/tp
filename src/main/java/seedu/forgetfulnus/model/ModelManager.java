@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -172,6 +170,7 @@ public class ModelManager implements Model {
         if (isRandomQuiz) {
             backupGlossary = new Glossary(glossary);
         } else {
+            quizModeIndex = 0;
             setGlossary(new Glossary(backupGlossary));
             updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         }

@@ -76,4 +76,11 @@ public class RandomQuizCommand extends Command {
     public CommandType isQuizModeCommand() {
         return type;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RandomQuizCommand // instanceof handles nulls
+                && targetIndex.equals(((RandomQuizCommand) other).targetIndex)); // state check
+    }
 }
