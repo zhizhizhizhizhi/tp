@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -20,14 +22,16 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Glossary glossary;
+    private Glossary glossary;
+    private Glossary backupGlossary;
     private final UserPrefs userPrefs;
-    private final FilteredList<FlashCard> filteredFlashCards;
+    private FilteredList<FlashCard> filteredFlashCards;
 
     private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
     private int quizModeIndex = 0;
     private boolean quizMode = false;
+    private boolean isRandomQuiz = false;
 
     /**
      * Initializes a ModelManager with the given glossary and userPrefs.
@@ -85,7 +89,7 @@ public class ModelManager implements Model {
     //=========== Glossary ================================================================================
 
     @Override
-    public void setGlossary(ReadOnlyGlossary addressBook) {
+    public void setGlossary(ReadOnlyGlossary glossary) {
         this.glossary.resetData(glossary);
     }
 
@@ -160,6 +164,22 @@ public class ModelManager implements Model {
     @Override
     public boolean isQuizMode() {
         return quizMode;
+    }
+
+    @Override
+    public void setRandomQuizMode(boolean isRandomQuiz) {
+        this.isRandomQuiz = isRandomQuiz;
+        if (isRandomQuiz) {
+            backupGlossary = new Glossary(glossary);
+        } else {
+            setGlossary(new Glossary(backupGlossary));
+            updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        }
+    }
+
+    @Override
+    public boolean isRandomQuizMode() {
+        return isRandomQuiz;
     }
 
     @Override
