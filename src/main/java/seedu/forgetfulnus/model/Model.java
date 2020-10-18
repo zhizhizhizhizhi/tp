@@ -98,4 +98,8 @@ public interface Model {
     void setQuizMode(boolean quizMode);
 
     boolean isQuizMode();
+
+    void setRandomQuizMode(boolean isRandomQuiz);
+
+    boolean isRandomQuizMode();
 }
