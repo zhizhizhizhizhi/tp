@@ -43,7 +43,6 @@ public class SortCommand extends Command {
             assert false : "Invalid parameter %s";
         }
     }
-
     @Override
     public CommandResult execute(Model model) {
         List<FlashCard> sortedList = new ArrayList<>(model.getGlossary().getFlashCardList());
@@ -52,5 +51,13 @@ public class SortCommand extends Command {
         glossary.setFlashCards(sortedList);
         model.setGlossary(glossary);
         return new CommandResult(MESSAGE_SORT_SUCCESS);
+    }
+    @Override
+    public CommandType isQuizModeCommand() {
+        return CommandType.ANY_MODE;
+    }
+    @Override
+    public String getQuizModeReminder() {
+        return "";
     }
 }
