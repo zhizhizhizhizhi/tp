@@ -48,14 +48,10 @@ class JsonAdaptedFlashCard {
      * Converts a given {@code FlashCard} into this class for Jackson use.
      */
     public JsonAdaptedFlashCard(FlashCard source) {
-<<<<<<< HEAD
-        germanPhrase = source.getGermanPhrase().fullGermanPhrase;
-        englishPhrase = source.getEnglishPhrase().fullEnglishPhrase;
-        difficultyTag = source.getDifficultyTag().tagName;
-=======
         germanPhrase = source.getGermanPhrase().toString();
         englishPhrase = source.getEnglishPhrase().toString();
->>>>>>> master
+        difficultyTag = source.getDifficultyTag().toString();
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
