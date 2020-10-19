@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the Glossary.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

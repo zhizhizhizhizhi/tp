@@ -11,6 +11,7 @@ import seedu.forgetfulnus.commons.util.StringUtil;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -77,6 +78,21 @@ public class ParserUtil {
             throw new ParseException(EnglishPhrase.MESSAGE_CONSTRAINTS);
         }
         return new EnglishPhrase(trimmedEnglishPhrase);
+    }
+
+    /**
+     * Parses a {@code String Difficulty tag} into a {@code Difficulty tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Difficulty tag} is invalid.
+     */
+    public static DifficultyTag parseDifficultyTag(String difficultyTag) throws ParseException {
+        requireNonNull(difficultyTag);
+        String trimmedDifficultyTag = difficultyTag.trim();
+        if (!DifficultyTag.isValidDifficultyTag(trimmedDifficultyTag)) {
+            throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
+        }
+        return new DifficultyTag(trimmedDifficultyTag.toUpperCase());
     }
 
     /**

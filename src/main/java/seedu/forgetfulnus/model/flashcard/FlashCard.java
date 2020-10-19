@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -18,6 +19,7 @@ public class FlashCard {
     // Identity fields
     private final GermanPhrase germanPhrase;
     private final EnglishPhrase englishPhrase;
+    private final DifficultyTag difficultyTag;
     private final Set<Tag> tags = new HashSet<>();
 
     private boolean showingEnglish = true;
@@ -25,10 +27,12 @@ public class FlashCard {
     /**
      * Every field must be present and not null.
      */
-    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, tags);
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
+                     DifficultyTag difficultyTag, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
+        this.difficultyTag = difficultyTag;
         this.tags.addAll(tags);
     }
 
@@ -40,6 +44,11 @@ public class FlashCard {
         return englishPhrase;
     }
 
+    public DifficultyTag getDifficultyTag() {
+        return difficultyTag;
+    }
+
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -49,8 +58,8 @@ public class FlashCard {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both flashcards of the same German phrase have the same English phrase.
+     * This defines a weaker notion of equality between two flashcards.
      */
     public boolean isSameFlashCard(FlashCard otherFlashCard) {
         if (otherFlashCard == this) {
@@ -63,8 +72,8 @@ public class FlashCard {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both flashcards have the same data fields.
+     * This defines a stronger notion of equality between two flashcards.
      */
     @Override
     public boolean equals(Object other) {
@@ -79,13 +88,14 @@ public class FlashCard {
         FlashCard otherFlashCard = (FlashCard) other;
         return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
                 && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
+                && otherFlashCard.getDifficultyTag().equals(getDifficultyTag())
                 && otherFlashCard.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, englishPhrase, tags);
+        return Objects.hash(germanPhrase, englishPhrase, difficultyTag, tags);
     }
 
     @Override
@@ -94,6 +104,8 @@ public class FlashCard {
         builder.append(getGermanPhrase())
                 .append(" English phrase: ")
                 .append(getEnglishPhrase())
+                .append(" Difficulty: ")
+                .append(getDifficultyTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
@@ -108,6 +120,6 @@ public class FlashCard {
     }
 
     public FlashCard copy() {
-        return new FlashCard(germanPhrase, englishPhrase, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
     }
 }

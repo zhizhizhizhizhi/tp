@@ -8,6 +8,7 @@ import seedu.forgetfulnus.logic.commands.EditCommand.EditFlashCardDescriptor;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ public class EditFlashCardDescriptorBuilder {
         descriptor = new EditFlashCardDescriptor();
         descriptor.setGermanPhrase(flashCard.getGermanPhrase());
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
+        descriptor.setDifficultyTag(flashCard.getDifficultyTag());
         descriptor.setTags(flashCard.getTags());
     }
 
@@ -48,6 +50,14 @@ public class EditFlashCardDescriptorBuilder {
      */
     public EditFlashCardDescriptorBuilder withEnglishPhrase(String ephrase) {
         descriptor.setEnglishPhrase(new EnglishPhrase(ephrase));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Difficulty Tag} of the {@code EditFlashCardDescriptor} that we are building.
+     */
+    public EditFlashCardDescriptorBuilder withDifficultyTag(String difficultyTag) {
+        descriptor.setDifficultyTag(new DifficultyTag(difficultyTag));
         return this;
     }
 

@@ -11,7 +11,7 @@ import seedu.forgetfulnus.commons.core.LogsCenter;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the glossary.
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "FlashCardListPanel.fxml";

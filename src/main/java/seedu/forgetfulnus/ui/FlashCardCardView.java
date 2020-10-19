@@ -35,6 +35,12 @@ public class FlashCardCardView extends UiPart<Region> {
     @FXML
     private Label englishPhrase;
     @FXML
+    private FlowPane difficultyTagEasy;
+    @FXML
+    private FlowPane difficultyTagMedium;
+    @FXML
+    private FlowPane difficultyTagHard;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,6 +52,14 @@ public class FlashCardCardView extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         germanPhrase.setText(flashCard.getGermanPhrase().toString());
         englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
+        if (flashCard.getDifficultyTag().tagName.equals("EASY")) {
+            difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
+        } else if (flashCard.getDifficultyTag().tagName.equals("MEDIUM")) {
+            difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
+        } else if (flashCard.getDifficultyTag().tagName.equals("HARD")) {
+            difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
+        }
+
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

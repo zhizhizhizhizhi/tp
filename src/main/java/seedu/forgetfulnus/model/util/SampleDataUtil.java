@@ -9,6 +9,7 @@ import seedu.forgetfulnus.model.ReadOnlyGlossary;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -18,19 +19,26 @@ public class SampleDataUtil {
     public static FlashCard[] getSampleFlashCards() {
         return new FlashCard[] {
             new FlashCard(new GermanPhrase("Montag"), new EnglishPhrase("Monday"),
+                    new DifficultyTag("EASY"),
                     getTagSet("day")),
             new FlashCard(new GermanPhrase("Dienstag"), new EnglishPhrase("Tuesday"),
+                    new DifficultyTag("EASY"),
                     getTagSet("day", "hard")),
             new FlashCard(new GermanPhrase("Mittwoch"), new EnglishPhrase("Wednesday"),
+                    new DifficultyTag("MEDIUM"),
                     getTagSet("day", "veryhard")),
             new FlashCard(new GermanPhrase("Donnerstag"), new EnglishPhrase("Thursday"),
+                    new DifficultyTag("MEDIUM"),
                     getTagSet("day")),
             new FlashCard(new GermanPhrase("Freitag"), new EnglishPhrase("Friday"),
+                    new DifficultyTag("MEDIUM"),
                     getTagSet("day")),
             new FlashCard(new GermanPhrase("Samstag"), new EnglishPhrase("Saturday"),
-                        getTagSet("day")),
+                    new DifficultyTag("HARD"),
+                    getTagSet("day")),
             new FlashCard(new GermanPhrase("Sonntag"), new EnglishPhrase("Sunday"),
-                        getTagSet("day"))
+                    new DifficultyTag("HARD"),
+                    getTagSet("day"))
         };
     }
 

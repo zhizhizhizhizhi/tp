@@ -28,6 +28,8 @@ public class CommandTestUtil {
     public static final String VALID_GERMAN_PHRASE_TABLE = "Tisch";
     public static final String VALID_ENGLISH_PHRASE_FORGETFULNESS = "Forgetfulness";
     public static final String VALID_ENGLISH_PHRASE_TABLE = "Table";
+    public static final String VALID_DIFFICULTY_TAG_HARD = "HARD";
+    public static final String VALID_DIFFICULTY_TAG_MEDIUM = "MEDIUM";
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
 
@@ -55,9 +57,11 @@ public class CommandTestUtil {
     static {
         DESC_FORGETFULNESS = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
+                .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
                 .withTags(VALID_TAG_HARD).build();
         DESC_TABLE = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
+                .withDifficultyTag(VALID_DIFFICULTY_TAG_HARD)
                 .withTags(VALID_TAG_HARD, VALID_TAG_CHAPTER_ONE).build();
     }
 

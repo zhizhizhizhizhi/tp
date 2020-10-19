@@ -1,6 +1,7 @@
 package seedu.forgetfulnus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,6 +20,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_GERMAN_PHRASE + "GERMAN PHRASE "
             + PREFIX_ENGLISH_PHRASE + "ENGLISH PHRASE "
+            + PREFIX_DIFFICULTY_TAG + "DIFFICULTY LEVEL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GERMAN_PHRASE + "Vergesslichkeit "
