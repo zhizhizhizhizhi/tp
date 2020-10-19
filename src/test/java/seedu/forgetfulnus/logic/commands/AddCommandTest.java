@@ -42,7 +42,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateFlashCard_throwsCommandException() {
         FlashCard validFlashCard = new FlashCardBuilder().build();
         AddCommand addCommand = new AddCommand(validFlashCard);
         ModelStub modelStub = new ModelStubWithFlashCard(validFlashCard);
@@ -52,26 +52,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        FlashCard alice = new FlashCardBuilder().withGermanPhrase("Alice").build();
-        FlashCard bob = new FlashCardBuilder().withGermanPhrase("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        FlashCard man = new FlashCardBuilder().withGermanPhrase("Mann").build();
+        FlashCard woman = new FlashCardBuilder().withGermanPhrase("Frau").build();
+        AddCommand addManCommand = new AddCommand(man);
+        AddCommand addWomanCommand = new AddCommand(woman);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addManCommand.equals(addManCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAliceCommandCopy = new AddCommand(man);
+        assertTrue(addManCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addManCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addManCommand.equals(null));
 
         // different flashCard -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addManCommand.equals(addWomanCommand));
     }
 
     /**
@@ -105,7 +105,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setGlossaryFilePath(Path addressBookFilePath) {
+        public void setGlossaryFilePath(Path glossaryFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,8 +157,11 @@ public class AddCommandTest {
 
         }
 
+        /**
+         * Increments index of the current flashcard in the filtered list in quiz mode.
+         */
         @Override
-        public void updateQuizModeIndex(int index) {
+        public void incrementQuizModeIndex() {
 
         }
 
@@ -175,6 +178,52 @@ public class AddCommandTest {
         @Override
         public boolean isQuizMode() {
             return false;
+        }
+
+        @Override
+        public void setRandomQuizMode(boolean isRandomQuiz) {
+
+        }
+
+        @Override
+        public boolean isRandomQuizMode() {
+            return false;
+        }
+
+        /**
+         * Increments the number of correct attempts in current quiz.
+         */
+        @Override
+        public void updateWithCorrectAttempt() {
+
+        }
+
+        /**
+         * Returns the number of correct attempts in this quiz.
+         *
+         * @return quizScore
+         */
+        @Override
+        public int getQuizScore() {
+            return 0;
+        }
+
+        /**
+         * Returns the total questions in this quiz.
+         *
+         * @return quizTotalQuestions
+         */
+        @Override
+        public int getQuizTotalQuestions() {
+            return 0;
+        }
+
+        /**
+         * Resets the program at the end of a quiz.
+         */
+        @Override
+        public void resetQuiz() {
+
         }
     }
 

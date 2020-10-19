@@ -14,7 +14,7 @@ public class EnglishPhrase {
             "English phrases should only contain alphabets and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public final String fullEnglishPhrase;
+    private final String fullEnglishPhrase;
 
     /**
      * Constructs a {@code English phrase}.
@@ -34,6 +34,15 @@ public class EnglishPhrase {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if the given string is equivalent to the full english phrase, case insensitive.
+     */
+    public boolean isCorrectAttempt(String attempt) {
+        assert (attempt != null);
+        return attempt.trim().replaceAll("( )+", " ")
+                .toLowerCase().equals(fullEnglishPhrase.toLowerCase());
+    }
+
     @Override
     public String toString() {
         return fullEnglishPhrase;
@@ -50,5 +59,4 @@ public class EnglishPhrase {
     public int hashCode() {
         return fullEnglishPhrase.hashCode();
     }
-
 }

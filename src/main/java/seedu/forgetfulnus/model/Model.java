@@ -91,11 +91,52 @@ public interface Model {
      */
     void updateFilteredPhraseList();
 
-    void updateQuizModeIndex(int index);
+    /**
+     * Increments index of the current flashcard in the filtered list in quiz mode.
+     */
+    void incrementQuizModeIndex();
 
+    /**
+     * Gets the index of the current flashcard in the filtered list in quiz mode.
+     * @return index
+     */
     int getQuizModeIndex();
 
+    /**
+     * Sets the program to quiz mode or ends the quiz mode.
+     *  @param quizMode true to set to quiz mode, false to end quiz mode
+     */
     void setQuizMode(boolean quizMode);
 
+    /**
+     * Returns if the program is in quiz mode.
+     * @return isQuizMode
+     */
     boolean isQuizMode();
+
+    void setRandomQuizMode(boolean isRandomQuiz);
+
+    boolean isRandomQuizMode();
+
+    /**
+     * Increments the number of correct attempts in current quiz.
+     */
+    void updateWithCorrectAttempt();
+
+    /**
+     * Returns the number of correct attempts in this quiz.
+     * @return quizScore
+     */
+    public int getQuizScore();
+
+    /**
+     * Returns the total questions in this quiz.
+     * @return quizTotalQuestions
+     */
+    public int getQuizTotalQuestions();
+
+    /**
+     * Resets the program at the end of a quiz.
+     */
+    void resetQuiz();
 }

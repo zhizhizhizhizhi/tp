@@ -19,7 +19,7 @@ public class GermanPhraseContainsKeywordsPredicate implements Predicate<FlashCar
     public boolean test(FlashCard flashCard) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsWordIgnoreCase(flashCard.getGermanPhrase().fullGermanPhrase, keyword));
+                        .containsWordIgnoreCase(flashCard.getGermanPhrase().toString(), keyword));
     }
 
     @Override

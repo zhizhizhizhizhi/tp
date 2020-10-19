@@ -11,21 +11,22 @@ import seedu.forgetfulnus.model.Model;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all flashcards";
+    public static final String MESSAGE_SUCCESS = "Listed all flashcards.";
+    public static final String QUIZMODE_REMINDER = "'list' command cannot be used in quiz mode. "
+            + "Enter 'end' to end quizzing.";
 
-    private static final CommandType type = CommandType.ANY_MODE;
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        new EndQuizCommand().execute(model);
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
     public String getQuizModeReminder() {
-        return "";
+        return QUIZMODE_REMINDER;
     }
 
     @Override

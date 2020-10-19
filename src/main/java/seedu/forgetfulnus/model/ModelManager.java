@@ -20,14 +20,19 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Glossary glossary;
+    private Glossary glossary;
+    private Glossary backupGlossary;
     private final UserPrefs userPrefs;
-    private final FilteredList<FlashCard> filteredFlashCards;
+    private FilteredList<FlashCard> filteredFlashCards;
 
     private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
+    private boolean isQuizMode = false;
     private int quizModeIndex = 0;
-    private boolean quizMode = false;
+    private boolean isRandomQuiz = false;
+
+    private int quizScore = 0;
+    private int quizTotalQuestions = 0;
 
     /**
      * Initializes a ModelManager with the given glossary and userPrefs.
@@ -85,7 +90,7 @@ public class ModelManager implements Model {
     //=========== Glossary ================================================================================
 
     @Override
-    public void setGlossary(ReadOnlyGlossary addressBook) {
+    public void setGlossary(ReadOnlyGlossary glossary) {
         this.glossary.resetData(glossary);
     }
 
@@ -118,6 +123,25 @@ public class ModelManager implements Model {
         glossary.setFlashCard(target, editedFlashCard);
     }
 
+    @Override
+    public int getQuizScore() {
+        return quizScore;
+    }
+
+    @Override
+    public int getQuizTotalQuestions() {
+        return quizTotalQuestions;
+    }
+
+    /**
+     * Resets the program at the end of a quiz.
+     */
+    @Override
+    public void resetQuiz() {
+        quizScore = 0;
+        quizTotalQuestions = 0;
+        quizModeIndex = 0;
+    }
     //=========== Filtered FlashCard List Accessors =============================================================
 
     /**
@@ -143,8 +167,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateQuizModeIndex(int index) {
-        quizModeIndex = index;
+    public void incrementQuizModeIndex() {
+        quizModeIndex++;
+        quizTotalQuestions++;
     }
 
     @Override
@@ -153,13 +178,40 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setQuizMode(boolean quizMode) {
-        this.quizMode = quizMode;
+    public void setQuizMode(boolean isQuizMode) {
+        this.isQuizMode = isQuizMode;
+        if (isQuizMode) {
+            quizModeIndex = 0;
+            quizScore = 0;
+            quizTotalQuestions = 0;
+        }
     }
 
     @Override
     public boolean isQuizMode() {
-        return quizMode;
+        return isQuizMode;
+    }
+
+    @Override
+    public void setRandomQuizMode(boolean isRandomQuiz) {
+        this.isRandomQuiz = isRandomQuiz;
+        if (isRandomQuiz) {
+            backupGlossary = new Glossary(glossary);
+        } else {
+            quizModeIndex = 0;
+            setGlossary(new Glossary(backupGlossary));
+            updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        }
+    }
+
+    @Override
+    public boolean isRandomQuizMode() {
+        return isRandomQuiz;
+    }
+
+    @Override
+    public void updateWithCorrectAttempt() {
+        quizScore++;
     }
 
     @Override

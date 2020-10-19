@@ -50,15 +50,16 @@ public class FlashCardCardView extends UiPart<Region> {
         super(FXML);
         this.flashCard = flashCard;
         id.setText(displayedIndex + ". ");
-        germanPhrase.setText(flashCard.getGermanPhrase().fullGermanPhrase);
-        englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().fullEnglishPhrase : "");
+        germanPhrase.setText(flashCard.getGermanPhrase().toString());
+        englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
         if (flashCard.getDifficultyTag().tagName.equals("EASY")) {
-            difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().tagName));
+            difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
         } else if (flashCard.getDifficultyTag().tagName.equals("MEDIUM")) {
-            difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().tagName));
+            difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
         } else if (flashCard.getDifficultyTag().tagName.equals("HARD")) {
-            difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().tagName));
+            difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
         }
+
         flashCard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentGlossary, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = MONDAY.getGermanPhrase().fullGermanPhrase.split("\\s+");
+        String[] keywords = MONDAY.getGermanPhrase().toString().split("\\s+");
         modelManager.updateFilteredPhraseList(new GermanPhraseContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(glossary, userPrefs)));
 

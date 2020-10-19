@@ -12,25 +12,27 @@ import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EndQuizCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code RandomQuizCommand}.
  */
-public class EndQuizCommandTest {
+public class RandomQuizCommandTest {
 
     private Model model;
     private Model expectedModel;
 
+
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalGlossary(), new UserPrefs());
-        expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalGlossary(), new UserPrefs());
     }
 
     @Test
-    public void execute_listIsNotFiltered_showAllEnglishWords() {
-        for (FlashCard flashCard: model.getFilteredFlashCardList()) {
+    public void execute_listIsNotFiltered_hideAllEnglishWords() {
+        for (FlashCard flashCard: expectedModel.getFilteredFlashCardList()) {
             FlashCard changeTo = flashCard.copy();
             changeTo.updateShowingEnglish(false);
-            model.setFlashCard(flashCard, changeTo);
+            expectedModel.setFlashCard(flashCard, changeTo);
         }
         assertCommandSuccess(new QuizCommand(), model, QuizCommand.MESSAGE_SUCCESS, expectedModel);
     }
