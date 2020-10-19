@@ -7,7 +7,7 @@ import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 
 /**
- * Lists all phrases in the address book to the user.
+ * Lists all phrases in the glossary to the user, shown in the default unsorted state.
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
@@ -15,6 +15,9 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all flashcards.";
     public static final String QUIZMODE_REMINDER = "'list' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
+    /**
+     * A static variable to save the default unsorted state of the Glossary.
+     */
     private static Glossary originalGlossary = new Glossary();
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -32,6 +35,7 @@ public class ListCommand extends Command {
     }
 
     public static void setOriginalGlossary(Glossary g) {
+        assert g != null : "Glossary cannot be null!";
         originalGlossary = g;
     }
 

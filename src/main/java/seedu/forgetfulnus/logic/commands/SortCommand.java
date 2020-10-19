@@ -84,7 +84,7 @@ public class SortCommand extends Command {
         if (this == other) {
             return true;
         }
-        if (other.getClass() != this.getClass()) {
+        if (other == null || other.getClass() != this.getClass()) {
             return false;
         }
         SortCommand otherCommand = (SortCommand) other;
