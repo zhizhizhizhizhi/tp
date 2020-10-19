@@ -20,7 +20,7 @@ import seedu.forgetfulnus.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_LANGUAGE = "Language %s is not a valid input.";
+    public static final String MESSAGE_INVALID_SORT_PARAM = " %s is not a valid parameter.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,18 +36,21 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code language} into a String and returns it in lowercase.
+     * Parses {@code parameter} into a String and returns it in lowercase.
      * Leading and trailing whitespaces will be trimmed.
-     * @param parameters the sorting parameter input by the user.
+     * @param parameter the sorting parameter input by the user.
      * @return The sorting parameter as a trimmed lowercase String.
      * @throws ParseException if the specified parameter is not valid.
      */
-    public static String parseSortParams(String parameters) throws ParseException {
-        String trimmedLanguage = parameters.toLowerCase().trim();
-        if (!trimmedLanguage.equals("german") && !trimmedLanguage.equals("english")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_LANGUAGE, parameters));
+    public static String parseSortParams(String parameter) throws ParseException {
+        String trimmedParam = parameter.toLowerCase().trim();
+        boolean isLanguage = trimmedParam.equals("german") || trimmedParam.equals("english")
+                || trimmedParam.equals("reversegerman") || trimmedParam.equals("reverseenglish");
+        boolean isDifficulty = trimmedParam.equals("easytohard") || trimmedParam.equals("hardtoeasy");
+        if (!isLanguage && !isDifficulty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_SORT_PARAM, parameter));
         }
-        return trimmedLanguage;
+        return trimmedParam;
     }
 
     /**

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.model.Model;
@@ -51,5 +52,23 @@ public class TestUtil {
      */
     public static FlashCard getFlashCard(Model model, Index index) {
         return model.getFilteredFlashCardList().get(index.getZeroBased());
+    }
+
+    /**
+     * Checks whether the order in two {$code FlashCard} lists are exactly the same.
+     * @param list1 first list to compare.
+     * @param list2 second list to compare
+     * @return true if the orders of the lists are the same, false otherwise.
+     */
+    public static boolean checkSortedOrder(List<FlashCard> list1, List<FlashCard> list2) {
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+        for (int i = 0; i < list1.size(); i++) {
+            if (!list1.get(i).equals(list2.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -52,11 +52,11 @@ public class FlashCardCardView extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         germanPhrase.setText(flashCard.getGermanPhrase().toString());
         englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
-        if (flashCard.getDifficultyTag().tagName.equals("EASY")) {
+        if (flashCard.getDifficultyTag().toString().equals("EASY")) {
             difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().tagName.equals("MEDIUM")) {
+        } else if (flashCard.getDifficultyTag().toString().equals("MEDIUM")) {
             difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().tagName.equals("HARD")) {
+        } else if (flashCard.getDifficultyTag().toString().equals("HARD")) {
             difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
         }
 
