@@ -15,6 +15,7 @@ import seedu.forgetfulnus.commons.util.ConfigUtil;
 import seedu.forgetfulnus.commons.util.StringUtil;
 import seedu.forgetfulnus.logic.Logic;
 import seedu.forgetfulnus.logic.LogicManager;
+import seedu.forgetfulnus.logic.commands.ListCommand;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
@@ -89,7 +90,8 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty Glossary");
             initialData = new Glossary();
         }
-
+        ModelManager m = new ModelManager(initialData, userPrefs);
+        ListCommand.setOriginalGlossary(new Glossary(m.getGlossary()));
         return new ModelManager(initialData, userPrefs);
     }
 

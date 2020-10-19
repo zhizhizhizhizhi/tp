@@ -3,6 +3,7 @@ package seedu.forgetfulnus.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 
 /**
@@ -14,6 +15,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all flashcards.";
     public static final String QUIZMODE_REMINDER = "'list' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
+    private static Glossary originalGlossary = new Glossary();
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
@@ -21,7 +23,16 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        model.setGlossary(originalGlossary);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    public static Glossary getOriginalGlossary() {
+        return originalGlossary;
+    }
+
+    public static void setOriginalGlossary(Glossary g) {
+        originalGlossary = g;
     }
 
     @Override

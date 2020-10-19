@@ -28,5 +28,4 @@ public class GermanPhraseContainsKeywordsPredicate implements Predicate<FlashCar
                 || (other instanceof GermanPhraseContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((GermanPhraseContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

@@ -75,7 +75,7 @@ public class TypicalFlashCards {
     private TypicalFlashCards() {} // prevents instantiation
 
     /**
-     * Returns an {@code Glossary} with all the typical flashcards.
+     * Returns a {@code Glossary} with all the typical flashcards.
      */
     public static Glossary getTypicalGlossary() {
         Glossary g = new Glossary();
@@ -85,7 +85,22 @@ public class TypicalFlashCards {
         return g;
     }
 
+    /**
+     * Returns a sorted {@code Glossary} with all the typical flashcards.
+     */
+    public static Glossary getTypicalSortedGlossary() {
+        Glossary g = new Glossary();
+        for (FlashCard flashCard : getTypicalGermanSortedFlashCards()) {
+            g.addFlashCard(flashCard);
+        }
+        return g;
+    }
+
     public static List<FlashCard> getTypicalFlashCards() {
         return new ArrayList<>(Arrays.asList(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY));
+    }
+
+    public static List<FlashCard> getTypicalGermanSortedFlashCards() {
+        return new ArrayList<>(Arrays.asList(TUESDAY, THURSDAY, FRIDAY, WEDNESDAY, MONDAY, SATURDAY, SUNDAY));
     }
 }

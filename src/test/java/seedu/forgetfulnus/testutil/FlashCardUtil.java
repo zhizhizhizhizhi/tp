@@ -52,7 +52,7 @@ public class FlashCardUtil {
                         .append(englishPhrase.toString()).append(" "));
         descriptor.getDifficultyTag()
                 .ifPresent(difficultyTag -> sb.append(PREFIX_DIFFICULTY_TAG)
-                        .append(difficultyTag.tagName).append((" ")));
+                        .append(difficultyTag.toString()).append((" ")));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
