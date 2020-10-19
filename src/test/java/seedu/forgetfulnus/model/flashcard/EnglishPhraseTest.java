@@ -35,4 +35,15 @@ public class EnglishPhraseTest {
         assertTrue(EnglishPhrase.isValidEnglishPhrase("Capital Tan")); // with capital letters
         assertTrue(EnglishPhrase.isValidEnglishPhrase("David Roger Jackson Ray Jr 2nd")); // long English phrases
     }
+
+    @Test
+    public void isCorrectAttempt() {
+        assertTrue(new EnglishPhrase("test1").isCorrectAttempt("test1"));
+        assertTrue(new EnglishPhrase("test1").isCorrectAttempt("TEST1"));
+        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   test 1  "));
+        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   test    1  "));
+        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   Test    1  "));
+        assertFalse(new EnglishPhrase("test 1").isCorrectAttempt("   test1   "));
+        assertFalse(new EnglishPhrase("test 1").isCorrectAttempt("ashdha"));
+    }
 }
