@@ -11,7 +11,7 @@ public class SortCommandParser {
      * and returns a SortCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public SortCommand parse(String args) throws ParseException {
+    SortCommand parse(String args) throws ParseException {
         assert args != null : "Input cannot be null!";
         try {
             String params = ParserUtil.parseSortParams(args);
