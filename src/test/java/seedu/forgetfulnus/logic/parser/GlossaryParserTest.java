@@ -28,9 +28,9 @@ import seedu.forgetfulnus.testutil.EditFlashCardDescriptorBuilder;
 import seedu.forgetfulnus.testutil.FlashCardBuilder;
 import seedu.forgetfulnus.testutil.FlashCardUtil;
 
-public class GlossaryBookParserTest {
+public class GlossaryParserTest {
 
-    private final GlossaryBookParser parser = new GlossaryBookParser();
+    private final GlossaryParser parser = new GlossaryParser();
 
     @Test
     public void parseCommand_add() throws Exception {

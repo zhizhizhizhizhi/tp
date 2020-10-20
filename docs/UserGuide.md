@@ -13,6 +13,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
     - [Delete Flashcard](#delete)
     - [Clear All Flashcards](#clear)
     - [View All Flashcards](#list)
+    - [Sort All Flashcards](#sort)
     - Test Yourself
         - [Normal Mode](#quiz)
         - [Random Mode](#random)
@@ -43,8 +44,10 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
 
+   * **`sort`**`english` : Sorts the glossary by alphabetical order of English phrases.
+
    * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
-   
+
    * **`random`**`5` : Starts a round of vocabulary testing with 5 flashcards randomly chosen from the existing glossary.
 
    * **`end`** : Ends a round of vocabulary testing.
@@ -92,9 +95,25 @@ Examples:
 
 ### <a name="list"></a>Listing all flashcards : `list`
 
-Shows a list of all flashcards in the glossary.
+Displays all flashcards in the glossary. Also returns the glossary to its default unsorted state (chronological order).
 
 Format: `list`
+
+### <a name="sort"></a>Sort all flashcards : `sort`
+
+Sorts the all flashcards according to the way you choose.
+
+Format: `sort <parameter>`
+
+* `<parameter>` refers to how you want to sort the flashcards by.
+* Possible parameters:
+    1. `german`: sorts by the alphabetical order of German phrases.
+    1. `english`: sorts by the alphabetical order of English definitions.
+    1. `reversegerman`: sorts by the reverse alphabetical order of German phrases.
+    1. `reverseenglish`: sorts by the reverse alphabetical order of English phrases.
+    1. `easytohard`: sorts by difficulty of flashcards, from easy to hard.
+    1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
+* To return the app to the default unsorted state (which is in chronological order), use the `list` command.
 
 ### <a name="quiz"></a>Normal Test : `quiz`
 
@@ -148,6 +167,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Exit** | `exit`
 **List** | `list`
+**Sort** | `sort <parameter>` <br> e.g., `sort english`
 **Help** | `help`
 **Start Normal Quiz** | `quiz`
 **Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
