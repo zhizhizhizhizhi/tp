@@ -1,0 +1,120 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":DifficultyTag" as DifficultyTag MODEL_COLOR
+participant ":GermanPhrase" as GermanPhrase MODEL_COLOR
+participant ":EnglishPhrase" as EnglishPhrase MODEL_COLOR
+participant ":Tag" as Tag MODEL_COLOR
+participant ":FlashCard" as FlashCard MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Add g/German e/English")
+activate LogicManager
+
+LogicManager -> GlossaryParser : parseCommand("Add g/German e/English")
+activate GlossaryParser
+
+create AddCommandParser
+GlossaryParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> GlossaryParser
+deactivate AddCommandParser
+
+GlossaryParser -> AddCommandParser : parse("g/German e/English")
+activate AddCommandParser
+
+alt No difficulty specified
+    create DifficultyTag
+    AddCommandParser -> DifficultyTag : new DifficultyTag()
+    activate DifficultyTag
+
+    DifficultyTag -> AddCommandParser
+    Deactivate DifficultyTag
+else else
+    create DifficultyTag
+    AddCommandParser -> DifficultyTag : new DifficultyTag(difficulty)
+    activate DifficultyTag
+
+    DifficultyTag -> AddCommandParser
+    Deactivate DifficultyTag
+end
+
+create GermanPhrase
+AddCommandParser -> GermanPhrase
+activate GermanPhrase
+
+GermanPhrase -> AddCommandParser
+Deactivate GermanPhrase
+
+create EnglishPhrase
+AddCommandParser -> EnglishPhrase
+activate EnglishPhrase
+
+EnglishPhrase -> AddCommandParser
+Deactivate EnglishPhrase
+
+opt Tags present
+   create Tag
+   AddCommandParser -> Tag
+   activate Tag
+
+   Tag -> AddCommandParser
+   Deactivate Tag
+end
+
+create FlashCard
+AddCommandParser -> FlashCard
+activate FlashCard
+
+FlashCard --> AddCommandParser
+deactivate FlashCard
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> GlossaryParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> GlossaryParser
+destroy AddCommandParser
+
+GlossaryParser --> LogicManager : a
+deactivate GlossaryParser
+
+LogicManager -> AddCommand : executeWithChecks(model)
+activate AddCommand
+
+AddCommand -> Model : AddFlashCard(toAdd)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager :
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
