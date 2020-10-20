@@ -26,7 +26,7 @@ import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class GlossaryBookParser {
+public class GlossaryParser {
 
     /**
      * Used for initial separation of command word and args.

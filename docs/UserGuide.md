@@ -43,6 +43,8 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
    * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
+   
+   * **`sort`**`english` : Sorts the glossary by alphabetical order of English phrases.
 
    * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
    
@@ -107,6 +109,8 @@ Format: `sort <parameter>`
 * Possible parameters:
     1. `german`: sorts by the alphabetical order of German phrases. 
     1. `english`: sorts by the alphabetical order of English definitions.
+    1. `reversegerman`: sorts by the reverse alphabetical order of German phrases.
+    1. `reverseenglish`: sorts by the reverse alphabetical order of English phrases.
     1. `easytohard`: sorts by difficulty of flashcards, from easy to hard.
     1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
 * To return the app to the default unsorted state (which is in chronological order), use the `list` command. 

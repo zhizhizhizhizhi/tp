@@ -201,6 +201,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] List Feature
+
+The List feature is implemented to allow users to "reset" the Glossary to its default, unsorted state after using the Sort or
+the Find feature. As the two mentioned features both modify how the Glossary is displayed to the user, this functionality is necessary
+to allow the user to return the Glossary to its original state.
+
+The List Command makes use of a static Glossary object `originalGlossary` to save the state of Glossary before a Sort or Find command is executed.
+When a List command is input by the user, the `originalGlossary` object is used to overwrite the existing Glossary, returning the `Model` to its
+original state.
+
+To be added: *UML Diagrams*
+
+### \[Implemented\] Sort Feature
+
+The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
+
+Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user,
+in line with the original AddressBook3's Command pattern.
+
+This class diagram outlines the structure of `SortCommand` and `SortCommand` and how they interact with other aspects of the program.
+
+![SortCommandClassDiagram](images/SortCommandClassDiagram.png)
+
+The following sequence diagram briefly outlines the execution process when a user enters the command "sort english":
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+1. The user command is first passed into `LogicManager`, which calls upon `GlossaryParser` to parse the command.
+1. `GlossaryParser` identifies the input as a command to sort the glossary and creates a `SortCommandParser` and calls its `parse(String)` method.
+1. The new `SortCommandParser` parses the parameter and creates a new `SortCommand`.
+1. `LogicManager` calls the new `SortCommand`'s `execute(model)` method.
+1. `execute()` calls `SortCommand`'s own `getSortedGlossary()` method to obtain a sorted `Glossary`.
+1. The sorted `Glossary` replaces the current `Glossary` in `Model`.
+1. The result of the command execution is encapsulated as a CommandResult object which is passed back to the `Ui`.
+
+**Note:** The lifeline for `SortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Alternatives:
+1. Sorting replaces the entire Glossary with a new sorted Glossary (current implementation)
+
+   - Pros: Easily adaptable from existing commands
+   - Cons: Large glossary size may lead to computational delays and overhead
+
+1. Sorting sorts the current Glossary in place instead of creating a new Glossary
+
+   - Pros: Less computational overhead
+   - Cons: Original AB3 uses immutable Glossary equivalent, requires significant refactoring to achieve
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
