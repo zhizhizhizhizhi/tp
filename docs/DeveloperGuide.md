@@ -102,15 +102,15 @@ The `UI` component,
 
 1. `Logic` uses the `GlossaryBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a student).
+1. The command execution can affect the `Model` (e.g. adding a Flashcard).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add g/German e/English")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add g/German e/English` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### <a name="model_component"></a>Model component
@@ -183,6 +183,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+
 ### <a name="score"></a>\[Proposed\] Score report feature:
 
 The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
@@ -197,6 +198,11 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
+### Setting difficulty level for flashcards
+
+The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
+
+![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
