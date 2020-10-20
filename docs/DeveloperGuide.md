@@ -333,7 +333,7 @@ Priority | As a... | I want to... | So that I...
 2.  ForgetfulNUS displays the flashcard to be deleted and asks for confirmation.
 3.  User confirms deletion of flashcard.
 4.  ForgetfulNUS deletes the flashcard.
-    
+
     Use case ends.
 
 **Extensions:**
@@ -352,21 +352,21 @@ Priority | As a... | I want to... | So that I...
 2. ForgetfulNUS displays a german word.
 3. User inputs the corresponding english translation.
 4. ForgetfulNUS displays the results of User's answer.
-    
+
     Steps 2-4 are repeated until there are no more words to be tested.    
-    
+
     Use case ends.
 
 **Extensions:**
-   
+
 - 4a. At any time, User chooses to stop self-testing.
-      
+
    - 4a1. ForgetfulNUS stops self-testing.
-      
+
    Use case ends.
 
 *{More to be added soon}*
-    
+
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
