@@ -17,7 +17,6 @@ Class ReadOnlyUserPrefs
 
 Package FlashCard {
 Class FlashCard
-Class Address
 Class Difficulty
 Class GermanPhrase
 Class EnglishPhrase
