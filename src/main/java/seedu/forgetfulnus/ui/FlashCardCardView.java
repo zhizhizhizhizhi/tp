@@ -8,11 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
-
-import static seedu.forgetfulnus.model.tag.DifficultyTag.EASY_TAG;
-import static seedu.forgetfulnus.model.tag.DifficultyTag.HARD_TAG;
-import static seedu.forgetfulnus.model.tag.DifficultyTag.MEDIUM_TAG;
-import static seedu.forgetfulnus.model.tag.DifficultyTag.isValidDifficultyTag;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
 
 /**
  * An UI component that displays information of a {@code FlashCard}.
@@ -58,12 +54,12 @@ public class FlashCardCardView extends UiPart<Region> {
         germanPhrase.setText(flashCard.getGermanPhrase().toString());
         englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
 
-        assert isValidDifficultyTag(flashCard.getDifficultyTag().toString());
-        if (flashCard.getDifficultyTag().toString().equals(EASY_TAG)) {
+        assert DifficultyTag.isValidDifficultyTag(flashCard.getDifficultyTag().toString());
+        if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.EASY_TAG)) {
             difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().toString().equals(MEDIUM_TAG)) {
+        } else if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.MEDIUM_TAG)) {
             difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().toString().equals(HARD_TAG)) {
+        } else if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.HARD_TAG)) {
             difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
         }
 
