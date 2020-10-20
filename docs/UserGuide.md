@@ -11,12 +11,13 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 - [Features](#features)
     - [Add Flashcard](#add)
     - [Delete Flashcard](#delete)
+    - [Clear All Flashcards](#clear)
     - [View All Flashcards](#list)
-    - [Test Yourself](#quiz) (coming soon)
-        - Start Testing (coming soon)
-        - Testing (coming soon)
-        - End Testing (coming soon)
-    - Save and Exit (coming soon)
+    - Test Yourself
+        - [Normal Mode](#quiz)
+        - [Random Mode](#random)
+        - [End Testing](#end)
+    - [Save and Exit](#exit)
 - [FAQ](#faq)
 - [Command Summary](#cmdsum)
 
@@ -26,12 +27,12 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `forgetfulnus.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-2/tp/releases).
+1. Download the latest `ForgetfulNUS.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ForgetfulNUS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   [GUI coming soon]
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -42,9 +43,13 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
 
-   * **`quiz`** : Starts a round of vocabulary testing.
+   * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
    
-   * **`end quiz`** : Ends a round of vocabulary testing.
+   * **`random`**`5` : Starts a round of vocabulary testing with 5 flashcards randomly chosen from the existing glossary.
+
+   * **`end`** : Ends a round of vocabulary testing.
+
+   * **`clear`** : Deletes all flashcards.
 
    * **`exit`** : Exits the app.
 
@@ -91,17 +96,39 @@ Shows a list of all flashcards in the glossary.
 
 Format: `list`
 
-### <a name="quiz"></a>Test Yourself : `quiz` `end quiz`
+### <a name="quiz"></a>Normal Test : `quiz`
 
-Starts a round of vocabulary testing and ends a round of vocabulary testing respectively.
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary.
 
-Format: `quiz` `end quiz`
+Format: `quiz`
 
-### Exiting the program : `exit`
+### <a name="random"></a>Random Test : `random`
+
+Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
+
+Format: `random <NUMBER>`
+
+### <a name="end"></a>End Test : `end`
+
+Ends the round of vocabulary testing.
+
+Format: `end`
+
+### <a name="clear"></a>Clearing all entries : `clear`
+
+Clears all entries from the glossary.
+
+Format: `clear`
+
+### <a name="exit"></a>Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Saving the data
+
+ForgetfulNUS data are automatically saved in the hard disk upon exiting. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,8 +144,11 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `g/<GERMAN WORD> e/<ENGLISH WORD>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**End Quiz** | `end quiz`
+**Clear** | `clear`
+**Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Exit** | `exit`
 **List** | `list`
-**Start Quiz** | `quiz`
+**Help** | `help`
+**Start Normal Quiz** | `quiz`
+**Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
+**End Quiz** | `end`

@@ -11,13 +11,13 @@ public class DifficultyTagTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Tag(null));
+        assertThrows(NullPointerException.class, () -> new DifficultyTag(null));
     }
 
     @Test
     public void constructor_invalidDifficultyTag_throwsIllegalArgumentException() {
-        String invalidTagName = "EasyPeasy";
-        assertThrows(IllegalArgumentException.class, () -> new DifficultyTag(invalidTagName));
+        String invalidDifficultyTagName = "EasyPeasy";
+        assertThrows(IllegalArgumentException.class, () -> new DifficultyTag(invalidDifficultyTagName));
     }
 
     @Test
