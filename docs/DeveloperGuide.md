@@ -183,11 +183,26 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+
+### <a name="score"></a>\[Proposed\] Score report feature:
+
+The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
+
+Each time the quiz mode is entered and ended, a score is calculated as a percentage of correct answers input by the user and encapsulated by a `Score` object. The `Score` is added to a `ScoreList`, where the following methods are implemented:
+
+`ScoreList#addScore()`
+`ScoreList#getScores()`
+`ScoreList#deleteScores()`
+
+These operations are exposed in the Model interface as `Model#addScore()`, `Model#getScores()` and `Model#deleteScores()` respectively.
+
+The following sequence diagram shows how the score is saved:
+
 ### Setting difficulty level for flashcards
 
 The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
 
-![RandomQuizActivityDiagram](images/DifficultyTagActivityDiagram.png)
+![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
@@ -273,6 +288,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] List Feature
+
+The List feature is implemented to allow users to "reset" the Glossary to its default, unsorted state after using the Sort or
+the Find feature. As the two mentioned features both modify how the Glossary is displayed to the user, this functionality is necessary
+to allow the user to return the Glossary to its original state.
+
+The List Command makes use of a static Glossary object `originalGlossary` to save the state of Glossary before a Sort or Find command is executed.
+When a List command is input by the user, the `originalGlossary` object is used to overwrite the existing Glossary, returning the `Model` to its
+original state.
+
+To be added: *UML Diagrams*
+
+### \[Implemented\] Sort Feature
+
+The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
+
+Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user,
+in line with the original AddressBook3's Command pattern.
+
+This class diagram outlines the structure of `SortCommand` and `SortCommand` and how they interact with other aspects of the program.
+
+![SortCommandClassDiagram](images/SortCommandClassDiagram.png)
+
+The following sequence diagram briefly outlines the execution process when a user enters the command "sort english":
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+1. The user command is first passed into `LogicManager`, which calls upon `GlossaryParser` to parse the command.
+1. `GlossaryParser` identifies the input as a command to sort the glossary and creates a `SortCommandParser` and calls its `parse(String)` method.
+1. The new `SortCommandParser` parses the parameter and creates a new `SortCommand`.
+1. `LogicManager` calls the new `SortCommand`'s `execute(model)` method.
+1. `execute()` calls `SortCommand`'s own `getSortedGlossary()` method to obtain a sorted `Glossary`.
+1. The sorted `Glossary` replaces the current `Glossary` in `Model`.
+1. The result of the command execution is encapsulated as a CommandResult object which is passed back to the `Ui`.
+
+**Note:** The lifeline for `SortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Alternatives:
+1. Sorting replaces the entire Glossary with a new sorted Glossary (current implementation)
+
+   - Pros: Easily adaptable from existing commands
+   - Cons: Large glossary size may lead to computational delays and overhead
+
+1. Sorting sorts the current Glossary in place instead of creating a new Glossary
+
+   - Pros: Less computational overhead
+   - Cons: Original AB3 uses immutable Glossary equivalent, requires significant refactoring to achieve
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
@@ -358,7 +420,7 @@ Priority | As a... | I want to... | So that I...
 2.  ForgetfulNUS displays the flashcard to be deleted and asks for confirmation.
 3.  User confirms deletion of flashcard.
 4.  ForgetfulNUS deletes the flashcard.
-    
+
     Use case ends.
 
 **Extensions:**
@@ -377,22 +439,22 @@ Priority | As a... | I want to... | So that I...
 2. ForgetfulNUS displays a german word.
 3. User inputs the corresponding english translation.
 4. ForgetfulNUS displays the results of User's answer.
-    
+
     Steps 2-4 are repeated until there are no more words to be tested.    
-    
+
     Use case ends.
 
 **Extensions:**
-   
+
 - 4a. At any time, User chooses to stop self-testing.
-      
+
    - 4a1. ForgetfulNUS stops self-testing.
-      
+
    Use case ends.
 
 *{More to be added soon}*
-    
-### <a name="nfr"></a>Non-Functional Requirements
+
+### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.

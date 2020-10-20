@@ -3,6 +3,8 @@ package seedu.forgetfulnus.logic.commands;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
@@ -30,6 +32,7 @@ public class SortCommand extends Command {
     public static final Comparator<FlashCard> DIFFICULTY_HARD_COMP = (obj1, obj2) -> obj2.getDifficultyTag()
             .compareTo(obj1.getDifficultyTag());
     private Comparator<FlashCard> comp;
+    private Logger logger = Logger.getLogger("Sort Command Logger");
 
     /**
      * Creates a new SortCommand using the input parameter from the user.
@@ -38,6 +41,7 @@ public class SortCommand extends Command {
     public SortCommand(String parameter) {
         assert parameter != null : "Input cannot be null!";
         parameter = parameter.trim().toLowerCase();
+        logger.log(Level.INFO, String.format("Input parameter: %s", parameter));
         switch(parameter) {
         case("german"):
             comp = GERMAN_COMP;
@@ -63,13 +67,19 @@ public class SortCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) {
+        assert model != null : "Model cannot be null!";
+        model.setGlossary(getSortedGlossary(model));
+        return new CommandResult(MESSAGE_SORT_SUCCESS);
+    }
+    public Glossary getSortedGlossary(Model model) {
+        assert model != null : "Model cannot be null!";
         ListCommand.setOriginalGlossary(new Glossary(model.getGlossary()));
+        logger.log(Level.INFO, "Original glossary state saved.");
         List<FlashCard> sortedList = new ArrayList<>(model.getGlossary().getFlashCardList());
         sortedList.sort(comp);
         Glossary glossary = new Glossary();
         glossary.setFlashCards(sortedList);
-        model.setGlossary(glossary);
-        return new CommandResult(MESSAGE_SORT_SUCCESS);
+        return glossary;
     }
     @Override
     public CommandType isQuizModeCommand() {

@@ -127,13 +127,13 @@ public interface Model {
      * Returns the number of correct attempts in this quiz.
      * @return quizScore
      */
-    public int getQuizScore();
+    int getQuizScore();
 
     /**
      * Returns the total questions in this quiz.
      * @return quizTotalQuestions
      */
-    public int getQuizTotalQuestions();
+    int getQuizTotalQuestions();
 
     /**
      * Resets the program at the end of a quiz.

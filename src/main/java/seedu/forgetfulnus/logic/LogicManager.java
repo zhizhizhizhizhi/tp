@@ -10,7 +10,7 @@ import seedu.forgetfulnus.commons.core.LogsCenter;
 import seedu.forgetfulnus.logic.commands.Command;
 import seedu.forgetfulnus.logic.commands.CommandResult;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
-import seedu.forgetfulnus.logic.parser.GlossaryBookParser;
+import seedu.forgetfulnus.logic.parser.GlossaryParser;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
@@ -27,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final GlossaryBookParser glossaryBookParser;
+    private final GlossaryParser glossaryParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        glossaryBookParser = new GlossaryBookParser();
+        glossaryParser = new GlossaryParser();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = glossaryBookParser.parseCommand(commandText);
+        Command command = glossaryParser.parseCommand(commandText);
         commandResult = command.executeWithChecks(model);
 
         try {
