@@ -10,6 +10,9 @@ import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
 
+import static seedu.forgetfulnus.model.tag.DifficultyTag.MEDIUM_TAG;
+import static seedu.forgetfulnus.model.tag.DifficultyTag.isValidDifficultyTag;
+
 /**
  * A utility class to help with building FlashCard objects.
  */
@@ -30,6 +33,7 @@ public class FlashCardBuilder {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
         difficultyTag = new DifficultyTag();
+        assert difficultyTag.toString().equals(MEDIUM_TAG);
         tags = new HashSet<>();
     }
 
@@ -40,6 +44,7 @@ public class FlashCardBuilder {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
         difficultyTag = flashCardToCopy.getDifficultyTag();
+        assert isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
     }
 
