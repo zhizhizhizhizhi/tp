@@ -1,8 +1,42 @@
-# **ForgetfulNUS: Developer Guide**
+---
+layout: page
+title: Developer Guide
+---
+* [**Setting up, getting started**](#setup)
+* [**Design**](#design)
+   * [Architecture](#architecture)
+   * [UI component](#ui_component)
+   * [Logic component](#logic_component)
+   * [Model component](#model_component)
+   * [Storage component](#storage_component)
+   * [Common classes](#common_classes)
+* [**Implementation**](#implementation)
+   * [[Proposed] Undo/redo feature](#undo_redo)
+     * [Proposed Implementation](#proposed_implementation)
+     * [Design consideration:](#design_consideration)
+       * [Aspect: How undo & redo executes](#aspect_undo_redo)
+  * [[Proposed] Data archiving](#data_archiving)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation_etc)
+* [**Appendix: Requirements**](#requirements)
+  * [Product scope](#product_scope)
+  * [User stories](#user_stories)
+  * [Use cases](#use_cases)
+  * [Non-Functional Requirements](#nfr)
+  * [Glossary](#glossary)
+* [**Appendix: Instructions for manual testing**](#manual_testing)
+  * [Launch and shutdown](#launch_shutdown)
+  * [Deleting a student](#deleting_a_flashcard)
+  * [Saving data](#saving_data)
 
-## **Design**
+--------------------------------------------------------------------------------------------------------------------
 
-### Architecture
+## <a name="setup"></a>**Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+## <a name="design"></a>**Design**
+
+### <a name="architecture"></a>Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -10,7 +44,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -18,14 +52,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initialises the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#common_classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#ui_component): The UI of the App.
+* [**`Logic`**](#logic_component): The command executor.
+* [**`Model`**](#model_component): Holds the data of the App in memory.
+* [**`Storage`**](#storage_component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -48,7 +82,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/src/main/java/seedu/forgetfulnus/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -64,7 +98,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/src/main/java/seedu/forgetfulnus/logic/Logic.java)
 
 1. `Logic` uses the `GlossaryBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -83,7 +117,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/src/main/java/seedu/forgetfulnus/model/Model.java)
 
 The `Model`,
 
@@ -103,7 +137,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/src/main/java/seedu/forgetfulnus/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -116,6 +150,38 @@ Classes used by multiple components are in the `seedu.forgetfulnus.commons` pack
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Randomly generating a specified number of flashcards from the glossary to self-test
+
+This feature is facilitated by `RandomQuizCommand` and `RandomQuizCommandParser` and `Model`.
+
+`RandomQuizCommand` implements the method:
+
+* `RandomQuizCommand#execute(Model)` — Returns a `CommandResult` which begins a round of vocabulary quiz containing the specified number of flashcards randomly selected from the existing glossary.
+
+`RandomQuizCommandParser` implements the method:
+
+* `RandomQuizCommandParser#parse(String)` — Returns a `RandomQuizCommand` which ensures the specified number of flashcards is valid.
+
+`Model` implements the method:
+
+* `Model#setRandomQuizMode(boolean)` — Sets the state of Model to randomQuizMode and backs up or retrieves the original glossary depending on the boolean value.
+
+Given below is an example usage scenario and how the random quiz mechanism behaves at each step.
+
+Step 1. The user launches the application with an existing glossary of flashcards that the user added previously.
+
+Step 2. The user executes `random 5` command to randomly select 5 flashcards from the existing glossary to test his/her own vocabulary. The `random 5` command calls `RandomQuizCommandParser#parse(String)` which checks the validity of the argument given to `random` command. This then leads to the calling of `RandomQuizCommand#execute(Model)`, which in turn calls the `Model#setRandomQuizMode(boolean)`.
+
+Step 3. The change of state of the Model resulting from `Model#setRandomQuizMode(boolean)` starts a round of vocabulary quiz for the user when the boolean parameter provided is true.
+
+The following sequence diagram shows how the random quiz mechanism works:
+
+![RandomQuizSequenceDiagram](images/RandomQuizSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes the random command:
+
+![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
@@ -211,9 +277,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Requirements**
+## <a name="requirements"></a>**Appendix: Requirements**
 
-### Product scope
+### <a name="product_scope"></a>Product scope
 
 #### **Target user profile**:
 
@@ -223,7 +289,7 @@ ForgetfulNUS is targeted at students taking level 1000-2000 German language modu
 
 A flashcard CLI app designed to cater to the specific needs of the target user to help them learn their German vocabularies.  
 
-### User Stories
+### <a name="user_stories"></a>User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -235,7 +301,7 @@ Priority | As a... | I want to... | So that I...
 *** | user | test myself with the flashcards | can be quizzed on the phrases and their meanings.
 ** | user | my flashcards to be saved (storage) | can use them when I next launch the app.
 
-### Use Cases
+### <a name="use_cases"></a>Use Cases
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -320,14 +386,14 @@ Priority | As a... | I want to... | So that I...
 
 *{More to be added soon}*
     
-### Non-Functional Requirements
+### <a name="nfr"></a>Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 3. German diacritics (eg. ä) should be fully supported in being saved and displayed by the UI.
 4. Verification of user input in testing mode should not take more than 2 seconds.
 
-### Glossary
+### <a name="glossary"></a>Glossary
 
 * **Mainstream OS:** Windows, Linux, Unix, OS-X
 * **Flashcard:** An item containing (a) a German phrase (b) the corresponding English definition
@@ -335,7 +401,7 @@ Priority | As a... | I want to... | So that I...
 * **Index:** Position of flashcard in the list of flashcards displayed to the user
 * **CLI:** Command Line Interface
 --------------------------------------------------------------------------------------------------------------------
-## **Appendix: Instructions for manual testing**
+## <a name="manual_testing"></a>**Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -344,7 +410,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### <a name="launch_shutdown"></a>Launch and shutdown
 
 1. Initial launch
 
@@ -361,7 +427,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a flashcard
+### <a name="deleting_a_flashcard"></a>Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
 
@@ -378,7 +444,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### <a name="saving_data"></a>Saving data
 
 1. Dealing with missing/corrupted data files
 
