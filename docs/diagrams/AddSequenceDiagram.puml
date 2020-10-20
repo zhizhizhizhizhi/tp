@@ -10,15 +10,10 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":DifficultyTag" as DifficultyTag MODEL_COLOR
-participant ":GermanPhrase" as GermanPhrase MODEL_COLOR
-participant ":EnglishPhrase" as EnglishPhrase MODEL_COLOR
-participant ":Tag" as Tag MODEL_COLOR
-participant ":FlashCard" as FlashCard MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("Add g/German e/English")
+[-> LogicManager : execute("add g/German e/English")
 activate LogicManager
 
 LogicManager -> GlossaryParser : parseCommand("Add g/German e/English")
@@ -35,50 +30,44 @@ GlossaryParser -> AddCommandParser : parse("g/German e/English")
 activate AddCommandParser
 
 alt No difficulty specified
-    create DifficultyTag
-    AddCommandParser -> DifficultyTag : new DifficultyTag()
-    activate DifficultyTag
+    AddCommandParser -> Model : new DifficultyTag()
+    activate Model
 
-    DifficultyTag -> AddCommandParser
-    Deactivate DifficultyTag
+    Model -> AddCommandParser
+    Deactivate Model
 else else
-    create DifficultyTag
-    AddCommandParser -> DifficultyTag : new DifficultyTag(difficulty)
-    activate DifficultyTag
+    AddCommandParser -> Model : new DifficultyTag(difficulty)
+    activate Model
 
-    DifficultyTag -> AddCommandParser
-    Deactivate DifficultyTag
+    Model -> AddCommandParser
+    Deactivate Model
 end
 
-create GermanPhrase
-AddCommandParser -> GermanPhrase
-activate GermanPhrase
+AddCommandParser -> Model : new GermanPhrase(German)
+activate Model
 
-GermanPhrase -> AddCommandParser
-Deactivate GermanPhrase
+Model -> AddCommandParser
+Deactivate Model
 
-create EnglishPhrase
-AddCommandParser -> EnglishPhrase
-activate EnglishPhrase
+AddCommandParser -> Model : new EnglishPhrase(English)
+activate Model
 
-EnglishPhrase -> AddCommandParser
-Deactivate EnglishPhrase
+Model -> AddCommandParser
+Deactivate Model
 
 opt Tags present
-   create Tag
-   AddCommandParser -> Tag
-   activate Tag
+   AddCommandParser -> Model
+   activate Model
 
-   Tag -> AddCommandParser
-   Deactivate Tag
+   Model -> AddCommandParser
+   Deactivate Model
 end
 
-create FlashCard
-AddCommandParser -> FlashCard
-activate FlashCard
+AddCommandParser -> Model : new FlashCard
+activate Model
 
-FlashCard --> AddCommandParser
-deactivate FlashCard
+Model --> AddCommandParser
+deactivate Model
 
 create AddCommand
 AddCommandParser -> AddCommand
@@ -96,10 +85,10 @@ destroy AddCommandParser
 GlossaryParser --> LogicManager : a
 deactivate GlossaryParser
 
-LogicManager -> AddCommand : executeWithChecks(model)
+LogicManager -> AddCommand : executeWithChecks
 activate AddCommand
 
-AddCommand -> Model : AddFlashCard(toAdd)
+AddCommand -> Model : AddFlashCard
 activate Model
 
 Model --> AddCommand
