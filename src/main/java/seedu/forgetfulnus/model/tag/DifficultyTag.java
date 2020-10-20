@@ -18,7 +18,7 @@ public class DifficultyTag implements Comparable<DifficultyTag> {
 
     /**
      * Constructs a {@code Difficulty Tag}.
-     * Default difficulty tag is MEDIUM
+     * Default difficulty tag is MEDIUM:
      */
     public DifficultyTag() {
         this.tagName = MEDIUM_TAG;
