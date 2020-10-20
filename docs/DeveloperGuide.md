@@ -183,6 +183,21 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+### <a name="score"></a>\[Proposed\] Score report feature:
+
+The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
+
+Each time the quiz mode is entered and ended, a score is calculated as a percentage of correct answers input by the user and encapsulated by a `Score` object. The `Score` is added to a `ScoreList`, where the following methods are implemented:
+
+`ScoreList#addScore()`
+`ScoreList#getScores()`
+`ScoreList#deleteScores()`
+
+These operations are exposed in the Model interface as `Model#addScore()`, `Model#getScores()` and `Model#deleteScores()` respectively.
+
+The following sequence diagram shows how the score is saved:
+
+
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
 #### <a name="proposed_implementation"></a>Proposed Implementation
