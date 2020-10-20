@@ -183,6 +183,12 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+### Setting difficulty level for flashcards
+
+The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
+
+![RandomQuizActivityDiagram](images/DifficultyTagActivityDiagram.png)
+
 ### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
 
 #### <a name="proposed_implementation"></a>Proposed Implementation
