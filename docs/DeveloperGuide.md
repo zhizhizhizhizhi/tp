@@ -312,6 +312,13 @@ If the attempt does not match, step 3 will repeat.
 Alternatively, the user can enter `next` to execute the NextCommand on the model. The flashcard index and question count in `model` will increment, the Ui will update to show the English definition of the current flashcard andthe next flashcard and the next flashcard will be tested. 
 
 Step 4: The quiz mode will end when there is no next flashcard i.e. current flashcard is the last on the list, and the user attempts the English definition correctly with `try <attempt>` or the user skips the card with `next`. Alternatively, the quiz can be ended early at any point during the quiz when the user enters `end`, letting the program execute the EndQuizCommand on the current model. The Ui will update to show the English definitions on all the flashcards in the flashcard list.
+
+The following activity diagram outlines the process of quizzing:
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the quiz operation works:
+
+![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
 ### \[Implemented\] List Feature
 
 The List feature is implemented to allow users to "reset" the Glossary to its default, unsorted state after using the Sort or
