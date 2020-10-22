@@ -198,9 +198,7 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
-### Adding a flashcard to the glossary
-
-The adding of flashcard mechanism is being facilitated by 
+### Difficulty tag feature
 
 The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
 
