@@ -12,6 +12,8 @@ import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
+import seedu.forgetfulnus.model.tag.PredefinedTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -96,6 +98,26 @@ public class ParserUtil {
             throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
         }
         return new DifficultyTag(trimmedDifficultyTag.toUpperCase());
+    }
+
+    //TODO
+    /**
+     * Parses a {@code String Difficulty tag} into a {@code Difficulty tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Difficulty tag} is invalid.
+     */
+    public static PredefinedTag parsePredefinedTag(Prefix prefix, String predefinedTag) throws ParseException {
+        requireNonNull(predefinedTag);
+        String trimmedPredefinedTag = predefinedTag.trim();
+
+
+        if (DifficultyTag.isValidDifficultyTag(trimmedPredefinedTag)) {
+            return new DifficultyTag(trimmedPredefinedTag.toUpperCase());
+        } else if (GenderTag.isValidGenderTag(trimmedPredefinedTag)) {
+
+        }
+            throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
     }
 
     /**

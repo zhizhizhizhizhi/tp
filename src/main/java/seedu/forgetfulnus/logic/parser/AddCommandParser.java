@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         DifficultyTag difficultyTag;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY_TAG)) {
-            difficultyTag = new DifficultyTag();
+            difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         } else {
             difficultyTag = ParserUtil.parseDifficultyTag(argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get());
         }

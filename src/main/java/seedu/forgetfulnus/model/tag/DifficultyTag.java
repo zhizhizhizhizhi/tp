@@ -7,22 +7,12 @@ import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the Glossary.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDifficultyTag(String)}
  */
-public class DifficultyTag implements Comparable<DifficultyTag> {
+public class DifficultyTag extends PredefinedTag implements Comparable<DifficultyTag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should EASY, MEDIUM or HARD only";
     public static final String EASY_TAG = "EASY";
     public static final String MEDIUM_TAG = "MEDIUM";
     public static final String HARD_TAG = "HARD";
-
-    private final String tagName;
-
-    /**
-     * Constructs a {@code Difficulty Tag}.
-     * Default difficulty tag is MEDIUM:
-     */
-    public DifficultyTag() {
-        this.tagName = MEDIUM_TAG;
-    }
 
     /**
      * Constructs a {@code Difficulty Tag}.
@@ -30,8 +20,8 @@ public class DifficultyTag implements Comparable<DifficultyTag> {
      * @param tagName A valid tag name.
      */
     public DifficultyTag(String tagName) {
+        super(tagName);
         requireNonNull(tagName);
-        this.tagName = tagName;
         checkArgument(isValidDifficultyTag(tagName), MESSAGE_CONSTRAINTS);
     }
 

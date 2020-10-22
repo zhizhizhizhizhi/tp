@@ -29,7 +29,7 @@ public class FlashCardBuilder {
     public FlashCardBuilder() {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
-        difficultyTag = new DifficultyTag();
+        difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
     }
