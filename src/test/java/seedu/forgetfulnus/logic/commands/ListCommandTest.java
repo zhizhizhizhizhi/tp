@@ -39,14 +39,4 @@ public class ListCommandTest {
         showFlashCardsAtIndex(model, INDEX_FIRST_FLASHCARD);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
-    @Test
-    public void execute_listIsSorted_showsOriginalList() {
-        model = new ModelManager(getTypicalSortedGlossary(), new UserPrefs());
-        ListCommand listCommand = new ListCommand();
-        ListCommand.setOriginalGlossary(getTypicalGlossary());
-        listCommand.execute(model);
-        assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(),
-                expectedModel.getGlossary().getFlashCardList()));
-    }
 }

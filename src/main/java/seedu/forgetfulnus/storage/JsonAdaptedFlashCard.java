@@ -13,6 +13,7 @@ import seedu.forgetfulnus.commons.exceptions.IllegalValueException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
@@ -26,6 +27,7 @@ class JsonAdaptedFlashCard {
     private final String germanPhrase;
     private final String englishPhrase;
     private final String difficultyTag;
+    private final String order;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,10 +37,12 @@ class JsonAdaptedFlashCard {
     public JsonAdaptedFlashCard(@JsonProperty("germanPhrase") String germanPhrase,
                                 @JsonProperty("englishPhrase") String englishPhrase,
                                 @JsonProperty("difficultyTag") String difficultyTag,
+                                @JsonProperty("order") String order,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
+        this.order = order;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -51,6 +55,7 @@ class JsonAdaptedFlashCard {
         germanPhrase = source.getGermanPhrase().toString();
         englishPhrase = source.getEnglishPhrase().toString();
         difficultyTag = source.getDifficultyTag().toString();
+        order = source.getOrder().toString();
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -96,8 +101,14 @@ class JsonAdaptedFlashCard {
         }
         final DifficultyTag modelDifficultyTag = new DifficultyTag(difficultyTag);
 
+        if (order == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Order.class.getSimpleName()));
+        }
+        final Order modelOrder = new Order(Integer.parseInt(order));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelDifficultyTag, modelTags);
+        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelDifficultyTag, modelTags, modelOrder);
     }
 
 }

@@ -32,6 +32,8 @@ public class AddCommand extends Command {
     public static final String QUIZMODE_REMINDER = "Flashcards cannot be added in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
+    private static int nextOrderOfAddition = -1;
+
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final FlashCard toAdd;
@@ -43,6 +45,12 @@ public class AddCommand extends Command {
         requireNonNull(flashCard);
         toAdd = flashCard;
     }
+    public static int getNextOrderOfAddition() {
+        return nextOrderOfAddition;
+    }
+    public static void setNextOrderOfAddition(int value) {
+        nextOrderOfAddition = value;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -51,8 +59,13 @@ public class AddCommand extends Command {
         if (model.hasFlashCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PHRASE);
         }
-
+        int size = model.getGlossary().getFlashCardList().size();
+        if (nextOrderOfAddition == -1) {
+            toAdd.setOrder(size + 1);
+        }
         model.addFlashCard(toAdd);
+        size = model.getGlossary().getFlashCardList().size();
+        setNextOrderOfAddition(size + 1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

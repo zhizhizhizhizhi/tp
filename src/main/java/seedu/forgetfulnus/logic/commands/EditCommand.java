@@ -18,6 +18,7 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
@@ -104,9 +105,13 @@ public class EditCommand extends Command {
         DifficultyTag updatedDifficultyTag = editFlashCardDescriptor
                 .getDifficultyTag()
                 .orElse(flashCardToEdit.getDifficultyTag());
+        Order updatedOrder = editFlashCardDescriptor
+                .getOrder()
+                .orElse(flashCardToEdit.getOrder());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
-        return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase, updatedDifficultyTag, updatedTags);
+        return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase,
+                updatedDifficultyTag, updatedTags, updatedOrder);
     }
 
     @Override
@@ -136,6 +141,7 @@ public class EditCommand extends Command {
         private EnglishPhrase englishPhrase;
         private DifficultyTag difficultyTag;
         private Set<Tag> tags;
+        private Order order;
 
         public EditFlashCardDescriptor() {}
 
@@ -148,13 +154,14 @@ public class EditCommand extends Command {
             setEnglishPhrase(toCopy.englishPhrase);
             setDifficultyTag(toCopy.difficultyTag);
             setTags(toCopy.tags);
+            setOrder(toCopy.order);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags, order);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -179,6 +186,14 @@ public class EditCommand extends Command {
 
         public Optional<DifficultyTag> getDifficultyTag() {
             return Optional.ofNullable(difficultyTag);
+        }
+
+        public void setOrder(Order order) {
+            this.order = order;
+        }
+
+        public Optional<Order> getOrder() {
+            return Optional.ofNullable(order);
         }
 
         /**
@@ -216,7 +231,8 @@ public class EditCommand extends Command {
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
                     && getDifficultyTag().equals(e.getDifficultyTag())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getOrder().equals(e.getOrder());
         }
     }
 }

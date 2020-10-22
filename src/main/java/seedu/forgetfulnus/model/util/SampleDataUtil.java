@@ -9,6 +9,7 @@ import seedu.forgetfulnus.model.ReadOnlyGlossary;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
@@ -20,25 +21,25 @@ public class SampleDataUtil {
         return new FlashCard[] {
             new FlashCard(new GermanPhrase("Montag"), new EnglishPhrase("Monday"),
                     new DifficultyTag("EASY"),
-                    getTagSet("day")),
+                    getTagSet("day"), new Order(1)),
             new FlashCard(new GermanPhrase("Dienstag"), new EnglishPhrase("Tuesday"),
                     new DifficultyTag("EASY"),
-                    getTagSet("day", "hard")),
+                    getTagSet("day", "hard"), new Order(2)),
             new FlashCard(new GermanPhrase("Mittwoch"), new EnglishPhrase("Wednesday"),
                     new DifficultyTag("MEDIUM"),
-                    getTagSet("day", "veryhard")),
+                    getTagSet("day", "veryhard"), new Order(3)),
             new FlashCard(new GermanPhrase("Donnerstag"), new EnglishPhrase("Thursday"),
                     new DifficultyTag("MEDIUM"),
-                    getTagSet("day")),
+                    getTagSet("day"), new Order(4)),
             new FlashCard(new GermanPhrase("Freitag"), new EnglishPhrase("Friday"),
                     new DifficultyTag("MEDIUM"),
-                    getTagSet("day")),
+                    getTagSet("day"), new Order(5)),
             new FlashCard(new GermanPhrase("Samstag"), new EnglishPhrase("Saturday"),
                     new DifficultyTag("HARD"),
-                    getTagSet("day")),
+                    getTagSet("day"), new Order(6)),
             new FlashCard(new GermanPhrase("Sonntag"), new EnglishPhrase("Sunday"),
                     new DifficultyTag("HARD"),
-                    getTagSet("day"))
+                    getTagSet("day"), new Order(7))
         };
     }
 
