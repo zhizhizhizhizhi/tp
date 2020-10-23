@@ -56,6 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .setDifficultyTag(ParserUtil.parseDifficultyTag(argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFlashCardDescriptor::setTags);
+        editFlashCardDescriptor.setOrder(null);
 
         if (!editFlashCardDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

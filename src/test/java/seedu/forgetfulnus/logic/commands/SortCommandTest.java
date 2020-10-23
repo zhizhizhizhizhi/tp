@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.forgetfulnus.commons.core.Comparators;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.UserPrefs;
@@ -40,7 +41,7 @@ public class SortCommandTest {
         SortCommand command = new SortCommand("german");
         CommandResult result = command.execute(model);
         List<FlashCard> expectedList = new ArrayList<>(expectedModel.getGlossary().getFlashCardList());
-        expectedList.sort(SortCommand.GERMAN_COMP);
+        expectedList.sort(Comparators.GERMAN_COMP);
         assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(), expectedList));
         assertEquals(result, new CommandResult(MESSAGE_SORT_SUCCESS));
     }
@@ -50,7 +51,7 @@ public class SortCommandTest {
         SortCommand command = new SortCommand("english");
         CommandResult result = command.execute(model);
         List<FlashCard> expectedList = new ArrayList<>(expectedModel.getGlossary().getFlashCardList());
-        expectedList.sort(SortCommand.ENGLISH_COMP);
+        expectedList.sort(Comparators.ENGLISH_COMP);
         assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(), expectedList));
         assertEquals(result, new CommandResult(MESSAGE_SORT_SUCCESS));
     }
@@ -60,7 +61,17 @@ public class SortCommandTest {
         SortCommand command = new SortCommand("easytohard");
         CommandResult result = command.execute(model);
         List<FlashCard> expectedList = new ArrayList<>(expectedModel.getGlossary().getFlashCardList());
-        expectedList.sort(SortCommand.DIFFICULTY_EASY_COMP);
+        expectedList.sort(Comparators.DIFFICULTY_EASY_COMP);
+        assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(), expectedList));
+        assertEquals(result, new CommandResult(MESSAGE_SORT_SUCCESS));
+    }
+
+    @Test
+    public void execute_stringEarliest_success() {
+        SortCommand command = new SortCommand("earliest");
+        CommandResult result = command.execute(model);
+        List<FlashCard> expectedList = new ArrayList<>(expectedModel.getGlossary().getFlashCardList());
+        expectedList.sort(Comparators.CHRONOLOGICAL_EARLIEST_COMP);
         assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(), expectedList));
         assertEquals(result, new CommandResult(MESSAGE_SORT_SUCCESS));
     }

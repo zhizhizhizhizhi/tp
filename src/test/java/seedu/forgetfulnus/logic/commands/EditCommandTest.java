@@ -36,7 +36,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        FlashCard editedFlashCard = new FlashCardBuilder().build();
+        FlashCard editedFlashCard = new FlashCardBuilder().withOrder(1).build();
         EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder(editedFlashCard).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, descriptor);
 

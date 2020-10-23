@@ -32,6 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_DIFFICULTY_TAG_MEDIUM = "MEDIUM";
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
+    public static final String VALID_ORDER_EIGHT = "8";
+    public static final String VALID_ORDER_NINE = "9";
 
     public static final String GERMAN_DESC_FORGETFULNESS = " "
             + PREFIX_GERMAN_PHRASE + VALID_GERMAN_PHRASE_FORGETFULNESS;
@@ -58,11 +60,11 @@ public class CommandTestUtil {
         DESC_FORGETFULNESS = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
                 .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-                .withTags(VALID_TAG_HARD).build();
+                .withTags(VALID_TAG_HARD).withOrder(VALID_ORDER_EIGHT).build();
         DESC_TABLE = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
                 .withDifficultyTag(VALID_DIFFICULTY_TAG_HARD)
-                .withTags(VALID_TAG_HARD, VALID_TAG_CHAPTER_ONE).build();
+                .withTags(VALID_TAG_HARD, VALID_TAG_CHAPTER_ONE).withOrder(VALID_ORDER_NINE).build();
     }
 
     /**

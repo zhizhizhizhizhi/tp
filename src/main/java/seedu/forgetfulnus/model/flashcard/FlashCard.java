@@ -21,6 +21,7 @@ public class FlashCard {
     private final EnglishPhrase englishPhrase;
     private final DifficultyTag difficultyTag;
     private final Set<Tag> tags = new HashSet<>();
+    private Order order;
 
     private boolean showingEnglish = true;
 
@@ -34,6 +35,20 @@ public class FlashCard {
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
         this.tags.addAll(tags);
+        this.order = new Order(Order.getNextOrderOfAddition());
+    }
+
+    /**
+     * Used only for testing. Every field must be present and not null.
+     */
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
+                     DifficultyTag difficultyTag, Set<Tag> tags, Order order) {
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
+        this.germanPhrase = germanPhrase;
+        this.englishPhrase = englishPhrase;
+        this.difficultyTag = difficultyTag;
+        this.tags.addAll(tags);
+        this.order = order;
     }
 
     public GermanPhrase getGermanPhrase() {
@@ -57,6 +72,13 @@ public class FlashCard {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Order getOrder() {
+        return order;
+    }
+    public FlashCard setOrder(int num) {
+        this.order = new Order(num);
+        return this;
+    }
     /**
      * Returns true if both flashcards of the same German phrase have the same English phrase.
      * This defines a weaker notion of equality between two flashcards.
@@ -72,7 +94,7 @@ public class FlashCard {
     }
 
     /**
-     * Returns true if both flashcards have the same data fields.
+     * Returns true if both flashcards have the same data fields, except for their Orders.
      * This defines a stronger notion of equality between two flashcards.
      */
     @Override
@@ -108,6 +130,7 @@ public class FlashCard {
                 .append(getDifficultyTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Order: ").append(getOrder());
         return builder.toString();
     }
 
@@ -120,6 +143,6 @@ public class FlashCard {
     }
 
     public FlashCard copy() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags, order);
     }
 }

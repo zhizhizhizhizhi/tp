@@ -16,9 +16,9 @@ import seedu.forgetfulnus.testutil.TypicalFlashCards;
 public class JsonSerializableGlossaryTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableGlossaryTest");
-    private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsGlossary.json");
-    private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidPersonGlossary.json");
-    private static final Path DUPLICATE_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonGlossary.json");
+    private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalFlashCardsGlossary.json");
+    private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashCardGlossary.json");
+    private static final Path DUPLICATE_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("duplicateFlashCardGlossary.json");
 
     @Test
     public void toModelType_typicalFlashCardsFile_success() throws Exception {

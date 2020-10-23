@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
@@ -17,11 +18,13 @@ public class FlashCardBuilder {
 
     public static final String DEFAULT_GERMAN_PHRASE = "Vergesslichkeit";
     public static final String DEFAULT_ENGLISH_PHRASE = "Forgetfulness";
+    public static final String DEFAULT_ORDER = "8";
 
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
     private DifficultyTag difficultyTag;
     private Set<Tag> tags;
+    private Order order;
 
     /**
      * Creates a {@code FlashCardBuilder} with the default details.
@@ -32,6 +35,7 @@ public class FlashCardBuilder {
         difficultyTag = new DifficultyTag();
         assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
+        order = new Order(Integer.parseInt(DEFAULT_ORDER));
     }
 
     /**
@@ -43,13 +47,14 @@ public class FlashCardBuilder {
         difficultyTag = flashCardToCopy.getDifficultyTag();
         assert DifficultyTag.isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
+        order = flashCardToCopy.getOrder();
     }
 
     /**
-     * Sets the {@code gphrase} of the {@code FlashCard} that we are building.
+     * Sets the {@code germanPhrase} of the {@code FlashCard} that we are building.
      */
-    public FlashCardBuilder withGermanPhrase(String gphrase) {
-        this.germanPhrase = new GermanPhrase(gphrase);
+    public FlashCardBuilder withGermanPhrase(String germanPhrase) {
+        this.germanPhrase = new GermanPhrase(germanPhrase);
         return this;
     }
 
@@ -64,8 +69,8 @@ public class FlashCardBuilder {
     /**
      * Sets the {@code ephrase} of the {@code FlashCard} that we are building.
      */
-    public FlashCardBuilder withEnglishPhrase(String ephrase) {
-        this.englishPhrase = new EnglishPhrase(ephrase);
+    public FlashCardBuilder withEnglishPhrase(String englishPhrase) {
+        this.englishPhrase = new EnglishPhrase(englishPhrase);
         return this;
     }
 
@@ -77,8 +82,15 @@ public class FlashCardBuilder {
         return this;
     }
 
-    public FlashCard build() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
+    /**
+     * Sets the {@code Order} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withOrder(int value) {
+        this.order = new Order(value);
+        return this;
     }
 
+    public FlashCard build() {
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags, order);
+    }
 }
