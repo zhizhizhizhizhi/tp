@@ -37,8 +37,8 @@ class JsonAdaptedFlashCard {
     public JsonAdaptedFlashCard(@JsonProperty("germanPhrase") String germanPhrase,
                                 @JsonProperty("englishPhrase") String englishPhrase,
                                 @JsonProperty("difficultyTag") String difficultyTag,
-                                @JsonProperty("order") String order,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                @JsonProperty("order") String order) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
@@ -104,6 +104,9 @@ class JsonAdaptedFlashCard {
         if (order == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Order.class.getSimpleName()));
+        }
+        if (Integer.parseInt(order) < 1) {
+            throw new IllegalValueException(Order.MESSAGE_CONSTRAINTS);
         }
         final Order modelOrder = new Order(Integer.parseInt(order));
 

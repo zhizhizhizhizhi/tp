@@ -11,6 +11,7 @@ import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
+import seedu.forgetfulnus.model.flashcard.Order;
 
 /**
  * Deletes a flashcard identified using it's displayed index from the glossary.
@@ -38,18 +39,18 @@ public class DeleteCommand extends Command {
 
     /**
      * Adjusts the {@code Orders}s of all the FlashCards whose {@code Orders}s are greater than the FlashCard
-     * removed. This fills up the gap that will remain after a FlashCard is deleted.
+     * removed. This fills up the Order gap created after a FlashCard is deleted.
      * @param model the current model.
-     * @param deletedFlashCardOrder the Order of the FlashCard to be deleted.
+     * @param deletedFlashCardOrderValue the Order of the FlashCard to be deleted.
      */
-    public void shiftOrders(Model model, int deletedFlashCardOrder) {
+    public void shiftOrders(Model model, int deletedFlashCardOrderValue) {
         Glossary copiedGlossary = new Glossary(model.getGlossary());
         ObservableList<FlashCard> immutableList = model.getGlossary().getFlashCardList();
         for (FlashCard flashCard : immutableList) {
-            int currentOrder = flashCard.getOrder().getValue(); // old order of the flashcard
-            if (currentOrder > deletedFlashCardOrder) {
-                FlashCard newFc = flashCard.setOrder(currentOrder - 1); // copies the flashcard with the new order
-                copiedGlossary.setFlashCard(flashCard, newFc); // replaces the old flashcard with the new one
+            int currentOrderValue = flashCard.getOrder().getValue();
+            if (currentOrderValue > deletedFlashCardOrderValue) {
+                FlashCard newFc = flashCard.setOrder(currentOrderValue - 1);
+                copiedGlossary.setFlashCard(flashCard, newFc);
             }
         }
         model.setGlossary(copiedGlossary);
@@ -68,7 +69,7 @@ public class DeleteCommand extends Command {
         model.deleteFlashCard(phraseToDelete);
         shiftOrders(model, phraseToDelete.getOrder().getValue());
         int size = model.getGlossary().getFlashCardList().size();
-        AddCommand.setNextOrderOfAddition(size + 1);
+        Order.setNextOrderOfAddition(size + 1);
         return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, phraseToDelete));
     }
 

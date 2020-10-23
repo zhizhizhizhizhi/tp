@@ -70,9 +70,6 @@ public class SortCommand extends Command {
         assert model != null : "Model cannot be null!";
         List<FlashCard> sortedList = new ArrayList<>(model.getGlossary().getFlashCardList());
         sortedList.sort(comp);
-        for (FlashCard flashCard : sortedList) {
-            System.out.println(flashCard.getOrder());
-        }
         logger.log(Level.INFO, "List successfully sorted.");
         Glossary glossary = new Glossary();
         glossary.setFlashCards(sortedList);

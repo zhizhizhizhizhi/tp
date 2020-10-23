@@ -9,6 +9,7 @@ import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
+import seedu.forgetfulnus.model.flashcard.Order;
 
 /**
  * Adds a phrase to the glossary.
@@ -32,8 +33,6 @@ public class AddCommand extends Command {
     public static final String QUIZMODE_REMINDER = "Flashcards cannot be added in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
-    private static int nextOrderOfAddition = -1;
-
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final FlashCard toAdd;
@@ -45,12 +44,6 @@ public class AddCommand extends Command {
         requireNonNull(flashCard);
         toAdd = flashCard;
     }
-    public static int getNextOrderOfAddition() {
-        return nextOrderOfAddition;
-    }
-    public static void setNextOrderOfAddition(int value) {
-        nextOrderOfAddition = value;
-    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -60,12 +53,12 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PHRASE);
         }
         int size = model.getGlossary().getFlashCardList().size();
-        if (nextOrderOfAddition == -1) {
+        if (Order.getNextOrderOfAddition() == -1) {
             toAdd.setOrder(size + 1);
         }
         model.addFlashCard(toAdd);
         size = model.getGlossary().getFlashCardList().size();
-        setNextOrderOfAddition(size + 1);
+        Order.setNextOrderOfAddition(size + 1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

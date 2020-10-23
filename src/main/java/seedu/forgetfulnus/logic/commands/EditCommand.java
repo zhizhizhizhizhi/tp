@@ -105,13 +105,13 @@ public class EditCommand extends Command {
         DifficultyTag updatedDifficultyTag = editFlashCardDescriptor
                 .getDifficultyTag()
                 .orElse(flashCardToEdit.getDifficultyTag());
-        Order updatedOrder = editFlashCardDescriptor
+        Order unchangedOrder = editFlashCardDescriptor // User can never edit Order
                 .getOrder()
                 .orElse(flashCardToEdit.getOrder());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
         return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase,
-                updatedDifficultyTag, updatedTags, updatedOrder);
+                updatedDifficultyTag, updatedTags, unchangedOrder);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags, order);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {

@@ -3,11 +3,13 @@
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
     "difficultyTag" : "MEDIUM",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "order" : "1"
   }, {
     "germanPhrase": "Alice Pauline",
     "englishPhrase": "englishPhrase",
     "difficultyTag" : "MEDIUM",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "order" : "2"
   } ]
 }

@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.forgetfulnus.logic.commands.AddCommand;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
@@ -36,7 +35,7 @@ public class FlashCard {
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
         this.tags.addAll(tags);
-        this.order = new Order(AddCommand.getNextOrderOfAddition());
+        this.order = new Order(Order.getNextOrderOfAddition());
     }
 
     /**
@@ -77,7 +76,7 @@ public class FlashCard {
         return order;
     }
     public FlashCard setOrder(int num) {
-        order.setValue(num);
+        this.order = new Order(num);
         return this;
     }
     /**
@@ -109,7 +108,6 @@ public class FlashCard {
         }
 
         FlashCard otherFlashCard = (FlashCard) other;
-        assert !order.equals(otherFlashCard.getOrder()) : "Orders should never be the same!";
         return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
                 && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherFlashCard.getDifficultyTag().equals(getDifficultyTag())
@@ -132,6 +130,7 @@ public class FlashCard {
                 .append(getDifficultyTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Order: ").append(getOrder());
         return builder.toString();
     }
 
