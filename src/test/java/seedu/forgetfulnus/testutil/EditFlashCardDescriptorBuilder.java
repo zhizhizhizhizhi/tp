@@ -72,7 +72,9 @@ public class EditFlashCardDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
-
+    /**
+     * Sets the {@code Order} of the {@code EditFlashCardDescriptor} that we are building.
+     */
     public EditFlashCardDescriptorBuilder withOrder(String order) {
         descriptor.setOrder(new Order(Integer.parseInt(order)));
         return this;
