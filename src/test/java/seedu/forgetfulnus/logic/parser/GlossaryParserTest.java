@@ -56,6 +56,7 @@ public class GlossaryParserTest {
     public void parseCommand_edit() throws Exception {
         FlashCard flashCard = new FlashCardBuilder().build();
         EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder(flashCard).build();
+
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_FLASHCARD.getOneBased() + " "
                 + FlashCardUtil.getEditFlashCardDescriptorDetails(descriptor));

@@ -18,6 +18,7 @@ public class FlashCardBuilder {
 
     public static final String DEFAULT_GERMAN_PHRASE = "Vergesslichkeit";
     public static final String DEFAULT_ENGLISH_PHRASE = "Forgetfulness";
+    public static final String DEFAULT_ORDER = "8";
 
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
@@ -34,6 +35,7 @@ public class FlashCardBuilder {
         difficultyTag = new DifficultyTag();
         assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
+        order = new Order(Integer.parseInt(DEFAULT_ORDER));
     }
 
     /**
@@ -42,10 +44,10 @@ public class FlashCardBuilder {
     public FlashCardBuilder(FlashCard flashCardToCopy) {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
-        order = flashCardToCopy.getOrder();
         difficultyTag = flashCardToCopy.getDifficultyTag();
         assert DifficultyTag.isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
+        order = flashCardToCopy.getOrder();
     }
 
     /**

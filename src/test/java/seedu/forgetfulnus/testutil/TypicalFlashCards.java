@@ -65,12 +65,12 @@ public class TypicalFlashCards {
             .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
             .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-            .withTags().withOrder(1).build();
+            .withTags().withOrder(8).build();
     public static final FlashCard TABLE = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
             .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-            .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).withOrder(2).build();
+            .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).withOrder(9).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

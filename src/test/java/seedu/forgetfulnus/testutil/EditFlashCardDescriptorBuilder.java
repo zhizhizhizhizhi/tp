@@ -8,6 +8,7 @@ import seedu.forgetfulnus.logic.commands.EditCommand.EditFlashCardDescriptor;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
@@ -35,21 +36,22 @@ public class EditFlashCardDescriptorBuilder {
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
         descriptor.setDifficultyTag(flashCard.getDifficultyTag());
         descriptor.setTags(flashCard.getTags());
+        descriptor.setOrder(flashCard.getOrder());
     }
 
     /**
      * Sets the {@code German Phrase} of the {@code EditFlashCardDescriptor} that we are building.
      */
-    public EditFlashCardDescriptorBuilder withGermanPhrase(String gphrase) {
-        descriptor.setGermanPhrase(new GermanPhrase(gphrase));
+    public EditFlashCardDescriptorBuilder withGermanPhrase(String germanPhrase) {
+        descriptor.setGermanPhrase(new GermanPhrase(germanPhrase));
         return this;
     }
 
     /**
      * Sets the {@code English Phrase} of the {@code EditFlashCardDescriptor} that we are building.
      */
-    public EditFlashCardDescriptorBuilder withEnglishPhrase(String ephrase) {
-        descriptor.setEnglishPhrase(new EnglishPhrase(ephrase));
+    public EditFlashCardDescriptorBuilder withEnglishPhrase(String englishPhrase) {
+        descriptor.setEnglishPhrase(new EnglishPhrase(englishPhrase));
         return this;
     }
 
@@ -68,6 +70,11 @@ public class EditFlashCardDescriptorBuilder {
     public EditFlashCardDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    public EditFlashCardDescriptorBuilder withOrder(String order) {
+        descriptor.setOrder(new Order(Integer.parseInt(order)));
         return this;
     }
 

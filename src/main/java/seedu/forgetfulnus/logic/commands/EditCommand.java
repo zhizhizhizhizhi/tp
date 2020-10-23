@@ -105,9 +105,7 @@ public class EditCommand extends Command {
         DifficultyTag updatedDifficultyTag = editFlashCardDescriptor
                 .getDifficultyTag()
                 .orElse(flashCardToEdit.getDifficultyTag());
-        Order unchangedOrder = editFlashCardDescriptor // User can never edit Order
-                .getOrder()
-                .orElse(flashCardToEdit.getOrder());
+        Order unchangedOrder = flashCardToEdit.getOrder(); // User can never edit Order
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
         return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase,
@@ -231,8 +229,7 @@ public class EditCommand extends Command {
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
                     && getDifficultyTag().equals(e.getDifficultyTag())
-                    && getTags().equals(e.getTags())
-                    && getOrder().equals(e.getOrder());
+                    && getTags().equals(e.getTags());
         }
     }
 }
