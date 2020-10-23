@@ -1,11 +1,8 @@
 package seedu.forgetfulnus.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.showFlashCardsAtIndex;
-import static seedu.forgetfulnus.testutil.TestUtil.checkSortedOrder;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalSortedGlossary;
 import static seedu.forgetfulnus.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import org.junit.jupiter.api.BeforeEach;
