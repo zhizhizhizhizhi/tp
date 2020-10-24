@@ -14,7 +14,7 @@ import seedu.forgetfulnus.commons.core.LogsCenter;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the glossary data.
  */
 public class ModelManager implements Model {
 
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     private int quizTotalQuestions = 0;
 
     /**
-     * Initializes a ModelManager with the given glossary and userPrefs.
+     * Initialises a ModelManager with the given glossary and userPrefs.
      */
     public ModelManager(ReadOnlyGlossary glossary, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -146,7 +146,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code FlashCard} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedGlossary}
      */
     @Override
     public ObservableList<FlashCard> getFilteredFlashCardList() {

@@ -11,7 +11,8 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+
+    /** {@code Predicate} that always evaluates to true */
     Predicate<FlashCard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
 
     /**
@@ -114,8 +115,18 @@ public interface Model {
      */
     boolean isQuizMode();
 
+    /**
+     * Sets the program to random quiz mode or ends the random quiz mode. Upon entering
+     * random quiz mode, current glossary is backed up and upon ending random quiz mode,
+     * current glossary is restored with previously backed up glossary.
+     *  @param isRandomQuiz true to set to random quiz mode, false to end random quiz mode.
+     */
     void setRandomQuizMode(boolean isRandomQuiz);
 
+    /**
+     * Returns if the program is in random quiz mode.
+     * @return isRandomQuiz
+     */
     boolean isRandomQuizMode();
 
     /**

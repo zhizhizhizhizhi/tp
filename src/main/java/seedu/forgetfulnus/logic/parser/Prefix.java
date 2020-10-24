@@ -2,9 +2,10 @@ package seedu.forgetfulnus.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
- * E.g. 't/' in 'add James t/ friend'.
+ * E.g. 't/' in 'add g/Vergesslichkeit e/Forgetfulness d/hard t/chapter1'.
  */
 public class Prefix {
+
     private final String prefix;
 
     public Prefix(String prefix) {
