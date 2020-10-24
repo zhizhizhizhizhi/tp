@@ -24,7 +24,9 @@ import seedu.forgetfulnus.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_PARAM = " %s is not a valid parameter.";
+    public static final String MESSAGE_INVALID_SORT_PARAM = " %s is not a valid sort parameter.";
+    public static final String MESSAGE_INVALID_PREFIX_PARAM = " %s is not a valid prefix parameter.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -51,14 +53,10 @@ public class ParserUtil {
         boolean isLanguage = trimmedParam.equals("german") || trimmedParam.equals("english")
                 || trimmedParam.equals("reversegerman") || trimmedParam.equals("reverseenglish");
         boolean isDifficulty = trimmedParam.equals("easytohard") || trimmedParam.equals("hardtoeasy");
-<<<<<<< HEAD
-        if (!isLanguage && !isDifficulty) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PARAM, parameter));
-=======
+
         boolean isTime = trimmedParam.equals("earliest") || trimmedParam.equals("latest");
         if (!isLanguage && !isDifficulty && !isTime) {
             throw new ParseException(String.format(MESSAGE_INVALID_SORT_PARAM, parameter));
->>>>>>> master
         }
         return trimmedParam;
     }
@@ -131,7 +129,7 @@ public class ParserUtil {
             }
             return new GenderTag(trimmedPredefinedTag.toUpperCase());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_PARAM, prefix));
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX_PARAM, prefix));
         }
     }
 
