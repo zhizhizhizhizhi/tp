@@ -7,23 +7,22 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 ## Table of Contents
 
-- [Quick Start](#qs)
-- [Features](#features)
-    - [Add Flashcard](#add)
-    - [Delete Flashcard](#delete)
-    - [Clear All Flashcards](#clear)
-    - [View All Flashcards](#list)
-    - [Sort All Flashcards](#sort)
-    - [Test Yourself](#test)
+1. [Quick Start](#qs)
+1. [Features](#features)
+    1. [Add Flashcard](#add)
+    1. [Delete Flashcard](#delete)
+    1. [Clear All Flashcards](#clear)
+    1. [View All Flashcards](#list)
+    1. [Sort All Flashcards](#sort)
+    1. Test Yourself
         - [Normal Mode](#quiz)
         - [Random Mode](#random)
         - [Next](#next)
         - [Try](#try)
         - [End Testing](#end)
-    - Scoreboard (coming soon)
-    - [Save and Exit](#exit)
-- [FAQ](#faq)
-- [Command Summary](#cmdsum)
+    1. [Save and Exit](#exit)
+1. [FAQ](#faq)
+1. [Command Summary](#cmdsum)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,13 +38,13 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all flashcards.
+   Here are some example commands you can try:
 
    * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
+   
+   * **`list`** : Lists all flashcards.
 
    * **`sort`**`english` : Sorts the glossary by alphabetical order of English phrases.
 
@@ -98,7 +97,7 @@ Format: `delete <INDEX>`
 ![delete-screenshot](images/delete-screenshot.png)
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd flashcard in the glossary.
+* `delete 2` deletes the 2nd flashcard in the glossary.
 
 ### <a name="list"></a>Listing all flashcards : `list`
 
@@ -110,9 +109,9 @@ Format: `list`
 
 Sorts the all flashcards according to the way you choose.
 
-Format: `sort <parameter>`
+Format: `sort <PARAMETER>`
 
-* `<parameter>` refers to how you want to sort the flashcards by.
+* `<PARAMETER>` refers to how you want to sort the flashcards by.
 * Possible parameters:
     1. `german`: sorts by the alphabetical order of German phrases.
     1. `english`: sorts by the alphabetical order of English definitions.
@@ -137,7 +136,9 @@ Starts a round of vocabulary testing with the specified number of flashcards ran
 
 Format: `random <NUMBER>`
 
-#### <a name="end"></a>End Test : `end`
+Example: `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+
+### <a name="end"></a>End Test : `end`
 
 Ends the round of vocabulary testing.
 
@@ -157,16 +158,19 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-ForgetfulNUS data are automatically saved in the hard disk upon exiting. There is no need to save manually.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## <a name="faq"></a>FAQ
 
+**Q**: Do I need to save my data manually?<br>
+**A**: ForgetfulNUS data is automatically saved in the hard disk upon exiting. There is no need to save manually.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**:
+1. Install the app in your other computer.
+1. Locate the `data` folder in your previous ForgetfulNUS home folder, and find the `glossary.JSON` file inside.
+1. Transfer the `glossary.JSON` file to your new computer
+1. Place the `glossary.JSON` file in the `data` folder of the ForgetfulNUS home folder in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,7 +183,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Exit** | `exit`
 **List** | `list`
-**Sort** | `sort <parameter>` <br> e.g., `sort english`
+**Sort** | `sort <PARAMETER>` <br> e.g., `sort english`
 **Help** | `help`
 **Start Normal Quiz** | `quiz`
 **Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
