@@ -29,7 +29,7 @@ public class NextCommandTest {
 
     @Test
     public void execute_quizModeReminderCheck() {
-        assertCommandSuccess(new NextCommand(), model, NextCommand.QUIZMODE_REMINDER, expectedModel);
+        assertCommandSuccess(new NextCommand(), model, NextCommand.QUIZ_MODE_REMINDER, expectedModel);
     }
 
     @Test

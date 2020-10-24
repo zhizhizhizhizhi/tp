@@ -15,6 +15,7 @@ import seedu.forgetfulnus.model.flashcard.Order;
  * Adds a phrase to the glossary.
  */
 public class AddCommand extends Command {
+
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a phrase to the glossary. "
@@ -26,7 +27,8 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GERMAN_PHRASE + "Vergesslichkeit "
             + PREFIX_ENGLISH_PHRASE + "Forgetfulness "
-            + PREFIX_TAG + "hard ";
+            + PREFIX_DIFFICULTY_TAG + "hard "
+            + PREFIX_TAG + "chapter1 ";
 
     public static final String MESSAGE_SUCCESS = "New phrase added: %1$s";
     public static final String MESSAGE_DUPLICATE_PHRASE = "This phrase already exists in the glossary";

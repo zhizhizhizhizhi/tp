@@ -14,6 +14,10 @@ import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
+/**
+ * Begins a round of vocabulary self-testing with a specified
+ * number of flashcards randomly chosen from the existing glossary.
+ */
 public class RandomQuizCommand extends Command {
 
     public static final String COMMAND_WORD = "random";
@@ -23,13 +27,16 @@ public class RandomQuizCommand extends Command {
             + ": Randomly selects specified number of flashcards and starts quiz\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String QUIZMODE_REMINDER = "Random Quiz has started. "
+    public static final String QUIZ_MODE_REMINDER = "Random Quiz has started. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final Index targetIndex;
 
+    /**
+     * Creates a RandomQuizCommand to with the specified {@code Index}
+     */
     public RandomQuizCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -49,10 +56,8 @@ public class RandomQuizCommand extends Command {
         while (randomList.size() > targetIndex.getOneBased()) {
             randomList.remove(randomList.size() - 1);
         }
-        Glossary randomGlossary = new Glossary();
-        randomGlossary.setFlashCards(randomList);
-        model.setGlossary(randomGlossary);
-        model.updateFilteredPhraseList();
+
+        replaceGlossary(model, randomList);
         ListIterator<FlashCard> iterator = model.getFilteredFlashCardList().listIterator();
         while (iterator.hasNext()) {
             FlashCard toEdit = iterator.next();
@@ -66,9 +71,22 @@ public class RandomQuizCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
+    /**
+     * Initialises a new glossary with the given randomList and replaces the
+     * existing glossary in model.
+     * @param model Model that the command is operating on.
+     * @param randomList List containing randomly selected flashcards.
+     */
+    private void replaceGlossary(Model model, List<FlashCard> randomList) {
+        Glossary randomGlossary = new Glossary();
+        randomGlossary.setFlashCards(randomList);
+        model.setGlossary(randomGlossary);
+        model.updateFilteredPhraseList();
+    }
+
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override
