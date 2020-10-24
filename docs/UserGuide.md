@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201) **and German 2** (LAG2201) **in NUS to practise their vocabulary, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ForgetfulNUS can get your German revision done faster than traditional GUI apps.
+ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201) **and German 2** (LAG2201) **in NUS to practise and test their vocabulary, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ForgetfulNUS can get your German revision done faster than traditional GUI apps.
 
 ## Table of Contents
 
@@ -15,9 +15,11 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
     1. [View All Flashcards](#list)
     1. [Sort All Flashcards](#sort)
     1. Test Yourself
-        1. [Normal Mode](#quiz)
-        1. [Random Mode](#random)
-        1. [End Testing](#end)
+        - [Normal Mode](#quiz)
+        - [Random Mode](#random)
+        - [Next](#next)
+        - [Try](#try)
+        - [End Testing](#end)
     1. [Save and Exit](#exit)
 1. [FAQ](#faq)
 1. [Command Summary](#cmdsum)
@@ -77,6 +79,8 @@ Adds a flashcard to the glossary.
 
 Format: `add g/<GERMAN WORD> e/<ENGLISH WORD>`
 
+![add-screenshot](images/add-screenshot.png)
+
 Example:
 * `add g/Vergesslichkeit e/Forgetfulness`
 
@@ -89,6 +93,8 @@ Format: `delete <INDEX>`
 * Deletes the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed glossary.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+![delete-screenshot](images/delete-screenshot.png)
 
 Examples:
 * `delete 2` deletes the 2nd flashcard in the glossary.
@@ -116,13 +122,15 @@ Format: `sort <PARAMETER>`
     1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
     1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
 
-### <a name="quiz"></a>Normal Test : `quiz`
+### <a name="test"></a>Test Yourself
+
+#### <a name="quiz"></a>Normal Test : `quiz`
 
 Starts a round of vocabulary testing with all the flashcards that are currently in the glossary.
 
 Format: `quiz`
 
-### <a name="random"></a>Random Test : `random`
+#### <a name="random"></a>Random Test : `random`
 
 Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
 
@@ -141,6 +149,8 @@ Format: `end`
 Clears all entries from the glossary.
 
 Format: `clear`
+
+![clear-screenshot](images/clear-screenshot.png)
 
 ### <a name="exit"></a>Exiting the program : `exit`
 
