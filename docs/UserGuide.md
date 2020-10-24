@@ -115,7 +115,7 @@ Format: `delete <INDEX>`
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-Examples:
+Example:
 * `delete 2` deletes the 2nd flashcard in the glossary.
 
 ### <a name="list"></a>Listing all flashcards : `list`
@@ -187,7 +187,16 @@ Clears all entries from the glossary.
 
 Format: `clear`
 
-![clear-screenshot](images/clear-screenshot.png)
+### <a name="find"></a>Finding a flashcard by the German phrase : `find`
+
+Find a flashcard by the german phrase. The full phrase must be entered. 
+
+Format: `find <GERMAN PHRASE>`
+
+Examples:
+* `find Tasche` Finds the flashcard with the German Phrase 'Tasche'.
+
+![find-screenshot](images/find-screenshot.png)
 
 ### <a name="exit"></a>Exiting the program : `exit`
 
