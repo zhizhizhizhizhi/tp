@@ -14,7 +14,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
     1. [Clear All Flashcards](#clear)
     1. [View All Flashcards](#list)
     1. [Sort All Flashcards](#sort)
-    1. Test Yourself
+    1. [Test Yourself](#test)
         - [Normal Mode](#quiz)
         - [Random Mode](#random)
         - [Next](#next)
@@ -105,6 +105,8 @@ Displays all flashcards in the glossary.
 
 Format: `list`
 
+![list-screenshot](images/list-screenshot.png)
+
 ### <a name="sort"></a>Sort all flashcards : `sort`
 
 Sorts the all flashcards according to the way you choose.
@@ -122,6 +124,8 @@ Format: `sort <PARAMETER>`
     1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
     1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
 
+![sort-screenshot](images/sort-screenshot.png)
+
 ### <a name="test"></a>Test Yourself
 
 #### <a name="quiz"></a>Normal Test : `quiz`
@@ -130,19 +134,33 @@ Starts a round of vocabulary testing with all the flashcards that are currently 
 
 Format: `quiz`
 
+![quiz-screenshot](images/quiz-screenshot.png)
+
 #### <a name="random"></a>Random Test : `random`
 
 Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
 
 Format: `random <NUMBER>`
 
+![random-screenshot](images/random-screenshot.png)
+
 Example: `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+
+### <a name="next"></a>Next : `next`
+
+![next-screenshot](images/next-screenshot.png)
+
+### <a name="try"></a>Try : `try`
+
+![try-screenshot](images/try-screenshot.png)
 
 ### <a name="end"></a>End Test : `end`
 
 Ends the round of vocabulary testing.
 
 Format: `end`
+
+![end-screenshot](images/end-screenshot.png)
 
 ### <a name="clear"></a>Clearing all entries : `clear`
 
