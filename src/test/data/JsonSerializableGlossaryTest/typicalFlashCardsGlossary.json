@@ -4,78 +4,50 @@
     "germanPhrase" : "Montag",
     "englishPhrase" : "Monday",
     "difficultyTag" : "EASY",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "NEUTRAL",
-    "tagged" : [ "day" ]
-=======
     "tagged" : [ "day" ],
     "order" : "1"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Dienstag",
     "englishPhrase" : "Tuesday",
     "difficultyTag" : "EASY",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "M",
-    "tagged" : [ "day" ]
-=======
     "tagged" : [ "day" ],
     "order" : "2"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Mittwoch",
     "englishPhrase" : "Wednesday",
     "difficultyTag" : "MEDIUM",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "F",
-    "tagged" : [ ]
-=======
     "tagged" : [ ],
     "order" : "3"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Donnerstag",
     "englishPhrase" : "Thursday",
     "difficultyTag" : "MEDIUM",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "NEUTRAL",
-    "tagged" : [ "day" ]
-=======
     "tagged" : [ "day" ],
     "order" : "4"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Freitag",
     "englishPhrase" : "Friday",
     "difficultyTag" : "MEDIUM",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "NEUTRAL",
-    "tagged" : [ ]
-=======
     "tagged" : [ ],
     "order" : "5"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Samstag",
     "englishPhrase" : "Saturday",
     "difficultyTag" : "HARD",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "NEUTRAL",
-    "tagged" : [ ]
-=======
     "tagged" : [ ],
     "order" : "6"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   }, {
     "germanPhrase" : "Sonntag",
     "englishPhrase" : "Sunday",
     "difficultyTag" : "HARD",
-<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/typicalPersonsGlossary.json
     "genderTag" : "NEUTRAL",
-    "tagged" : [ ]
-=======
     "tagged" : [ ],
     "order" : "7"
->>>>>>> master:src/test/data/JsonSerializableGlossaryTest/typicalFlashCardsGlossary.json
   } ]
 }
