@@ -8,6 +8,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
 
@@ -23,6 +24,7 @@ public class FlashCardBuilder {
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
     private DifficultyTag difficultyTag;
+    private GenderTag genderTag;
     private Set<Tag> tags;
     private Order order;
 
@@ -32,7 +34,8 @@ public class FlashCardBuilder {
     public FlashCardBuilder() {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
-        difficultyTag = new DifficultyTag();
+        difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
+        genderTag = new GenderTag(GenderTag.NEUTRAL_TAG);
         assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
         order = new Order(Integer.parseInt(DEFAULT_ORDER));
@@ -45,6 +48,7 @@ public class FlashCardBuilder {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
         difficultyTag = flashCardToCopy.getDifficultyTag();
+        genderTag = flashCardToCopy.getGenderTag();
         assert DifficultyTag.isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
         order = flashCardToCopy.getOrder();
@@ -83,6 +87,14 @@ public class FlashCardBuilder {
     }
 
     /**
+     * Sets the {@code genderTag} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withGenderTag(String genderTag) {
+        this.genderTag = new GenderTag(genderTag);
+        return this;
+    }
+
+    /**
      * Sets the {@code Order} of the {@code FlashCard} that we are building.
      */
     public FlashCardBuilder withOrder(int value) {
@@ -91,6 +103,6 @@ public class FlashCardBuilder {
     }
 
     public FlashCard build() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags, order);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags, order);
     }
 }

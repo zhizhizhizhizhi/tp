@@ -23,33 +23,38 @@ public class TypicalFlashCards {
     public static final FlashCard MONDAY = new FlashCardBuilder().withGermanPhrase("Montag")
             .withEnglishPhrase("Monday")
             .withDifficultyTag("EASY")
-            .withTags("day")
-            .withOrder(1).build();
+            .withGenderTag("NEUTRAL")
+            .withTags("day").withOrder(1).build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
             .withDifficultyTag("EASY")
-            .withTags("day")
-            .withOrder(2).build();
+            .withGenderTag("M")
+            .withTags("day").withOrder(2).build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
             .withEnglishPhrase("Wednesday")
             .withDifficultyTag("MEDIUM")
-            .withOrder(3).build();
+            .withGenderTag("F").withOrder(3)
+            .build();
     public static final FlashCard THURSDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
             .withEnglishPhrase("Thursday")
             .withDifficultyTag("MEDIUM")
-            .withOrder(4).withTags("day").build();
+            .withGenderTag("NEUTRAL").withOrder(4)
+            .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
             .withEnglishPhrase("Friday")
             .withDifficultyTag("MEDIUM")
-            .withOrder(5).build();
+            .withGenderTag("NEUTRAL").withOrder(5)
+            .build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
             .withEnglishPhrase("Saturday")
             .withDifficultyTag("HARD")
-            .withOrder(6).build();
+            .withGenderTag("NEUTRAL").withOrder(6)
+            .build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
             .withEnglishPhrase("Sunday")
             .withDifficultyTag("HARD")
-            .withOrder(7).build();
+            .withGenderTag("NEUTRAL").withOrder(7)
+            .build();
 
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")

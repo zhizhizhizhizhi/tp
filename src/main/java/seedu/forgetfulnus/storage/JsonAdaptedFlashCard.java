@@ -15,6 +15,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -27,6 +28,7 @@ class JsonAdaptedFlashCard {
     private final String germanPhrase;
     private final String englishPhrase;
     private final String difficultyTag;
+    private final String genderTag;
     private final String order;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -37,12 +39,15 @@ class JsonAdaptedFlashCard {
     public JsonAdaptedFlashCard(@JsonProperty("germanPhrase") String germanPhrase,
                                 @JsonProperty("englishPhrase") String englishPhrase,
                                 @JsonProperty("difficultyTag") String difficultyTag,
+                                @JsonProperty("genderTag") String genderTag,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("order") String order) {
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
+        this.genderTag = genderTag;
         this.order = order;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,8 +60,8 @@ class JsonAdaptedFlashCard {
         germanPhrase = source.getGermanPhrase().toString();
         englishPhrase = source.getEnglishPhrase().toString();
         difficultyTag = source.getDifficultyTag().toString();
+        genderTag = source.getGenderTag().toString();
         order = source.getOrder().toString();
-
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -101,6 +106,16 @@ class JsonAdaptedFlashCard {
         }
         final DifficultyTag modelDifficultyTag = new DifficultyTag(difficultyTag);
 
+        if (genderTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GenderTag.class.getSimpleName()));
+        }
+
+        if (!GenderTag.isValidGenderTag(genderTag)) {
+            throw new IllegalValueException(GenderTag.MESSAGE_CONSTRAINTS);
+        }
+        final GenderTag modelGenderTag = new GenderTag(genderTag);
+
         if (order == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Order.class.getSimpleName()));
@@ -111,7 +126,9 @@ class JsonAdaptedFlashCard {
         final Order modelOrder = new Order(Integer.parseInt(order));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelDifficultyTag, modelTags, modelOrder);
+
+        return new FlashCard(modelGermanPhrase, modelEnglishPhrase, modelDifficultyTag,
+                modelGenderTag, modelTags, modelOrder);
     }
 
 }

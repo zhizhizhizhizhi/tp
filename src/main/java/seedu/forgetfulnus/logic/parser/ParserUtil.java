@@ -1,6 +1,8 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +14,8 @@ import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
+import seedu.forgetfulnus.model.tag.PredefinedTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -20,7 +24,9 @@ import seedu.forgetfulnus.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_SORT_PARAM = " %s is not a valid parameter.";
+    public static final String MESSAGE_INVALID_SORT_PARAM = " %s is not a valid sort parameter.";
+    public static final String MESSAGE_INVALID_PREFIX_PARAM = " %s is not a valid prefix parameter.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -47,6 +53,7 @@ public class ParserUtil {
         boolean isLanguage = trimmedParam.equals("german") || trimmedParam.equals("english")
                 || trimmedParam.equals("reversegerman") || trimmedParam.equals("reverseenglish");
         boolean isDifficulty = trimmedParam.equals("easytohard") || trimmedParam.equals("hardtoeasy");
+
         boolean isTime = trimmedParam.equals("earliest") || trimmedParam.equals("latest");
         if (!isLanguage && !isDifficulty && !isTime) {
             throw new ParseException(String.format(MESSAGE_INVALID_SORT_PARAM, parameter));
@@ -84,19 +91,46 @@ public class ParserUtil {
         return new EnglishPhrase(trimmedEnglishPhrase);
     }
 
+    //TODO remove
+
+    //    /**
+    //     * Parses a {@code String Difficulty tag} into a {@code Difficulty tag}.
+    //     * Leading and trailing whitespaces will be trimmed.
+    //     *
+    //     * @throws ParseException if the given {@code Difficulty tag} is invalid.
+    //     */
+    //    public static DifficultyTag parseDifficultyTag(String difficultyTag) throws ParseException {
+    //        requireNonNull(difficultyTag);
+    //        String trimmedDifficultyTag = difficultyTag.trim();
+    //        if (!DifficultyTag.isValidDifficultyTag(trimmedDifficultyTag)) {
+    //            throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
+    //        }
+    //    }
+
     /**
-     * Parses a {@code String Difficulty tag} into a {@code Difficulty tag}.
+     * Parses a {@code String Predefined tag or a Gender Tag} into a {@code Predefined tag }.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Difficulty tag} is invalid.
+     * @throws ParseException if the given {@code Predefined tag} is invalid or if the given {@code prefix} is invalid.
      */
-    public static DifficultyTag parseDifficultyTag(String difficultyTag) throws ParseException {
-        requireNonNull(difficultyTag);
-        String trimmedDifficultyTag = difficultyTag.trim();
-        if (!DifficultyTag.isValidDifficultyTag(trimmedDifficultyTag)) {
-            throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
+    public static PredefinedTag parsePredefinedTag(Prefix prefix, String predefinedTag) throws ParseException {
+        requireNonNull(predefinedTag);
+        String trimmedPredefinedTag = predefinedTag.trim();
+
+        if (prefix.equals(PREFIX_DIFFICULTY_TAG)) {
+            if (!DifficultyTag.isValidDifficultyTag(trimmedPredefinedTag)) {
+                throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
+            }
+            return new DifficultyTag(trimmedPredefinedTag.toUpperCase());
+
+        } else if (prefix.equals(PREFIX_GENDER_TAG)) {
+            if (!GenderTag.isValidGenderTag(trimmedPredefinedTag)) {
+                throw new ParseException(GenderTag.MESSAGE_CONSTRAINTS);
+            }
+            return new GenderTag(trimmedPredefinedTag.toUpperCase());
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX_PARAM, prefix));
         }
-        return new DifficultyTag(trimmedDifficultyTag.toUpperCase());
     }
 
     /**

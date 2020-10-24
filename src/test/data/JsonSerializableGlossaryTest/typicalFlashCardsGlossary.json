@@ -4,42 +4,49 @@
     "germanPhrase" : "Montag",
     "englishPhrase" : "Monday",
     "difficultyTag" : "EASY",
+    "genderTag" : "NEUTRAL",
     "tagged" : [ "day" ],
     "order" : "1"
   }, {
     "germanPhrase" : "Dienstag",
     "englishPhrase" : "Tuesday",
     "difficultyTag" : "EASY",
+    "genderTag" : "M",
     "tagged" : [ "day" ],
     "order" : "2"
   }, {
     "germanPhrase" : "Mittwoch",
     "englishPhrase" : "Wednesday",
     "difficultyTag" : "MEDIUM",
+    "genderTag" : "F",
     "tagged" : [ ],
     "order" : "3"
   }, {
     "germanPhrase" : "Donnerstag",
     "englishPhrase" : "Thursday",
     "difficultyTag" : "MEDIUM",
+    "genderTag" : "NEUTRAL",
     "tagged" : [ "day" ],
     "order" : "4"
   }, {
     "germanPhrase" : "Freitag",
     "englishPhrase" : "Friday",
     "difficultyTag" : "MEDIUM",
+    "genderTag" : "NEUTRAL",
     "tagged" : [ ],
     "order" : "5"
   }, {
     "germanPhrase" : "Samstag",
     "englishPhrase" : "Saturday",
     "difficultyTag" : "HARD",
+    "genderTag" : "NEUTRAL",
     "tagged" : [ ],
     "order" : "6"
   }, {
     "germanPhrase" : "Sonntag",
     "englishPhrase" : "Sunday",
     "difficultyTag" : "HARD",
+    "genderTag" : "NEUTRAL",
     "tagged" : [ ],
     "order" : "7"
   } ]

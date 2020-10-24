@@ -1,14 +1,16 @@
 {
   "persons": [ {
-    "germanPhrase": "Alice Pauline",
-    "englishPhrase": "englishPhrase",
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
     "difficultyTag" : "MEDIUM",
+    "genderTag" : "NEUTRAL",
     "tagged": [ "friends" ],
     "order" : "1"
   }, {
-    "germanPhrase": "Alice Pauline",
-    "englishPhrase": "englishPhrase",
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
     "difficultyTag" : "MEDIUM",
+    "genderTag" : "NEUTRAL",
     "tagged": [ "friends" ],
     "order" : "2"
   } ]
