@@ -19,6 +19,7 @@ import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -104,9 +105,13 @@ public class EditCommand extends Command {
         DifficultyTag updatedDifficultyTag = editFlashCardDescriptor
                 .getDifficultyTag()
                 .orElse(flashCardToEdit.getDifficultyTag());
+        GenderTag updatedGenderTag = editFlashCardDescriptor
+                .getGenderTag()
+                .orElse(flashCardToEdit.getGenderTag());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
-        return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase, updatedDifficultyTag, updatedTags);
+        return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase,
+                updatedDifficultyTag, updatedGenderTag, updatedTags);
     }
 
     @Override
@@ -135,6 +140,7 @@ public class EditCommand extends Command {
         private GermanPhrase germanPhrase;
         private EnglishPhrase englishPhrase;
         private DifficultyTag difficultyTag;
+        private GenderTag genderTag;
         private Set<Tag> tags;
 
         public EditFlashCardDescriptor() {}
@@ -147,6 +153,7 @@ public class EditCommand extends Command {
             setGermanPhrase(toCopy.germanPhrase);
             setEnglishPhrase(toCopy.englishPhrase);
             setDifficultyTag(toCopy.difficultyTag);
+            setGenderTag(toCopy.genderTag);
             setTags(toCopy.tags);
         }
 
@@ -154,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
+            return CollectionUtil.isAnyNonNull(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
         }
 
         public void setGermanPhrase(GermanPhrase germanPhrase) {
@@ -179,6 +186,14 @@ public class EditCommand extends Command {
 
         public Optional<DifficultyTag> getDifficultyTag() {
             return Optional.ofNullable(difficultyTag);
+        }
+
+        public void setGenderTag(GenderTag genderTag) {
+            this.genderTag = genderTag;
+        }
+
+        public Optional<GenderTag> getGenderTag() {
+            return Optional.ofNullable(genderTag);
         }
 
         /**
@@ -216,6 +231,7 @@ public class EditCommand extends Command {
             return getGermanPhrase().equals(e.getGermanPhrase())
                     && getEnglishPhrase().equals(e.getEnglishPhrase())
                     && getDifficultyTag().equals(e.getDifficultyTag())
+                    && getGenderTag().equals(e.getGenderTag())
                     && getTags().equals(e.getTags());
         }
     }

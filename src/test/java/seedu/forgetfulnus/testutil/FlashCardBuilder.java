@@ -7,6 +7,7 @@ import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
 
@@ -21,6 +22,7 @@ public class FlashCardBuilder {
     private GermanPhrase germanPhrase;
     private EnglishPhrase englishPhrase;
     private DifficultyTag difficultyTag;
+    private GenderTag genderTag;
     private Set<Tag> tags;
 
     /**
@@ -30,6 +32,7 @@ public class FlashCardBuilder {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
         difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
+        genderTag = new GenderTag(GenderTag.NEUTRAL_TAG);
         assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
     }
@@ -41,6 +44,7 @@ public class FlashCardBuilder {
         germanPhrase = flashCardToCopy.getGermanPhrase();
         englishPhrase = flashCardToCopy.getEnglishPhrase();
         difficultyTag = flashCardToCopy.getDifficultyTag();
+        genderTag = flashCardToCopy.getGenderTag();
         assert DifficultyTag.isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
     }
@@ -77,8 +81,16 @@ public class FlashCardBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code genderTag} of the {@code FlashCard} that we are building.
+     */
+    public FlashCardBuilder withGenderTag(String genderTag) {
+        this.genderTag = new GenderTag(genderTag);
+        return this;
+    }
+
     public FlashCard build() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
     }
 
 }

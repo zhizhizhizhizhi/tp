@@ -23,30 +23,37 @@ public class TypicalFlashCards {
     public static final FlashCard MONDAY = new FlashCardBuilder().withGermanPhrase("Montag")
             .withEnglishPhrase("Monday")
             .withDifficultyTag("EASY")
+            .withGenderTag("NEUTRAL")
             .withTags("day").build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
             .withDifficultyTag("EASY")
+            .withGenderTag("M")
             .withTags("day").build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
             .withEnglishPhrase("Wednesday")
             .withDifficultyTag("MEDIUM")
+            .withGenderTag("F")
             .build();
     public static final FlashCard THURSDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
             .withEnglishPhrase("Thursday")
             .withDifficultyTag("MEDIUM")
+            .withGenderTag("NEUTRAL")
             .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
             .withEnglishPhrase("Friday")
             .withDifficultyTag("MEDIUM")
+            .withGenderTag("NEUTRAL")
             .build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
             .withEnglishPhrase("Saturday")
             .withDifficultyTag("HARD")
+            .withGenderTag("NEUTRAL")
             .build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
             .withEnglishPhrase("Sunday")
             .withDifficultyTag("HARD")
+            .withGenderTag("NEUTRAL")
             .build();
 
     // Manually added

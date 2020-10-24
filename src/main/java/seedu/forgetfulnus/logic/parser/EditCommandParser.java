@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -16,6 +17,8 @@ import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.logic.commands.EditCommand;
 import seedu.forgetfulnus.logic.commands.EditCommand.EditFlashCardDescriptor;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -51,9 +54,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             editFlashCardDescriptor
                     .setEnglishPhrase(ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));
         }
+        //TODO class cast
         if (argMultimap.getValue(PREFIX_DIFFICULTY_TAG).isPresent()) {
             editFlashCardDescriptor
-                    .setDifficultyTag(ParserUtil.parseDifficultyTag(argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get()));
+                    .setDifficultyTag((DifficultyTag) ParserUtil.parsePredefinedTag(PREFIX_DIFFICULTY_TAG,
+                            argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GENDER_TAG).isPresent()) {
+            editFlashCardDescriptor
+                    .setGenderTag((GenderTag) ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
+                            argMultimap.getValue(PREFIX_GENDER_TAG).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFlashCardDescriptor::setTags);
 

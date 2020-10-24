@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -20,6 +21,7 @@ public class FlashCard {
     private final GermanPhrase germanPhrase;
     private final EnglishPhrase englishPhrase;
     private final DifficultyTag difficultyTag;
+    private final GenderTag genderTag;
     private final Set<Tag> tags = new HashSet<>();
 
     private boolean showingEnglish = true;
@@ -28,11 +30,12 @@ public class FlashCard {
      * Every field must be present and not null.
      */
     public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
-                     DifficultyTag difficultyTag, Set<Tag> tags) {
+                     DifficultyTag difficultyTag, GenderTag genderTag, Set<Tag> tags) {
         requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
+        this.genderTag = genderTag;
         this.tags.addAll(tags);
     }
 
@@ -47,6 +50,11 @@ public class FlashCard {
     public DifficultyTag getDifficultyTag() {
         return difficultyTag;
     }
+
+    public GenderTag getGenderTag() {
+        return genderTag;
+    }
+
 
 
     /**
@@ -89,13 +97,14 @@ public class FlashCard {
         return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
                 && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherFlashCard.getDifficultyTag().equals(getDifficultyTag())
+                && otherFlashCard.getGenderTag().equals(getGenderTag())
                 && otherFlashCard.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, englishPhrase, difficultyTag, tags);
+        return Objects.hash(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
     }
 
     @Override
@@ -106,6 +115,8 @@ public class FlashCard {
                 .append(getEnglishPhrase())
                 .append(" Difficulty: ")
                 .append(getDifficultyTag())
+                .append(" Gender: ")
+                .append(getGenderTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
@@ -120,6 +131,6 @@ public class FlashCard {
     }
 
     public FlashCard copy() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
     }
 }

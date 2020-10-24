@@ -1,9 +1,61 @@
 package seedu.forgetfulnus.model.tag;
 
-public class GenderTag {
+import static java.util.Objects.requireNonNull;
+import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
 
-    public static boolean isValidGenderTag(String testInput) {
-        return true;
+/**
+ * Represents a Predefined Gender Tag in the Glossary.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidGenderTag(String)}
+ */
+public class GenderTag extends PredefinedTag {
+
+    public static final String MESSAGE_CONSTRAINTS = "Gender Tags names should be M or F or omitted";
+    public static final String MALE_TAG = "M";
+    public static final String FEMALE_TAG = "F";
+    public static final String NEUTRAL_TAG = "NEUTRAL";
+
+
+    /**
+     * Constructs a {@code Gender Tag}.
+     *
+     * @param tagName A valid gender tag name.
+     */
+    public GenderTag(String tagName) {
+        super(tagName);
+        requireNonNull(tagName);
+        checkArgument(isValidGenderTag(tagName), MESSAGE_CONSTRAINTS);
     }
 
+    /**
+     * Returns true if a given string is a valid gender tag name.
+     */
+    public static boolean isValidGenderTag(String testInput) {
+        String test = testInput.replaceAll("\\s+", "");
+        return test.equalsIgnoreCase(MALE_TAG) || test.equalsIgnoreCase(FEMALE_TAG)
+                || test.equalsIgnoreCase(NEUTRAL_TAG);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GenderTag // instanceof handles nulls
+                && tagName.equals(((GenderTag) other).tagName)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return tagName.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return tagName;
+    }
 }
+
+
+
+
+

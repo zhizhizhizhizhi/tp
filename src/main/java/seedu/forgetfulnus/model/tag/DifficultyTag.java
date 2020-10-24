@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the Glossary.
+ * Represents a Predefined Difficulty Tag in the Glossary.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDifficultyTag(String)}
  */
 public class DifficultyTag extends PredefinedTag implements Comparable<DifficultyTag> {
@@ -17,7 +17,7 @@ public class DifficultyTag extends PredefinedTag implements Comparable<Difficult
     /**
      * Constructs a {@code Difficulty Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagName A valid difficulty tag name.
      */
     public DifficultyTag(String tagName) {
         super(tagName);
@@ -26,7 +26,7 @@ public class DifficultyTag extends PredefinedTag implements Comparable<Difficult
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid difficulty tag name.
      */
     public static boolean isValidDifficultyTag(String testInput) {
         String test = testInput.replaceAll("\\s+", "");

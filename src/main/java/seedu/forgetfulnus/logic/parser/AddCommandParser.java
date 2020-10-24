@@ -3,6 +3,7 @@ package seedu.forgetfulnus.logic.parser;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -15,6 +16,8 @@ import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
+import seedu.forgetfulnus.model.tag.PredefinedTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -22,16 +25,20 @@ import seedu.forgetfulnus.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    public static final String MESSAGE_INVALID_CLASS_CAST = "Invalid casting of class";
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @throws ClassCastException if wrong class is cast
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_DIFFICULTY_TAG,
-                                PREFIX_TAG);
+                        .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE,
+                                PREFIX_DIFFICULTY_TAG, PREFIX_GENDER_TAG, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,14 +50,39 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY_TAG)) {
             difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         } else {
-            difficultyTag = ParserUtil.parseDifficultyTag(argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get());
+
+            PredefinedTag newTag = ParserUtil.parsePredefinedTag(PREFIX_DIFFICULTY_TAG,
+                    argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get());
+
+            if (newTag instanceof DifficultyTag) {
+                difficultyTag = (DifficultyTag) newTag;
+            } else {
+                throw new ClassCastException(MESSAGE_INVALID_CLASS_CAST);
+            }
         }
+
+        GenderTag genderTag;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_GENDER_TAG)) {
+            genderTag = new GenderTag(GenderTag.NEUTRAL_TAG);
+        } else {
+
+            PredefinedTag newTag = ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
+                    argMultimap.getValue(PREFIX_GENDER_TAG).get());
+
+            if (newTag instanceof GenderTag) {
+                genderTag = (GenderTag) newTag;
+            } else {
+                throw new ClassCastException(MESSAGE_INVALID_CLASS_CAST);
+            }
+        }
+
 
         GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
         EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, difficultyTag, tagList);
+        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tagList);
 
         return new AddCommand(flashCard);
     }
