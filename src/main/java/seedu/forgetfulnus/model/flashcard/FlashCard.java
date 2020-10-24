@@ -23,6 +23,7 @@ public class FlashCard {
     private final DifficultyTag difficultyTag;
     private final GenderTag genderTag;
     private final Set<Tag> tags = new HashSet<>();
+    private Order order;
 
     private boolean showingEnglish = true;
 
@@ -31,12 +32,27 @@ public class FlashCard {
      */
     public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
                      DifficultyTag difficultyTag, GenderTag genderTag, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
         this.genderTag = genderTag;
         this.tags.addAll(tags);
+        this.order = new Order(Order.getNextOrderOfAddition());
+    }
+
+    /**
+     * Used only for testing. Every field must be present and not null.
+     */
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
+                     DifficultyTag difficultyTag, GenderTag genderTag, Set<Tag> tags, Order order) {
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
+        this.germanPhrase = germanPhrase;
+        this.englishPhrase = englishPhrase;
+        this.difficultyTag = difficultyTag;
+        this.genderTag = genderTag;
+        this.tags.addAll(tags);
+        this.order = order;
     }
 
     public GermanPhrase getGermanPhrase() {
@@ -65,6 +81,13 @@ public class FlashCard {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Order getOrder() {
+        return order;
+    }
+    public FlashCard setOrder(int num) {
+        this.order = new Order(num);
+        return this;
+    }
     /**
      * Returns true if both flashcards of the same German phrase have the same English phrase.
      * This defines a weaker notion of equality between two flashcards.
@@ -80,7 +103,7 @@ public class FlashCard {
     }
 
     /**
-     * Returns true if both flashcards have the same data fields.
+     * Returns true if both flashcards have the same data fields, except for their Orders.
      * This defines a stronger notion of equality between two flashcards.
      */
     @Override
@@ -119,6 +142,7 @@ public class FlashCard {
                 .append(getGenderTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Order: ").append(getOrder());
         return builder.toString();
     }
 
@@ -131,6 +155,6 @@ public class FlashCard {
     }
 
     public FlashCard copy() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags, order);
     }
 }

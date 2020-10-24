@@ -51,8 +51,14 @@ public class ParserUtil {
         boolean isLanguage = trimmedParam.equals("german") || trimmedParam.equals("english")
                 || trimmedParam.equals("reversegerman") || trimmedParam.equals("reverseenglish");
         boolean isDifficulty = trimmedParam.equals("easytohard") || trimmedParam.equals("hardtoeasy");
+<<<<<<< HEAD
         if (!isLanguage && !isDifficulty) {
             throw new ParseException(String.format(MESSAGE_INVALID_PARAM, parameter));
+=======
+        boolean isTime = trimmedParam.equals("earliest") || trimmedParam.equals("latest");
+        if (!isLanguage && !isDifficulty && !isTime) {
+            throw new ParseException(String.format(MESSAGE_INVALID_SORT_PARAM, parameter));
+>>>>>>> master
         }
         return trimmedParam;
     }

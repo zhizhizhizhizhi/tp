@@ -18,6 +18,7 @@ import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
+import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
 import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
@@ -110,8 +111,10 @@ public class EditCommand extends Command {
                 .orElse(flashCardToEdit.getGenderTag());
         Set<Tag> updatedTags = editFlashCardDescriptor.getTags().orElse(flashCardToEdit.getTags());
 
+        Order unchangedOrder = flashCardToEdit.getOrder(); // User can never edit Order
+
         return new FlashCard(updatedGermanPhrase, updatedEnglishPhrase,
-                updatedDifficultyTag, updatedGenderTag, updatedTags);
+                updatedDifficultyTag, updatedGenderTag, updatedTags, unchangedOrder);
     }
 
     @Override
@@ -142,6 +145,7 @@ public class EditCommand extends Command {
         private DifficultyTag difficultyTag;
         private GenderTag genderTag;
         private Set<Tag> tags;
+        private Order order;
 
         public EditFlashCardDescriptor() {}
 
@@ -155,6 +159,7 @@ public class EditCommand extends Command {
             setDifficultyTag(toCopy.difficultyTag);
             setGenderTag(toCopy.genderTag);
             setTags(toCopy.tags);
+            setOrder(toCopy.order);
         }
 
         /**
@@ -194,6 +199,13 @@ public class EditCommand extends Command {
 
         public Optional<GenderTag> getGenderTag() {
             return Optional.ofNullable(genderTag);
+        }
+        public void setOrder(Order order) {
+            this.order = order;
+        }
+
+        public Optional<Order> getOrder() {
+            return Optional.ofNullable(order);
         }
 
         /**

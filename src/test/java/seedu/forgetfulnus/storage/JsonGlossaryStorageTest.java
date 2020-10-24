@@ -51,13 +51,13 @@ public class JsonGlossaryStorageTest {
     }
 
     @Test
-    public void readGlossary_invalidPersonGlossary_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readGlossary("invalidPersonGlossary.json"));
+    public void readGlossary_invalidFlashCardGlossary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readGlossary("invalidFlashCardGlossary.json"));
     }
 
     @Test
     public void readGlossary_invalidAndValidPersonGlossary_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readGlossary("invalidAndValidPersonGlossary.json"));
+        assertThrows(DataConversionException.class, () -> readGlossary("invalidAndValidFlashCardGlossary.json"));
     }
 
     @Test

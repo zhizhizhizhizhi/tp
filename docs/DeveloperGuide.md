@@ -198,7 +198,7 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
-### Setting difficulty level for flashcards
+### Difficulty tag feature
 
 The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
 
@@ -462,7 +462,7 @@ Priority | As a... | I want to... | So that I...
     
    Use case ends.
    
-### **Use case: UC4 - Self-testing with flashcards**
+#### **Use case: UC4 - Self-testing with flashcards**
 
 **MSS:**
 

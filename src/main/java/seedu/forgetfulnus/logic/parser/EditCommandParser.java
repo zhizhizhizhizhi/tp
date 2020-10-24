@@ -66,6 +66,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                             argMultimap.getValue(PREFIX_GENDER_TAG).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFlashCardDescriptor::setTags);
+        editFlashCardDescriptor.setOrder(null);
 
         if (!editFlashCardDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

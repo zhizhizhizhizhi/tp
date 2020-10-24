@@ -95,7 +95,7 @@ Examples:
 
 ### <a name="list"></a>Listing all flashcards : `list`
 
-Displays all flashcards in the glossary. Also returns the glossary to its default unsorted state (chronological order).
+Displays all flashcards in the glossary.
 
 Format: `list`
 
@@ -113,7 +113,8 @@ Format: `sort <parameter>`
     1. `reverseenglish`: sorts by the reverse alphabetical order of English phrases.
     1. `easytohard`: sorts by difficulty of flashcards, from easy to hard.
     1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
-* To return the app to the default unsorted state (which is in chronological order), use the `list` command.
+    1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
+    1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
 
 ### <a name="quiz"></a>Normal Test : `quiz`
 

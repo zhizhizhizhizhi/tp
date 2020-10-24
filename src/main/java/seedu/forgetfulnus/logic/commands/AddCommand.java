@@ -10,6 +10,7 @@ import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
+import seedu.forgetfulnus.model.flashcard.Order;
 
 /**
  * Adds a phrase to the glossary.
@@ -53,8 +54,13 @@ public class AddCommand extends Command {
         if (model.hasFlashCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PHRASE);
         }
-
+        int size = model.getGlossary().getFlashCardList().size();
+        if (Order.getNextOrderOfAddition() == -1) {
+            toAdd.setOrder(size + 1);
+        }
         model.addFlashCard(toAdd);
+        size = model.getGlossary().getFlashCardList().size();
+        Order.setNextOrderOfAddition(size + 1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

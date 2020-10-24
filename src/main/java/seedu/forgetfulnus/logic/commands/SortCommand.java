@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.forgetfulnus.commons.core.Comparators;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -19,18 +20,6 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " german";
 
     public static final String MESSAGE_SORT_SUCCESS = "The glossary has been sorted!";
-    public static final Comparator<FlashCard> GERMAN_COMP = (obj1, obj2) -> obj1.getGermanPhrase().toString()
-            .compareTo(obj2.getGermanPhrase().toString());
-    public static final Comparator<FlashCard> REVERSE_GERMAN_COMP = (obj1, obj2) -> obj2.getGermanPhrase().toString()
-            .compareTo(obj1.getGermanPhrase().toString());
-    public static final Comparator<FlashCard> ENGLISH_COMP = (obj1, obj2) -> obj1.getEnglishPhrase().toString()
-            .compareTo(obj2.getEnglishPhrase().toString());
-    public static final Comparator<FlashCard> REVERSE_ENGLISH_COMP = (obj1, obj2) -> obj2.getEnglishPhrase().toString()
-            .compareTo(obj1.getEnglishPhrase().toString());
-    public static final Comparator<FlashCard> DIFFICULTY_EASY_COMP = (obj1, obj2) -> obj1.getDifficultyTag()
-            .compareTo(obj2.getDifficultyTag());
-    public static final Comparator<FlashCard> DIFFICULTY_HARD_COMP = (obj1, obj2) -> obj2.getDifficultyTag()
-            .compareTo(obj1.getDifficultyTag());
     private Comparator<FlashCard> comp;
     private Logger logger = Logger.getLogger("Sort Command Logger");
 
@@ -44,22 +33,28 @@ public class SortCommand extends Command {
         logger.log(Level.INFO, String.format("Input parameter: %s", parameter));
         switch(parameter) {
         case("german"):
-            comp = GERMAN_COMP;
+            comp = Comparators.GERMAN_COMP;
             break;
         case("english"):
-            comp = ENGLISH_COMP;
+            comp = Comparators.ENGLISH_COMP;
             break;
         case("reversegerman"):
-            comp = REVERSE_GERMAN_COMP;
+            comp = Comparators.REVERSE_GERMAN_COMP;
             break;
         case("reverseenglish"):
-            comp = REVERSE_ENGLISH_COMP;
+            comp = Comparators.REVERSE_ENGLISH_COMP;
             break;
         case("easytohard"):
-            comp = DIFFICULTY_EASY_COMP;
+            comp = Comparators.DIFFICULTY_EASY_COMP;
             break;
         case("hardtoeasy"):
-            comp = DIFFICULTY_HARD_COMP;
+            comp = Comparators.DIFFICULTY_HARD_COMP;
+            break;
+        case("earliest"):
+            comp = Comparators.CHRONOLOGICAL_EARLIEST_COMP;
+            break;
+        case("latest"):
+            comp = Comparators.CHRONOLOGICAL_LATEST_COMP;
             break;
         default:
             assert false : "Invalid parameter %s";
@@ -73,10 +68,9 @@ public class SortCommand extends Command {
     }
     public Glossary getSortedGlossary(Model model) {
         assert model != null : "Model cannot be null!";
-        ListCommand.setOriginalGlossary(new Glossary(model.getGlossary()));
-        logger.log(Level.INFO, "Original glossary state saved.");
         List<FlashCard> sortedList = new ArrayList<>(model.getGlossary().getFlashCardList());
         sortedList.sort(comp);
+        logger.log(Level.INFO, "List successfully sorted.");
         Glossary glossary = new Glossary();
         glossary.setFlashCards(sortedList);
         return glossary;

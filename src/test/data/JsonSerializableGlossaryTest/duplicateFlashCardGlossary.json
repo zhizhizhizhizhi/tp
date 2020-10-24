@@ -1,0 +1,25 @@
+{
+  "persons": [ {
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
+    "difficultyTag" : "MEDIUM",
+<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/duplicatePersonGlossary.json
+    "genderTag" : "NEUTRAL",
+    "tagged": [ "friends" ]
+=======
+    "tagged": [ "friends" ],
+    "order" : "1"
+>>>>>>> master:src/test/data/JsonSerializableGlossaryTest/duplicateFlashCardGlossary.json
+  }, {
+    "germanPhrase": "Montag",
+    "englishPhrase": "Monday",
+    "difficultyTag" : "MEDIUM",
+<<<<<<< HEAD:src/test/data/JsonSerializableGlossaryTest/duplicatePersonGlossary.json
+    "genderTag" : "NEUTRAL",
+    "tagged": [ "friends" ]
+=======
+    "tagged": [ "friends" ],
+    "order" : "2"
+>>>>>>> master:src/test/data/JsonSerializableGlossaryTest/duplicateFlashCardGlossary.json
+  } ]
+}

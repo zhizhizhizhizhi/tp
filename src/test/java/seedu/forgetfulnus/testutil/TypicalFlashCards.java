@@ -24,58 +24,58 @@ public class TypicalFlashCards {
             .withEnglishPhrase("Monday")
             .withDifficultyTag("EASY")
             .withGenderTag("NEUTRAL")
-            .withTags("day").build();
+            .withTags("day").withOrder(1).build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
             .withDifficultyTag("EASY")
             .withGenderTag("M")
-            .withTags("day").build();
+            .withTags("day").withOrder(2).build();
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
             .withEnglishPhrase("Wednesday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("F")
+            .withGenderTag("F").withOrder(3)
             .build();
     public static final FlashCard THURSDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
             .withEnglishPhrase("Thursday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("NEUTRAL")
+            .withGenderTag("NEUTRAL").withOrder(4)
             .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
             .withEnglishPhrase("Friday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("NEUTRAL")
+            .withGenderTag("NEUTRAL").withOrder(5)
             .build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
             .withEnglishPhrase("Saturday")
             .withDifficultyTag("HARD")
-            .withGenderTag("NEUTRAL")
+            .withGenderTag("NEUTRAL").withOrder(6)
             .build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
             .withEnglishPhrase("Sunday")
             .withDifficultyTag("HARD")
-            .withGenderTag("NEUTRAL")
+            .withGenderTag("NEUTRAL").withOrder(7)
             .build();
 
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")
             .withEnglishPhrase("Morning")
             .withDifficultyTag("Medium")
-            .build();
+            .withOrder(8).build();
     public static final FlashCard NOON = new FlashCardBuilder().withGermanPhrase("Mittag").withEnglishPhrase("Noon")
             .withDifficultyTag("Medium")
-            .build();
+            .withOrder(9).build();
 
     // Manually added - FlashCard's details found in {@code CommandTestUtil}
     public static final FlashCard FORGETFULNESS = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
             .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-            .withTags().build();
+            .withTags().withOrder(8).build();
     public static final FlashCard TABLE = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
             .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-            .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).build();
+            .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).withOrder(9).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -102,11 +102,16 @@ public class TypicalFlashCards {
         }
         return g;
     }
-
+    /**
+     * A List of FlashCards sorted by chronological order.
+     */
     public static List<FlashCard> getTypicalFlashCards() {
         return new ArrayList<>(Arrays.asList(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY));
     }
 
+    /**
+     * A List of FlashCards sorted by alphabetical order of their German Phrases.
+     */
     public static List<FlashCard> getTypicalGermanSortedFlashCards() {
         return new ArrayList<>(Arrays.asList(TUESDAY, THURSDAY, FRIDAY, WEDNESDAY, MONDAY, SATURDAY, SUNDAY));
     }
