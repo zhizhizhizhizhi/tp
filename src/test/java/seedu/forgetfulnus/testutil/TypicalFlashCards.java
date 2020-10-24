@@ -59,10 +59,12 @@ public class TypicalFlashCards {
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")
             .withEnglishPhrase("Morning")
-            .withDifficultyTag("Medium")
+            .withDifficultyTag("MEDIUM")
+            .withGenderTag("NEUTRAL")
             .withOrder(8).build();
     public static final FlashCard NOON = new FlashCardBuilder().withGermanPhrase("Mittag").withEnglishPhrase("Noon")
-            .withDifficultyTag("Medium")
+            .withDifficultyTag("MEDIUM")
+            .withGenderTag("NEUTRAL")
             .withOrder(9).build();
 
     // Manually added - FlashCard's details found in {@code CommandTestUtil}
