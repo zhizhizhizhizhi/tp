@@ -7,11 +7,15 @@ import java.util.List;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
+/**
+ * Ends the ongoing round of vocabulary self-testing.
+ */
 public class EndQuizCommand extends Command {
+
     public static final String COMMAND_WORD = "end";
 
     public static final String MESSAGE_SUCCESS = "Quiz ended!";
-    public static final String QUIZMODE_REMINDER = "Quiz has ended.";
+    public static final String QUIZ_MODE_REMINDER = "Quiz has ended.";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
@@ -37,13 +41,13 @@ public class EndQuizCommand extends Command {
                             + " Your score: %s / %s",
                     model.getQuizScore(), model.getQuizTotalQuestions()));
         } else {
-            return new CommandResult(QUIZMODE_REMINDER);
+            return new CommandResult(QUIZ_MODE_REMINDER);
         }
     }
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

@@ -8,6 +8,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
+import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 
 /**
  * An UI component that displays information of a {@code FlashCard}.
@@ -41,6 +43,10 @@ public class FlashCardCardView extends UiPart<Region> {
     @FXML
     private FlowPane difficultyTagHard;
     @FXML
+    private FlowPane genderTagM;
+    @FXML
+    private FlowPane genderTagF;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,12 +58,21 @@ public class FlashCardCardView extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         germanPhrase.setText(flashCard.getGermanPhrase().toString());
         englishPhrase.setText(flashCard.isShowingEnglish() ? flashCard.getEnglishPhrase().toString() : "");
-        if (flashCard.getDifficultyTag().tagName.equals("EASY")) {
+
+        assert DifficultyTag.isValidDifficultyTag(flashCard.getDifficultyTag().toString());
+        if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.EASY_TAG)) {
             difficultyTagEasy.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().tagName.equals("MEDIUM")) {
+        } else if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.MEDIUM_TAG)) {
             difficultyTagMedium.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
-        } else if (flashCard.getDifficultyTag().tagName.equals("HARD")) {
+        } else if (flashCard.getDifficultyTag().toString().equals(DifficultyTag.HARD_TAG)) {
             difficultyTagHard.getChildren().add(new Label(flashCard.getDifficultyTag().toString()));
+        }
+
+        assert GenderTag.isValidGenderTag(flashCard.getGenderTag().toString());
+        if (flashCard.getGenderTag().toString().equals(GenderTag.MALE_TAG)) {
+            genderTagM.getChildren().add(new Label(flashCard.getGenderTag().toString()));
+        } else if (flashCard.getGenderTag().toString().equals(GenderTag.FEMALE_TAG)) {
+            genderTagF.getChildren().add(new Label(flashCard.getGenderTag().toString()));
         }
 
         flashCard.getTags().stream()

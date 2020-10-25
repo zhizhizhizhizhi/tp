@@ -6,7 +6,7 @@ import static seedu.forgetfulnus.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import seedu.forgetfulnus.model.Model;
 
 /**
- * Lists all phrases in the address book to the user.
+ * Lists all phrases in the glossary to the user, shown in the default unsorted state.
  */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";

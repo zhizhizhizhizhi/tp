@@ -2,6 +2,7 @@ package seedu.forgetfulnus.testutil;
 
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -33,6 +34,7 @@ public class FlashCardUtil {
         sb.append(PREFIX_GERMAN_PHRASE + flashCard.getGermanPhrase().toString() + " ");
         sb.append(PREFIX_ENGLISH_PHRASE + flashCard.getEnglishPhrase().toString() + " ");
         sb.append(PREFIX_DIFFICULTY_TAG + flashCard.getDifficultyTag().toString() + " ");
+        sb.append(PREFIX_GENDER_TAG + flashCard.getGenderTag().toString() + " ");
         flashCard.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -52,7 +54,10 @@ public class FlashCardUtil {
                         .append(englishPhrase.toString()).append(" "));
         descriptor.getDifficultyTag()
                 .ifPresent(difficultyTag -> sb.append(PREFIX_DIFFICULTY_TAG)
-                        .append(difficultyTag.tagName).append((" ")));
+                        .append(difficultyTag.toString()).append((" ")));
+        descriptor.getGenderTag()
+                .ifPresent(genderTag -> sb.append(PREFIX_GENDER_TAG)
+                        .append(genderTag.toString()).append((" ")));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

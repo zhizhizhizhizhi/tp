@@ -28,9 +28,9 @@ import seedu.forgetfulnus.testutil.EditFlashCardDescriptorBuilder;
 import seedu.forgetfulnus.testutil.FlashCardBuilder;
 import seedu.forgetfulnus.testutil.FlashCardUtil;
 
-public class GlossaryBookParserTest {
+public class GlossaryParserTest {
 
-    private final GlossaryBookParser parser = new GlossaryBookParser();
+    private final GlossaryParser parser = new GlossaryParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -56,6 +56,7 @@ public class GlossaryBookParserTest {
     public void parseCommand_edit() throws Exception {
         FlashCard flashCard = new FlashCardBuilder().build();
         EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder(flashCard).build();
+
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_FLASHCARD.getOneBased() + " "
                 + FlashCardUtil.getEditFlashCardDescriptorDetails(descriptor));

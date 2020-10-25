@@ -12,7 +12,7 @@ public class QuizCommand extends Command {
     public static final String COMMAND_WORD = "quiz";
 
     public static final String MESSAGE_SUCCESS = "Quiz started!";
-    public static final String QUIZMODE_REMINDER = "Quiz has started. "
+    public static final String QUIZ_MODE_REMINDER = "Quiz has started. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -35,7 +35,7 @@ public class QuizCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

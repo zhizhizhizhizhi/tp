@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -20,7 +21,9 @@ public class FlashCard {
     private final GermanPhrase germanPhrase;
     private final EnglishPhrase englishPhrase;
     private final DifficultyTag difficultyTag;
+    private final GenderTag genderTag;
     private final Set<Tag> tags = new HashSet<>();
+    private Order order;
 
     private boolean showingEnglish = true;
 
@@ -28,12 +31,28 @@ public class FlashCard {
      * Every field must be present and not null.
      */
     public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
-                     DifficultyTag difficultyTag, Set<Tag> tags) {
-        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, tags);
+                     DifficultyTag difficultyTag, GenderTag genderTag, Set<Tag> tags) {
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
         this.germanPhrase = germanPhrase;
         this.englishPhrase = englishPhrase;
         this.difficultyTag = difficultyTag;
+        this.genderTag = genderTag;
         this.tags.addAll(tags);
+        this.order = new Order(Order.getNextOrderOfAddition());
+    }
+
+    /**
+     * Used only for testing. Every field must be present and not null.
+     */
+    public FlashCard(GermanPhrase germanPhrase, EnglishPhrase englishPhrase,
+                     DifficultyTag difficultyTag, GenderTag genderTag, Set<Tag> tags, Order order) {
+        requireAllNonNull(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
+        this.germanPhrase = germanPhrase;
+        this.englishPhrase = englishPhrase;
+        this.difficultyTag = difficultyTag;
+        this.genderTag = genderTag;
+        this.tags.addAll(tags);
+        this.order = order;
     }
 
     public GermanPhrase getGermanPhrase() {
@@ -48,6 +67,11 @@ public class FlashCard {
         return difficultyTag;
     }
 
+    public GenderTag getGenderTag() {
+        return genderTag;
+    }
+
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -57,6 +81,13 @@ public class FlashCard {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Order getOrder() {
+        return order;
+    }
+    public FlashCard setOrder(int num) {
+        this.order = new Order(num);
+        return this;
+    }
     /**
      * Returns true if both flashcards of the same German phrase have the same English phrase.
      * This defines a weaker notion of equality between two flashcards.
@@ -72,7 +103,7 @@ public class FlashCard {
     }
 
     /**
-     * Returns true if both flashcards have the same data fields.
+     * Returns true if both flashcards have the same data fields, except for their Orders.
      * This defines a stronger notion of equality between two flashcards.
      */
     @Override
@@ -89,13 +120,14 @@ public class FlashCard {
         return otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
                 && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase())
                 && otherFlashCard.getDifficultyTag().equals(getDifficultyTag())
+                && otherFlashCard.getGenderTag().equals(getGenderTag())
                 && otherFlashCard.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(germanPhrase, englishPhrase, difficultyTag, tags);
+        return Objects.hash(germanPhrase, englishPhrase, difficultyTag, genderTag, tags);
     }
 
     @Override
@@ -106,8 +138,11 @@ public class FlashCard {
                 .append(getEnglishPhrase())
                 .append(" Difficulty: ")
                 .append(getDifficultyTag())
+                .append(" Gender: ")
+                .append(getGenderTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Order: ").append(getOrder());
         return builder.toString();
     }
 
@@ -120,6 +155,6 @@ public class FlashCard {
     }
 
     public FlashCard copy() {
-        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, tags);
+        return new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tags, order);
     }
 }

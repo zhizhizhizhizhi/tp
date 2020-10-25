@@ -11,7 +11,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 
 public class TryCommand extends Command {
     public static final String COMMAND_WORD = "try";
-    public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
     public static final String CORRECT_ATTEMPT = "Correct! ";
     public static final String INCORRECT_ATTEMPT = "Not correct. "
@@ -50,7 +50,7 @@ public class TryCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

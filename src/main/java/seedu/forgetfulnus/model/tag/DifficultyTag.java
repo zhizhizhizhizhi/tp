@@ -4,39 +4,29 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the Glossary.
+ * Represents a Predefined Difficulty Tag in the Glossary.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDifficultyTag(String)}
  */
-public class DifficultyTag {
+public class DifficultyTag extends PredefinedTag implements Comparable<DifficultyTag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should EASY, MEDIUM or HARD only";
     public static final String EASY_TAG = "EASY";
     public static final String MEDIUM_TAG = "MEDIUM";
     public static final String HARD_TAG = "HARD";
 
-    public final String tagName;
-
-    /**
-     * Constructs a {@code Difficulty Tag}.
-     * Default difficulty tag is MEDIUM
-     */
-    public DifficultyTag() {
-        this.tagName = MEDIUM_TAG;
-    }
-
     /**
      * Constructs a {@code Difficulty Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagName A valid difficulty tag name.
      */
     public DifficultyTag(String tagName) {
+        super(tagName);
         requireNonNull(tagName);
-        this.tagName = tagName;
         checkArgument(isValidDifficultyTag(tagName), MESSAGE_CONSTRAINTS);
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid difficulty tag name.
      */
     public static boolean isValidDifficultyTag(String testInput) {
         String test = testInput.replaceAll("\\s+", "");
@@ -60,5 +50,24 @@ public class DifficultyTag {
      */
     public String toString() {
         return tagName;
+    }
+
+    /**
+     * Compares this {@code DifficultyTag} to another {@code DifficultyTag}
+     * @param other the DifficultyTag to compare to
+     * @return an integer representing whether this DifficultyTag is "greater than" the other DifficultyTag
+     */
+    public int compareTo(DifficultyTag other) {
+        int thisValue = this.tagName.equals(EASY_TAG)
+                ? 1
+                : this.tagName.equals(MEDIUM_TAG)
+                        ? 2
+                        : 3;
+        int otherValue = other.tagName.equals(EASY_TAG)
+                ? 1
+                : other.tagName.equals(MEDIUM_TAG)
+                        ? 2
+                        : 3;
+        return thisValue - otherValue;
     }
 }

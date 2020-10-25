@@ -16,7 +16,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.score.Score;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the glossary data.
  */
 public class ModelManager implements Model {
 
@@ -36,10 +36,7 @@ public class ModelManager implements Model {
     private ScoreList scoreList;
 
     /**
-     *
-     * @param initialData
-     * @param initialScores
-     * @param userPrefs
+     * Initialises a ModelManager with the given glossary and userPrefs.
      */
     public ModelManager(ReadOnlyGlossary initialData, ReadOnlyScoreList initialScores, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -151,7 +148,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code FlashCard} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedGlossary}
      */
     @Override
     public ObservableList<FlashCard> getFilteredFlashCardList() {

@@ -30,7 +30,7 @@ public class TryCommandTest {
     public void execute_quizModeTest() {
         try {
             CommandResult test = new TryCommand("incorrect attempt!").executeWithChecks(model);
-            assertEquals(test.toString(), TryCommand.QUIZMODE_REMINDER);
+            assertEquals(test.toString(), TryCommand.QUIZ_MODE_REMINDER);
         } catch (CommandException e) {
             e.printStackTrace();
         }

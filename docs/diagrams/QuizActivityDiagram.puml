@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+start
+:User inputs "quiz";
+:Start a new quiz with flashcard index = 0;
+repeat
+    :Get flashcard from model with flashcard index;
+
+    'Since the beta syntax does not support placing the condition outside the
+    'diamond we place it as the true branch instead.
+
+    : Test flashcard;
+    : Incrememt flashcard index by 1;
+repeat while () is ([flashcard is not null])
+
+stop
+@enduml

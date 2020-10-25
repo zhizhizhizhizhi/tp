@@ -9,9 +9,13 @@ import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
+/**
+ * Skips the current flashcard during a vocabulary self-testing session.
+ */
 public class NextCommand extends Command {
+
     public static final String COMMAND_WORD = "next";
-    public static final String QUIZMODE_REMINDER = "Command cannot be used when not in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
     public static final String MESSAGE_SUCCESS = "Next card: ";
 
@@ -44,7 +48,7 @@ public class NextCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override
