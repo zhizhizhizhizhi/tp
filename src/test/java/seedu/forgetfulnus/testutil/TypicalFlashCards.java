@@ -3,6 +3,7 @@ package seedu.forgetfulnus.testutil;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_DIFFICULTY_TAG_MEDIUM;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GENDER_TAG_M;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
@@ -23,7 +24,7 @@ public class TypicalFlashCards {
     public static final FlashCard MONDAY = new FlashCardBuilder().withGermanPhrase("Montag")
             .withEnglishPhrase("Monday")
             .withDifficultyTag("EASY")
-            .withGenderTag("NEUTRAL")
+            .withGenderTag("M")
             .withTags("day").withOrder(1).build();
     public static final FlashCard TUESDAY = new FlashCardBuilder().withGermanPhrase("Dienstag")
             .withEnglishPhrase("Tuesday")
@@ -33,48 +34,50 @@ public class TypicalFlashCards {
     public static final FlashCard WEDNESDAY = new FlashCardBuilder().withGermanPhrase("Mittwoch")
             .withEnglishPhrase("Wednesday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("F").withOrder(3)
+            .withGenderTag("M").withOrder(3)
             .build();
     public static final FlashCard THURSDAY = new FlashCardBuilder().withGermanPhrase("Donnerstag")
             .withEnglishPhrase("Thursday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("NEUTRAL").withOrder(4)
+            .withGenderTag("M").withOrder(4)
             .withTags("day").build();
     public static final FlashCard FRIDAY = new FlashCardBuilder().withGermanPhrase("Freitag")
             .withEnglishPhrase("Friday")
             .withDifficultyTag("MEDIUM")
-            .withGenderTag("NEUTRAL").withOrder(5)
+            .withGenderTag("M").withOrder(5)
             .build();
     public static final FlashCard SATURDAY = new FlashCardBuilder().withGermanPhrase("Samstag")
             .withEnglishPhrase("Saturday")
             .withDifficultyTag("HARD")
-            .withGenderTag("NEUTRAL").withOrder(6)
+            .withGenderTag("M").withOrder(6)
             .build();
     public static final FlashCard SUNDAY = new FlashCardBuilder().withGermanPhrase("Sonntag")
             .withEnglishPhrase("Sunday")
             .withDifficultyTag("HARD")
-            .withGenderTag("NEUTRAL").withOrder(7)
+            .withGenderTag("M").withOrder(7)
             .build();
 
     // Manually added
     public static final FlashCard MORNING = new FlashCardBuilder().withGermanPhrase("Morgen")
             .withEnglishPhrase("Morning")
-            .withDifficultyTag("Medium")
+            .withDifficultyTag("MEDIUM")
+            .withGenderTag("M")
             .withOrder(8).build();
     public static final FlashCard NOON = new FlashCardBuilder().withGermanPhrase("Mittag").withEnglishPhrase("Noon")
-            .withDifficultyTag("Medium")
+            .withDifficultyTag("MEDIUM")
+            .withGenderTag("M")
             .withOrder(9).build();
 
     // Manually added - FlashCard's details found in {@code CommandTestUtil}
     public static final FlashCard FORGETFULNESS = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
-            .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
             .withTags().withOrder(8).build();
     public static final FlashCard TABLE = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
             .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
+            .withGenderTag(VALID_GENDER_TAG_M)
             .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD).withOrder(9).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

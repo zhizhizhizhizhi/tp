@@ -40,7 +40,7 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some example commands you can try:
 
-   * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German word `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
+   * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German phrase `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
    
@@ -69,7 +69,14 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add g/<GERMAN WORD> e/<ENGLISH WORD>`, `GERMAN WORD` and `ENGLISH WORD` are parameters which can be used as `add g/Vergesslichkeit e/Forgetfulness`.
+  e.g. in `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE>`, `GERMAN PHRASE` and `ENGLISH PHRASE` are parameters which can be used as `add g/Vergesslichkeit e/Forgetfulness`.
+  
+* Items with `...` after them can be used multiple times including zero times.
+  e.g. `g/<GERMAN PHRASE> [t/<TAG>]...` can be used as  (i.e. 0 times), t/objects, t/objects t/nouns etc.
+  
+
+* Items in square brackets are optional
+  e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
 
 </div>
 
@@ -77,12 +84,24 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 Adds a flashcard to the glossary.
 
-Format: `add g/<GERMAN WORD> e/<ENGLISH WORD>`
+Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] [t/<TAG>]}`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about add command:**<br>
+
+* Difficulty has only three states, EASY, MEDIUM and HARD.
+  If left blank, by default it will be MEDIUM.
+  
+* Gender has only three states, M (Masculine), F (Feminine) and NEUTRAL.
+  If lwdt blank, by default it will be NEUTRAL.
+  
+</div>
 
 ![add-screenshot](images/add-screenshot.png)
 
 Example:
-* `add g/Vergesslichkeit e/Forgetfulness`
+* `add g/Tasche e/bag d/hard s/f t/tutorialOne t/page5`
 
 ### <a name="delete"></a>Deleting a flashcard : `delete`
 
@@ -96,7 +115,7 @@ Format: `delete <INDEX>`
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-Examples:
+Example:
 * `delete 2` deletes the 2nd flashcard in the glossary.
 
 ### <a name="list"></a>Listing all flashcards : `list`
@@ -175,7 +194,16 @@ Clears all entries from the glossary.
 
 Format: `clear`
 
-![clear-screenshot](images/clear-screenshot.png)
+### <a name="find"></a>Finding a flashcard by the German phrase : `find`
+
+Find a flashcard by the german phrase. The full phrase must be entered. 
+
+Format: `find <GERMAN PHRASE>`
+
+Examples:
+* `find Tasche` Finds the flashcard with the German Phrase 'Tasche'.
+
+![find-screenshot](images/find-screenshot.png)
 
 ### <a name="exit"></a>Exiting the program : `exit`
 
@@ -203,7 +231,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `g/<GERMAN WORD> e/<ENGLISH WORD>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness`
+**Add** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness`
 **Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Exit** | `exit`

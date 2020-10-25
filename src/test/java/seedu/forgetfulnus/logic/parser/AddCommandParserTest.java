@@ -1,8 +1,10 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DIFFICULTY_TAG_DESC_MEDIUM;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_TABLE;
+import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GENDER_TAG_DESC_M;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.INVALID_ENGLISH_PHRASE_DESC;
@@ -35,32 +37,37 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        FlashCard expectedFlashCard = new FlashCardBuilder(TABLE).withTags(VALID_TAG_CHAPTER_ONE).build();
+        FlashCard expectedFlashCard = new FlashCardBuilder(TABLE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCard));
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
 
-        // multiple names - last name accepted
+        // multiple german phrases - last german phrases accepted
         assertParseSuccess(parser, GERMAN_DESC_FORGETFULNESS + GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCard));
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
 
-        // multiple phones - last phone accepted
+        // multiple english phrases - last english phrases accepted
         assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_FORGETFULNESS + ENGLISH_DESC_TABLE
-                + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCard));
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
 
+        //TODO
         // multiple emails - last email accepted
         assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCard));
-        assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_FORGETFULNESS + ENGLISH_DESC_TABLE
-                + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCard));
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
 
+        //TODO
         // multiple tags - all accepted
         FlashCard expectedFlashCardMultipleTags = new FlashCardBuilder(TABLE)
                 .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD)
                 .build();
         assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + TAG_DESC_HARD + TAG_DESC_CHAPTER_ONE, new AddCommand(expectedFlashCardMultipleTags));
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_HARD + TAG_DESC_CHAPTER_ONE , new AddCommand(expectedFlashCard));
     }
 
     @Test
