@@ -11,7 +11,6 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 1. [Features](#features)
     1. [Add Flashcard](#add)
     1. [Delete Flashcard](#delete)
-    1. [Clear All Flashcards](#clear)
     1. [View All Flashcards](#list)
     1. [Sort All Flashcards](#sort)
     1. [Test Yourself](#test)
@@ -20,7 +19,9 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
         - [Next](#next)
         - [Try](#try)
         - [End Testing](#end)
-    1. [Save and Exit](#exit)
+    1. [Clear All Flashcards](#clear)
+    1. [Find a Flashcard](#find)
+    1. [Exit](#exit)
 1. [FAQ](#faq)
 1. [Command Summary](#cmdsum)
 
@@ -94,7 +95,7 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
   If left blank, by default it will be MEDIUM.
   
 * Gender has only three states, M (Masculine), F (Feminine) and NEUTRAL.
-  If lwdt blank, by default it will be NEUTRAL.
+  If left blank, by default it will be NEUTRAL.
   
 </div>
 
@@ -231,7 +232,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness`
+**Add** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/<DIFFICULTY>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness d/hard`
 **Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Exit** | `exit`
