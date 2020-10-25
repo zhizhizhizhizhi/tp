@@ -10,6 +10,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.flashcard.Order;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
+import seedu.forgetfulnus.model.tag.GenderTag;
 import seedu.forgetfulnus.model.tag.Tag;
 
 /**
@@ -35,6 +36,7 @@ public class EditFlashCardDescriptorBuilder {
         descriptor.setGermanPhrase(flashCard.getGermanPhrase());
         descriptor.setEnglishPhrase(flashCard.getEnglishPhrase());
         descriptor.setDifficultyTag(flashCard.getDifficultyTag());
+        descriptor.setGenderTag(flashCard.getGenderTag());
         descriptor.setTags(flashCard.getTags());
         descriptor.setOrder(flashCard.getOrder());
     }
@@ -60,6 +62,14 @@ public class EditFlashCardDescriptorBuilder {
      */
     public EditFlashCardDescriptorBuilder withDifficultyTag(String difficultyTag) {
         descriptor.setDifficultyTag(new DifficultyTag(difficultyTag));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender Tag} of the {@code EditFlashCardDescriptor} that we are building.
+     */
+    public EditFlashCardDescriptorBuilder withGenderTag(String genderTag) {
+        descriptor.setGenderTag(new GenderTag(genderTag));
         return this;
     }
 

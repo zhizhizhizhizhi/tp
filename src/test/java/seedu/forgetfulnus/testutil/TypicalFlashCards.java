@@ -4,7 +4,6 @@ import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_DIFFICULTY
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_ENGLISH_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GENDER_TAG_M;
-import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GENDER_TAG_NEUTRAL;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_GERMAN_PHRASE_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
@@ -73,8 +72,6 @@ public class TypicalFlashCards {
     public static final FlashCard FORGETFULNESS = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
             .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
-            .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
-            .withGenderTag(VALID_GENDER_TAG_NEUTRAL)
             .withTags().withOrder(8).build();
     public static final FlashCard TABLE = new FlashCardBuilder()
             .withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)

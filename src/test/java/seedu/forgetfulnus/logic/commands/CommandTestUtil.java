@@ -2,7 +2,9 @@ package seedu.forgetfulnus.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
+import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
@@ -30,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_ENGLISH_PHRASE_TABLE = "Table";
     public static final String VALID_DIFFICULTY_TAG_HARD = "HARD";
     public static final String VALID_DIFFICULTY_TAG_MEDIUM = "MEDIUM";
-    public static final String VALID_GENDER_TAG_NEUTRAL = "NEUTRAL";
     public static final String VALID_GENDER_TAG_M = "M";
+    public static final String VALID_GENDER_TAG_F = "F";
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
     public static final String VALID_ORDER_EIGHT = "8";
@@ -43,6 +45,8 @@ public class CommandTestUtil {
     public static final String ENGLISH_DESC_FORGETFULNESS = " "
             + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_FORGETFULNESS;
     public static final String ENGLISH_DESC_TABLE = " " + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_TABLE;
+    public static final String DIFFICULTY_TAG_DESC_MEDIUM = " " + PREFIX_DIFFICULTY_TAG + VALID_DIFFICULTY_TAG_MEDIUM;
+    public static final String GENDER_TAG_DESC_M = " " + PREFIX_GENDER_TAG + VALID_GENDER_TAG_M;
     public static final String TAG_DESC_CHAPTER_ONE = " " + PREFIX_TAG + VALID_TAG_CHAPTER_ONE;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + VALID_TAG_HARD;
 
@@ -61,11 +65,11 @@ public class CommandTestUtil {
     static {
         DESC_FORGETFULNESS = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
-                .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
                 .withTags(VALID_TAG_HARD).withOrder(VALID_ORDER_EIGHT).build();
         DESC_TABLE = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
-                .withDifficultyTag(VALID_DIFFICULTY_TAG_HARD)
+                .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
+                .withGenderTag(VALID_GENDER_TAG_M)
                 .withTags(VALID_TAG_HARD, VALID_TAG_CHAPTER_ONE).withOrder(VALID_ORDER_NINE).build();
     }
 

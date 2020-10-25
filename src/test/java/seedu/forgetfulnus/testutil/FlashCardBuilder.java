@@ -36,7 +36,6 @@ public class FlashCardBuilder {
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
         difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         genderTag = new GenderTag(GenderTag.NEUTRAL_TAG);
-        assert difficultyTag.toString().equals(DifficultyTag.MEDIUM_TAG);
         tags = new HashSet<>();
         order = new Order(Integer.parseInt(DEFAULT_ORDER));
     }
