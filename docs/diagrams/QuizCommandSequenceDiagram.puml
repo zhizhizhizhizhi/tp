@@ -6,7 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
 participant "QuizCommand" as QuizCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant ":Glossary" as Glossary LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -22,7 +21,6 @@ LogicManager -> GlossaryParser : parseCommand("quiz")
 activate GlossaryParser
 
 GlossaryParser -> GlossaryParser : parseCommand("quiz")
-activate GlossaryParser
 
 create QuizCommand
 GlossaryParser -> QuizCommand

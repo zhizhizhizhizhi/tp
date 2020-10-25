@@ -147,12 +147,19 @@ Format: `random <NUMBER>`
 Example: `random 10` starts a randomised quiz with 10 randomly selected flashcards.
 
 ### <a name="next"></a>Next : `next`
+Skips the current flashcard and move on to the next card in quiz mode.
+
+Format: `next`
 
 ![next-screenshot](images/next-screenshot.png)
 
 ### <a name="try"></a>Try : `try`
+Compares the user attempt with the definition of the current flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
 
+Format: `try <attempt>`
 ![try-screenshot](images/try-screenshot.png)
+
+Example: 'try Tuesday'
 
 ### <a name="end"></a>End Test : `end`
 
