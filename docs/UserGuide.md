@@ -191,7 +191,7 @@ Format: `end`
 
 ### <a name="clear"></a>Clearing all entries : `clear`
 
-Clears all entries from the glossary.
+Clears all flashcards from the glossary.
 
 Format: `clear`
 
