@@ -34,9 +34,15 @@ public interface Logic {
     ObservableList<FlashCard> getFilteredFlashCardList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' glossary file path.
      */
     Path getGlossaryFilePath();
+
+    /**
+     * Returns the user prefs' scores file path
+     */
+
+    Path getScoresFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

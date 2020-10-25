@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveGlossary(model.getGlossary());
+            storage.saveScores(model.getScoreList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -68,6 +69,14 @@ public class LogicManager implements Logic {
     @Override
     public Path getGlossaryFilePath() {
         return model.getGlossaryFilePath();
+    }
+
+    /**
+     * Returns the user prefs' scores file path
+     */
+    @Override
+    public Path getScoresFilePath() {
+        return model.getScoreFilePath();
     }
 
     @Override

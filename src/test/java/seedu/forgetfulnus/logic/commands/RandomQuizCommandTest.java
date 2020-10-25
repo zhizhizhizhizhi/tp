@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
@@ -23,8 +24,8 @@ public class RandomQuizCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalGlossary(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
     }
 
     @Test

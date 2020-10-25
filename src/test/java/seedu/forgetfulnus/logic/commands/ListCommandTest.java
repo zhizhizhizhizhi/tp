@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 
 /**
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
-        expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
     }
 
     @Test

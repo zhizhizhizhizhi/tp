@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.testutil.FlashCardBuilder;
@@ -22,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         FlashCard validFlashCard = new FlashCardBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
         expectedModel.addFlashCard(validFlashCard);
 
         assertCommandSuccess(new AddCommand(validFlashCard), model,

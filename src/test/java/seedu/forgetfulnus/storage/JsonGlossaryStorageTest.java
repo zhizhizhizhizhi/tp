@@ -31,7 +31,7 @@ public class JsonGlossaryStorageTest {
     }
 
     private java.util.Optional<ReadOnlyGlossary> readGlossary(String filePath) throws Exception {
-        return new JsonGlossaryStorage(Paths.get(filePath)).readGlossary(addToTestDataPathIfNotNull(filePath));
+        return new JsonGlossaryStorage(Paths.get(filePath)).readFile(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,21 +67,21 @@ public class JsonGlossaryStorageTest {
         JsonGlossaryStorage jsonGlossaryStorage = new JsonGlossaryStorage(filePath);
 
         // Save in new file and read back
-        jsonGlossaryStorage.saveGlossary(original, filePath);
-        ReadOnlyGlossary readBack = jsonGlossaryStorage.readGlossary(filePath).get();
+        jsonGlossaryStorage.saveFile(original, filePath);
+        ReadOnlyGlossary readBack = jsonGlossaryStorage.readFile(filePath).get();
         assertEquals(original, new Glossary(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addFlashCard(MORNING);
         original.removeFlashCard(MONDAY);
-        jsonGlossaryStorage.saveGlossary(original, filePath);
-        readBack = jsonGlossaryStorage.readGlossary(filePath).get();
+        jsonGlossaryStorage.saveFile(original, filePath);
+        readBack = jsonGlossaryStorage.readFile(filePath).get();
         assertEquals(original, new Glossary(readBack));
 
         // Save and read without specifying file path
         original.addFlashCard(NOON);
-        jsonGlossaryStorage.saveGlossary(original); // file path not specified
-        readBack = jsonGlossaryStorage.readGlossary().get(); // file path not specified
+        jsonGlossaryStorage.saveFile(original); // file path not specified
+        readBack = jsonGlossaryStorage.readFile().get(); // file path not specified
         assertEquals(original, new Glossary(readBack));
 
     }
@@ -97,7 +97,7 @@ public class JsonGlossaryStorageTest {
     private void saveGlossary(ReadOnlyGlossary glossary, String filePath) {
         try {
             new JsonGlossaryStorage(Paths.get(filePath))
-                    .saveGlossary(glossary, addToTestDataPathIfNotNull(filePath));
+                    .saveFile(glossary, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

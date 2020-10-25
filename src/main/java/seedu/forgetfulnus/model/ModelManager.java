@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.forgetfulnus.commons.core.GuiSettings;
 import seedu.forgetfulnus.commons.core.LogsCenter;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
+import seedu.forgetfulnus.model.score.Score;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,28 +30,28 @@ public class ModelManager implements Model {
     private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
     private boolean isQuizMode = false;
-    private int quizModeIndex = 0;
     private boolean isRandomQuiz = false;
 
-    private int quizScore = 0;
-    private int quizTotalQuestions = 0;
+    private Score quizScore;
+    private ScoreList scoreList;
 
     /**
-     * Initializes a ModelManager with the given glossary and userPrefs.
+     *
+     * @param initialData
+     * @param initialScores
+     * @param userPrefs
      */
-    public ModelManager(ReadOnlyGlossary glossary, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGlossary initialData, ReadOnlyScoreList initialScores, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(glossary, userPrefs);
+        requireAllNonNull(initialData, initialScores, userPrefs);
 
-        logger.fine("Initialising with glossary: " + glossary + " and user prefs " + userPrefs);
+        logger.fine("Initialising with glossary: " + initialData + ", scores: "
+                + initialScores + " and user prefs " + userPrefs);
 
-        this.glossary = new Glossary(glossary);
+        this.glossary = new Glossary(initialData);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.scoreList = new ScoreList(initialScores);
         filteredFlashCards = new FilteredList<>(this.glossary.getFlashCardList());
-    }
-
-    public ModelManager() {
-        this(new Glossary(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -85,6 +87,17 @@ public class ModelManager implements Model {
     public void setGlossaryFilePath(Path glossaryFilePath) {
         requireNonNull(glossaryFilePath);
         userPrefs.setGlossaryFilePath(glossaryFilePath);
+    }
+
+    @Override
+    public Path getScoreFilePath() {
+        return userPrefs.getScoresFilePath();
+    }
+
+    @Override
+    public void setScoreFilePath(Path scoreFilePath) {
+        requireNonNull(scoreFilePath);
+        userPrefs.setScoresFilePath(scoreFilePath);
     }
 
     //=========== Glossary ================================================================================
@@ -123,24 +136,16 @@ public class ModelManager implements Model {
         glossary.setFlashCard(target, editedFlashCard);
     }
 
+    //=========== Score List =================================================================================
+
     @Override
-    public int getQuizScore() {
-        return quizScore;
+    public void setScoreList(ScoreList scoreList) {
+        this.scoreList.resetData(scoreList);
     }
 
     @Override
-    public int getQuizTotalQuestions() {
-        return quizTotalQuestions;
-    }
-
-    /**
-     * Resets the program at the end of a quiz.
-     */
-    @Override
-    public void resetQuiz() {
-        quizScore = 0;
-        quizTotalQuestions = 0;
-        quizModeIndex = 0;
+    public ScoreList getScoreList() {
+        return scoreList;
     }
     //=========== Filtered FlashCard List Accessors =============================================================
 
@@ -166,24 +171,51 @@ public class ModelManager implements Model {
         filteredFlashCards.setPredicate(predicate);
     }
 
+    //=========== Quiz Mode =============================================================
+
     @Override
-    public void incrementQuizModeIndex() {
-        quizModeIndex++;
-        quizTotalQuestions++;
+    public int getQuizScore() {
+        return quizScore.getScore();
+    }
+
+    @Override
+    public int getQuizTotalQuestions() {
+        return quizScore.getNumQuestions();
+    }
+
+    /**
+     * Resets the program at the end of a quiz.
+     */
+    @Override
+    public void resetQuiz() {
+        int quizSize = filteredFlashCards.size();
+        quizScore = new Score(0, quizSize, new ArrayList<>());
+    }
+
+    @Override
+    public void addCardToScore(FlashCard next) {
+        quizScore.addFlashcard(next);
+    }
+
+    @Override
+    public void updateWithCorrectAttempt() {
+        quizScore.incrementScore();
     }
 
     @Override
     public int getQuizModeIndex() {
-        return quizModeIndex;
+        return quizScore.getIndex();
     }
 
+    @Override
+    public void saveScore() {
+        scoreList.addScore(quizScore);
+    }
     @Override
     public void setQuizMode(boolean isQuizMode) {
         this.isQuizMode = isQuizMode;
         if (isQuizMode) {
-            quizModeIndex = 0;
-            quizScore = 0;
-            quizTotalQuestions = 0;
+            resetQuiz();
         }
     }
 
@@ -198,7 +230,6 @@ public class ModelManager implements Model {
         if (isRandomQuiz) {
             backupGlossary = new Glossary(glossary);
         } else {
-            quizModeIndex = 0;
             setGlossary(new Glossary(backupGlossary));
             updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         }
@@ -207,11 +238,6 @@ public class ModelManager implements Model {
     @Override
     public boolean isRandomQuizMode() {
         return isRandomQuiz;
-    }
-
-    @Override
-    public void updateWithCorrectAttempt() {
-        quizScore++;
     }
 
     @Override

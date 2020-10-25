@@ -22,6 +22,7 @@ import seedu.forgetfulnus.logic.commands.EditCommand.EditFlashCardDescriptor;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.testutil.EditFlashCardDescriptorBuilder;
@@ -32,7 +33,7 @@ import seedu.forgetfulnus.testutil.FlashCardBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalGlossary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard);
 
-        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new ScoreList(), new UserPrefs());
         expectedModel.setFlashCard(model.getFilteredFlashCardList().get(0), editedFlashCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,7 +65,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard);
 
-        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new ScoreList(), new UserPrefs());
         expectedModel.setFlashCard(lastFlashCard, editedFlashCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +78,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard);
 
-        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new ScoreList(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +95,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashCard);
 
-        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Glossary(model.getGlossary()), new ScoreList(), new UserPrefs());
         expectedModel.setFlashCard(model.getFilteredFlashCardList().get(0), editedFlashCard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

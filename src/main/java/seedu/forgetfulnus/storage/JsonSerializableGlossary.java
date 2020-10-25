@@ -24,7 +24,7 @@ class JsonSerializableGlossary {
     private final List<JsonAdaptedFlashCard> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableGlossary} with the given persons.
      */
     @JsonCreator
     public JsonSerializableGlossary(@JsonProperty("persons") List<JsonAdaptedFlashCard> persons) {
