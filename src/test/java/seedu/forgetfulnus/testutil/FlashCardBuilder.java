@@ -48,6 +48,7 @@ public class FlashCardBuilder {
         englishPhrase = flashCardToCopy.getEnglishPhrase();
         difficultyTag = flashCardToCopy.getDifficultyTag();
         genderTag = flashCardToCopy.getGenderTag();
+        assert GenderTag.isValidGenderTag(genderTag.toString());
         assert DifficultyTag.isValidDifficultyTag(difficultyTag.toString());
         tags = new HashSet<>(flashCardToCopy.getTags());
         order = flashCardToCopy.getOrder();
