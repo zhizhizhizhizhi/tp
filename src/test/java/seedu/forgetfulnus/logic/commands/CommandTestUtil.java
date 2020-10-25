@@ -30,6 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_ENGLISH_PHRASE_TABLE = "Table";
     public static final String VALID_DIFFICULTY_TAG_HARD = "HARD";
     public static final String VALID_DIFFICULTY_TAG_MEDIUM = "MEDIUM";
+    public static final String VALID_GENDER_TAG_NEUTRAL = "NEUTRAL";
+    public static final String VALID_GENDER_TAG_M = "M";
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
     public static final String VALID_ORDER_EIGHT = "8";
