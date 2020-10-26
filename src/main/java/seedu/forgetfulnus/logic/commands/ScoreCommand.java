@@ -8,7 +8,7 @@ public class ScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "scores";
 
-    public static final String QUIZMODE_REMINDER = "'score' command cannot be used in quiz mode. "
+    public static final String QUIZMODE_REMINDER = "'scores' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
     private static final String MESSAGE_HEADER = "Here are the scores for your past quiz attempts: ";
