@@ -25,8 +25,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonGlossaryStorage glossaryStorage = new JsonGlossaryStorage(getTempFilePath("ab"));
+        JsonScoreStorage scoreStorage = new JsonScoreStorage(getTempFilePath("sc"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(glossaryStorage, userPrefsStorage);
+        storageManager = new StorageManager(glossaryStorage, scoreStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

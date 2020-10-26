@@ -28,9 +28,8 @@ public class QuizCommand extends Command {
             changeTo.updateShowingEnglish(false);
             model.setFlashCard(toEdit, changeTo);
         }
-        model.resetQuiz();
-        model.setQuizMode(true);
         model.updateFilteredPhraseList();
+        model.setQuizMode(true);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

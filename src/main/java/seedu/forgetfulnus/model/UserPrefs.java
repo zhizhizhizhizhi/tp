@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path glossaryFilePath = Paths.get("data" , "glossary.json");
+    private Path scoresFilePath = Paths.get("data" , "scores.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setGlossaryFilePath(newUserPrefs.getGlossaryFilePath());
+        setScoresFilePath(newUserPrefs.getScoresFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +53,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return glossaryFilePath;
     }
 
+    @Override
+    public Path getScoresFilePath() {
+        return scoresFilePath;
+    }
+
     public void setGlossaryFilePath(Path glossaryFilePath) {
         requireNonNull(glossaryFilePath);
         this.glossaryFilePath = glossaryFilePath;
+    }
+
+    public void setScoresFilePath(Path scoresFilePath) {
+        requireNonNull(scoresFilePath);
+        this.scoresFilePath = scoresFilePath;
     }
 
     @Override
@@ -68,12 +80,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && glossaryFilePath.equals(o.glossaryFilePath);
+                && glossaryFilePath.equals(o.glossaryFilePath)
+                && scoresFilePath.equals(o.scoresFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, glossaryFilePath);
+        return Objects.hash(guiSettings, glossaryFilePath, scoresFilePath);
     }
 
     @Override
@@ -81,6 +94,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + glossaryFilePath);
+        sb.append("\nLocal scores file location : " + scoresFilePath);
         return sb.toString();
     }
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 
 /**
@@ -21,8 +22,8 @@ public class TryCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalGlossary(), new UserPrefs());
-        expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
     }
 
     @Test
@@ -55,7 +56,6 @@ public class TryCommandTest {
                             + new NextCommand().executeWithChecks(expectedModel));
             assertEquals(model.getQuizModeIndex(), index + 1);
             assertEquals(model.getQuizScore(), score + 1);
-            assertEquals(model.getQuizTotalQuestions(), total + 1);
         } catch (CommandException e) {
             e.printStackTrace();
         }

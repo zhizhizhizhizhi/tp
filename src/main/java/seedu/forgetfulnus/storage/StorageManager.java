@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 import seedu.forgetfulnus.commons.core.LogsCenter;
 import seedu.forgetfulnus.commons.exceptions.DataConversionException;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
+import seedu.forgetfulnus.model.ReadOnlyScoreList;
 import seedu.forgetfulnus.model.ReadOnlyUserPrefs;
 import seedu.forgetfulnus.model.UserPrefs;
+import seedu.forgetfulnus.storage.interfaces.ObjectStorage;
 
 /**
  * Manages storage of Glossary data in local storage.
@@ -17,15 +19,19 @@ import seedu.forgetfulnus.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private GlossaryStorage glossaryStorage;
+    private ObjectStorage<ReadOnlyGlossary> glossaryStorage;
+    private ObjectStorage<ReadOnlyScoreList> scoreStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code GlossaryStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ObjectStorage<ReadOnlyGlossary>},
+     * {@code ObjectStorage<ReadOnlyScoreList>} and {@code UserPrefStorage}.
      */
-    public StorageManager(GlossaryStorage glossaryStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ObjectStorage<ReadOnlyGlossary> glossaryStorage,
+                          ObjectStorage<ReadOnlyScoreList> scoreStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.glossaryStorage = glossaryStorage;
+        this.scoreStorage = scoreStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,29 +57,57 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getGlossaryFilePath() {
-        return glossaryStorage.getGlossaryFilePath();
+        return glossaryStorage.getFilePath();
     }
 
     @Override
     public Optional<ReadOnlyGlossary> readGlossary() throws DataConversionException, IOException {
-        return readGlossary(glossaryStorage.getGlossaryFilePath());
+        return readGlossary(glossaryStorage.getFilePath());
     }
 
     @Override
     public Optional<ReadOnlyGlossary> readGlossary(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return glossaryStorage.readGlossary(filePath);
+        return glossaryStorage.readFile(filePath);
     }
 
     @Override
     public void saveGlossary(ReadOnlyGlossary glossary) throws IOException {
-        saveGlossary(glossary, glossaryStorage.getGlossaryFilePath());
+        saveGlossary(glossary, glossaryStorage.getFilePath());
     }
 
     @Override
     public void saveGlossary(ReadOnlyGlossary glossary, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        glossaryStorage.saveGlossary(glossary, filePath);
+        glossaryStorage.saveFile(glossary, filePath);
     }
 
+    // ================ Score methods ==============================
+
+    @Override
+    public Path getScoreFilePath() {
+        return scoreStorage.getFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyScoreList> readScores() throws DataConversionException, IOException {
+        return readScores(scoreStorage.getFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyScoreList> readScores(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return scoreStorage.readFile(filePath);
+    }
+
+    @Override
+    public void saveScores(ReadOnlyScoreList scoreList) throws IOException {
+        saveScores(scoreList, scoreStorage.getFilePath());
+    }
+
+    @Override
+    public void saveScores(ReadOnlyScoreList scoreList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        scoreStorage.saveFile(scoreList, filePath);
+    }
 }

@@ -12,6 +12,7 @@ import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 
 /**
@@ -20,10 +21,15 @@ import seedu.forgetfulnus.model.UserPrefs;
  */
 public class RandomQuizCommandTest {
 
-    private Model model = new ModelManager(getTypicalGlossary(), new UserPrefs());
+    private Model model;
+
+    public void setUp() {
+        model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
+    }
 
     @Test
     public void execute_randomNonEmptyList_success() throws CommandException {
+        setUp();
         String expectedMessage = RandomQuizCommand.MESSAGE_SUCCESS;
         String actualMessage = new RandomQuizCommand(
                 Index.fromOneBased(getTypicalGlossary().getFlashCardList().size()))
@@ -34,6 +40,7 @@ public class RandomQuizCommandTest {
 
     @Test
     public void execute_randomEmptyList_throwsCommandException() {
+        setUp();
         model.setGlossary(new Glossary());
         assertThrows(
                 CommandException.class,

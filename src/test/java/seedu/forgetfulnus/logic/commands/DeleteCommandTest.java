@@ -15,6 +15,7 @@ import seedu.forgetfulnus.commons.core.Messages;
 import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
@@ -24,7 +25,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalGlossary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashCardToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
         expectedModel.deleteFlashCard(flashCardToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashCardToDelete);
 
-        Model expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
         expectedModel.deleteFlashCard(flashCardToDelete);
         showNoFlashCard(expectedModel);
 

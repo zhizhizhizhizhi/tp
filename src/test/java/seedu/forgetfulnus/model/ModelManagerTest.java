@@ -20,7 +20,10 @@ import seedu.forgetfulnus.testutil.GlossaryBuilder;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private Glossary initialData = new Glossary();
+    private ScoreList initialScores = new ScoreList();
+    private UserPrefs userPrefs = new UserPrefs();
+    private ModelManager modelManager = new ModelManager(initialData, initialScores, userPrefs);
 
     @Test
     public void constructor() {
@@ -97,11 +100,12 @@ public class ModelManagerTest {
     public void equals() {
         Glossary glossary = new GlossaryBuilder().withFlashCard(MONDAY).withFlashCard(TUESDAY).build();
         Glossary differentGlossary = new Glossary();
+        ScoreList scoreList = new ScoreList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(glossary, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(glossary, userPrefs);
+        modelManager = new ModelManager(glossary, scoreList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(glossary, scoreList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentGlossary, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentGlossary, scoreList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = MONDAY.getGermanPhrase().toString().split("\\s+");
         modelManager.updateFilteredPhraseList(new GermanPhraseContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(glossary, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(glossary, scoreList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
@@ -127,6 +131,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setGlossaryFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(glossary, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(glossary, scoreList, differentUserPrefs)));
     }
 }
