@@ -19,25 +19,30 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 @JsonRootName(value = "glossary")
 class JsonSerializableGlossary {
 
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD =
+            "Flashcards list contains duplicate flashcard(s).";
 
-    private final List<JsonAdaptedFlashCard> persons = new ArrayList<>();
+    private final List<JsonAdaptedFlashCard> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableGlossary} with the given persons.
+     * Constructs a {@code JsonSerializableGlossary} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableGlossary(@JsonProperty("persons") List<JsonAdaptedFlashCard> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableGlossary(@JsonProperty("flashcards") List<JsonAdaptedFlashCard> flashcards) {
+        this.flashcards.addAll(flashcards);
     }
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created
+     * {@code JsonSerializableGlossary}.
      */
     public JsonSerializableGlossary(ReadOnlyGlossary source) {
-        persons.addAll(source.getFlashCardList().stream().map(JsonAdaptedFlashCard::new).collect(Collectors.toList()));
+        flashcards.addAll(source.getFlashCardList()
+                .stream()
+                .map(JsonAdaptedFlashCard::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,7 +52,7 @@ class JsonSerializableGlossary {
      */
     public Glossary toModelType() throws IllegalValueException {
         Glossary glossary = new Glossary();
-        for (JsonAdaptedFlashCard jsonAdaptedFlashCard : persons) {
+        for (JsonAdaptedFlashCard jsonAdaptedFlashCard : flashcards) {
             FlashCard flashCard = jsonAdaptedFlashCard.toModelType();
             if (glossary.hasFlashCard(flashCard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);

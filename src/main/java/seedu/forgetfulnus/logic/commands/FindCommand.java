@@ -17,7 +17,7 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
-    public static final String QUIZMODE_REMINDER = "'find' command cannot be used in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "'find' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -37,7 +37,7 @@ public class FindCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

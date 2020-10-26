@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "flashcards": [ {
     "germanPhrase": "Valid Person",
     "englishPhrase": "englishphrase",
     "difficultyTag" : "MEDIUM",

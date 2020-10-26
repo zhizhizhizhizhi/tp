@@ -1,6 +1,6 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
+  "_comment": "Glossary save file which contains the same FlashCard values as in TypicalFlashCards#getTypicalGlossary()",
+  "flashcards" : [ {
     "germanPhrase" : "Montag",
     "englishPhrase" : "Monday",
     "difficultyTag" : "EASY",

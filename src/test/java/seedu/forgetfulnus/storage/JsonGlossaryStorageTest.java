@@ -20,7 +20,8 @@ import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
 
 public class JsonGlossaryStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonGlossaryStorageTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonGlossaryStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -56,8 +57,9 @@ public class JsonGlossaryStorageTest {
     }
 
     @Test
-    public void readGlossary_invalidAndValidPersonGlossary_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readGlossary("invalidAndValidFlashCardGlossary.json"));
+    public void readGlossary_invalidAndValidFlashCardGlossary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readGlossary(
+                "invalidAndValidFlashCardGlossary.json"));
     }
 
     @Test

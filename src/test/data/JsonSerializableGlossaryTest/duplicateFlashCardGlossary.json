@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "flashcards": [ {
     "germanPhrase": "Montag",
     "englishPhrase": "Monday",
     "difficultyTag" : "MEDIUM",

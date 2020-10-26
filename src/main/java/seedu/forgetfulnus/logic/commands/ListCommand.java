@@ -12,7 +12,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards.";
-    public static final String QUIZMODE_REMINDER = "'list' command cannot be used in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "'list' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -26,7 +26,7 @@ public class ListCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override
