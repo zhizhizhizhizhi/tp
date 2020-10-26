@@ -7,7 +7,10 @@ skinparam classBackgroundColor LOGIC_COLOR_T2
 
 abstract class Command
 interface Parser
-class SortCommand
+class SortCommand {
+    comp: Comparator<FlashCard>
+    +void : execute(model)
+}
 class SortCommandParser {
     ~SortCommand : parse(String)
 }
@@ -26,13 +29,6 @@ SortCommand --|> Command
 SortCommandParser ..|> Parser
 SortCommandParser ..> ParserUtil : uses static method from
 SortCommandParser --> "1" SortCommand : creates
-
-
 SortCommand ..> "1" Model : modifies
-
-class SortCommand {
-    comp: Comparator<FlashCard>
-    +void : execute(model)
-}
 
 @enduml
