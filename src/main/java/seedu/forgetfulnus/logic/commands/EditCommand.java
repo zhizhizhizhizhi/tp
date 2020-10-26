@@ -39,7 +39,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited FlashCard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book.";
-    public static final String QUIZMODE_REMINDER = "Flashcards cannot be edited in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "Flashcards cannot be edited in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -81,7 +81,7 @@ public class EditCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

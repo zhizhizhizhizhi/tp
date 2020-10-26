@@ -13,26 +13,27 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 /**
  * Panel containing the glossary.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class FlashCardListPanel extends UiPart<Region> {
+
     private static final String FXML = "FlashCardListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(FlashCardListPanel.class);
 
     @FXML
-    private ListView<FlashCard> personListView;
+    private ListView<FlashCard> flashCardListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FlashCardListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<FlashCard> flashCardList) {
+    public FlashCardListPanel(ObservableList<FlashCard> flashCardList) {
         super(FXML);
-        personListView.setItems(flashCardList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        flashCardListView.setItems(flashCardList);
+        flashCardListView.setCellFactory(listView -> new FlashCardListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code FlashCard} using a {@code FlashCardCardView}.
      */
-    class PersonListViewCell extends ListCell<FlashCard> {
+    class FlashCardListViewCell extends ListCell<FlashCard> {
         @Override
         protected void updateItem(FlashCard flashCard, boolean empty) {
             super.updateItem(flashCard, empty);

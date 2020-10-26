@@ -12,26 +12,31 @@ can get your German revision done quickly and effectively.
 ## Table of Contents
 
 1. [Quick Start](#qs)
+1. [Example Commands](#excmds)
 1. [Features](#features)
-    1. [Add Flashcard](#add)
-    1. [Delete Flashcard](#delete)
-    1. [View All Flashcards](#list)
-    1. [Sort All Flashcards](#sort)
+    1. [Editing the glossary](#editing)
+        1. [Add Flashcard](#add)
+        1. [Delete Flashcard](#delete)
+        1. [Clear All Flashcards](#clear)
     1. [Test Yourself](#test)
-        - [Normal Mode](#quiz)
-        - [Random Mode](#random)
-        - [Next](#next)
-        - [Try](#try)
-        - [End Testing](#end)
-    1. [Clear All Flashcards](#clear)
-    1. [Find a Flashcard](#find)
-    1. [Exit](#exit)
+        1. [Normal Mode](#quiz)
+        1. [Random Mode](#random)
+        1. [Next](#next)
+        1. [Try](#try)
+        1. [End Testing](#end)
+    1. [Navigating the glossary](#navigating)
+        1. [Find a Flashcard](#find)
+        1. [View All Flashcards](#list)
+        1. [Sort All Flashcards](#sort)
+    1. [Miscellaneous Commands](#misc)
+        1. [Help](#help)
+        1. [Exit](#exit)
 1. [FAQ](#faq)
 1. [Command Summary](#cmdsum)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="qs"></a>Quick start
+## <a name="qs"></a>1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -43,10 +48,9 @@ can get your German revision done quickly and effectively.
  sample data for you to get started.<br>.<br>
    ![Ui](images/Ui.png)
 
-
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
   
-  ## <a name="Example Commands"></a>Example commands
+  ## <a name="excmds"></a>2. Example commands
   
    Here are some example commands you can try:
 
@@ -62,7 +66,7 @@ Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="features"></a>Features
+## <a name="features"></a>3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -80,7 +84,8 @@ Refer to the [Features](#features) below for details of each command.
 
 </div>
 
-### <a name="add"></a>Adding a flashcard: `add`
+### <a name="editing"></a>3.1. Editing the glossary
+#### <a name="add"></a>3.1.1. Adding a flashcard: `add`
 
 Adds a flashcard to the glossary.
 
@@ -105,7 +110,7 @@ Example:
 
 ![add-screenshot](images/add-screenshot.png)
 
-### <a name="delete"></a>Deleting a flashcard : `delete`
+#### <a name="delete"></a>3.1.2. Deleting a flashcard : `delete`
 
 Deletes the specified flashcard from the glossary.
 
@@ -115,7 +120,6 @@ Format: `delete <INDEX>`
 * The index refers to the index number shown in the displayed glossary.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-
 Example:
 * `delete 2` deletes the 2nd flashcard in the glossary.
  
@@ -123,8 +127,83 @@ Example:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
+#### <a name="clear"></a>3.1.3. Clearing all entries : `clear`
 
-### <a name="list"></a>Listing all flashcards : `list`
+Clears all flashcards from the glossary.
+
+Format: `clear`
+
+### <a name="test"></a>3.2. Test Yourself
+#### <a name="quiz"></a>3.2.1. Normal Test : `quiz`
+
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary.
+
+Format: `quiz`
+
+After entering this command, your app should look like this:
+
+
+![quiz-screenshot](images/quiz-screenshot.png)
+
+#### <a name="random"></a>3.2.2. Random Test : `random`
+
+Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
+
+Format: `random <NUMBER>`
+
+Example: 
+* `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+    
+    After entering this command, your app should look like this:
+    
+![random-screenshot](images/random-screenshot.png)
+
+#### <a name="next"></a>3.2.3. Next : `next`
+Skips the current flashcard and move on to the next card in quiz mode.
+
+Format: `next`
+
+After entering this command, your app should look like this:
+
+![next-screenshot](images/next-screenshot.png)
+
+#### <a name="try"></a>3.2.4. Try : `try`
+Compares the user attempt with the definition of the current flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
+
+Format: `try <ATTEMPT>`
+
+![try-screenshot](images/try-screenshot.png)
+
+Example: 'try Tuesday'
+
+#### <a name="end"></a>3.2.5. End Test : `end`
+
+Ends the round of vocabulary testing.
+
+Format: `end`
+
+After entering this command, your app should look like this:
+
+![end-screenshot](images/end-screenshot.png)
+
+### <a name="navigating"></a>3.3. Navigating the glossary
+
+These commands allow you to manipulate the the glossary so you can find certain phrases more easily.
+
+#### <a name="find"></a>3.3.1. Finding a flashcard by the German phrase : `find`
+
+Find a flashcard by the german phrase. The full phrase must be entered. 
+
+Format: `find <GERMAN PHRASE>`
+
+Examples:
+* `find Tasche` finds the flashcard with the German Phrase 'Tasche'.
+    
+    After entering this command, your app should look like this:
+
+![find-screenshot](images/find-screenshot.png)
+
+#### <a name="list"></a>3.3.2. Listing all flashcards : `list`
 
 Displays all flashcards in the glossary.
 
@@ -132,10 +211,9 @@ Format: `list`
 
 After entering this command, your app should look like this:
 
-
 ![list-screenshot](images/list-screenshot.png)
 
-### <a name="sort"></a>Sort all flashcards : `sort`
+### <a name="sort"></a>3.3.3. Sort all flashcards : `sort`
 
 Sorts the all flashcards according to the way you choose.
 
@@ -156,89 +234,22 @@ After entering this command, your app should look like this:
 
 ![sort-screenshot](images/sort-screenshot.png)
 
-### <a name="test"></a>Test Yourself
+### <a name="misc"></a>3.4. Miscellaneous Commands
+#### <a name="help"></a>3.4.1. Help : `help`
 
-#### <a name="quiz"></a>Normal Test : `quiz`
+Opens a small window containing a link to this User Guide.
 
-Starts a round of vocabulary testing with all the flashcards that are currently in the glossary.
+Format: `help`
 
-Format: `quiz`
+#### <a name="exit"></a>3.4.2 Exiting the program : `exit`
 
-After entering this command, your app should look like this:
-
-
-![quiz-screenshot](images/quiz-screenshot.png)
-
-#### <a name="random"></a>Random Test : `random`
-
-Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
-
-Format: `random <NUMBER>`
-
-Example: 
-* `random 10` starts a randomised quiz with 10 randomly selected flashcards.
-    
-    After entering this command, your app should look like this:
-
-    
-![random-screenshot](images/random-screenshot.png)
-
-### <a name="next"></a>Next : `next`
-Skips the current flashcard and move on to the next card in quiz mode.
-
-Format: `next`
-
-After entering this command, your app should look like this:
-
-![next-screenshot](images/next-screenshot.png)
-
-### <a name="try"></a>Try : `try`
-Compares the user attempt with the definition of the current flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
-
-Format: `try <attempt>`
-
-![try-screenshot](images/try-screenshot.png)
-
-Example: 'try Tuesday'
-
-### <a name="end"></a>End Test : `end`
-
-Ends the round of vocabulary testing.
-
-Format: `end`
-
-After entering this command, your app should look like this:
-
-![end-screenshot](images/end-screenshot.png)
-
-### <a name="clear"></a>Clearing all entries : `clear`
-
-Clears all flashcards from the glossary.
-
-Format: `clear`
-
-### <a name="find"></a>Finding a flashcard by the German phrase : `find`
-
-Find a flashcard by the german phrase. The full phrase must be entered. 
-
-Format: `find <GERMAN PHRASE>`
-
-Examples:
-* `find Tasche` finds the flashcard with the German Phrase 'Tasche'.
-    
-    After entering this command, your app should look like this:
-
-![find-screenshot](images/find-screenshot.png)
-
-### <a name="exit"></a>Exiting the program : `exit`
-
-Exits the program.
+Saves and exits the program.
 
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="faq"></a>FAQ
+## <a name="faq"></a>4. FAQ
 
 **Q**: Do I need to save my data manually?<br>
 **A**: ForgetfulNUS data is automatically saved in the hard disk upon exiting. There is no need to save manually.
@@ -252,17 +263,20 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="cmdsum"></a>Command summary
+## <a name="cmdsum"></a>5. Command Summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/<DIFFICULTY>` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness d/hard`
-**Clear** | `clear`
+**Add** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAGS>...]` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness d/hard`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
-**Exit** | `exit`
+**Clear** | `clear`
+**Start Normal Quiz** | `quiz`
+**Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
+**Next phrase** | `next`
+**Try an answer** | `try <ATTEMPT>` <br> e.g., `try Tuesday`
+**End Quiz** | `end`
+**Find** | `find <GERMAN PHRASE>` <br> e.g., `find Vergesslichkeit`
 **List** | `list`
 **Sort** | `sort <PARAMETER>` <br> e.g., `sort english`
 **Help** | `help`
-**Start Normal Quiz** | `quiz`
-**Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
-**End Quiz** | `end`
+**Exit** | `exit`

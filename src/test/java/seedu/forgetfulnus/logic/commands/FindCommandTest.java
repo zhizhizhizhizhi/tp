@@ -56,7 +56,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noFlashCardFound() {
         String expectedMessage = String.format(MESSAGE_PHRASES_LISTED_OVERVIEW, 0);
         GermanPhraseContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -66,9 +66,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleFlashCardsFound() {
         String expectedMessage = String.format(MESSAGE_PHRASES_LISTED_OVERVIEW, 3);
-        GermanPhraseContainsKeywordsPredicate predicate = preparePredicate("Mittwoch Freitag Samstag");
+        GermanPhraseContainsKeywordsPredicate predicate =
+                preparePredicate("Mittwoch Freitag Samstag");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPhraseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
