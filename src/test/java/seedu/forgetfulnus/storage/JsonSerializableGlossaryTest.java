@@ -34,6 +34,7 @@ public class JsonSerializableGlossaryTest {
     }
 
     @Test
+
     public void toModelType_invalidFlashCardFile_throwsIllegalValueException() throws Exception {
         JsonSerializableGlossary dataFromFile = JsonUtil.readJsonFile(INVALID_FLASHCARD_FILE,
                 JsonSerializableGlossary.class).get();
@@ -41,7 +42,8 @@ public class JsonSerializableGlossaryTest {
     }
 
     @Test
-    public void toModelType_duplicateFlashCards_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateFlashcard_throwsIllegalValueException() throws Exception {
+
         JsonSerializableGlossary dataFromFile = JsonUtil.readJsonFile(DUPLICATE_FLASHCARD_FILE,
                 JsonSerializableGlossary.class).get();
         assertThrows(IllegalValueException.class,

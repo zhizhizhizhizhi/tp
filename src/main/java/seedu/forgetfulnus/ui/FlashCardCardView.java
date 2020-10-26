@@ -47,6 +47,8 @@ public class FlashCardCardView extends UiPart<Region> {
     @FXML
     private FlowPane genderTagF;
     @FXML
+    private FlowPane genderTagNeutral;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -69,10 +71,12 @@ public class FlashCardCardView extends UiPart<Region> {
         }
 
         assert GenderTag.isValidGenderTag(flashCard.getGenderTag().toString());
-        if (flashCard.getGenderTag().toString().equals(GenderTag.MALE_TAG)) {
+        if (flashCard.getGenderTag().toString().equals(GenderTag.MASCULINE_GENDER_TAG)) {
             genderTagM.getChildren().add(new Label(flashCard.getGenderTag().toString()));
-        } else if (flashCard.getGenderTag().toString().equals(GenderTag.FEMALE_TAG)) {
+        } else if (flashCard.getGenderTag().toString().equals(GenderTag.FEMININE_GENDER_TAG)) {
             genderTagF.getChildren().add(new Label(flashCard.getGenderTag().toString()));
+        } else if (flashCard.getGenderTag().toString().equals(GenderTag.NEUTRAL_GENDER_TAG)) {
+            genderTagNeutral.getChildren().add(new Label(flashCard.getGenderTag().toString()));
         }
 
         flashCard.getTags().stream()

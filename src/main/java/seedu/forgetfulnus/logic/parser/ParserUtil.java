@@ -91,22 +91,6 @@ public class ParserUtil {
         return new EnglishPhrase(trimmedEnglishPhrase);
     }
 
-    //TODO remove
-
-    //    /**
-    //     * Parses a {@code String Difficulty tag} into a {@code Difficulty tag}.
-    //     * Leading and trailing whitespaces will be trimmed.
-    //     *
-    //     * @throws ParseException if the given {@code Difficulty tag} is invalid.
-    //     */
-    //    public static DifficultyTag parseDifficultyTag(String difficultyTag) throws ParseException {
-    //        requireNonNull(difficultyTag);
-    //        String trimmedDifficultyTag = difficultyTag.trim();
-    //        if (!DifficultyTag.isValidDifficultyTag(trimmedDifficultyTag)) {
-    //            throw new ParseException(DifficultyTag.MESSAGE_CONSTRAINTS);
-    //        }
-    //    }
-
     /**
      * Parses a {@code String Predefined tag or a Gender Tag} into a {@code Predefined tag }.
      * Leading and trailing whitespaces will be trimmed.
