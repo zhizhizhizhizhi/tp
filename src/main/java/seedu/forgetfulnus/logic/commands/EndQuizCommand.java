@@ -3,7 +3,6 @@ package seedu.forgetfulnus.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.ListIterator;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -28,13 +27,14 @@ public class EndQuizCommand extends Command {
         }
         if (model.isQuizMode()) {
             List<FlashCard> lastShownList = model.getFilteredFlashCardList();
-            ListIterator<FlashCard> iterator = lastShownList.listIterator();
-            while (iterator.hasNext()) {
-                FlashCard toEdit = iterator.next();
+            while (model.getQuizModeIndex() < lastShownList.size()) {
+                FlashCard toEdit = lastShownList.get(model.getQuizModeIndex());
                 FlashCard changeTo = toEdit.copy();
                 changeTo.updateShowingEnglish(true);
                 model.setFlashCard(toEdit, changeTo);
+                model.addCardToScore(changeTo);
             }
+            model.saveScore();
             model.setQuizMode(false);
             model.updateFilteredPhraseList(unused -> true);
             return new CommandResult(String.format(MESSAGE_SUCCESS

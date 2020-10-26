@@ -134,15 +134,15 @@ public class FlashCard {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getGermanPhrase())
-                .append(" English phrase: ")
+                .append("\nEnglish phrase: ")
                 .append(getEnglishPhrase())
-                .append(" Difficulty: ")
+                .append("\nDifficulty: ")
                 .append(getDifficultyTag())
-                .append(" Gender: ")
+                .append("\nGender: ")
                 .append(getGenderTag())
-                .append(" Tags: ");
+                .append("\nTags: ");
         getTags().forEach(builder::append);
-        builder.append(" Order: ").append(getOrder());
+        builder.append("\n List position: ").append(getOrder());
         return builder.toString();
     }
 

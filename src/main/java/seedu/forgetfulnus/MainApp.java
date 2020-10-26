@@ -19,15 +19,18 @@ import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
+import seedu.forgetfulnus.model.ReadOnlyScoreList;
 import seedu.forgetfulnus.model.ReadOnlyUserPrefs;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.util.SampleDataUtil;
-import seedu.forgetfulnus.storage.GlossaryStorage;
 import seedu.forgetfulnus.storage.JsonGlossaryStorage;
+import seedu.forgetfulnus.storage.JsonScoreStorage;
 import seedu.forgetfulnus.storage.JsonUserPrefsStorage;
 import seedu.forgetfulnus.storage.Storage;
 import seedu.forgetfulnus.storage.StorageManager;
 import seedu.forgetfulnus.storage.UserPrefsStorage;
+import seedu.forgetfulnus.storage.interfaces.ObjectStorage;
 import seedu.forgetfulnus.ui.Ui;
 import seedu.forgetfulnus.ui.UiManager;
 
@@ -56,8 +59,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        GlossaryStorage glossaryStorage = new JsonGlossaryStorage(userPrefs.getGlossaryFilePath());
-        storage = new StorageManager(glossaryStorage, userPrefsStorage);
+        ObjectStorage<ReadOnlyGlossary> glossaryStorage = new JsonGlossaryStorage(userPrefs.getGlossaryFilePath());
+        ObjectStorage<ReadOnlyScoreList> scoreStorage = new JsonScoreStorage(userPrefs.getScoresFilePath());
+        storage = new StorageManager(glossaryStorage, scoreStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,22 +78,41 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyGlossary> glossaryOptional;
-        ReadOnlyGlossary initialData;
+        ReadOnlyGlossary initialData = initialiseGlossary(storage);
+        ReadOnlyScoreList initialScores = initialiseScoreList(storage);
+        return new ModelManager(initialData, initialScores, userPrefs);
+    }
+
+    private ReadOnlyGlossary initialiseGlossary(Storage storage) {
         try {
-            glossaryOptional = storage.readGlossary();
+            Optional<ReadOnlyGlossary> glossaryOptional = storage.readGlossary();
             if (glossaryOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample Glossary");
+                logger.info("Glossary data file not found. Will be starting with a sample Glossary");
             }
-            initialData = glossaryOptional.orElseGet(SampleDataUtil::getSampleGlossary);
+            return glossaryOptional.orElseGet(SampleDataUtil::getSampleGlossary);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Glossary");
-            initialData = new Glossary();
+            logger.warning("Glossary data file not in the correct format. Will be starting with an empty Glossary");
+            return new Glossary();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Glossary");
-            initialData = new Glossary();
+            logger.warning("Problem while reading from the glossary file. Will be starting with an empty Glossary");
+            return new Glossary();
         }
-        return new ModelManager(initialData, userPrefs);
+    }
+
+    private ReadOnlyScoreList initialiseScoreList(Storage storage) {
+        try {
+            Optional<ReadOnlyScoreList> scoreListOptional = storage.readScores();
+            if (scoreListOptional.isEmpty()) {
+                logger.info("Score data file not found. Will be starting with an empty score list");
+            }
+            return scoreListOptional.orElseGet(ScoreList::new);
+        } catch (DataConversionException e) {
+            logger.warning("Glossary data file not in the correct format. Will be starting with an empty Glossary");
+            return new ScoreList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the glossary file. Will be starting with an empty Glossary");
+            return new ScoreList();
+        }
     }
 
     private void initLogging(Config config) {
