@@ -20,6 +20,7 @@ import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
 import seedu.forgetfulnus.model.ReadOnlyUserPrefs;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.testutil.FlashCardBuilder;
 
@@ -125,6 +126,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getScoreFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setScoreFilePath(Path scoreFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setScoreList(ScoreList scoreList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ScoreList getScoreList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasFlashCard(FlashCard flashCard) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,40 +175,42 @@ public class AddCommandTest {
          */
         @Override
         public void updateFilteredPhraseList() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Increments index of the current flashcard in the filtered list in quiz mode.
-         */
         @Override
-        public void incrementQuizModeIndex() {
-
+        public void addCardToScore(FlashCard next) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public int getQuizModeIndex() {
-            return 0;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveScore() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setQuizMode(boolean quizMode) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean isQuizMode() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setRandomQuizMode(boolean isRandomQuiz) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean isRandomQuizMode() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -195,7 +218,7 @@ public class AddCommandTest {
          */
         @Override
         public void updateWithCorrectAttempt() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -205,7 +228,7 @@ public class AddCommandTest {
          */
         @Override
         public int getQuizScore() {
-            return 0;
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -215,7 +238,7 @@ public class AddCommandTest {
          */
         @Override
         public int getQuizTotalQuestions() {
-            return 0;
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -223,7 +246,7 @@ public class AddCommandTest {
          */
         @Override
         public void resetQuiz() {
-
+            throw new AssertionError("This method should not be called.");
         }
     }
 

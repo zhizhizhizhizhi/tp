@@ -13,13 +13,14 @@ import seedu.forgetfulnus.commons.exceptions.IllegalValueException;
 import seedu.forgetfulnus.commons.util.FileUtil;
 import seedu.forgetfulnus.commons.util.JsonUtil;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
+import seedu.forgetfulnus.storage.interfaces.ObjectStorage;
 
 /**
  * A class to access Glossary data stored as a json file on the hard disk.
  */
-public class JsonGlossaryStorage implements GlossaryStorage {
+public class JsonGlossaryStorage implements ObjectStorage<ReadOnlyGlossary> {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonGlossaryStorage.class);
+    private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     private Path filePath;
 
@@ -27,27 +28,31 @@ public class JsonGlossaryStorage implements GlossaryStorage {
         this.filePath = filePath;
     }
 
-    public Path getGlossaryFilePath() {
+    /**
+     * Returns the file path of the data file.
+     */
+    @Override
+    public Path getFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyGlossary> readGlossary() throws DataConversionException {
-        return readGlossary(filePath);
+    public Optional<ReadOnlyGlossary> readFile() throws DataConversionException {
+        return readFile(filePath);
     }
-
     /**
-     * Similar to {@link #readGlossary()}.
+     * Similar to {@link #readFile()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyGlossary> readGlossary(Path filePath) throws DataConversionException {
+    @Override
+    public Optional<ReadOnlyGlossary> readFile(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableGlossary> jsonGlossary = JsonUtil.readJsonFile(
                 filePath, JsonSerializableGlossary.class);
-        if (!jsonGlossary.isPresent()) {
+        if (jsonGlossary.isEmpty()) {
             return Optional.empty();
         }
 
@@ -60,21 +65,21 @@ public class JsonGlossaryStorage implements GlossaryStorage {
     }
 
     @Override
-    public void saveGlossary(ReadOnlyGlossary glossary) throws IOException {
-        saveGlossary(glossary, filePath);
+    public void saveFile(ReadOnlyGlossary file) throws IOException {
+        saveFile(file, filePath);
     }
 
     /**
-     * Similar to {@link #saveGlossary(ReadOnlyGlossary)}.
+     * Similar to {@link #saveFile(ReadOnlyGlossary)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveGlossary(ReadOnlyGlossary glossary, Path filePath) throws IOException {
-        requireNonNull(glossary);
+    @Override
+    public void saveFile(ReadOnlyGlossary file, Path filePath) throws IOException {
+        requireNonNull(file);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableGlossary(glossary), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableGlossary(file), filePath);
     }
-
 }

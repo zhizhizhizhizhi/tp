@@ -29,7 +29,7 @@ public class NextCommand extends Command {
         int index = model.getQuizModeIndex();
         if (index < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-        } else if (model.getQuizModeIndex() < lastShownList.size() - 1) {
+        } else if (index < lastShownList.size() - 1) {
             FlashCard toEdit = lastShownList.get(index);
             FlashCard nextCard = lastShownList.get(index + 1);
             assert (nextCard != null);
@@ -37,11 +37,10 @@ public class NextCommand extends Command {
             germanWord = nextCard.getGermanPhrase().toString();
             changeTo.updateShowingEnglish(true);
             model.setFlashCard(toEdit, changeTo);
-            model.incrementQuizModeIndex();
+            model.addCardToScore(changeTo);
             model.updateFilteredPhraseList();
             return new CommandResult(MESSAGE_SUCCESS + germanWord);
         } else {
-            model.incrementQuizModeIndex();
             Command endQuiz = new EndQuizCommand();
             return endQuiz.executeWithChecks(model);
         }

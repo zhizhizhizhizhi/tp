@@ -54,6 +54,25 @@ public interface Model {
     ReadOnlyGlossary getGlossary();
 
     /**
+     * Returns the user prefs' score file path.
+     * @return
+     */
+    Path getScoreFilePath();
+
+    /**
+     * Sets the user prefs' score file path.
+     */
+    void setScoreFilePath(Path scoreFilePath);
+
+    /**
+     * Replaces score data with the data in {@code scoreList}.
+     */
+    void setScoreList(ScoreList scoreList);
+
+    /** Returns the score list */
+    ScoreList getScoreList();
+
+    /**
      * Returns true if a flashCard with the same identity as {@code flashCard} exists in the glossary.
      */
     boolean hasFlashCard(FlashCard flashCard);
@@ -95,13 +114,15 @@ public interface Model {
     /**
      * Increments index of the current flashcard in the filtered list in quiz mode.
      */
-    void incrementQuizModeIndex();
+    void addCardToScore(FlashCard next);
 
     /**
      * Gets the index of the current flashcard in the filtered list in quiz mode.
      * @return index
      */
     int getQuizModeIndex();
+
+    void saveScore();
 
     /**
      * Sets the program to quiz mode or ends the quiz mode.

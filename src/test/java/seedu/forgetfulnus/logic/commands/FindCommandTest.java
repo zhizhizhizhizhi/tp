@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.GermanPhraseContainsKeywordsPredicate;
 
@@ -24,8 +25,8 @@ import seedu.forgetfulnus.model.flashcard.GermanPhraseContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalGlossary(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalGlossary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
 
     @Test
     public void equals() {

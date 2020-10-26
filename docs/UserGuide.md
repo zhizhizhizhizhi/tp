@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201) **and German 2** (LAG2201) **in NUS to practise and test their vocabulary, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ForgetfulNUS can get your German revision done faster than traditional GUI apps.
+ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
+and German 2 (LAG2201) in NUS to practise and test their vocabulary. This app is optimised
+for use via a Command Line Interface (CLI). If you can type fast, ForgetfulNUS 
+can get your German revision done quickly and effectively.
+
 
 ## Table of Contents
 
@@ -35,31 +39,26 @@ ForgetfulNUS is a **desktop app for helping students taking German 1** (LAG1201)
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ForgetfulNUS.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. When it first starts up, ForgetfulNUS should look similar to the figure below. ForgetfulNUS contains some pre-loaded
+ sample data for you to get started.<br>.<br>
    ![Ui](images/Ui.png)
 
+
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+  
+  ## <a name="Example Commands"></a>Example commands
+  
    Here are some example commands you can try:
 
    * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German phrase `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
-   * **`delete`**`3` : Deletes the 3rd flashcard shown in the glossary.
-   
-   * **`list`** : Lists all flashcards.
-
-   * **`sort`**`english` : Sorts the glossary by alphabetical order of English phrases.
-
    * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
-
-   * **`random`**`5` : Starts a round of vocabulary testing with 5 flashcards randomly chosen from the existing glossary.
 
    * **`end`** : Ends a round of vocabulary testing.
 
-   * **`clear`** : Deletes all flashcards.
-
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -99,10 +98,12 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
   
 </div>
 
-![add-screenshot](images/add-screenshot.png)
-
 Example:
 * `add g/Tasche e/bag d/hard s/f t/tutorialOne t/page5`
+
+    After entering this command, your app should look like this:
+
+![add-screenshot](images/add-screenshot.png)
 
 ### <a name="delete"></a>Deleting a flashcard : `delete`
 
@@ -114,16 +115,23 @@ Format: `delete <INDEX>`
 * The index refers to the index number shown in the displayed glossary.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-![delete-screenshot](images/delete-screenshot.png)
 
 Example:
 * `delete 2` deletes the 2nd flashcard in the glossary.
+ 
+    After entering this command, your app should look like this:
+
+![delete-screenshot](images/delete-screenshot.png)
+
 
 ### <a name="list"></a>Listing all flashcards : `list`
 
 Displays all flashcards in the glossary.
 
 Format: `list`
+
+After entering this command, your app should look like this:
+
 
 ![list-screenshot](images/list-screenshot.png)
 
@@ -144,6 +152,8 @@ Format: `sort <PARAMETER>`
     1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
     1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
 
+After entering this command, your app should look like this:
+
 ![sort-screenshot](images/sort-screenshot.png)
 
 ### <a name="test"></a>Test Yourself
@@ -154,6 +164,9 @@ Starts a round of vocabulary testing with all the flashcards that are currently 
 
 Format: `quiz`
 
+After entering this command, your app should look like this:
+
+
 ![quiz-screenshot](images/quiz-screenshot.png)
 
 #### <a name="random"></a>Random Test : `random`
@@ -162,14 +175,20 @@ Starts a round of vocabulary testing with the specified number of flashcards ran
 
 Format: `random <NUMBER>`
 
-![random-screenshot](images/random-screenshot.png)
+Example: 
+* `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+    
+    After entering this command, your app should look like this:
 
-Example: `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+    
+![random-screenshot](images/random-screenshot.png)
 
 ### <a name="next"></a>Next : `next`
 Skips the current flashcard and move on to the next card in quiz mode.
 
 Format: `next`
+
+After entering this command, your app should look like this:
 
 ![next-screenshot](images/next-screenshot.png)
 
@@ -177,6 +196,7 @@ Format: `next`
 Compares the user attempt with the definition of the current flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
 
 Format: `try <attempt>`
+
 ![try-screenshot](images/try-screenshot.png)
 
 Example: 'try Tuesday'
@@ -186,6 +206,8 @@ Example: 'try Tuesday'
 Ends the round of vocabulary testing.
 
 Format: `end`
+
+After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
 
@@ -202,7 +224,9 @@ Find a flashcard by the german phrase. The full phrase must be entered.
 Format: `find <GERMAN PHRASE>`
 
 Examples:
-* `find Tasche` Finds the flashcard with the German Phrase 'Tasche'.
+* `find Tasche` finds the flashcard with the German Phrase 'Tasche'.
+    
+    After entering this command, your app should look like this:
 
 ![find-screenshot](images/find-screenshot.png)
 

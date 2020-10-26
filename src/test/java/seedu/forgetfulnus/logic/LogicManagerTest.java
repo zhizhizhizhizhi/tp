@@ -20,12 +20,15 @@ import seedu.forgetfulnus.logic.commands.CommandResult;
 import seedu.forgetfulnus.logic.commands.ListCommand;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.UserPrefs;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.storage.JsonGlossaryStorage;
+import seedu.forgetfulnus.storage.JsonScoreStorage;
 import seedu.forgetfulnus.storage.JsonUserPrefsStorage;
 import seedu.forgetfulnus.storage.StorageManager;
 import seedu.forgetfulnus.testutil.FlashCardBuilder;
@@ -35,16 +38,19 @@ public class LogicManagerTest {
 
     @TempDir
     public Path temporaryFolder;
-
-    private Model model = new ModelManager();
+    private Glossary initialData = new Glossary();
+    private ScoreList initialScores = new ScoreList();
+    private UserPrefs userPrefs = new UserPrefs();
+    private Model model = new ModelManager(initialData, initialScores, userPrefs);
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
         JsonGlossaryStorage addressBookStorage =
                 new JsonGlossaryStorage(temporaryFolder.resolve("glossary.json"));
+        JsonScoreStorage scoreStorage = new JsonScoreStorage(temporaryFolder.resolve("scores.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, scoreStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,15 +77,16 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonGlossaryStorage glossaryStorage =
                 new JsonGlossaryIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionGlossary.json"));
+        JsonScoreStorage scoreStorage = new JsonScoreStorage(temporaryFolder.resolve("ioExceptionScores.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(glossaryStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(glossaryStorage, scoreStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + GERMAN_DESC_FORGETFULNESS + ENGLISH_DESC_FORGETFULNESS;
         FlashCard expectedFlashCard = new FlashCardBuilder(FORGETFULNESS).withTags().build();
-        ModelManager expectedModel = new ModelManager();
+        ModelManager expectedModel = new ModelManager(initialData, initialScores, userPrefs);
         expectedModel.addFlashCard(expectedFlashCard);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
@@ -126,7 +133,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getGlossary(), new ScoreList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -152,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveGlossary(ReadOnlyGlossary glossary, Path filePath) throws IOException {
+        public void saveFile(ReadOnlyGlossary glossary, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
