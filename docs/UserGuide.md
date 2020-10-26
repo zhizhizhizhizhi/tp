@@ -98,7 +98,7 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
 * Difficulty has only three states, EASY, MEDIUM and HARD.
   If left blank, by default it will be MEDIUM.
   
-* Gender has only three states, M (Masculine), F (Feminine), NEUTRAL or NONE.
+* Gender has only four states, M (Masculine), F (Feminine), NEUTRAL or NONE.
   If left blank, by default it will be NONE.
   
 </div>
