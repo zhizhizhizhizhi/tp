@@ -9,11 +9,11 @@ import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
  */
 public class GenderTag extends PredefinedTag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Gender Tags names should be M, F, Neutral or omitted";
+    public static final String MESSAGE_CONSTRAINTS = "Gender Tags should be M, F, Neutral or omitted only";
     public static final String MASCULINE_GENDER_TAG = "M";
     public static final String FEMININE_GENDER_TAG = "F";
     public static final String NEUTRAL_GENDER_TAG = "NEUTRAL";
-    public static final String NO_GENDER_TAG = "NONE";
+    public static final String NONE_GENDER_TAG = "NONE";
 
 
     /**
@@ -33,7 +33,7 @@ public class GenderTag extends PredefinedTag {
     public static boolean isValidGenderTag(String testInput) {
         String test = testInput.replaceAll("\\s+", "");
         return test.equalsIgnoreCase(MASCULINE_GENDER_TAG) || test.equalsIgnoreCase(FEMININE_GENDER_TAG)
-                || test.equalsIgnoreCase(NEUTRAL_GENDER_TAG) || test.equalsIgnoreCase(NO_GENDER_TAG);
+                || test.equalsIgnoreCase(NEUTRAL_GENDER_TAG) || test.equalsIgnoreCase(NONE_GENDER_TAG);
     }
 
     @Override

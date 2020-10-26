@@ -200,6 +200,7 @@ public class EditCommand extends Command {
         public Optional<GenderTag> getGenderTag() {
             return Optional.ofNullable(genderTag);
         }
+
         public void setOrder(Order order) {
             this.order = order;
         }

@@ -106,6 +106,13 @@ public class JsonAdaptedFlashCardTest {
         assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
+    @Test
+    public void toModelType_nullGenderTag_throwsIllegalValueException() {
+        JsonAdaptedFlashCard flashcard = new JsonAdaptedFlashCard(VALID_GERMAN_PHRASE, VALID_ENGLISH_PHRASE,
+                VALID_DIFFICULTY_TAG, null, VALID_TAGS, VALID_ORDER);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GenderTag.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
+    }
 
     @Test
     public void toModelType_invalidOrder_throwsIllegalValueException() {
@@ -113,14 +120,6 @@ public class JsonAdaptedFlashCardTest {
                 new JsonAdaptedFlashCard(VALID_GERMAN_PHRASE, VALID_ENGLISH_PHRASE, VALID_DIFFICULTY_TAG,
                         VALID_GENDER_TAG, VALID_TAGS, INVALID_ORDER);
         String expectedMessage = Order.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullGenderTag_throwsIllegalValueException() {
-        JsonAdaptedFlashCard flashcard = new JsonAdaptedFlashCard(VALID_GERMAN_PHRASE, VALID_ENGLISH_PHRASE,
-                VALID_DIFFICULTY_TAG, null, VALID_TAGS, VALID_ORDER);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GenderTag.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 

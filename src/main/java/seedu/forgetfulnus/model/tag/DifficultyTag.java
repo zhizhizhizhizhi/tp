@@ -9,7 +9,7 @@ import static seedu.forgetfulnus.commons.util.AppUtil.checkArgument;
  */
 public class DifficultyTag extends PredefinedTag implements Comparable<DifficultyTag> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should EASY, MEDIUM or HARD only";
+    public static final String MESSAGE_CONSTRAINTS = "Difficulty levels should be EASY, MEDIUM or HARD only";
     public static final String EASY_TAG = "EASY";
     public static final String MEDIUM_TAG = "MEDIUM";
     public static final String HARD_TAG = "HARD";

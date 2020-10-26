@@ -28,25 +28,37 @@ public class CommandTestUtil {
 
     public static final String VALID_GERMAN_PHRASE_FORGETFULNESS = "Vergesslichkeit";
     public static final String VALID_GERMAN_PHRASE_TABLE = "Tisch";
+
     public static final String VALID_ENGLISH_PHRASE_FORGETFULNESS = "Forgetfulness";
     public static final String VALID_ENGLISH_PHRASE_TABLE = "Table";
+
     public static final String VALID_DIFFICULTY_TAG_HARD = "HARD";
     public static final String VALID_DIFFICULTY_TAG_MEDIUM = "MEDIUM";
+
     public static final String VALID_GENDER_TAG_M = "M";
     public static final String VALID_GENDER_TAG_F = "F";
+    public static final String VALID_GENDER_TAG_NONE = "NONE";
+
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
+
     public static final String VALID_ORDER_EIGHT = "8";
     public static final String VALID_ORDER_NINE = "9";
 
     public static final String GERMAN_DESC_FORGETFULNESS = " "
             + PREFIX_GERMAN_PHRASE + VALID_GERMAN_PHRASE_FORGETFULNESS;
     public static final String GERMAN_DESC_TABLE = " " + PREFIX_GERMAN_PHRASE + VALID_GERMAN_PHRASE_TABLE;
+
     public static final String ENGLISH_DESC_FORGETFULNESS = " "
             + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_FORGETFULNESS;
     public static final String ENGLISH_DESC_TABLE = " " + PREFIX_ENGLISH_PHRASE + VALID_ENGLISH_PHRASE_TABLE;
+
+    public static final String DIFFICULTY_TAG_DESC_HARD = " " + PREFIX_DIFFICULTY_TAG + VALID_DIFFICULTY_TAG_HARD;
     public static final String DIFFICULTY_TAG_DESC_MEDIUM = " " + PREFIX_DIFFICULTY_TAG + VALID_DIFFICULTY_TAG_MEDIUM;
+
+    public static final String GENDER_TAG_DESC_F = " " + PREFIX_GENDER_TAG + VALID_GENDER_TAG_F;
     public static final String GENDER_TAG_DESC_M = " " + PREFIX_GENDER_TAG + VALID_GENDER_TAG_M;
+
     public static final String TAG_DESC_CHAPTER_ONE = " " + PREFIX_TAG + VALID_TAG_CHAPTER_ONE;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + VALID_TAG_HARD;
 
@@ -54,6 +66,10 @@ public class CommandTestUtil {
             + PREFIX_GERMAN_PHRASE + "James&"; // '&' not allowed in german phrases
     public static final String INVALID_ENGLISH_PHRASE_DESC = " "
             + PREFIX_ENGLISH_PHRASE + "englishphrase@"; // '@' not allowed in english phrases
+    public static final String INVALID_DIFFICULTY_TAG_DESC = " "
+            + PREFIX_DIFFICULTY_TAG + "easypeasy"; // only certain difficulty tags allowed
+    public static final String INVALID_GENDER_TAG_DESC = " "
+            + PREFIX_GENDER_TAG + "NONbinary"; // only certain genders tags allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "easy*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -65,7 +81,10 @@ public class CommandTestUtil {
     static {
         DESC_FORGETFULNESS = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_FORGETFULNESS)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_FORGETFULNESS)
-                .withTags(VALID_TAG_HARD).withOrder(VALID_ORDER_EIGHT).build();
+                .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)
+                .withGenderTag(VALID_GENDER_TAG_NONE)
+                .withTags().withOrder(VALID_ORDER_EIGHT).build();
+
         DESC_TABLE = new EditFlashCardDescriptorBuilder().withGermanPhrase(VALID_GERMAN_PHRASE_TABLE)
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
                 .withDifficultyTag(VALID_DIFFICULTY_TAG_MEDIUM)

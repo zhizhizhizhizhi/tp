@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         GenderTag genderTag;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER_TAG)) {
-            genderTag = new GenderTag(GenderTag.NO_GENDER_TAG);
+            genderTag = new GenderTag(GenderTag.NONE_GENDER_TAG);
         } else {
 
             PredefinedTag newTag = ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
