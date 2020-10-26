@@ -104,7 +104,7 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
 </div>
 
 Example:
-* `add g/Tasche e/bag d/hard s/f t/tutorialOne t/page5`
+* `add g/Vergesslichkeit e/Forgetfulness d/hard s/f t/chapter1`
 
     After entering this command, your app should look like this:
 
@@ -133,10 +133,12 @@ Clears all flashcards from the glossary.
 
 Format: `clear`
 
+![clear-screenshot](images/clear-screenshot.png)
+
 ### <a name="test"></a>3.2. Test Yourself
 #### <a name="quiz"></a>3.2.1. Normal Test : `quiz`
 
-Starts a round of vocabulary testing with all the flashcards that are currently in the glossary.
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. English translation is now hidden for the user to self test.
 
 Format: `quiz`
 
@@ -147,16 +149,17 @@ After entering this command, your app should look like this:
 
 #### <a name="random"></a>3.2.2. Random Test : `random`
 
-Starts a round of vocabulary testing with the specified number of flashcards randomly selected from the existing glossary.
+Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary.
 
 Format: `random <NUMBER>`
 
 Example: 
-* `random 10` starts a randomised quiz with 10 randomly selected flashcards.
+* `random 4` starts a randomised quiz with 4 randomly selected flashcards.
     
     After entering this command, your app should look like this:
     
 ![random-screenshot](images/random-screenshot.png)
+(note that screenshot might not look exactly the same on your end as flashcards are randomised.)
 
 #### <a name="next"></a>3.2.3. Next : `next`
 Skips the current flashcard and move on to the next card in quiz mode.
@@ -172,9 +175,11 @@ Compares the user attempt with the definition of the current flashcard. If the a
 
 Format: `try <ATTEMPT>`
 
-![try-screenshot](images/try-screenshot.png)
-
 Example: 'try Tuesday'
+
+After entering this command, your app should look like this:
+
+![try-screenshot](images/try-screenshot.png)
 
 #### <a name="end"></a>3.2.5. End Test : `end`
 
@@ -197,7 +202,7 @@ Find a flashcard by the german phrase. The full phrase must be entered.
 Format: `find <GERMAN PHRASE>`
 
 Examples:
-* `find Tasche` finds the flashcard with the German Phrase 'Tasche'.
+* `find Donnerstag` finds the flashcard with the German Phrase 'Donnerstag'.
     
     After entering this command, your app should look like this:
 
@@ -229,6 +234,9 @@ Format: `sort <PARAMETER>`
     1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
     1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
     1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
+
+Examples:
+* `sort hardtoeasy` sorts the flashcards by their respective difficulty tags from "hard" to "easy".
 
 After entering this command, your app should look like this:
 
