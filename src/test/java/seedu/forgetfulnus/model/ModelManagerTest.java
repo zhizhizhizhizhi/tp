@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGlossaryFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setGlossaryFilePath(Paths.get("forgetfulnus/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setGlossaryFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setGlossaryFilePath(Paths.get("new/forgetfulnus/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,29 +67,29 @@ public class ModelManagerTest {
 
     @Test
     public void setGlossaryFilePath_validPath_setsGlossaryFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("forgetfulnus/file/path");
         modelManager.setGlossaryFilePath(path);
         assertEquals(path, modelManager.getGlossaryFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasFlashCard_nullFlashCard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInGlossary_returnsFalse() {
+    public void hasFlashCard_flashCardNotInGlossary_returnsFalse() {
         assertFalse(modelManager.hasFlashCard(MONDAY));
     }
 
     @Test
-    public void hasPerson_personInGlossary_returnsTrue() {
+    public void hasFlashCard_flashCardInGlossary_returnsTrue() {
         modelManager.addFlashCard(MONDAY);
         assertTrue(modelManager.hasFlashCard(MONDAY));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredFlashCardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredFlashCardList().remove(0));
     }
 

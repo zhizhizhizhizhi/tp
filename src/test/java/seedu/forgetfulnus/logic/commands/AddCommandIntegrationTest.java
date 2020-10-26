@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newFlashCard_success() {
         FlashCard validFlashCard = new FlashCardBuilder().build();
 
         Model expectedModel = new ModelManager(model.getGlossary(), new UserPrefs());
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateFlashCard_throwsCommandException() {
         FlashCard flashCardInList = model.getGlossary().getFlashCardList().get(0);
         assertCommandFailure(new AddCommand(flashCardInList), model, AddCommand.MESSAGE_DUPLICATE_PHRASE);
     }

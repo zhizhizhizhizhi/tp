@@ -12,7 +12,7 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Glossary has been cleared!";
 
-    public static final String QUIZMODE_REMINDER = "'clear' command cannot be used in quiz mode. "
+    public static final String QUIZ_MODE_REMINDER = "'clear' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
@@ -25,7 +25,7 @@ public class ClearCommand extends Command {
 
     @Override
     public String getQuizModeReminder() {
-        return QUIZMODE_REMINDER;
+        return QUIZ_MODE_REMINDER;
     }
 
     @Override

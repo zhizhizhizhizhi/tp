@@ -50,7 +50,7 @@ public class FlashCardCardView extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code FlashCard} and index to display.
+     * Creates a {@code FlashCardCode} with the given {@code FlashCard} and index to display.
      */
     public FlashCardCardView(FlashCard flashCard, int displayedIndex) {
         super(FXML);
