@@ -22,17 +22,14 @@ import seedu.forgetfulnus.model.UserPrefs;
 public class RandomQuizCommandTest {
 
     private Model model;
-    private Model expectedModel;
 
-
-    @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalGlossary(), new ScoreList(), new UserPrefs());
     }
 
     @Test
     public void execute_randomNonEmptyList_success() throws CommandException {
+        setUp();
         String expectedMessage = RandomQuizCommand.MESSAGE_SUCCESS;
         String actualMessage = new RandomQuizCommand(
                 Index.fromOneBased(getTypicalGlossary().getFlashCardList().size()))
@@ -43,6 +40,7 @@ public class RandomQuizCommandTest {
 
     @Test
     public void execute_randomEmptyList_throwsCommandException() {
+        setUp();
         model.setGlossary(new Glossary());
         assertThrows(
                 CommandException.class,

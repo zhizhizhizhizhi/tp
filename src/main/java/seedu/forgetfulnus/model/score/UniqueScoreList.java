@@ -5,6 +5,7 @@ import static seedu.forgetfulnus.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
@@ -108,6 +109,10 @@ public class UniqueScoreList implements Iterable<Score> {
         return internalList.iterator();
     }
 
+    public ListIterator<Score> getReverseIterator() {
+        return internalList.listIterator(internalList.size());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -133,4 +138,5 @@ public class UniqueScoreList implements Iterable<Score> {
         }
         return true;
     }
+
 }
