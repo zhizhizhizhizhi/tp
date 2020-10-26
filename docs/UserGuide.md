@@ -12,7 +12,7 @@ can get your German revision done quickly and effectively.
 ## Table of Contents
 
 1. [Quick Start](#qs)
-1. [Example Commands](#excmds)
+1. [Commonly used Commands](#cucmds)
 1. [Features](#features)
     1. [Editing the glossary](#editing)
         1. [Add Flashcard](#add)
@@ -50,7 +50,7 @@ can get your German revision done quickly and effectively.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
   
-  ## <a name="excmds"></a>2. Example commands
+  ## <a name="cucmds"></a>2. Commonly used commands
   
    Here are some example commands you can try:
 
@@ -79,7 +79,7 @@ Refer to the [Features](#features) below for details of each command.
   e.g. `g/<GERMAN PHRASE> [t/<TAG>]...` can be used as  (i.e. 0 times), t/objects, t/objects t/nouns etc.
   
 
-* Items in square brackets are optional
+* Items in `[]`, square brackets, are optional.
   e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
 
 </div>
@@ -98,8 +98,8 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
 * Difficulty has only three states, EASY, MEDIUM and HARD.
   If left blank, by default it will be MEDIUM.
   
-* Gender has only three states, M (Masculine), F (Feminine) and NEUTRAL.
-  If left blank, by default it will be NEUTRAL.
+* Gender has only three states, M (Masculine), F (Feminine), NEUTRAL or NONE.
+  If left blank, by default it will be NONE.
   
 </div>
 
