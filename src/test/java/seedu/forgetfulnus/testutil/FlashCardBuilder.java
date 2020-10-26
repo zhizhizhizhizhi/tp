@@ -35,7 +35,7 @@ public class FlashCardBuilder {
         germanPhrase = new GermanPhrase(DEFAULT_GERMAN_PHRASE);
         englishPhrase = new EnglishPhrase(DEFAULT_ENGLISH_PHRASE);
         difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
-        genderTag = new GenderTag(GenderTag.NEUTRAL_TAG);
+        genderTag = new GenderTag(GenderTag.NEUTRAL_GENDER_TAG);
         tags = new HashSet<>();
         order = new Order(Integer.parseInt(DEFAULT_ORDER));
     }
