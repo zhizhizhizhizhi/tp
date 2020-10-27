@@ -15,7 +15,7 @@ public class EndQuizCommand extends Command {
     public static final String COMMAND_WORD = "end";
 
     public static final String MESSAGE_SUCCESS = "Quiz ended!";
-    public static final String QUIZ_MODE_REMINDER = "Quiz has ended.";
+    public static final String QUIZ_MODE_REMINDER = "You are currently not in quiz mode.";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 

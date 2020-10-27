@@ -14,13 +14,22 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the glossary according to the input parameter.\n"
-            + "Possible parameters: german, english, easy, hard\n"
+            + "Possible parameters: german, english, reversegerman, reverseenglish,"
+            + "easytohard, hardtoeasy, earliest, latest\n"
             + "Example: " + COMMAND_WORD + " german";
 
     public static final String MESSAGE_SORT_SUCCESS = "The glossary has been sorted!";
+
+    public static final String QUIZ_MODE_REMINDER = "Flashcards cannot be sorted in quiz mode. "
+            + "Enter 'end' to end quizzing.";
+
+    private static final CommandType type = CommandType.NOT_QUIZ_MODE;
+
     private Comparator<FlashCard> comp;
+
     private Logger logger = Logger.getLogger("Sort Command Logger");
 
     /**
@@ -75,14 +84,17 @@ public class SortCommand extends Command {
         glossary.setFlashCards(sortedList);
         return glossary;
     }
+
     @Override
     public CommandType isQuizModeCommand() {
-        return CommandType.ANY_MODE;
+        return type;
     }
+
     @Override
     public String getQuizModeReminder() {
-        return "";
+        return QUIZ_MODE_REMINDER;
     }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
