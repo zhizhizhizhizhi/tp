@@ -159,10 +159,11 @@ Example:
     After entering this command, your app should look like this:
     
 ![random-screenshot](images/random-screenshot.png)
-(note that screenshot might not look exactly the same on your end as flashcards are randomised.)
+
+Note that screenshot might not look exactly the same on your end as flashcards are randomised.
 
 #### <a name="next"></a>3.2.3. Next : `next`
-Skips the current flashcard and move on to the next card in quiz mode.
+Skips the current flashcard and move on to the next card in quiz mode. You can use this command if you cannot get the correct answer but wish to continue with the quiz. The current flashcard will be considered incorrectly answered.
 
 Format: `next`
 
@@ -183,7 +184,7 @@ After entering this command, your app should look like this:
 
 #### <a name="end"></a>3.2.5. End Test : `end`
 
-Ends the round of vocabulary testing.
+Ends the round of vocabulary testing. Can be entered anytime during the quiz and the quiz will be graded according to the number of questions completed at that point.
 
 Format: `end`
 
@@ -204,13 +205,13 @@ Format: `find <GERMAN PHRASE>`
 Examples:
 * `find Donnerstag` finds the flashcard with the German Phrase 'Donnerstag'.
     
-    After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![find-screenshot](images/find-screenshot.png)
 
 #### <a name="list"></a>3.3.2. Listing all flashcards : `list`
 
-Displays all flashcards in the glossary.
+Displays all flashcards in the glossary. You can use this command to return to the full glossary after a find operation.
 
 Format: `list`
 
@@ -220,7 +221,7 @@ After entering this command, your app should look like this:
 
 ### <a name="sort"></a>3.3.3. Sort all flashcards : `sort`
 
-Sorts the all flashcards according to the way you choose.
+Sorts the all flashcards according to the way you choose. You may find this helpful for browsing the flashcards or changing the order for quiz mode.
 
 Format: `sort <PARAMETER>`
 
@@ -245,7 +246,7 @@ After entering this command, your app should look like this:
 ### <a name="misc"></a>3.4. Miscellaneous Commands
 #### <a name="help"></a>3.4.1. Help : `help`
 
-Opens a small window containing a link to this User Guide.
+Opens a small window containing a link to this User Guide. You can use this command when you need to refer to the command formats or how to run the app.
 
 Format: `help`
 
