@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredList<FlashCard> filteredFlashCards;
 
-    private Predicate predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
+    private Predicate<FlashCard> predicate = PREDICATE_SHOW_ALL_FLASHCARDS;
 
     private boolean isQuizMode = false;
     private boolean isRandomQuiz = false;
@@ -208,6 +208,7 @@ public class ModelManager implements Model {
     public void saveScore() {
         scoreList.addScore(quizScore);
     }
+
     @Override
     public void setQuizMode(boolean isQuizMode) {
         this.isQuizMode = isQuizMode;

@@ -158,6 +158,11 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
+        try {
+            logic.execute("end");
+        } catch (CommandException | ParseException e) {
+            System.out.println(e.getMessage());
+        }
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

@@ -15,8 +15,10 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 public class NextCommand extends Command {
 
     public static final String COMMAND_WORD = "next";
-    public static final String QUIZ_MODE_REMINDER = "Command cannot be used when not in quiz mode. "
+
+    public static final String QUIZ_MODE_REMINDER = COMMAND_WORD + " command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
+
     public static final String MESSAGE_SUCCESS = "Enter the definition of: ";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
