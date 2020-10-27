@@ -204,90 +204,6 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
-### <a name="undo_redo"></a>\[Proposed\] Undo/redo feature
-
-#### <a name="proposed_implementation"></a>Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### <a name="design_consideration"></a>Design consideration:
-
-##### <a name="aspect_undo_redo"></a>Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
- * Pros: Easy to implement.
- * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
- itself.
- * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
- * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### <a name="data_archiving"></a>\[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### <a name="data_archiving"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
 
@@ -319,26 +235,20 @@ The following activity diagram outlines the process of quizzing:
 The following sequence diagram shows how the quiz operation works:
 
 ![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
-### \[Implemented\] List Feature
-
-The List feature is implemented to allow users to "reset" the Glossary to its default, unsorted state after using the Sort or
-the Find feature. As the two mentioned features both modify how the Glossary is displayed to the user, this functionality is necessary
-to allow the user to return the Glossary to its original state.
-
-The List Command makes use of a static Glossary object `originalGlossary` to save the state of Glossary before a Sort or Find command is executed.
-When a List command is input by the user, the `originalGlossary` object is used to overwrite the existing Glossary, returning the `Model` to its
-original state.
-
-To be added: *UML Diagrams*
 
 ### \[Implemented\] Sort Feature
 
 The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
 
-Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user,
-in line with the original AddressBook3's Command pattern.
+Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user.
+This is in line with the original AddressBook3's Command pattern.
 
-This class diagram outlines the structure of `SortCommand` and `SortCommand` and how they interact with other aspects of the program.
+`SortCommand` relies on several pre-defined `Comparator`s to execute the sorting, one of which is selected for use when
+the user's input is successfully parsed. For example, when the user inputs `sort english`, a SortCommand object is created
+with a `Comparator` to compare the `EnglishPhrase`s of each `FlashCard` object in the `Glossary`.
+
+This class diagram outlines the structure of `SortCommand` and `SortCommand` and how they interact with 
+other aspects of the program.
 
 ![SortCommandClassDiagram](images/SortCommandClassDiagram.png)
 
@@ -347,7 +257,7 @@ The following sequence diagram briefly outlines the execution process when a use
 ![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
 1. The user command is first passed into `LogicManager`, which calls upon `GlossaryParser` to parse the command.
-1. `GlossaryParser` identifies the input as a command to sort the glossary and creates a `SortCommandParser` and calls its `parse(String)` method.
+1. `GlossaryParser` identifies the input as a command to sort the glossary, creates a `SortCommandParser` and calls its `parse(String)` method.
 1. The new `SortCommandParser` parses the parameter and creates a new `SortCommand`.
 1. `LogicManager` calls the new `SortCommand`'s `execute(model)` method.
 1. `execute()` calls `SortCommand`'s own `getSortedGlossary()` method to obtain a sorted `Glossary`.
@@ -359,13 +269,14 @@ The following sequence diagram briefly outlines the execution process when a use
 #### Alternatives:
 1. Sorting replaces the entire Glossary with a new sorted Glossary (current implementation)
 
-   - Pros: Easily adaptable from existing commands
+   - Pros: Fairly adaptable from existing commands
    - Cons: Large glossary size may lead to computational delays and overhead
 
 1. Sorting sorts the current Glossary in place instead of creating a new Glossary
 
    - Pros: Less computational overhead
-   - Cons: Original AB3 uses immutable Glossary equivalent, requires significant refactoring to achieve
+   - Cons: Original AB3 implementation uses immutable Glossary equivalent, requires very significant refactoring of code to achieve.
+   Using a mutable Glossary also makes the code more vulnerable.
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**

@@ -8,7 +8,6 @@ and German 2 (LAG2201) in NUS to practise and test their vocabulary. This app is
 for use via a Command Line Interface (CLI). If you can type fast, ForgetfulNUS 
 can get your German revision done quickly and effectively.
 
-
 ## Table of Contents
 
 1. [Quick Start](#qs)
@@ -24,6 +23,7 @@ can get your German revision done quickly and effectively.
         1. [Next](#next)
         1. [Try](#try)
         1. [End Testing](#end)
+        1. [View Past Scores](#scores)
     1. [Navigating the glossary](#navigating)
         1. [Find a Flashcard](#find)
         1. [View All Flashcards](#list)
@@ -45,7 +45,7 @@ can get your German revision done quickly and effectively.
 1. Copy the file to the folder you want to use as the _home folder_ for your ForgetfulNUS.
 
 1. Double-click the file to start the app. When it first starts up, ForgetfulNUS should look similar to the figure below. ForgetfulNUS contains some pre-loaded
- sample data for you to get started.<br>.<br>
+ sample data for you to get started.<br><br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -191,6 +191,24 @@ Format: `end`
    After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
+
+#### <a name="scores"></a>3.2.6. View past scores : `scores`
+
+Displays a history of scores from past quizzes, starting from the most recent round. The German phrases tested in these
+rounds are also listed for easy reference.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about saving scores:**<br>
+
+* For each unique list of German phrases, only the most recent score is saved. If you decide to test
+yourself on the same list again, your previous score will be overwritten.
+  
+</div>
+
+After entering this command, your app should look like this:
+
+![score-screenshot](images/score-screenshot.png)
 
 ### <a name="navigating"></a>3.3. Navigating the glossary
 
