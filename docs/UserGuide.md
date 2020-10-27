@@ -149,7 +149,7 @@ Format: `quiz`
 
 #### <a name="random"></a>3.2.2. Random Test : `random`
 
-Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want to choose the number of flashcards to be tested and have the flashcards picked randomly.
+Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick quiz where you can decide the number of questions.
 
 Format: `random <NUMBER>`
 
@@ -184,7 +184,7 @@ Example: 'try Tuesday'
 
 #### <a name="end"></a>3.2.5. End Test : `end`
 
-Ends the round of vocabulary testing. Can be entered anytime during the quiz and the quiz will be graded according to the number of questions completed at that point.
+Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts to that point.
 
 Format: `end`
 
