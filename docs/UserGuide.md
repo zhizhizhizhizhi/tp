@@ -106,7 +106,7 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
 Example:
 * `add g/Vergesslichkeit e/Forgetfulness d/hard s/f t/chapter1`
 
-    After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![add-screenshot](images/add-screenshot.png)
 
@@ -123,7 +123,7 @@ Format: `delete <INDEX>`
 Example:
 * `delete 2` deletes the 2nd flashcard in the glossary.
  
-    After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
@@ -132,6 +132,8 @@ Example:
 Deletes all flashcards from the glossary permanently.
 
 Format: `clear`
+
+After entering this command, your app should look like this:
 
 ![clear-screenshot](images/clear-screenshot.png)
 
@@ -142,8 +144,7 @@ Starts a round of vocabulary testing with all the flashcards that are currently 
 
 Format: `quiz`
 
-   After entering this command, your app should look like this:
-
+After entering this command, your app should look like this:
 
 ![quiz-screenshot](images/quiz-screenshot.png)
 
@@ -156,7 +157,7 @@ Format: `random <NUMBER>`
 Example: 
 * `random 4` starts a randomised quiz with 4 randomly selected flashcards.
     
-    After entering this command, your app should look like this:
+After entering this command, your app should look like this:
     
 ![random-screenshot](images/random-screenshot.png)
 
@@ -167,7 +168,7 @@ Skips the current flashcard and move on to the next card in quiz mode. You can u
 
 Format: `next`
 
-   After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![next-screenshot](images/next-screenshot.png)
 
@@ -178,7 +179,7 @@ Format: `try <ATTEMPT>`
 
 Example: 'try Tuesday'
 
-   After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![try-screenshot](images/try-screenshot.png)
 
@@ -188,7 +189,7 @@ Ends the round of vocabulary testing. You can use this anytime during the quiz a
 
 Format: `end`
 
-   After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
 
@@ -208,7 +209,7 @@ yourself on the same list again, your previous score will be overwritten.
 
 After entering this command, your app should look like this:
 
-![score-screenshot](images/score-screenshot.png)
+![scores-screenshot](images/scores-screenshot.png)
 
 ### <a name="navigating"></a>3.3. Navigating the glossary
 
@@ -216,14 +217,14 @@ These commands allow you to manipulate the the glossary so you can find certain 
 
 #### <a name="find"></a>3.3.1. Finding a flashcard by the German phrase : `find`
 
-Find a flashcard by the german phrase. The full phrase must be entered. 
+Finds certain flashcard(s) according to the German phrase entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. The full German phrase must be entered for each parameter.
 
-Format: `find <GERMAN PHRASE>`
+Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
 
 Examples:
-* `find Donnerstag` finds the flashcard with the German Phrase 'Donnerstag'.
+* `find Donnerstag` finds the flashcard(s) with the German Phrase 'Donnerstag'.
     
-    After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![find-screenshot](images/find-screenshot.png)
 
@@ -233,7 +234,7 @@ Displays all flashcards in the glossary. You can use this command to return to t
 
 Format: `list`
 
-   After entering this command, your app should look like this:
+After entering this command, your app should look like this:
 
 ![list-screenshot](images/list-screenshot.png)
 
