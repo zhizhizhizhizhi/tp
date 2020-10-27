@@ -45,7 +45,9 @@ public class TryCommandTest {
             int score = model.getQuizScore();
             int total = model.getQuizTotalQuestions();
             CommandResult test = new TryCommand("incorrect attempt!").executeWithChecks(model);
-            assertEquals(test.toString(), TryCommand.INCORRECT_ATTEMPT);
+            assertEquals(test.toString(), TryCommand.INCORRECT_ATTEMPT
+                    + TryCommand.REENTER
+                    + model.getFilteredFlashCardList().get(index).getGermanPhrase().toString());
             assertEquals(model.getQuizModeIndex(), index);
             assertEquals(model.getQuizScore(), score);
             assertEquals(model.getQuizTotalQuestions(), total);

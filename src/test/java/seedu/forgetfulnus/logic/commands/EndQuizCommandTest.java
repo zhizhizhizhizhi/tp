@@ -33,6 +33,8 @@ public class EndQuizCommandTest {
             changeTo.updateShowingEnglish(false);
             model.setFlashCard(flashCard, changeTo);
         }
-        assertCommandSuccess(new QuizCommand(), model, QuizCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new QuizCommand(), model, QuizCommand.MESSAGE_SUCCESS
+                + QuizCommand.FIRST_CARD
+                + model.getFilteredFlashCardList().get(0).getGermanPhrase().toString(), expectedModel);
     }
 }

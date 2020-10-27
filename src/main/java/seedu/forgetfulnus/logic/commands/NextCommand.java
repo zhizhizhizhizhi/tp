@@ -17,7 +17,7 @@ public class NextCommand extends Command {
     public static final String COMMAND_WORD = "next";
     public static final String QUIZ_MODE_REMINDER = "Command cannot be used when not in quiz mode. "
             + "Enter 'quiz' to start quizzing.";
-    public static final String MESSAGE_SUCCESS = "Next card: ";
+    public static final String MESSAGE_SUCCESS = "Enter the definition of: ";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 

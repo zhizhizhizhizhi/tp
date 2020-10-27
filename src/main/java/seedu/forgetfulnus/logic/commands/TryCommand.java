@@ -16,7 +16,8 @@ public class TryCommand extends Command {
     public static final String CORRECT_ATTEMPT = "Correct! ";
     public static final String INCORRECT_ATTEMPT = "Not correct. "
             + "Enter 'try <english phrase>' to try again "
-            + "or 'next' to skip to next card";
+            + "or 'next' to skip to next card.";
+    public static final String REENTER = "\nEnter the definition of: ";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
@@ -45,7 +46,8 @@ public class TryCommand extends Command {
             return new CommandResult(CORRECT_ATTEMPT
                     + new NextCommand().executeWithChecks(model).toString());
         }
-        return new CommandResult(INCORRECT_ATTEMPT);
+        return new CommandResult(INCORRECT_ATTEMPT + REENTER
+                + flashCard.getGermanPhrase().toString());
     }
 
     @Override
