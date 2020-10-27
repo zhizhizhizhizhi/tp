@@ -87,7 +87,7 @@ Refer to the [Features](#features) below for details of each command.
 ### <a name="editing"></a>3.1. Editing the glossary
 #### <a name="add"></a>3.1.1. Adding a flashcard: `add`
 
-Adds a flashcard to the glossary.
+Adds a flashcard to the glossary. You can use this to expand your glossary.
 
 Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] [t/<TAG>]}`
 
@@ -112,7 +112,7 @@ Example:
 
 #### <a name="delete"></a>3.1.2. Deleting a flashcard : `delete`
 
-Deletes the specified flashcard from the glossary.
+Deletes the specified flashcard from the glossary permanently. You can use this command to delete flashcards you consider outdated or not relevant to your learning. 
 
 Format: `delete <INDEX>`
 
@@ -129,7 +129,7 @@ Example:
 
 #### <a name="clear"></a>3.1.3. Clearing all entries : `clear`
 
-Clears all flashcards from the glossary.
+Deletes all flashcards from the glossary permanently.
 
 Format: `clear`
 
@@ -138,18 +138,18 @@ Format: `clear`
 ### <a name="test"></a>3.2. Test Yourself
 #### <a name="quiz"></a>3.2.1. Normal Test : `quiz`
 
-Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. English translation is now hidden for the user to self test.
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. English translation is now hidden for the user to self test. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards.
 
 Format: `quiz`
 
-After entering this command, your app should look like this:
+   After entering this command, your app should look like this:
 
 
 ![quiz-screenshot](images/quiz-screenshot.png)
 
 #### <a name="random"></a>3.2.2. Random Test : `random`
 
-Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary.
+Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick quiz where you can decide the number of questions.
 
 Format: `random <NUMBER>`
 
@@ -159,35 +159,36 @@ Example:
     After entering this command, your app should look like this:
     
 ![random-screenshot](images/random-screenshot.png)
-(note that screenshot might not look exactly the same on your end as flashcards are randomised.)
+
+Note that screenshot might not look exactly the same on your end as flashcards are randomised.
 
 #### <a name="next"></a>3.2.3. Next : `next`
-Skips the current flashcard and move on to the next card in quiz mode.
+Skips the current flashcard and move on to the next card in quiz mode. You can use this command if you cannot get the correct answer but wish to continue with the quiz. The current flashcard will be considered incorrectly answered.
 
 Format: `next`
 
-After entering this command, your app should look like this:
+   After entering this command, your app should look like this:
 
 ![next-screenshot](images/next-screenshot.png)
 
 #### <a name="try"></a>3.2.4. Try : `try`
-Compares the user attempt with the definition of the current flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
+Compares the user attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
 
 Format: `try <ATTEMPT>`
 
 Example: 'try Tuesday'
 
-After entering this command, your app should look like this:
+   After entering this command, your app should look like this:
 
 ![try-screenshot](images/try-screenshot.png)
 
 #### <a name="end"></a>3.2.5. End Test : `end`
 
-Ends the round of vocabulary testing.
+Ends the round of vocabulary testing. You can use this anytime during the quiz and the quiz score will be the number of correct attempts to that point.
 
 Format: `end`
 
-After entering this command, your app should look like this:
+   After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
 
@@ -228,17 +229,17 @@ Examples:
 
 #### <a name="list"></a>3.3.2. Listing all flashcards : `list`
 
-Displays all flashcards in the glossary.
+Displays all flashcards in the glossary. You can use this command to return to the full glossary after a find operation.
 
 Format: `list`
 
-After entering this command, your app should look like this:
+   After entering this command, your app should look like this:
 
 ![list-screenshot](images/list-screenshot.png)
 
 ### <a name="sort"></a>3.3.3. Sort all flashcards : `sort`
 
-Sorts the all flashcards according to the way you choose.
+Sorts the all flashcards according to the way you choose. You may find this helpful for browsing the flashcards or changing the order for quiz mode.
 
 Format: `sort <PARAMETER>`
 
@@ -263,7 +264,7 @@ After entering this command, your app should look like this:
 ### <a name="misc"></a>3.4. Miscellaneous Commands
 #### <a name="help"></a>3.4.1. Help : `help`
 
-Opens a small window containing a link to this User Guide.
+Opens a small window containing a link to this User Guide. You can use this command when you need to refer to the command formats or how to run the app.
 
 Format: `help`
 
