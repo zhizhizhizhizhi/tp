@@ -17,6 +17,7 @@ Class ReadOnlyUserPrefs
 
 Package FlashCard {
 Class FlashCard
+Class Order
 Class Difficulty
 Class GermanPhrase
 Class EnglishPhrase
@@ -44,6 +45,7 @@ UniqueFlashCardList o--> "*" FlashCard
 FlashCard *--> GermanPhrase
 FlashCard *--> EnglishPhrase
 FlashCard *--> Difficulty
+FlashCard *--> Order
 FlashCard *--> "*" Tag
 
 GermanPhrase -[hidden]right-> EnglishPhrase

@@ -17,4 +17,5 @@ FlashCard -up-> "*" Tag
 FlashCard *--> GermanPhrase
 FlashCard *--> EnglishPhrase
 FlashCard *--> Difficulty
+FlashCard *--> Order
 @enduml
