@@ -13,7 +13,7 @@ public class EnglishPhrase {
     public static final String MESSAGE_CONSTRAINTS =
             "English phrases should only contain alphabets and spaces, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
     private final String fullEnglishPhrase;
 
     /**
