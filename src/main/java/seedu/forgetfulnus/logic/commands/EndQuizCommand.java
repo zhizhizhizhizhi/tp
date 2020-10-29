@@ -22,10 +22,7 @@ public class EndQuizCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (model.isRandomQuizMode()) {
-            model.setRandomQuizMode(false);
-        }
-        if (model.isQuizMode()) {
+        if (model.isQuizMode() || model.isRandomQuizMode()) {
             List<FlashCard> lastShownList = model.getFilteredFlashCardList();
             while (model.getQuizModeIndex() < lastShownList.size()) {
                 FlashCard toEdit = lastShownList.get(model.getQuizModeIndex());
@@ -33,6 +30,9 @@ public class EndQuizCommand extends Command {
                 changeTo.updateShowingEnglish(true);
                 model.setFlashCard(toEdit, changeTo);
                 model.addCardToScore(changeTo);
+            }
+            if (model.isRandomQuizMode()) {
+                model.setRandomQuizMode(false);
             }
             model.saveScore();
             model.setQuizMode(false);
