@@ -198,11 +198,22 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
-### Difficulty tag feature
+### Predefined tags feature
+
+There are two types of predefined tags for each flash cards. They are the `DifficultyTag` and `GenderTag`. 
 
 The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
 
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
+
+For `GenderTag` the activity diagram is similar, with the default tag being `NONE`.
+
+The following class diagram outlines the structure of the predefined tags and how it interacts with other `Model` components.
+
+![PredefinedTagClassDiagram](images/PredefinedTagClassDiagram.png)
+
+As both the `DifficultyTag` and `GenderTag` can share similar code, they are extended from `PredefinedTags`.
+
 
 ### <a name="data_archiving"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.

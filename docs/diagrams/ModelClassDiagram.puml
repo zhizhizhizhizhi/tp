@@ -19,6 +19,7 @@ Package FlashCard {
 Class FlashCard
 Class Order
 Class Difficulty
+Class Gender
 Class GermanPhrase
 Class EnglishPhrase
 Class UniqueFlashCardList
@@ -45,6 +46,7 @@ UniqueFlashCardList o--> "*" FlashCard
 FlashCard *--> GermanPhrase
 FlashCard *--> EnglishPhrase
 FlashCard *--> Difficulty
+FlashCard *--> Gender
 FlashCard *--> Order
 FlashCard *--> "*" Tag
 
