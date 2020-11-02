@@ -13,20 +13,20 @@ can get your German revision done quickly and effectively.
 1. [Quick Start](#qs)
 1. [Commonly used Commands](#cucmds)
 1. [Features](#features)
-    1. [Editing the glossary](#editing)
-        1. [Add Flashcard](#add)
-        1. [Delete Flashcard](#delete)
+    1. [Edit the glossary](#editing)
+        1. [Add a Flashcard](#add)
+        1. [Delete a Flashcard](#delete)
         1. [Clear All Flashcards](#clear)
     1. [Test Yourself](#test)
-        1. [Normal Mode](#quiz)
-        1. [Random Mode](#random)
+        1. [Normal Test](#quiz)
+        1. [Random Test](#random)
         1. [Next](#next)
         1. [Try](#try)
         1. [End Testing](#end)
         1. [View Past Scores](#scores)
-    1. [Navigating the glossary](#navigating)
+    1. [Navigate the glossary](#navigating)
         1. [Find a Flashcard](#find)
-        1. [View All Flashcards](#list)
+        1. [List All Flashcards](#list)
         1. [Sort All Flashcards](#sort)
     1. [Miscellaneous Commands](#misc)
         1. [Help](#help)
@@ -84,8 +84,8 @@ Refer to the [Features](#features) below for details of each command.
 
 </div>
 
-### <a name="editing"></a>3.1. Editing the glossary
-#### <a name="add"></a>3.1.1. Adding a flashcard: `add`
+### <a name="editing"></a>3.1. Edit the glossary
+#### <a name="add"></a>3.1.1. Add a flashcard: `add`
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
 
@@ -110,7 +110,7 @@ After entering this command, your app should look like this:
 
 ![add-screenshot](images/add-screenshot.png)
 
-#### <a name="delete"></a>3.1.2. Deleting a flashcard : `delete`
+#### <a name="delete"></a>3.1.2. Delete a flashcard : `delete`
 
 Deletes the specified flashcard from the glossary permanently. You can use this command to delete flashcards you consider outdated or not relevant to your learning. 
 
@@ -127,7 +127,7 @@ After entering this command, your app should look like this:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-#### <a name="clear"></a>3.1.3. Clearing all entries : `clear`
+#### <a name="clear"></a>3.1.3. Clear All Flashcards : `clear`
 
 Deletes all flashcards from the glossary permanently.
 
@@ -193,7 +193,7 @@ After entering this command, your app should look like this:
 
 ![end-screenshot](images/end-screenshot.png)
 
-#### <a name="scores"></a>3.2.6. View past scores : `scores`
+#### <a name="scores"></a>3.2.6. View Past Scores : `scores`
 
 Displays a history of scores from past quizzes, starting from the most recent round. The German phrases tested in these
 rounds are also listed for easy reference.
@@ -211,13 +211,13 @@ After entering this command, your app should look like this:
 
 ![scores-screenshot](images/scores-screenshot.png)
 
-### <a name="navigating"></a>3.3. Navigating the glossary
+### <a name="navigating"></a>3.3. Navigate the glossary
 
 These commands allow you to manipulate the the glossary so you can find certain phrases more easily.
 
-#### <a name="find"></a>3.3.1. Finding a flashcard by the German phrase : `find`
+#### <a name="find"></a>3.3.1. Find a Flashcard : `find`
 
-Finds certain flashcard(s) according to the German phrase entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. The full German phrase must be entered for each parameter.
+Finds certain flashcard(s) according to the **German phrase** entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**.
 
 Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
 
@@ -228,7 +228,7 @@ After entering this command, your app should look like this:
 
 ![find-screenshot](images/find-screenshot.png)
 
-#### <a name="list"></a>3.3.2. Listing all flashcards : `list`
+#### <a name="list"></a>3.3.2. List All Flashcards : `list`
 
 Displays all flashcards in the glossary. You can use this command to return to the full glossary after a find operation.
 
@@ -238,7 +238,7 @@ After entering this command, your app should look like this:
 
 ![list-screenshot](images/list-screenshot.png)
 
-### <a name="sort"></a>3.3.3. Sort all flashcards : `sort`
+### <a name="sort"></a>3.3.3. Sort All Flashcards : `sort`
 
 Sorts the all flashcards according to the way you choose. You may find this helpful for browsing the flashcards or changing the order for quiz mode.
 
@@ -269,7 +269,7 @@ Opens a small window containing a link to this User Guide. You can use this comm
 
 Format: `help`
 
-#### <a name="exit"></a>3.4.2 Exiting the program : `exit`
+#### <a name="exit"></a>3.4.2 Exit the program : `exit`
 
 Saves and exits the program.
 
@@ -280,7 +280,7 @@ Format: `exit`
 ## <a name="faq"></a>4. FAQ
 
 **Q**: Do I need to save my data manually?<br>
-**A**: ForgetfulNUS data is automatically saved in the hard disk upon exiting. There is no need to save manually.
+**A**: ForgetfulNUS glossary data is automatically saved in the hard disk upon exiting. There is no need to save manually.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**:
