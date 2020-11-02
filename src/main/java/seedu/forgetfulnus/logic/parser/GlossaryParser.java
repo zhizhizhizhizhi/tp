@@ -23,6 +23,7 @@ import seedu.forgetfulnus.logic.commands.ScoreCommand;
 import seedu.forgetfulnus.logic.commands.SortCommand;
 import seedu.forgetfulnus.logic.commands.TryCommand;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 
 /**
  * Parses user input.
@@ -39,9 +40,10 @@ public class GlossaryParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws ParseZeroException if the user input is '0'.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, ParseZeroException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

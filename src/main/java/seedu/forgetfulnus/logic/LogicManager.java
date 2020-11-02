@@ -12,6 +12,7 @@ import seedu.forgetfulnus.logic.commands.CommandResult;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.logic.parser.GlossaryParser;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ReadOnlyGlossary;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -39,7 +40,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, ParseZeroException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;

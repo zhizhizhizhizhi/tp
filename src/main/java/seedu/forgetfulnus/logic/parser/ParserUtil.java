@@ -1,6 +1,10 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_PREFIX_PARAM;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_SORT_PARAM;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_ZERO_INDEX;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
 
@@ -11,6 +15,7 @@ import java.util.Set;
 import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.commons.util.StringUtil;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.DifficultyTag;
@@ -23,18 +28,17 @@ import seedu.forgetfulnus.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_SORT_PARAM = " %s is not a valid sort parameter.";
-    public static final String MESSAGE_INVALID_PREFIX_PARAM = " %s is not a valid prefix parameter.";
-
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     * @throws ParseZeroException if the specified index is '0'.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, ParseZeroException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (trimmedIndex.equals("0")) {
+            throw new ParseZeroException(MESSAGE_ZERO_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
