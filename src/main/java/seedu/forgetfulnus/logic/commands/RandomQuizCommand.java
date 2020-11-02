@@ -1,6 +1,7 @@
 package seedu.forgetfulnus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_QUIZ_ALREADY_STARTED;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,12 +24,13 @@ public class RandomQuizCommand extends Command {
     public static final String COMMAND_WORD = "random";
 
     public static final String MESSAGE_SUCCESS = "Random Quiz started!";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Randomly selects specified number of flashcards and starts quiz\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String QUIZ_MODE_REMINDER = "Random Quiz has started. "
-            + "Enter 'end' to end quizzing.";
+
+    public static final String QUIZ_MODE_REMINDER = MESSAGE_QUIZ_ALREADY_STARTED;
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 

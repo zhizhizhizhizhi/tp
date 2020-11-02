@@ -28,22 +28,22 @@ public class EnglishPhraseTest {
         assertFalse(EnglishPhrase.isValidEnglishPhrase("")); // empty string
         assertFalse(EnglishPhrase.isValidEnglishPhrase(" ")); // spaces only
         assertFalse(EnglishPhrase.isValidEnglishPhrase("^")); // only non-alphabet characters
-        assertFalse(EnglishPhrase.isValidEnglishPhrase("peter*")); // contains non-alphabet characters
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("forgetfulness*")); // contains non-alphabet characters
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("forgetfulness1")); // contains numbers
+
 
         // valid English Phrase
-        assertTrue(EnglishPhrase.isValidEnglishPhrase("peter jack")); // alphabets only
-        assertTrue(EnglishPhrase.isValidEnglishPhrase("Capital Tan")); // with capital letters
-        assertTrue(EnglishPhrase.isValidEnglishPhrase("David Roger Jackson Ray Jr 2nd")); // long English phrases
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("forgetfulness me")); // alphabets only
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("Forgetful Ness")); // with capital letters
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("For get ful ness")); // long English phrases
     }
 
     @Test
     public void isCorrectAttempt() {
-        assertTrue(new EnglishPhrase("test1").isCorrectAttempt("test1"));
-        assertTrue(new EnglishPhrase("test1").isCorrectAttempt("TEST1"));
-        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   test 1  "));
-        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   test    1  "));
-        assertTrue(new EnglishPhrase("test 1").isCorrectAttempt("   Test    1  "));
-        assertFalse(new EnglishPhrase("test 1").isCorrectAttempt("   test1   "));
-        assertFalse(new EnglishPhrase("test 1").isCorrectAttempt("ashdha"));
+        assertTrue(new EnglishPhrase("test test").isCorrectAttempt("test test"));
+        assertTrue(new EnglishPhrase("test").isCorrectAttempt("TEST"));
+        assertTrue(new EnglishPhrase("test test").isCorrectAttempt("   test test  "));
+        assertTrue(new EnglishPhrase("test test").isCorrectAttempt("   test    test  "));
+        assertFalse(new EnglishPhrase("test").isCorrectAttempt("ashdha"));
     }
 }

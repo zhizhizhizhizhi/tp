@@ -62,13 +62,7 @@ activate Glossary
 Glossary --> RandomQuizCommand
 deactivate Glossary
 
-RandomQuizCommand -> Model : setGlossary()
-activate Model
-
-Model --> RandomQuizCommand
-deactivate Model
-
-RandomQuizCommand -> Model : updateFilteredPhraseList()
+RandomQuizCommand -> Model : replaceGlossary()
 activate Model
 
 Model --> RandomQuizCommand

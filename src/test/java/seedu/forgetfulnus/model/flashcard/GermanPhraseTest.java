@@ -26,17 +26,18 @@ public class GermanPhraseTest {
         // null name
         assertThrows(NullPointerException.class, () -> GermanPhrase.isValidGermanPhrase(null));
 
-        // invalid German phrase
-        assertFalse(GermanPhrase.isValidGermanPhrase("")); // empty string
-        assertFalse(GermanPhrase.isValidGermanPhrase(" ")); // spaces only
-        assertFalse(GermanPhrase.isValidGermanPhrase("^")); // only non-alphanumeric characters
-        assertFalse(GermanPhrase.isValidGermanPhrase("peter*")); // contains non-alphanumeric characters
+        // invalid German Phrase
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("")); // empty string
+        assertFalse(EnglishPhrase.isValidEnglishPhrase(" ")); // spaces only
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("^")); // only non-alphabet characters
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("forgetfulness*")); // contains non-alphabet characters
+        assertFalse(EnglishPhrase.isValidEnglishPhrase("forgetfulness1")); // contains numbers
 
-        // valid German phrase
-        assertTrue(GermanPhrase.isValidGermanPhrase("peter jack")); // alphabets only
-        assertTrue(GermanPhrase.isValidGermanPhrase("12345")); // numbers only
-        assertTrue(GermanPhrase.isValidGermanPhrase("peter the 2nd")); // alphanumeric characters
-        assertTrue(GermanPhrase.isValidGermanPhrase("Capital Tan")); // with capital letters
-        assertTrue(GermanPhrase.isValidGermanPhrase("David Roger Jackson Ray Jr 2nd")); // long names
+        // valid German Phrase
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("forgetfulness me")); // alphabets only
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("Forgetful Ness")); // with capital letters
+        assertTrue(EnglishPhrase.isValidEnglishPhrase("For get ful ness")); // long English phrases
+
+
     }
 }

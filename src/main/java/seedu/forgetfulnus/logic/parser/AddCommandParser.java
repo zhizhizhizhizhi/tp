@@ -8,6 +8,8 @@ import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GERMAN_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import seedu.forgetfulnus.logic.commands.AddCommand;
@@ -26,7 +28,7 @@ import seedu.forgetfulnus.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     public static final String MESSAGE_INVALID_CLASS_CAST = "Invalid casting of class";
-
+    private static Logger logger = Logger.getLogger("AddCommandParserLogger");
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -48,6 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         DifficultyTag difficultyTag;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY_TAG)) {
+            logger.log(Level.INFO, "Set default difficulty tag, MEDIUM Difficulty.");
             difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         } else {
 
@@ -64,6 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         GenderTag genderTag;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER_TAG)) {
+            logger.log(Level.INFO, "Set default gender tag, NONE Gender.");
             genderTag = new GenderTag(GenderTag.NONE_GENDER_TAG);
         } else {
 
