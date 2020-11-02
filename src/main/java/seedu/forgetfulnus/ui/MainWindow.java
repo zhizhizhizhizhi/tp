@@ -16,6 +16,7 @@ import seedu.forgetfulnus.logic.Logic;
 import seedu.forgetfulnus.logic.commands.CommandResult;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -177,7 +178,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.forgetfulnus.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException, ParseZeroException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

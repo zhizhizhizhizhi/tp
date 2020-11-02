@@ -2,7 +2,7 @@ package seedu.forgetfulnus.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.forgetfulnus.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
 import static seedu.forgetfulnus.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 import seedu.forgetfulnus.model.flashcard.EnglishPhrase;
 import seedu.forgetfulnus.model.flashcard.GermanPhrase;
 import seedu.forgetfulnus.model.tag.Tag;
@@ -33,6 +34,11 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+    }
+
+    @Test
+    public void parseIndex_invalidInput_throwsParseZeroException() {
+        assertThrows(ParseZeroException.class, () -> ParserUtil.parseIndex("0"));
     }
 
     @Test

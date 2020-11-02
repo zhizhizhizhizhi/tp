@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.forgetfulnus.logic.commands.CommandResult;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
+import seedu.forgetfulnus.logic.parser.exceptions.ParseZeroException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -74,7 +75,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.forgetfulnus.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, ParseZeroException;
     }
 
 }
