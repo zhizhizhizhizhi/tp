@@ -55,7 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editFlashCardDescriptor
                     .setEnglishPhrase(ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));
         }
-        //TODO class cast
+
         if (argMultimap.getValue(PREFIX_DIFFICULTY_TAG).isPresent()) {
             editFlashCardDescriptor
                     .setDifficultyTag((DifficultyTag) ParserUtil.parsePredefinedTag(PREFIX_DIFFICULTY_TAG,
