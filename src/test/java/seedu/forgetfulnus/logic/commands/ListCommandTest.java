@@ -8,6 +8,7 @@ import static seedu.forgetfulnus.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.ScoreList;
@@ -36,5 +37,12 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showFlashCardsAtIndex(model, INDEX_FIRST_FLASHCARD);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyGlossary_sendsEmptyMessage() {
+        model.setGlossary(new Glossary());
+        expectedModel.setGlossary(new Glossary());
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_EMPTY_GLOSSARY, expectedModel);
     }
 }

@@ -48,7 +48,8 @@ public class GermanPhrase {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GermanPhrase // instanceof handles nulls
-                && fullGermanPhrase.equals(((GermanPhrase) other).fullGermanPhrase)); // state check
+                && fullGermanPhrase.toLowerCase()
+                .equals(((GermanPhrase) other).fullGermanPhrase.toLowerCase())); // state check
     }
 
     @Override

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
+import seedu.forgetfulnus.model.flashcard.Order;
 
 /**
  * Clears the glossary.
@@ -20,6 +21,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setGlossary(new Glossary());
+        Order.setNextOrderOfAddition(1);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

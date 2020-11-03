@@ -14,6 +14,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all flashcards.";
 
+    public static final String MESSAGE_EMPTY_GLOSSARY = "The glossary is empty!";
+
     public static final String QUIZ_MODE_REMINDER = "'list' command cannot be used in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
@@ -22,6 +24,9 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (model.getGlossary().getFlashCardList().size() == 0) {
+            return new CommandResult(MESSAGE_EMPTY_GLOSSARY);
+        }
         model.updateFilteredPhraseList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
