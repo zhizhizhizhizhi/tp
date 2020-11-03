@@ -63,28 +63,49 @@ public class GlossaryParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            if (arguments.equals("")) {
+                return new ClearCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            if (arguments.equals("")) {
+                return new ListCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            if (arguments.equals("")) {
+                return new ExitCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            if (arguments.equals("")) {
+                return new HelpCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case QuizCommand.COMMAND_WORD:
-            return new QuizCommand();
+            if (arguments.equals("")) {
+                return new QuizCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case EndQuizCommand.COMMAND_WORD:
-            return new EndQuizCommand();
+            if (arguments.equals("")) {
+                return new EndQuizCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case NextCommand.COMMAND_WORD:
-            return new NextCommand();
+            if (arguments.equals("")) {
+                return new NextCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
@@ -96,7 +117,10 @@ public class GlossaryParser {
             return new TryCommand(arguments);
 
         case ScoreCommand.COMMAND_WORD:
-            return new ScoreCommand();
+            if (arguments.equals("")) {
+                return new ScoreCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
