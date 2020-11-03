@@ -31,10 +31,14 @@ public class RandomQuizCommandTest {
     public void execute_randomNonEmptyList_success() throws CommandException {
         setUp();
         String expectedMessage = RandomQuizCommand.MESSAGE_SUCCESS;
-        String actualMessage = new RandomQuizCommand(
+        String[] actualMessageArr = new RandomQuizCommand(
                 Index.fromOneBased(getTypicalGlossary().getFlashCardList().size()))
                 .execute(model)
-                .getFeedbackToUser();
+                .getFeedbackToUser()
+                .split(" ");
+        String actualMessage = actualMessageArr[0]
+                + " " + actualMessageArr[1]
+                + " " + actualMessageArr[2];
         assertEquals(expectedMessage, actualMessage);
     }
 
