@@ -13,7 +13,7 @@ You can reach us at the email seer[at]comp.nus.edu.sg
 
 <img src="images/tjwjoe.png" width="200px">
 
-[[github](http://github.com/tjwjoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tjwjoe)] [[portfolio](team/tjwjoe.md)]
 
 
 * Role: Developer
@@ -23,7 +23,7 @@ You can reach us at the email seer[at]comp.nus.edu.sg
 
 <img src="images/kswk.png" width="200px">
 
-[[github](https://github.com/kswk)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/kswk)] [[portfolio](team/kswk.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables, Deadlines and Integration
@@ -32,7 +32,7 @@ You can reach us at the email seer[at]comp.nus.edu.sg
 
 <img src="images/rayasamhr.png" width="200px">
 
-[[github](http://github.com/rayasamhr)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/rayasamhr)] [[portfolio](team/rayasamhr.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
@@ -41,8 +41,7 @@ You can reach us at the email seer[at]comp.nus.edu.sg
 
 <img src="images/zhizhizhizhizhi.png" width="200px">
 
-[[github](http://github.com/zhizhizhizhizhi)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhizhizhizhizhi)] [[portfolio](team/zhizhizhizhizhi.md)]
 
 * Role: Developer
 * Responsibilities: Testing
@@ -51,8 +50,7 @@ You can reach us at the email seer[at]comp.nus.edu.sg
 
 <img src="images/yangjiyu98.png" width="200px">
 
-[[github](http://github.com/yangjiyu98)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yangjiyu98)] [[portfolio](team/yangjiyu98.md)]
 
 * Role: Developer
 * Responsibilities: Scheduling and Tracking
