@@ -26,6 +26,8 @@ public class SortCommand extends Command {
     public static final String QUIZ_MODE_REMINDER = "Flashcards cannot be sorted in quiz mode. "
             + "Enter 'end' to end quizzing.";
 
+    public static final String MESSAGE_EMPTY_GLOSSARY = "The glossary is empty, there is nothing to sort!";
+
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private Comparator<FlashCard> comp;
@@ -72,6 +74,9 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         assert model != null : "Model cannot be null!";
+        if (model.getGlossary().getFlashCardList().size() == 0) {
+            return new CommandResult(MESSAGE_EMPTY_GLOSSARY);
+        }
         model.setGlossary(getSortedGlossary(model));
         return new CommandResult(MESSAGE_SORT_SUCCESS);
     }
