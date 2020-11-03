@@ -17,10 +17,13 @@ import seedu.forgetfulnus.logic.commands.AddCommand;
 import seedu.forgetfulnus.logic.commands.ClearCommand;
 import seedu.forgetfulnus.logic.commands.DeleteCommand;
 import seedu.forgetfulnus.logic.commands.EditCommand;
+import seedu.forgetfulnus.logic.commands.EndQuizCommand;
 import seedu.forgetfulnus.logic.commands.ExitCommand;
 import seedu.forgetfulnus.logic.commands.FindCommand;
 import seedu.forgetfulnus.logic.commands.HelpCommand;
 import seedu.forgetfulnus.logic.commands.ListCommand;
+import seedu.forgetfulnus.logic.commands.NextCommand;
+import seedu.forgetfulnus.logic.commands.ScoreCommand;
 import seedu.forgetfulnus.logic.parser.exceptions.ParseException;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhraseContainsKeywordsPredicate;
@@ -42,7 +45,6 @@ public class GlossaryParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
@@ -64,9 +66,13 @@ public class GlossaryParserTest {
     }
 
     @Test
+    public void parseCommand_end() throws Exception {
+        assertTrue(parser.parseCommand(EndQuizCommand.COMMAND_WORD) instanceof EndQuizCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
@@ -80,13 +86,21 @@ public class GlossaryParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_next() throws Exception {
+        assertTrue(parser.parseCommand(NextCommand.COMMAND_WORD) instanceof NextCommand);
+    }
+
+    @Test
+    public void parseCommand_scores() throws Exception {
+        assertTrue(parser.parseCommand(ScoreCommand.COMMAND_WORD) instanceof ScoreCommand);
     }
 
     @Test
@@ -98,5 +112,47 @@ public class GlossaryParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_clearWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("clear abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("clear 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("clear abc123"));
+    }
+
+    @Test
+    public void parseCommand_endWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("end abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("end 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("end abc123"));
+    }
+
+    @Test
+    public void parseCommand_exitWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("exit abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("exit 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("exit abc123"));
+    }
+
+    @Test
+    public void parseCommand_helpWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("help abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("help 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("help abc123"));
+    }
+
+    @Test
+    public void parseCommand_listWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("list abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("list 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("list abc123"));
+    }
+
+    @Test
+    public void parseCommand_nextWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("next abc"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("next 123"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("next abc123"));
     }
 }
