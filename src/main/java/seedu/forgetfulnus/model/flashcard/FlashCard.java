@@ -99,7 +99,7 @@ public class FlashCard {
 
         return otherFlashCard != null
                 && otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
-                && (otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase()));
+                && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase());
     }
 
     /**
