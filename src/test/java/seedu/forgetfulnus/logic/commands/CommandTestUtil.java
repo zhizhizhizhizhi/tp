@@ -41,6 +41,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
+    public static final String VALID_TAG_CHAPTER_TWO = "chapter2";
 
     public static final String VALID_ORDER_EIGHT = "8";
     public static final String VALID_ORDER_NINE = "9";

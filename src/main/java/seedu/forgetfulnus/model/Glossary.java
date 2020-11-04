@@ -9,7 +9,7 @@ import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.UniqueFlashCardList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the glossary level
  * Duplicates are not allowed (by .isSameFlashCard comparison)
  */
 public class Glossary implements ReadOnlyGlossary {
