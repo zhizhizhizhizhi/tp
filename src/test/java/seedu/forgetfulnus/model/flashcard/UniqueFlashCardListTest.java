@@ -69,7 +69,8 @@ public class UniqueFlashCardListTest {
 
     @Test
     public void setFlashCard_targetFlashCardNotInList_throwsFlashCardNotFoundException() {
-        assertThrows(FlashCardNotFoundException.class, () -> uniqueFlashCardList.setFlashCard(FLASHCARD_1, FLASHCARD_1));
+        assertThrows(FlashCardNotFoundException.class, () -> uniqueFlashCardList.setFlashCard(
+                FLASHCARD_1, FLASHCARD_1));
     }
 
     @Test
