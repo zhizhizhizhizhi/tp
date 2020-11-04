@@ -3,7 +3,7 @@ package seedu.forgetfulnus.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.MONDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_1;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.MORNING;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.NOON;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
@@ -75,7 +75,7 @@ public class JsonGlossaryStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addFlashCard(MORNING);
-        original.removeFlashCard(MONDAY);
+        original.removeFlashCard(FLASHCARD_1);
         jsonGlossaryStorage.saveFile(original, filePath);
         readBack = jsonGlossaryStorage.readFile(filePath).get();
         assertEquals(original, new Glossary(readBack));

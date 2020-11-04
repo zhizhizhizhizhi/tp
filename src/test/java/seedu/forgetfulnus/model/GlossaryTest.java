@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.VALID_TAG_CHAPTER_ONE;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.MONDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_1;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class GlossaryTest {
     @Test
     public void resetData_withDuplicateFlashCards_throwsDuplicateFlashCardException() {
         // Two flashCards with the same identity fields
-        FlashCard editedAlice = new FlashCardBuilder(MONDAY).withTags(VALID_TAG_CHAPTER_ONE)
+        FlashCard editedAlice = new FlashCardBuilder(FLASHCARD_1).withTags(VALID_TAG_CHAPTER_ONE)
                 .build();
-        List<FlashCard> newFlashCards = Arrays.asList(MONDAY, editedAlice);
+        List<FlashCard> newFlashCards = Arrays.asList(FLASHCARD_1, editedAlice);
         GlossaryStub newData = new GlossaryStub(newFlashCards);
 
         assertThrows(DuplicateFlashCardException.class, () -> glossary.resetData(newData));
@@ -60,19 +60,19 @@ public class GlossaryTest {
 
     @Test
     public void hasFlashCard_flashCardNotInGlossary_returnsFalse() {
-        assertFalse(glossary.hasFlashCard(MONDAY));
+        assertFalse(glossary.hasFlashCard(FLASHCARD_1));
     }
 
     @Test
     public void hasFlashCard_flashCardInGlossary_returnsTrue() {
-        glossary.addFlashCard(MONDAY);
-        assertTrue(glossary.hasFlashCard(MONDAY));
+        glossary.addFlashCard(FLASHCARD_1);
+        assertTrue(glossary.hasFlashCard(FLASHCARD_1));
     }
 
     @Test
     public void hasFlashCard_flashCardWithSameIdentityFieldsInGlossary_returnsTrue() {
-        glossary.addFlashCard(MONDAY);
-        FlashCard editedAlice = new FlashCardBuilder(MONDAY).withTags(VALID_TAG_CHAPTER_ONE)
+        glossary.addFlashCard(FLASHCARD_1);
+        FlashCard editedAlice = new FlashCardBuilder(FLASHCARD_1).withTags(VALID_TAG_CHAPTER_ONE)
                 .build();
         assertTrue(glossary.hasFlashCard(editedAlice));
     }
