@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_PHRASES_LISTED_OVERVIEW;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.FRIDAY;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.SATURDAY;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.WEDNESDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_1;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_2;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_3;
 import static seedu.forgetfulnus.testutil.TypicalFlashCards.getTypicalGlossary;
 
 import java.util.Arrays;
@@ -69,11 +69,12 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleFlashCardsFound() {
         String expectedMessage = String.format(MESSAGE_PHRASES_LISTED_OVERVIEW, 3);
         GermanPhraseContainsKeywordsPredicate predicate =
-                preparePredicate("Mittwoch Freitag Samstag");
+                preparePredicate("Start auf Deutsch");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPhraseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(WEDNESDAY, FRIDAY, SATURDAY), model.getFilteredFlashCardList());
+        assertEquals(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3),
+                model.getFilteredFlashCardList());
     }
 
     /**

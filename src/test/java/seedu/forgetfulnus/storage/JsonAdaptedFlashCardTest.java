@@ -3,7 +3,7 @@ package seedu.forgetfulnus.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.forgetfulnus.storage.JsonAdaptedFlashCard.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.TUESDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,19 +26,19 @@ public class JsonAdaptedFlashCardTest {
     private static final String INVALID_TAG = "#country";
     private static final String INVALID_ORDER = "-100";
 
-    private static final String VALID_GERMAN_PHRASE = TUESDAY.getGermanPhrase().toString();
-    private static final String VALID_ENGLISH_PHRASE = TUESDAY.getEnglishPhrase().toString();
-    private static final String VALID_DIFFICULTY_TAG = TUESDAY.getDifficultyTag().toString();
-    private static final String VALID_GENDER_TAG = TUESDAY.getGenderTag().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TUESDAY.getTags().stream()
+    private static final String VALID_GERMAN_PHRASE = FLASHCARD_2.getGermanPhrase().toString();
+    private static final String VALID_ENGLISH_PHRASE = FLASHCARD_2.getEnglishPhrase().toString();
+    private static final String VALID_DIFFICULTY_TAG = FLASHCARD_2.getDifficultyTag().toString();
+    private static final String VALID_GENDER_TAG = FLASHCARD_2.getGenderTag().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = FLASHCARD_2.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_ORDER = "2";
 
     @Test
     public void toModelType_validFlashcardDetails_returnsFlashcard() throws Exception {
-        JsonAdaptedFlashCard flashcard = new JsonAdaptedFlashCard(TUESDAY);
-        assertEquals(TUESDAY, flashcard.toModelType());
+        JsonAdaptedFlashCard flashcard = new JsonAdaptedFlashCard(FLASHCARD_2);
+        assertEquals(FLASHCARD_2, flashcard.toModelType());
     }
 
     @Test
