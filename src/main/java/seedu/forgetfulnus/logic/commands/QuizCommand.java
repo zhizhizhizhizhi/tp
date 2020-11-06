@@ -22,6 +22,7 @@ public class QuizCommand extends Command {
             + "'add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] [t/<TAG>]}'";
 
     public static final String FIRST_CARD = " Enter the definition of: ";
+    public static final String TRY_COMMAND_REMINDER = "Type in try <your answer> and enter.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
@@ -42,7 +43,8 @@ public class QuizCommand extends Command {
         model.updateFilteredPhraseList();
         model.setQuizMode(true);
         return new CommandResult(String.format(MESSAGE_SUCCESS) + FIRST_CARD
-                + lastShownList.get(model.getQuizModeIndex()).getGermanPhrase().toString());
+                + lastShownList.get(model.getQuizModeIndex()).getGermanPhrase().toString() + "\n"
+                + TRY_COMMAND_REMINDER);
     }
 
     @Override
