@@ -101,6 +101,8 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] 
 * Gender has only four states, M (Masculine), F (Feminine), NEUTRAL or NONE.
   If left blank, by default it will be NONE.
   
+* Tags that are **not** predefined should be alphanumeric and not contain spaces.
+  
 </div>
 
 Example:
