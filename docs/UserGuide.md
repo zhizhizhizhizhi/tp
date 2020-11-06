@@ -89,7 +89,7 @@ Refer to the [Features](#features) below for details of each command.
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
 
-Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] [t/<TAG>]}`
+Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]}`
 
 <div markdown="block" class="alert alert-info">
 
