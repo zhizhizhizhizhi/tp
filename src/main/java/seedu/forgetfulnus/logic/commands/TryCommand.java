@@ -48,8 +48,10 @@ public class TryCommand extends Command {
         assert (flashCard != null);
         if (flashCard.getEnglishPhrase().isCorrectAttempt(attempt)) {
             model.updateWithCorrectAttempt();
-            return new CommandResult(CORRECT_ATTEMPT
-                    + new NextCommand().executeWithChecks(model).toString());
+            CommandResult next = new NextCommand().executeWithChecks(model);
+            CommandResult cr = new CommandResult(CORRECT_ATTEMPT + next.toString());
+            cr.setCardIndex(next.getCardIndex());
+            return cr;
         }
         return new CommandResult(INCORRECT_ATTEMPT + REENTER
                 + flashCard.getGermanPhrase().toString());
