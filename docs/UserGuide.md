@@ -15,6 +15,7 @@ can get your German revision done quickly and effectively.
 1. [Features](#features)
     1. [Edit the glossary](#editing)
         1. [Add a Flashcard](#add)
+        1. [Edit a Flashcard](#edit)
         1. [Delete a Flashcard](#delete)
         1. [Clear All Flashcards](#clear)
     1. [Test Yourself](#test)
@@ -50,7 +51,7 @@ can get your German revision done quickly and effectively.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
   
-  ## <a name="cucmds"></a>2. Commonly used commands
+## <a name="cucmds"></a>2. Commonly used commands
   
    Here are some example commands you can try:
 
@@ -89,7 +90,7 @@ Refer to the [Features](#features) below for details of each command.
 
 Adds a flashcard to the glossary. You can use this to expand your glossary.
 
-Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] [t/<TAG>]}`
+Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...}`
 
 <div markdown="block" class="alert alert-info">
 
@@ -101,6 +102,8 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> d/[<DIFFICULTY>] s/[<GENDER>] 
 * Gender has only four states, M (Masculine), F (Feminine), NEUTRAL or NONE.
   If left blank, by default it will be NONE.
   
+* Tags that are **not** predefined should be alphanumeric and not contain spaces.
+  
 </div>
 
 Example:
@@ -110,7 +113,27 @@ After entering this command, your app should look like this:
 
 ![add-screenshot](images/add-screenshot.png)
 
-#### <a name="delete"></a>3.1.2. Delete a flashcard : `delete`
+#### <a name="edit"></a>3.1.2. Edit a flashcard: `edit`
+
+Edits a flashcard in the glossary at the specified `INDEX`.
+
+Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...}`
+
+* Edits the flashcard at the specified `INDEX`. The index refers to the index number shown in the displayed flashcard list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
+* You can remove all the flashcard’s tags by typing `t/` without
+    specifying any tags after it.
+
+Example:
+* `edit d/easy s/m t/chapter2`
+
+After entering this command, your app should look like this:
+
+![edit-screenshot](images/edit-screenshot.png)
+
+#### <a name="delete"></a>3.1.3. Delete a flashcard : `delete`
 
 Deletes the specified flashcard from the glossary permanently. You can use this command to delete flashcards you consider outdated or not relevant to your learning. 
 
@@ -127,7 +150,7 @@ After entering this command, your app should look like this:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-#### <a name="clear"></a>3.1.3. Clear All Flashcards : `clear`
+#### <a name="clear"></a>3.1.4. Clear All Flashcards : `clear`
 
 Deletes all flashcards from the glossary permanently.
 
