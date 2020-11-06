@@ -83,6 +83,7 @@ Refer to the [Features](#features) below for details of each command.
 * Items in `[]`, square brackets, are optional.
   e.g `g/<GERMAN PHRASE> [t/<TAG>]` can be used as g/Vergesslichkeit t/tutorialOne or as g/Vergesslichkeit.
 
+* Commands are case-insensitive e.g. `Add` or `ADD` will be accepted as `add` too.
 </div>
 
 ### <a name="editing"></a>3.1. Edit the glossary
