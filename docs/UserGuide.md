@@ -58,6 +58,8 @@ can get your German revision done quickly and effectively.
    * **`add`**`g/Vergesslichkeit e/Forgetfulness` : Adds a flashcard with German phrase `Vergesslichkeit` with English translation `Forgetfulness` to the glossary.
 
    * **`quiz`** : Starts a round of vocabulary testing with all existing flashcards in the glossary.
+   
+   * **`try`**`start` : Attempt "start" as the the answer to a German Phrase while quizzing. 
 
    * **`end`** : Ends a round of vocabulary testing.
 
@@ -153,7 +155,7 @@ After entering this command, your app should look like this:
 
 #### <a name="clear"></a>3.1.4. Clear All Flashcards : `clear`
 
-Deletes all flashcards from the glossary permanently.
+Deletes all flashcards from the glossary permanently. This can be useful if you want to remove all default flashcards and start from scratch.
 
 Format: `clear`
 
@@ -164,7 +166,7 @@ After entering this command, your app should look like this:
 ### <a name="test"></a>3.2. Test Yourself
 #### <a name="quiz"></a>3.2.1. Normal Test : `quiz`
 
-Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. English translation is now hidden for the user to self test. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards.
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. The English translations for every flashcard are now hidden for the user to self-test. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards.
 
 Format: `quiz`
 
@@ -205,7 +207,7 @@ After entering this command, your app should look like this:
 
 #### <a name="random"></a>3.2.5. Random Test : `random`
 
-Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick quiz where you can decide the number of questions.
+Starts a round of vocabulary testing like the previous quiz command but with the specified number of flashcards randomly selected from the existing glossary. You can use this command when you want a quick, randomised quiz where you can decide the number of questions.
 
 Format: `random <NUMBER>`
 
@@ -238,11 +240,11 @@ After entering this command, your app should look like this:
 
 ### <a name="navigating"></a>3.3. Navigate the glossary
 
-These commands allow you to manipulate the the glossary so you can find certain phrases more easily.
+These commands allow you to manipulate the glossary so you can find certain phrases more easily.
 
 #### <a name="find"></a>3.3.1. Find a Flashcard : `find`
 
-Finds certain flashcard(s) according to the **German phrase** entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**.
+Finds certain flashcard(s) according to the **German phrase** entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**. To view the full Glossary again, see [List all Flashcards](#list) below.
 
 Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
 
@@ -277,8 +279,20 @@ Format: `sort <PARAMETER>`
     1. `reverseenglish`: sorts by the reverse alphabetical order of English phrases.
     1. `easytohard`: sorts by difficulty of flashcards, from easy to hard.
     1. `hardtoeasy`: sorts by difficulty of flashcards, from hard to easy.
-    1. `earliest`: sorts by chronological order, from the earliest flashcard added to latest.
-    1. `latest`: sorts by chronological order, from the latest flashcard added to earliest.
+    1. `earliest`: sorts by chronological order, from the earliest flashcard added to the latest. This is also the initial sort order.
+    1. `latest`: sorts by chronological order, from the latest flashcard added to the earliest.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about adding a phrase:**<br>
+
+* Upon adding a new phrase, it will automatically be added to the bottom
+  of the glossary regardless of the current sorted order. You will have to sort 
+  the glossary again to update it with the newly added phrase. 
+  
+</div>
+
+
 
 Examples:
 * `sort hardtoeasy` sorts the flashcards by their respective difficulty tags from "hard" to "easy".
@@ -290,7 +304,7 @@ After entering this command, your app should look like this:
 ### <a name="misc"></a>3.4. Miscellaneous Commands
 #### <a name="help"></a>3.4.1. Help : `help`
 
-Opens a small window containing a link to this User Guide. You can use this command when you need to refer to the command formats or how to run the app.
+Opens a small window containing a link to this User Guide. You can use this command to quickly access the User Guide, such as when you need to refer to the command formats or how to run the app. **This requires an Internet connection.**
 
 Format: `help`
 
