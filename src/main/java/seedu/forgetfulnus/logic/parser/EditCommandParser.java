@@ -83,8 +83,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editFlashCardDescriptor);
     }
 
-    private void checkMultiplePrefix(ArgumentMultimap argMultimap, Prefix... prefixArray) throws ParseException {
-        for (Prefix prefix: prefixArray) {
+    /**
+     * Checks the given {@code prefixArray} of prefixes if there are multiple values associated to that prefix
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private void checkMultiplePrefix(ArgumentMultimap argMultimap, Prefix... prefixes) throws ParseException {
+        for (Prefix prefix: prefixes) {
             if (argMultimap.isMultipleValue(prefix)) {
                 throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
             }

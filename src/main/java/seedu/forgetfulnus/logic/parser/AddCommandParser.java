@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      * @throws ClassCastException if wrong class is cast
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args) throws ParseException, ClassCastException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
                         .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE,
@@ -48,23 +48,57 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        GermanPhrase germanPhrase = handleGermanPhrase(argMultimap);
+        EnglishPhrase englishPhrase = handleEnglishPhrase(argMultimap);
+        DifficultyTag difficultyTag = handleDifficultyTag(argMultimap);
+        GenderTag genderTag = handleGenderTag(argMultimap);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tagList);
+
+        return new AddCommand(flashCard);
+    }
+
+    /**
+     * Returns a GermanPhrase for the AddCommand.
+     * {@code ArgumentMultimap}.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private static GermanPhrase handleGermanPhrase(ArgumentMultimap argMultimap)
+            throws ParseException {
         if (!argMultimap.isSingleValue(PREFIX_GERMAN_PHRASE)) {
             throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         }
 
-        GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
+        return ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
+    }
 
+    /**
+     * Returns a EnglishPhrase for the AddCommand.
+     * {@code ArgumentMultimap}.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private static EnglishPhrase handleEnglishPhrase(ArgumentMultimap argMultimap)
+            throws ParseException {
         if (!argMultimap.isSingleValue(PREFIX_ENGLISH_PHRASE)) {
             throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         }
 
-        EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
+        return ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
+    }
 
-        DifficultyTag difficultyTag;
+
+    /**
+     * Returns a DifficultyTag for the AddCommand.
+     * {@code ArgumentMultimap}.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private static DifficultyTag handleDifficultyTag(ArgumentMultimap argMultimap)
+            throws ParseException {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY_TAG)) {
             logger.log(Level.INFO, "Set default difficulty tag, MEDIUM Difficulty.");
-            difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
+            return new DifficultyTag(DifficultyTag.MEDIUM_TAG);
         } else if (!argMultimap.isSingleValue(PREFIX_DIFFICULTY_TAG)) {
             throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         } else {
@@ -73,17 +107,24 @@ public class AddCommandParser implements Parser<AddCommand> {
                     argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get());
 
             if (newTag instanceof DifficultyTag) {
-                difficultyTag = (DifficultyTag) newTag;
+                return (DifficultyTag) newTag;
             } else {
                 throw new ClassCastException(MESSAGE_INVALID_CLASS_CAST);
             }
         }
+    }
 
-        GenderTag genderTag;
+    /**
+     * Returns a GenderTag for the AddCommand.
+     * {@code ArgumentMultimap}.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private static GenderTag handleGenderTag(ArgumentMultimap argMultimap)
+            throws ParseException {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER_TAG)) {
             logger.log(Level.INFO, "Set default gender tag, NONE Gender.");
-            genderTag = new GenderTag(GenderTag.NONE_GENDER_TAG);
+            return new GenderTag(GenderTag.NONE_GENDER_TAG);
         } else if (!argMultimap.isSingleValue(PREFIX_GENDER_TAG)) {
             throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         } else {
@@ -92,17 +133,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                     argMultimap.getValue(PREFIX_GENDER_TAG).get());
 
             if (newTag instanceof GenderTag) {
-                genderTag = (GenderTag) newTag;
+                return (GenderTag) newTag;
             } else {
                 throw new ClassCastException(MESSAGE_INVALID_CLASS_CAST);
             }
         }
-
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tagList);
-
-        return new AddCommand(flashCard);
     }
 
     /**
@@ -112,5 +147,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
