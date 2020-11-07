@@ -6,6 +6,9 @@ package seedu.forgetfulnus.commons.core;
 public class Messages {
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_MULTIPLE_PREFIX =
+        "More than one prefix for a field has been detected!"
+                + "\nPlease check your command again!";
     public static final String MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX =
             "The flashcard index provided is invalid!";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";

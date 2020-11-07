@@ -1,6 +1,7 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_PREFIX;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
@@ -47,11 +48,25 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        if (!argMultimap.isSingleValue(PREFIX_GERMAN_PHRASE)) {
+            throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
+        }
+
+        GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
+
+        if (!argMultimap.isSingleValue(PREFIX_ENGLISH_PHRASE)) {
+            throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
+        }
+
+        EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
+
         DifficultyTag difficultyTag;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY_TAG)) {
             logger.log(Level.INFO, "Set default difficulty tag, MEDIUM Difficulty.");
             difficultyTag = new DifficultyTag(DifficultyTag.MEDIUM_TAG);
+        } else if (!argMultimap.isSingleValue(PREFIX_DIFFICULTY_TAG)) {
+            throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         } else {
 
             PredefinedTag newTag = ParserUtil.parsePredefinedTag(PREFIX_DIFFICULTY_TAG,
@@ -69,6 +84,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER_TAG)) {
             logger.log(Level.INFO, "Set default gender tag, NONE Gender.");
             genderTag = new GenderTag(GenderTag.NONE_GENDER_TAG);
+        } else if (!argMultimap.isSingleValue(PREFIX_GENDER_TAG)) {
+            throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         } else {
 
             PredefinedTag newTag = ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
@@ -81,9 +98,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             }
         }
 
-
-        GermanPhrase germanPhrase = ParserUtil.parseGermanPhrase(argMultimap.getValue(PREFIX_GERMAN_PHRASE).get());
-        EnglishPhrase englishPhrase = ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         FlashCard flashCard = new FlashCard(germanPhrase, englishPhrase, difficultyTag, genderTag, tagList);

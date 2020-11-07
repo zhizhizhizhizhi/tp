@@ -1,6 +1,7 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_PREFIX;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DIFFICULTY_TAG_DESC_HARD;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.DIFFICULTY_TAG_DESC_MEDIUM;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
@@ -50,27 +51,6 @@ public class AddCommandParserTest {
                 + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
                 + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
 
-        // multiple German phrases - last german phrases accepted
-        assertParseSuccess(parser, GERMAN_DESC_FORGETFULNESS + GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
-                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
-
-        // multiple English phrases - last english phrases accepted
-        assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_FORGETFULNESS + ENGLISH_DESC_TABLE
-                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
-                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
-
-
-        // multiple difficulty tags - last difficulty tag accepted
-        assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + DIFFICULTY_TAG_DESC_HARD + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
-                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
-
-        // multiple gender tags - last gender tag accepted
-        assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
-                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_F + GENDER_TAG_DESC_M
-                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, new AddCommand(expectedFlashCard));
-
         // multiple tags - all accepted
         FlashCard expectedFlashCardMultipleTags = new FlashCardBuilder(TABLE)
                 .withTags(VALID_TAG_CHAPTER_ONE, VALID_TAG_HARD)
@@ -78,6 +58,30 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
                 + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
                 + TAG_DESC_HARD + TAG_DESC_CHAPTER_ONE , new AddCommand(expectedFlashCard));
+    }
+
+    @Test
+    public void parse_multipleFieldsPresent_throwsParseException() {
+        // multiple German phrases - ParseException thrown
+        assertParseFailure(parser, GERMAN_DESC_FORGETFULNESS + GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, MESSAGE_INVALID_MULTIPLE_PREFIX);
+
+        // multiple English phrases - ParseException thrown
+        assertParseFailure(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_FORGETFULNESS + ENGLISH_DESC_TABLE
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, MESSAGE_INVALID_MULTIPLE_PREFIX);
+
+
+        // multiple difficulty tags - ParseException thrown
+        assertParseFailure(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
+                + DIFFICULTY_TAG_DESC_HARD + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, MESSAGE_INVALID_MULTIPLE_PREFIX);
+
+        // multiple gender tags - ParseException thrown
+        assertParseFailure(parser, GERMAN_DESC_TABLE + ENGLISH_DESC_TABLE
+                + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_F + GENDER_TAG_DESC_M
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, MESSAGE_INVALID_MULTIPLE_PREFIX);
     }
 
     @Test
@@ -133,9 +137,8 @@ public class AddCommandParserTest {
                 + DIFFICULTY_TAG_DESC_MEDIUM + GENDER_TAG_DESC_M
                 + INVALID_TAG_DESC + VALID_TAG_CHAPTER_ONE, Tag.MESSAGE_CONSTRAINTS);
 
-        //TODO
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_GERMAN_PHRASE_DESC + ENGLISH_DESC_TABLE,
+        assertParseFailure(parser, INVALID_GERMAN_PHRASE_DESC + INVALID_ENGLISH_PHRASE_DESC,
                 GermanPhrase.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
