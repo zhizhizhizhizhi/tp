@@ -2,37 +2,42 @@
 layout: page
 title: Developer Guide
 ---
-* [**Setting up, getting started**](#setup)
+* [**Setting Up, Getting Started**](#setup)
 * [**Design**](#design)
-   * [Architecture](#architecture)
-   * [UI component](#ui_component)
-   * [Logic component](#logic_component)
-   * [Model component](#model_component)
-   * [Storage component](#storage_component)
-   * [Common classes](#common_classes)
+    * [Architecture](#architecture)
+    * [UI Component](#ui_component)
+    * [Logic Component](#logic_component)
+    * [Model Component](#model_component)
+    * [Storage Component](#storage_component)
+    * [Common Classes](#common_classes)
 * [**Implementation**](#implementation)
-   * [[Proposed] Undo/redo feature](#undo_redo)
-     * [Proposed Implementation](#proposed_implementation)
-     * [Design consideration:](#design_consideration)
-       * [Aspect: How undo & redo executes](#aspect_undo_redo)
-  * [[Proposed] Data archiving](#data_archiving)
-* [**Documentation, logging, testing, configuration, dev-ops**](#documentation_etc)
+    * [[Implemented] Predefined Tags](#predefined_tags)
+    * [[Implemented] Quizzing](#quizzing)
+    * [[Implemented] Random Quizzing](#random)
+    * [[Implemented] Scoring](#scoring)
+    * [[Implemented] Sorting](#sorting)
+    * [[Proposed] Undo/redo Feature](#undo_redo)
+        * [Proposed Implementation](#proposed_implementation)
+        * [Design Consideration:](#design_consideration)
+        * [Aspect: How Undo & Redo Executes](#aspect_undo_redo)
+    * [[Proposed] Data Archiving](#data_archiving)
+* [**Documentation, Logging, Testing, Configuration, Dev-Ops**](#documentation_etc)
 * [**Appendix: Requirements**](#requirements)
-  * [Product scope](#product_scope)
-  * [User stories](#user_stories)
-  * [Use cases](#use_cases)
-  * [Non-Functional Requirements](#nfr)
-  * [Glossary](#glossary)
-* [**Appendix: Instructions for manual testing**](#manual_testing)
-  * [Launch and shutdown](#launch_shutdown)
-  * [Deleting a student](#deleting_a_flashcard)
-  * [Saving data](#saving_data)
+    * [Product scope](#product_scope)
+    * [User stories](#user_stories)
+    * [Use cases](#use_cases)
+    * [Non-Functional Requirements](#nfr)
+    * [Glossary](#glossary)
+* [**Appendix: Instructions for Manual Testing**](#manual_testing)
+    * [Launching and Shutting Down](#launch_shutdown)
+    * [Deleting a Flashcard](#deleting_a_flashcard)
+    * [Saving Data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="setup"></a>**Setting up, getting started**
+## <a name="setup"></a>**Setting Up, Getting Started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
 ## <a name="design"></a>**Design**
 
@@ -77,7 +82,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### <a name="ui_component"></a>UI component
+### <a name="ui_component"></a>UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,7 +98,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### <a name="logic_component"></a>Logic component
+### <a name="logic_component"></a>Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -113,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### <a name="model_component"></a>Model component
+### <a name="model_component"></a>Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -133,7 +138,7 @@ The `Model`,
 </div>
 
 
-### <a name="storage_component"></a>Storage component
+### <a name="storage_component"></a>Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -143,7 +148,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### <a name="common_classes"></a>Common classes
+### <a name="common_classes"></a>Common Classes
 
 Classes used by multiple components are in the `seedu.forgetfulnus.commons` package.
 --------------------------------------------------------------------------------------------------------------------
@@ -151,7 +156,56 @@ Classes used by multiple components are in the `seedu.forgetfulnus.commons` pack
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Randomly generating a specified number of flashcards from the glossary to self-test
+### <a name="predefined_tags"></a>\[Implemented\] Predefined Tags
+
+There are two types of predefined tags for each flash cards. They are the `DifficultyTag` and `GenderTag`. 
+
+The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
+
+![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
+
+For `GenderTag` the activity diagram is similar, with the default tag being `NONE`.
+
+The following class diagram outlines the structure of the predefined tags and how it interacts with other `Model` components.
+
+![PredefinedTagClassDiagram](images/PredefinedTagClassDiagram.png)
+
+As both the `DifficultyTag` and `GenderTag` can share similar code, they are extended from `PredefinedTags`.
+
+
+### <a name="quizzing"></a>\[Implemented\] Quizzing
+The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
+
+It implements the following operations:
+
+* `Glossary#quiz(Model)` — Starts the quizzing with the displayed flashcard list.
+* `Glossary#next(Model)` — Attempt to type the correct English definition of the German phrase on the current flashcard.
+* `Glossary#next(Model)` — Skips the current flashcard under test.
+* `Glossary#end(Model)` — Ends the quiz.
+
+These operations are exposed in `Ui` as commands. They are implemented by `QuizCommand`, `TryCommand`, `NextCommand` and `EndQuizCommand` respectively.
+
+Given below is an example usage scenario and how the quiz mechanism behaves at each step.
+
+Step 1: The user launch the application with an existing list of flashcard. Flashcards from this list will be tested on in the order of their index, and the list can be customised by using the `find <search phrase>` command.
+
+Step 2: User enters `quiz` and the program will execute the QuizCommand on the current model. The model will be set to quiz mode and will be expecting quiz commands like `try <attempt>`, `next` and `end`. The Ui will update to hide all the English definitions on the flashcards. The first flashcard on the list will be tested when the quiz begins.
+
+Step 3: The user enters `try <attempt>` and the `GlossaryParser#parse(String)` will parse input into a TryCommand with the attempt. If the attempt matches the English definition of the flashcard, the flashcard index, score and question count in `model` increment. The Ui will update to show the English definition of the current flashcard. The next flashcard on the list will be tested. 
+
+If the attempt does not match, step 3 will repeat.
+Alternatively, the user can enter `next` to execute the NextCommand on the model. The flashcard index and question count in `model` will increment, the Ui will update to show the English definition of the current flashcard andthe next flashcard and the next flashcard will be tested. 
+
+Step 4: The quiz mode will end when there is no next flashcard i.e. current flashcard is the last on the list, and the user attempts the English definition correctly with `try <attempt>` or the user skips the card with `next`. Alternatively, the quiz can be ended early at any point during the quiz when the user enters `end`, letting the program execute the EndQuizCommand on the current model. The Ui will update to show the English definitions on all the flashcards in the flashcard list.
+
+The following activity diagram outlines the process of quizzing:
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the quiz operation works:
+
+![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
+
+### <a name="random"></a>\[Implemented\] Random Quizzing
 
 This feature is facilitated by `RandomQuizCommand` and `RandomQuizCommandParser` and `Model`.
 
@@ -184,7 +238,7 @@ The following activity diagram summarises what happens when a user executes the 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
 
-### <a name="score"></a>\[Proposed\] Score report feature:
+### <a name="scoring"></a>\[Implemented\] Scoring
 
 The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
 
@@ -198,56 +252,7 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
-### Predefined tags feature
-
-There are two types of predefined tags for each flash cards. They are the `DifficultyTag` and `GenderTag`. 
-
-The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
-
-![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
-
-For `GenderTag` the activity diagram is similar, with the default tag being `NONE`.
-
-The following class diagram outlines the structure of the predefined tags and how it interacts with other `Model` components.
-
-![PredefinedTagClassDiagram](images/PredefinedTagClassDiagram.png)
-
-As both the `DifficultyTag` and `GenderTag` can share similar code, they are extended from `PredefinedTags`.
-
-
-### <a name="data_archiving"></a>\[Implemented\] Quizzing
-The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
-
-It implements the following operations:
-
-* `Glossary#quiz(Model)` — Starts the quizzing with the displayed flashcard list.
-* `Glossary#next(Model)` — Attempt to type the correct English definition of the German phrase on the current flashcard.
-* `Glossary#next(Model)` — Skips the current flashcard under test.
-* `Glossary#end(Model)` — Ends the quiz.
-
-These operations are exposed in `Ui` as commands. They are implemented by `QuizCommand`, `TryCommand`, `NextCommand` and `EndQuizCommand` respectively.
-
-Given below is an example usage scenario and how the quiz mechanism behaves at each step.
-
-Step 1: The user launch the application with an existing list of flashcard. Flashcards from this list will be tested on in the order of their index, and the list can be customised by using the `find <search phrase>` command.
-
-Step 2: User enters `quiz` and the program will execute the QuizCommand on the current model. The model will be set to quiz mode and will be expecting quiz commands like `try <attempt>`, `next` and `end`. The Ui will update to hide all the English definitions on the flashcards. The first flashcard on the list will be tested when the quiz begins.
-
-Step 3: The user enters `try <attempt>` and the `GlossaryParser#parse(String)` will parse input into a TryCommand with the attempt. If the attempt matches the English definition of the flashcard, the flashcard index, score and question count in `model` increment. The Ui will update to show the English definition of the current flashcard. The next flashcard on the list will be tested. 
-
-If the attempt does not match, step 3 will repeat.
-Alternatively, the user can enter `next` to execute the NextCommand on the model. The flashcard index and question count in `model` will increment, the Ui will update to show the English definition of the current flashcard andthe next flashcard and the next flashcard will be tested. 
-
-Step 4: The quiz mode will end when there is no next flashcard i.e. current flashcard is the last on the list, and the user attempts the English definition correctly with `try <attempt>` or the user skips the card with `next`. Alternatively, the quiz can be ended early at any point during the quiz when the user enters `end`, letting the program execute the EndQuizCommand on the current model. The Ui will update to show the English definitions on all the flashcards in the flashcard list.
-
-The following activity diagram outlines the process of quizzing:
-![QuizActivityDiagram](images/QuizActivityDiagram.png)
-
-The following sequence diagram shows how the quiz operation works:
-
-![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
-
-### \[Implemented\] Sort Feature
+### <a name="sorting"></a>\[Implemented\] Sorting
 
 The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
 
@@ -326,7 +331,7 @@ Priority | As a... | I want to... | So that I...
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use Case: UC1- Add a flashcard**
+#### **Use Case: UC1- Add a Flashcard**
 
 **MSS:**
 
@@ -346,7 +351,7 @@ Priority | As a... | I want to... | So that I...
 
    Use case ends.
 
-#### **Use case: UC2 - List all flashcards**
+#### **Use case: UC2 - List all Flashcards**
 
 **MSS:**
 
@@ -365,7 +370,7 @@ Priority | As a... | I want to... | So that I...
 
    Use case ends.
 
-#### **Use case: UC3 - Delete a flashcard**
+#### **Use case: UC3 - Delete a Flashcard**
 
 **MSS:**
 
@@ -384,7 +389,7 @@ Priority | As a... | I want to... | So that I...
     
    Use case ends.
    
-#### **Use case: UC4 - Self-testing with flashcards**
+#### **Use case: UC4 - Self-testing with Flashcards**
 
 **MSS:**
 
@@ -422,7 +427,7 @@ Priority | As a... | I want to... | So that I...
 * **Index:** Position of flashcard in the list of flashcards displayed to the user
 * **CLI:** Command Line Interface
 --------------------------------------------------------------------------------------------------------------------
-## <a name="manual_testing"></a>**Appendix: Instructions for manual testing**
+## <a name="manual_testing"></a>**Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -431,7 +436,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### <a name="launch_shutdown"></a>Launch and shutdown
+### <a name="launch_shutdown"></a>Launching and Shutting Down
 
 1. Initial launch
 
@@ -448,7 +453,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### <a name="deleting_a_flashcard"></a>Deleting a flashcard
+### <a name="deleting_a_flashcard"></a>Deleting a Flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
 
@@ -465,7 +470,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### <a name="saving_data"></a>Saving data
+### <a name="saving_data"></a>Saving Data
 
 1. Dealing with missing/corrupted data files
 
