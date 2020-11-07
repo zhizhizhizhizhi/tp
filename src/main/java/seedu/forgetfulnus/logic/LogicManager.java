@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = glossaryParser.parseCommand(commandText.toLowerCase());
+        Command command = glossaryParser.parseCommand(commandText);
         commandResult = command.executeWithChecks(model);
 
         try {
