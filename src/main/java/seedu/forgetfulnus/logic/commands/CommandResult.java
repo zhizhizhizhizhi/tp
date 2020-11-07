@@ -17,6 +17,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private int cardIndex = 0;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -44,6 +46,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public int getCardIndex() {
+        return cardIndex;
+    }
+
+    public void setCardIndex(int i) {
+        cardIndex = i;
     }
 
     @Override

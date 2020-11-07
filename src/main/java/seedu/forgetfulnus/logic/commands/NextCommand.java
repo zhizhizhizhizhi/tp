@@ -20,6 +20,7 @@ public class NextCommand extends Command {
             + "Enter 'quiz' to start quizzing.";
 
     public static final String MESSAGE_SUCCESS = "Enter the definition of: ";
+    public static final String TRY_COMMAND_REMINDER = "Type in try <your answer> and enter.";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
@@ -41,7 +42,9 @@ public class NextCommand extends Command {
             model.setFlashCard(toEdit, changeTo);
             model.addCardToScore(changeTo);
             model.updateFilteredPhraseList();
-            return new CommandResult(MESSAGE_SUCCESS + germanWord);
+            CommandResult cr = new CommandResult(MESSAGE_SUCCESS + germanWord + "\n" + TRY_COMMAND_REMINDER);
+            cr.setCardIndex(model.getQuizModeIndex());
+            return cr;
         } else {
             Command endQuiz = new EndQuizCommand();
             return endQuiz.executeWithChecks(model);
