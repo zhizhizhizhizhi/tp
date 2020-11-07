@@ -19,6 +19,7 @@ import seedu.forgetfulnus.logic.commands.ListCommand;
 import seedu.forgetfulnus.logic.commands.NextCommand;
 import seedu.forgetfulnus.logic.commands.QuizCommand;
 import seedu.forgetfulnus.logic.commands.RandomQuizCommand;
+import seedu.forgetfulnus.logic.commands.ResetScoreCommand;
 import seedu.forgetfulnus.logic.commands.ScoreCommand;
 import seedu.forgetfulnus.logic.commands.SortCommand;
 import seedu.forgetfulnus.logic.commands.TryCommand;
@@ -119,6 +120,13 @@ public class GlossaryParser {
         case ScoreCommand.COMMAND_WORD:
             if (arguments.equals("")) {
                 return new ScoreCommand();
+            }
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
+        case ResetScoreCommand.COMMAND_WORD:
+            System.out.println(arguments);
+            if (arguments.trim().equals(ResetScoreCommand.COMMAND_ELAB)) {
+                return new ResetScoreCommand();
             }
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
