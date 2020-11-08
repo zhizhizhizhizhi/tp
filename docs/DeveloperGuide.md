@@ -164,9 +164,7 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
-For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. 
-
-Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not output anything for a `NONE` state.
+For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not output anything for a `NONE` state.
 
 ### <a name="quizzing"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
