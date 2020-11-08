@@ -3,7 +3,7 @@
 skinparam arrowColor MODEL_COLOR_T4
 skinparam classBackgroundColor MODEL_COLOR_T2
 
-interface Comparable
+interface Comparable <<interface>>
 
 abstract class PredefinedTag
 
