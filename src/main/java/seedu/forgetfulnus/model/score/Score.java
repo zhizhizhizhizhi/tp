@@ -1,5 +1,7 @@
 package seedu.forgetfulnus.model.score;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,17 @@ public class Score {
         this.score = score;
         this.numQuestions = numQuestions;
         this.flashCards.addAll(testedFlashCards);
+    }
+
+    /**
+     * Represents a Score from a round of quizzing.
+     * Duplicates data from another Score object.
+     */
+    public Score(Score other) {
+        requireNonNull(other);
+        this.score = other.score;
+        this.numQuestions = other.numQuestions;
+        this.flashCards.addAll(other.flashCards);
     }
 
     public int getScore() {
@@ -47,5 +60,14 @@ public class Score {
 
     public boolean isSameScore(Score editedScore) {
         return this.flashCards.equals(editedScore.flashCards);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this // short circuit if same object
+                || (obj instanceof Score // instanceof handles nulls
+                && score == ((Score) obj).score)
+                && numQuestions == ((Score) obj).numQuestions
+                && flashCards.equals(((Score) obj).flashCards);
     }
 }
