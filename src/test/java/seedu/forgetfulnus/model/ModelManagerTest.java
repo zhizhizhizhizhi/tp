@@ -29,6 +29,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new ScoreList(), modelManager.getScoreList());
         assertEquals(new Glossary(), new Glossary(modelManager.getGlossary()));
     }
 
@@ -73,6 +74,18 @@ public class ModelManagerTest {
         Path path = Paths.get("forgetfulnus/file/path");
         modelManager.setGlossaryFilePath(path);
         assertEquals(path, modelManager.getGlossaryFilePath());
+    }
+
+    @Test
+    public void setScoreListPath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setScoreFilePath(null));
+    }
+
+    @Test
+    public void setScoreListPath_validPath_setsScoreListPath() {
+        Path path = Paths.get("forgetfulnus/file/scorepath");
+        modelManager.setScoreFilePath(path);
+        assertEquals(path, modelManager.getScoreFilePath());
     }
 
     @Test

@@ -71,4 +71,11 @@ public class ScoreList implements ReadOnlyScoreList {
         }
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScoreList // instanceof handles nulls
+                && scores.equals(((ScoreList) other).scores));
+    }
 }

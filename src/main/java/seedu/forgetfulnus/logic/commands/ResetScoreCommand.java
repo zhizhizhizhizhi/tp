@@ -2,7 +2,6 @@ package seedu.forgetfulnus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ScoreList;
 
