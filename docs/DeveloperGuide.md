@@ -2,36 +2,31 @@
 layout: page
 title: Developer Guide
 ---
-* [**Setting Up, Getting Started**](#setup)
-* [**Design**](#design)
-    * [Architecture](#architecture)
-    * [UI Component](#ui_component)
-    * [Logic Component](#logic_component)
-    * [Model Component](#model_component)
-    * [Storage Component](#storage_component)
-    * [Common Classes](#common_classes)
-* [**Implementation**](#implementation)
-    * [[Implemented] Predefined Tags](#predefined_tags)
-    * [[Implemented] Quizzing](#quizzing)
-    * [[Implemented] Random Quizzing](#random)
-    * [[Implemented] Scoring](#scoring)
-    * [[Implemented] Sorting](#sorting)
-    * [[Proposed] Undo/redo Feature](#undo_redo)
-        * [Proposed Implementation](#proposed_implementation)
-        * [Design Consideration:](#design_consideration)
-        * [Aspect: How Undo & Redo Executes](#aspect_undo_redo)
-    * [[Proposed] Data Archiving](#data_archiving)
-* [**Documentation, Logging, Testing, Configuration, Dev-Ops**](#documentation_etc)
-* [**Appendix: Requirements**](#requirements)
-    * [Product scope](#product_scope)
-    * [User stories](#user_stories)
-    * [Use cases](#use_cases)
-    * [Non-Functional Requirements](#nfr)
-    * [Glossary](#glossary)
-* [**Appendix: Instructions for Manual Testing**](#manual_testing)
-    * [Launching and Shutting Down](#launch_shutdown)
-    * [Deleting a Flashcard](#deleting_a_flashcard)
-    * [Saving Data](#saving_data)
+1. [**Setting Up, Getting Started**](#setup)
+1. [**Design**](#design)
+    1. [Architecture](#architecture)
+    1. [UI Component](#ui_component)
+    1. [Logic Component](#logic_component)
+    1. [Model Component](#model_component)
+    1. [Storage Component](#storage_component)
+    1. [Common Classes](#common_classes)
+1. [**Implementation**](#implementation)
+    1. [[Implemented] Predefined Tags](#predefined_tags)
+    1. [[Implemented] Quizzing](#quizzing)
+    1. [[Implemented] Random Quizzing](#random)
+    1. [[Implemented] Scoring](#scoring)
+    1. [[Implemented] Sorting](#sorting)
+1. [**Documentation, Logging, Testing, Configuration, Dev-Ops**](#documentation_etc)
+1. [**Appendix: Requirements**](#requirements)
+    1. [Product scope](#product_scope)
+    1. [User stories](#user_stories)
+    1. [Use cases](#use_cases)
+    1. [Non-Functional Requirements](#nfr)
+    1. [Glossary](#glossary)
+1. [**Appendix: Instructions for Manual Testing**](#manual_testing)
+    1. [Launching and Shutting Down](#launch_shutdown)
+    1. [Deleting a Flashcard](#deleting_a_flashcard)
+    1. [Saving Data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,6 +142,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the user scores data in json format and read it back.
 
 ### <a name="common_classes"></a>Common Classes
 
@@ -187,7 +183,7 @@ These operations are exposed in `Ui` as commands. They are implemented by `QuizC
 
 Given below is an example usage scenario and how the quiz mechanism behaves at each step.
 
-Step 1: The user launch the application with an existing list of flashcard. Flashcards from this list will be tested on in the order of their index, and the list can be customised by using the `find <search phrase>` command.
+Step 1: The user launches the application with an existing list of flashcard. Flashcards from this list will be tested in the order of their index, and the list can be customised by using the `find <search phrase>` command.
 
 Step 2: User enters `quiz` and the program will execute the QuizCommand on the current model. The model will be set to quiz mode and will be expecting quiz commands like `try <attempt>`, `next` and `end`. The Ui will update to hide all the English definitions on the flashcards. The first flashcard on the list will be tested when the quiz begins.
 
@@ -259,8 +255,8 @@ The Sort feature is implemented as a way for users to further customise the glos
 Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user.
 This is in line with the original AddressBook3's Command pattern.
 
-`SortCommand` relies on several pre-defined `Comparator`s to execute the sorting, one of which is selected for use when
-the user's input is successfully parsed. For example, when the user inputs `sort english`, a SortCommand object is created
+`SortCommand` relies on several pre-defined `Comparator` objects to execute the sorting, one of which is selected for use when
+the user's input is successfully parsed by `SortCommandParser`. For example, when the user inputs `sort english`, a SortCommand object is created
 with a `Comparator` to compare the `EnglishPhrase`s of each `FlashCard` object in the `Glossary`.
 
 This class diagram outlines the structure of `SortCommand` and `SortCommand` and how they interact with 
@@ -309,7 +305,7 @@ The following sequence diagram briefly outlines the execution process when a use
 
 #### **Target user profile**:
 
-ForgetfulNUS is targeted at students taking level 1000-2000 German language modules at the NUS Center of Language Studies who can type fast and prefer typing to mouse interactions.
+ForgetfulNUS is targeted at students taking level 1000-2000 German language modules (LAG1201 and LAG2201) at the NUS Center of Language Studies who can type fast and prefer typing to mouse interactions.
 
 #### **Value proposition**: 
 
@@ -344,7 +340,7 @@ Priority | As a... | I want to... | So that I...
 
 - 1a. ForgetfulNUS detects less than 2 fields for the flashcard.
 
-    - 1a1. ForgetfulNUS requests the User to input phrase and meaning for the flashcard.     
+    - 1a1. ForgetfulNUS requests the User to input a German phrase and an English translation for the flashcard.     
     - 1a2. User enters a new flashcard or terminates the process.
     
     Steps 1a1-1a2 are repeated until the user input is correct or the user terminates the process.
@@ -375,17 +371,17 @@ Priority | As a... | I want to... | So that I...
 **MSS:**
 
 1.  User deletes a flashcard by the index.
-2.  ForgetfulNUS displays the flashcard to be deleted and asks for confirmation.
-3.  User confirms deletion of flashcard.
-4.  ForgetfulNUS deletes the flashcard.
+2.  ForgetfulNUS deletes the flashcard and displays the information of the deleted flashcard.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions:**
 
-- 3a. User chooses to not delete the flashcard at confirmation.
+- 1a. User inputs an invalid index (e.g -1)
 
-    - 3a1. ForgetfulNUS terminates the process. 
+    - 3a1. ForgetfulNUS shows error and asks for a command in the correct format.
+    
+    - 3a2. User enters a command with the correct format.
     
    Use case ends.
    
@@ -400,7 +396,7 @@ Priority | As a... | I want to... | So that I...
 
     Steps 2-4 are repeated until there are no more words to be tested.    
 
-    Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -410,7 +406,24 @@ Priority | As a... | I want to... | So that I...
 
    Use case ends.
 
-*{More to be added soon}*
+#### **Use case: UC5 - Sorting the Glossary**
+
+**MSS:**
+
+1. User requests to sort the glossary according to a parameter.
+2. ForgetfulNUS sorts the glossary according to the parameter.
+
+   Use case ends.
+
+**Extensions:**
+
+- 1a. The glossary is currently empty.
+
+    - 1a1. ForgetfulNUS informs the user that the glossary is empty.
+    
+    - 1a2. User enters another command.
+    
+   Use case ends.
 
 ### Non-Functional Requirements
 
@@ -422,7 +435,7 @@ Priority | As a... | I want to... | So that I...
 ### <a name="glossary"></a>Glossary
 
 * **Mainstream OS:** Windows, Linux, Unix, OS-X
-* **Flashcard:** An item containing (a) a German phrase (b) the corresponding English definition
+* **Flashcard:** An item containing (a) a German phrase (b) the corresponding English definition (c) an associated Difficulty Tag (d) (optional) an associated Gender Tag (e) (optional) one or more Tags
 * **German phrase:** German text of any length
 * **Index:** Position of flashcard in the list of flashcards displayed to the user
 * **CLI:** Command Line Interface
@@ -442,38 +455,79 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum.
+   1. Double-click the jar file. <br> 
+      Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimal.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimal size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+      Expected: The most recent window size and location is retained.
 
 ### <a name="deleting_a_flashcard"></a>Deleting a Flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the glossary.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the glossary. Details of the deleted flashcard shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+1. Deleting a flashcard after using `find`
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: Multiple flashcards in the glossary. `find` command is used to filter the list.
+   
+   1. Test case: `delete 1`<br>
+      Expected: First flashcard in the **filtered** glossary is deleted. Filtered glossary is still shown. Details of the deleted flashcard shown in the status message.
+      
+   1. Test case: `delete 0`<br>
+      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+      
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+### <a name="sorting_flashcards"></a>Sorting Flashcards
 
+1. Sorting the glossary while all flashcards are being shown
+   
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+
+   1. Test case: `sort german`<br>
+      Expected: Glossary is sorted according to alphabetical order of the German phrases.
+      
+   1. Other sorting parameters to try: `english`, `latest`, `easytohard`, `reversegerman`, `...`<br>
+      Expected: Glossary is successfully sorted according to the parameter input.
+      
+1. Sorting an empty glossary
+
+   1. Prerequisites: Glossary is empty (easily done through `clear`).
+   
+   1. Test case: `clear` to empty the glossary, then `sort x` (where x can be any sorting parameter)
+      Expected: Error message shown in message box due to empty glossary. 
+      
+1. Sorting the glossary after using `find`
+
+   1. Prerequisites: Multiple flashcards in the glossary. `find` command is used to filter the list.
+   
+   1. Test case: `sort german`<br>
+      Expected: Filtered list is sorted according to alphabetical order of the German phrases. Original glossary is also sorted. Filtered glossary still shown.
+      
+   1. Other sorting parameters to try: `english`, `latest`, `easytohard`, `reversegerman`, `...`<br>
+      Expected: Glossary is successfully sorted according to the parameter input. Original glossary is also sorted. Filtered glossary still shown.
+      
 ### <a name="saving_data"></a>Saving Data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. To simulate a missing file, delete the glossary.json JSON file in the data folder, then launch the program.<br>
+      Expected: The program successfully launches containing the default sample data.
+      
+   1. To simulate a corrupted glossary file, edit the glossary.json JSON file to include incorrect JSON syntax. (e.g Add a line "this is invalid" to the bottom of the file).<br>
+      Expected: The program successfully launches containing the default sample data, and the old invalid glossary.json is overwritten.
