@@ -25,7 +25,7 @@ can get your German revision done quickly and effectively.
         1. [End Testing](#end)
         1. [Random Test](#random)
         1. [View Past Scores](#scores)
-        1. [Reset Scores](#reset scores)
+        1. [Reset Scores](#reset_scores)
     1. [Navigate the glossary](#navigating)
         1. [Find a Flashcard](#find)
         1. [List All Flashcards](#list)
@@ -114,7 +114,7 @@ Format: `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] 
 </div>
 
 Example:
-* `add g/Vergesslichkeit e/Forgetfulness d/hard s/f t/chapter1`
+* `add g/Vergesslichkeit e/forgetfulness d/hard s/f t/extra`
 
 After entering this command, your app should look like this:
 
@@ -134,7 +134,7 @@ Format: `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s
     specifying any tags after it.
 
 Example:
-* `edit d/easy s/m t/chapter2`
+* `edit d/easy t/chapter3`
 
 After entering this command, your app should look like this:
 
@@ -183,7 +183,7 @@ Compares the user attempt with the definition of the current flashcard. You can 
 
 Format: `try <ATTEMPT>`
 
-Example: 'try Tuesday'
+Example: 'try start'
 
 After entering this command, your app should look like this:
 
@@ -254,13 +254,15 @@ After entering this command, your app should look like this:
 
 ![scores-screenshot](images/scores-screenshot.png)
 
-#### <a name="reset scores"></a>3.2.7. Reset Scores : `reset scores`
+#### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores`
 
 Permanently deletes the history of saved scores, including all scores saved in past sessions.
 
 Format: `reset scores`
 
 After entering this command, your app should look like this:
+
+![reset-screenshot](images/reset-screenshot.png)
 
 ### <a name="navigating"></a>3.3. Navigate the glossary
 
@@ -273,7 +275,7 @@ Finds certain flashcard(s) according to the **German phrase** entered. You can e
 Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
 
 Examples:
-* `find Donnerstag` finds the flashcard(s) with the German Phrase 'Donnerstag'.
+* `find lernen buchstabieren` finds the flashcards with the German Phrases 'lernen' and 'buchstabieren'.
     
 After entering this command, your app should look like this:
 
