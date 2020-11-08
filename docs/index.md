@@ -11,7 +11,7 @@ title: ForgetfulNUS
 **ForgetfulNUS is a desktop application for helping students taking German 1** (LAG1201) **and German 2** (LAG2201) **in NUS to practise their vocabulary.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using ForgetfulNUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing ForgetfulNUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in developing or expanding ForgetfulNUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

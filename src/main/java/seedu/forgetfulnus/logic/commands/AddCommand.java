@@ -30,6 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_GERMAN_PHRASE + "Vergesslichkeit "
             + PREFIX_ENGLISH_PHRASE + "Forgetfulness "
             + PREFIX_DIFFICULTY_TAG + "hard "
+            + PREFIX_GENDER_TAG + "f "
             + PREFIX_TAG + "chapter1 ";
 
     public static final String MESSAGE_SUCCESS = "New phrase added: %1$s";

@@ -35,6 +35,7 @@ public class QuizCommandTest {
         }
         assertCommandSuccess(new QuizCommand(), model, QuizCommand.MESSAGE_SUCCESS
                         + QuizCommand.FIRST_CARD
-                        + model.getFilteredFlashCardList().get(0).getGermanPhrase().toString(), expectedModel);
+                        + model.getFilteredFlashCardList().get(0).getGermanPhrase().toString()
+                        + "\n" + QuizCommand.TRY_COMMAND_REMINDER, expectedModel);
     }
 }

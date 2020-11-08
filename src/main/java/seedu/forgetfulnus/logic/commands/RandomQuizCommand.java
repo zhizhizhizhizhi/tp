@@ -34,6 +34,9 @@ public class RandomQuizCommand extends Command {
 
     public static final String FIRST_CARD = " Enter the definition of: ";
 
+    public static final String TRY_COMMAND_REMINDER = "Type in try <your answer> and enter.";
+
+
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
 
     private final Index targetIndex;
@@ -78,7 +81,9 @@ public class RandomQuizCommand extends Command {
                 .getFilteredFlashCardList()
                 .get(model.getQuizModeIndex())
                 .getGermanPhrase()
-                .toString());
+                .toString()
+                + "\n"
+                + TRY_COMMAND_REMINDER);
     }
 
     /**

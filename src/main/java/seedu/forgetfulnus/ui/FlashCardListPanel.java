@@ -30,6 +30,27 @@ public class FlashCardListPanel extends UiPart<Region> {
         flashCardListView.setCellFactory(listView -> new FlashCardListViewCell());
     }
 
+    private FlashCardListPanel(ListView<FlashCard> l) {
+        super(FXML);
+        flashCardListView = l;
+    }
+
+    /**
+     * Returns a FlashCardListPanel that is scrolled to the index.
+     * @param index
+     * @return FlashCardListPanel
+     */
+    public FlashCardListPanel scrollTo(int index) {
+        if (index >= 3) {
+            flashCardListView.scrollTo(index - 2);
+            return new FlashCardListPanel(flashCardListView);
+        } else if (index == 0) {
+            flashCardListView.scrollTo(0);
+            return new FlashCardListPanel(flashCardListView);
+        }
+        return this;
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code FlashCard} using a {@code FlashCardCardView}.
      */
@@ -46,5 +67,4 @@ public class FlashCardListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

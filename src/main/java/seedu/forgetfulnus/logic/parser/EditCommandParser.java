@@ -2,6 +2,7 @@ package seedu.forgetfulnus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_PREFIX;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_DIFFICULTY_TAG;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_ENGLISH_PHRASE;
 import static seedu.forgetfulnus.logic.parser.CliSyntax.PREFIX_GENDER_TAG;
@@ -46,6 +47,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
+        try {
+            checkMultiplePrefix(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_DIFFICULTY_TAG,
+                    PREFIX_GENDER_TAG);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
+        }
+
         EditFlashCardDescriptor editFlashCardDescriptor = new EditFlashCardDescriptor();
         if (argMultimap.getValue(PREFIX_GERMAN_PHRASE).isPresent()) {
             editFlashCardDescriptor
@@ -55,7 +63,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editFlashCardDescriptor
                     .setEnglishPhrase(ParserUtil.parseEnglishPhrase(argMultimap.getValue(PREFIX_ENGLISH_PHRASE).get()));
         }
-
         if (argMultimap.getValue(PREFIX_DIFFICULTY_TAG).isPresent()) {
             editFlashCardDescriptor
                     .setDifficultyTag((DifficultyTag) ParserUtil.parsePredefinedTag(PREFIX_DIFFICULTY_TAG,
@@ -75,6 +82,19 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editFlashCardDescriptor);
     }
+
+    /**
+     * Checks the given {@code prefixArray} of prefixes if there are multiple values associated to that prefix
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private void checkMultiplePrefix(ArgumentMultimap argMultimap, Prefix... prefixes) throws ParseException {
+        for (Prefix prefix: prefixes) {
+            if (argMultimap.isMultipleValue(prefix)) {
+                throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
+            }
+        }
+    }
+
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
