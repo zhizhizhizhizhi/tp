@@ -140,6 +140,7 @@ The `Storage` component,
 ### <a name="common_classes"></a>Common Classes
 
 Classes used by multiple components are in the `seedu.forgetfulnus.commons` package.
+
 --------------------------------------------------------------------------------------------------------------------
 ## <a name="implementation"></a>**Implementation**
 
@@ -147,20 +148,23 @@ This section describes some noteworthy details on how certain features are imple
 
 ### <a name="predefined_tags"></a>\[Implemented\] Predefined Tags
 
+This feature is facilitated by `PredefinedTags`, `DifficultyTag` and `GenderTag`.
+
 There are two types of predefined tags for each flash cards. They are the `DifficultyTag` and `GenderTag`. 
-
-The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
-
-![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
-
-For `GenderTag` the activity diagram is similar, with the default tag being `NONE`.
 
 The following class diagram outlines the structure of the predefined tags and how it interacts with other `Model` components.
 
 ![PredefinedTagClassDiagram](images/PredefinedTagClassDiagram.png)
 
-As both the `DifficultyTag` and `GenderTag` can share similar code, they are extended from `PredefinedTags`.
+To go for a more OOP solution, both `DifficultyTag` and `GenderTag` were made to extend from an abstract class `PredefinedTag`.
+ 
+Referring to the class diagram above, note that `DifficultyTag` also implements `Comparable` for use in the sorting feature. As ForgetfulNUS does not support sorting by `GenderTag`, it does not implement `Comparable`.
 
+The following activity diagram summarises what happens for the `DifficultyTag` when a user executes the Add command:
+
+![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
+
+For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not output anything for a `NONE` state.
 
 ### <a name="quizzing"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
@@ -320,7 +324,7 @@ Priority | As a... | I want to... | So that I...
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use Case: UC1- Add a Flashcard**
+#### **Use Case: UC1 - Add a flashcard**
 
 **MSS:**
 

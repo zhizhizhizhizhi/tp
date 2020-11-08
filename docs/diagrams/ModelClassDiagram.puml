@@ -52,6 +52,7 @@ FlashCard *--> "*" Tag
 
 GermanPhrase -[hidden]right-> EnglishPhrase
 EnglishPhrase -[hidden]right-> Difficulty
+Difficulty -[hidden]right-> Gender
 
 ModelManager -->"1" FlashCard : filtered list
 @enduml
