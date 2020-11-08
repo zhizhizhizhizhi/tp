@@ -236,6 +236,7 @@ public class TypicalFlashCards {
         }
         return g;
     }
+
     /**
      * A List of FlashCards sorted by chronological order.
      */
