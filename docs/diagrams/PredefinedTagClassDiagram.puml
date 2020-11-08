@@ -13,6 +13,7 @@ class GenderTag {
     {static} +FEMININE_GENDER_TAG
     {static} +NEUTRAL_GENDER_TAG
     {static} +NONE_GENDER_TAG
+
     +isValidGenderTag(String) : boolean
 }
 
