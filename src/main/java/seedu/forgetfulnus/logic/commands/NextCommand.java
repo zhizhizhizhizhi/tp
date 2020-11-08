@@ -42,7 +42,9 @@ public class NextCommand extends Command {
             model.setFlashCard(toEdit, changeTo);
             model.addCardToScore(changeTo);
             model.updateFilteredPhraseList();
-            return new CommandResult(MESSAGE_SUCCESS + germanWord + "\n" + TRY_COMMAND_REMINDER);
+            CommandResult cr = new CommandResult(MESSAGE_SUCCESS + germanWord + "\n" + TRY_COMMAND_REMINDER);
+            cr.setCardIndex(model.getQuizModeIndex());
+            return cr;
         } else {
             Command endQuiz = new EndQuizCommand();
             return endQuiz.executeWithChecks(model);

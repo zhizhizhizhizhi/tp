@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.forgetfulnus.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.MONDAY;
-import static seedu.forgetfulnus.testutil.TypicalFlashCards.TUESDAY;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_1;
+import static seedu.forgetfulnus.testutil.TypicalFlashCards.FLASHCARD_2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,6 +29,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new ScoreList(), modelManager.getScoreList());
         assertEquals(new Glossary(), new Glossary(modelManager.getGlossary()));
     }
 
@@ -76,19 +77,31 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setScoreListPath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setScoreFilePath(null));
+    }
+
+    @Test
+    public void setScoreListPath_validPath_setsScoreListPath() {
+        Path path = Paths.get("forgetfulnus/file/scorepath");
+        modelManager.setScoreFilePath(path);
+        assertEquals(path, modelManager.getScoreFilePath());
+    }
+
+    @Test
     public void hasFlashCard_nullFlashCard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashCard(null));
     }
 
     @Test
     public void hasFlashCard_flashCardNotInGlossary_returnsFalse() {
-        assertFalse(modelManager.hasFlashCard(MONDAY));
+        assertFalse(modelManager.hasFlashCard(FLASHCARD_1));
     }
 
     @Test
     public void hasFlashCard_flashCardInGlossary_returnsTrue() {
-        modelManager.addFlashCard(MONDAY);
-        assertTrue(modelManager.hasFlashCard(MONDAY));
+        modelManager.addFlashCard(FLASHCARD_1);
+        assertTrue(modelManager.hasFlashCard(FLASHCARD_1));
     }
 
     @Test
@@ -98,7 +111,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Glossary glossary = new GlossaryBuilder().withFlashCard(MONDAY).withFlashCard(TUESDAY).build();
+        Glossary glossary = new GlossaryBuilder().withFlashCard(FLASHCARD_1).withFlashCard(FLASHCARD_2).build();
         Glossary differentGlossary = new Glossary();
         ScoreList scoreList = new ScoreList();
         UserPrefs userPrefs = new UserPrefs();
@@ -121,7 +134,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentGlossary, scoreList, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = MONDAY.getGermanPhrase().toString().split("\\s+");
+        String[] keywords = FLASHCARD_1.getGermanPhrase().toString().split("\\s+");
         modelManager.updateFilteredPhraseList(new GermanPhraseContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(glossary, scoreList, userPrefs)));
 

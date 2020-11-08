@@ -9,6 +9,9 @@ import java.util.ListIterator;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 
+/**
+ * Sets the program to quiz mode by hiding the English definitions on flashcards and starts quizzing.
+ */
 public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";

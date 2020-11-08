@@ -2,6 +2,7 @@ package seedu.forgetfulnus.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.forgetfulnus.logic.commands.SortCommand.MESSAGE_EMPTY_GLOSSARY;
 import static seedu.forgetfulnus.logic.commands.SortCommand.MESSAGE_SORT_SUCCESS;
 import static seedu.forgetfulnus.testutil.Assert.assertThrows;
 import static seedu.forgetfulnus.testutil.TestUtil.checkSortedOrder;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.forgetfulnus.commons.core.Comparators;
+import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.ModelManager;
 import seedu.forgetfulnus.model.ScoreList;
@@ -75,5 +77,13 @@ public class SortCommandTest {
         expectedList.sort(Comparators.CHRONOLOGICAL_EARLIEST_COMP);
         assertTrue(checkSortedOrder(model.getGlossary().getFlashCardList(), expectedList));
         assertEquals(result, new CommandResult(MESSAGE_SORT_SUCCESS));
+    }
+
+    @Test
+    public void execute_emptyGlossary_sendsEmptyMessage() {
+        SortCommand command = new SortCommand("german");
+        model.setGlossary(new Glossary());
+        CommandResult result = command.execute(model);
+        assertEquals(result, new CommandResult(MESSAGE_EMPTY_GLOSSARY));
     }
 }

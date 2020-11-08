@@ -29,8 +29,20 @@ deactivate AddCommandParser
 GlossaryParser -> AddCommandParser : parse("g/German e/English")
 activate AddCommandParser
 
+AddCommandParser -> Model : new GermanPhrase(German)
+activate Model
+
+Model -> AddCommandParser
+Deactivate Model
+
+AddCommandParser -> Model : new EnglishPhrase(English)
+activate Model
+
+Model -> AddCommandParser
+Deactivate Model
+
 alt No difficulty specified
-    AddCommandParser -> Model : new DifficultyTag()
+    AddCommandParser -> Model : new DifficultyTag(MEDIUM)
     activate Model
 
     Model -> AddCommandParser
@@ -43,17 +55,19 @@ else else
     Deactivate Model
 end
 
-AddCommandParser -> Model : new GermanPhrase(German)
-activate Model
+alt No gender specified
+    AddCommandParser -> Model : new GenderTag(NONE)
+    activate Model
 
-Model -> AddCommandParser
-Deactivate Model
+    Model -> AddCommandParser
+    Deactivate Model
+else else
+    AddCommandParser -> Model : new GenderTag(gender)
+    activate Model
 
-AddCommandParser -> Model : new EnglishPhrase(English)
-activate Model
-
-Model -> AddCommandParser
-Deactivate Model
+    Model -> AddCommandParser
+    Deactivate Model
+end
 
 opt Tags present
    AddCommandParser -> Model

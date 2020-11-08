@@ -52,7 +52,8 @@ public class EnglishPhrase {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EnglishPhrase // instanceof handles nulls
-                && fullEnglishPhrase.equals(((EnglishPhrase) other).fullEnglishPhrase)); // state check
+                && fullEnglishPhrase.toLowerCase()
+                .equals(((EnglishPhrase) other).fullEnglishPhrase.toLowerCase())); // state check
     }
 
     @Override

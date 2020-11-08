@@ -1,9 +1,9 @@
 @startuml
 !include style.puml
-show members
-show methods
 skinparam arrowColor MODEL_COLOR_T4
 skinparam classBackgroundColor MODEL_COLOR_T2
+
+interface Comparable <<interface>>
 
 abstract class PredefinedTag
 
@@ -13,6 +13,7 @@ class GenderTag {
     {static} +FEMININE_GENDER_TAG
     {static} +NEUTRAL_GENDER_TAG
     {static} +NONE_GENDER_TAG
+
     +isValidGenderTag(String) : boolean
 }
 
@@ -30,6 +31,9 @@ PredefinedTag <|-- DifficultyTag
 PredefinedTag <|-- GenderTag
 FlashCard *--> "1" DifficultyTag : > contains
 FlashCard *--> "1" GenderTag : > contains
+Comparable <|.. DifficultyTag
+FlashCard -[hidden]-> PredefinedTag
+
 
 
 @enduml

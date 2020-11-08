@@ -17,6 +17,7 @@ import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
 import seedu.forgetfulnus.model.Glossary;
 import seedu.forgetfulnus.model.Model;
+import seedu.forgetfulnus.model.ScoreList;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
 import seedu.forgetfulnus.model.flashcard.GermanPhraseContainsKeywordsPredicate;
 import seedu.forgetfulnus.testutil.EditFlashCardDescriptorBuilder;
@@ -41,6 +42,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HARD = "hard";
     public static final String VALID_TAG_CHAPTER_ONE = "chapter1";
+    public static final String VALID_TAG_CHAPTER_TWO = "chapter2";
 
     public static final String VALID_ORDER_EIGHT = "8";
     public static final String VALID_ORDER_NINE = "9";
@@ -128,10 +130,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Glossary expectedGlossary = new Glossary(actualModel.getGlossary());
+        ScoreList expectedScoreList = new ScoreList(actualModel.getScoreList());
         List<FlashCard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFlashCardList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.executeWithChecks(actualModel));
         assertEquals(expectedGlossary, actualModel.getGlossary());
+        assertEquals(expectedScoreList, actualModel.getScoreList());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashCardList());
     }
     /**

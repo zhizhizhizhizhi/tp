@@ -99,7 +99,7 @@ public class FlashCard {
 
         return otherFlashCard != null
                 && otherFlashCard.getGermanPhrase().equals(getGermanPhrase())
-                && (otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase()));
+                && otherFlashCard.getEnglishPhrase().equals(getEnglishPhrase());
     }
 
     /**
@@ -142,7 +142,6 @@ public class FlashCard {
                 .append(getGenderTag())
                 .append("\nTags: ");
         getTags().forEach(builder::append);
-        builder.append("\n List position: ").append(getOrder());
         return builder.toString();
     }
 

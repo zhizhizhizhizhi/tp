@@ -40,6 +40,22 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Checks if there is only one prefix in values {@code prefix}.
+     */
+    public boolean isSingleValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.size() == 1;
+    }
+
+    /**
+     * Checks if there more than one prefix in values {@code prefix}.
+     */
+    public boolean isMultipleValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.size() > 1;
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
