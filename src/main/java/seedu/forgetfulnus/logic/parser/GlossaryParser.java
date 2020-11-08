@@ -124,8 +124,7 @@ public class GlossaryParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 
         case ResetScoreCommand.COMMAND_WORD:
-            System.out.println(arguments);
-            if (arguments.trim().equals(ResetScoreCommand.COMMAND_ELAB)) {
+            if (arguments.substring(1).equals(ResetScoreCommand.COMMAND_ELAB)) {
                 return new ResetScoreCommand();
             }
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

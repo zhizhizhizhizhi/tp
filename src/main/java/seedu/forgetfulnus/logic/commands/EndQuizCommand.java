@@ -35,7 +35,6 @@ public class EndQuizCommand extends Command {
                 model.setRandomQuizMode(false);
             }
             model.saveScore();
-            System.out.println(model.getQuizTotalQuestions());
             model.setQuizMode(false);
             model.updateFilteredPhraseList(unused -> true);
             return new CommandResult(String.format(MESSAGE_SUCCESS
