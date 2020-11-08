@@ -5,38 +5,44 @@ title: Yang Jiyu's Project Portfolio Page
 
 ## Project: ForgetfulNUS
 
-ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201) and German 2 (LAG2201) in NUS to practise and test their vocabulary. This app is optimised for use via a Command Line Interface (CLI). If you can type fast, ForgetfulNUS can get your German revision done quickly and effectively.
+ForgetfulNUS is a flashcard application designed to assist students in learning the German Language, specifically those undertaking the NUS modules LAG1201 and LAG2201, as a memory aid for vocabulary.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * What it does: 
-  * Justification: 
-  * Highlights: 
+* **New Feature**: Predefined tags.
+  * What it does: Allows the user to add in predefined tags, difficulty and gender tags, for each flashcard. 
+  * Justification: This allows the users to categorize words specifically according to the German language. The gender tags also aids the users in understanding and learning the vocabulary.
+  * Highlights: This allowed a new form of sorting and grouping when integrated with my teammate's sorting feature.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=YangJiyu98&tabRepo=AY2021S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.2`, `v1.2.1`, `v1.3` (3 releases) on GitHub
+  * Managed releases `v1.2`, `v1.2.1`, `v1.3`, `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Refactor code to enhance readability from existing code, AddressBook - Level 3.
-  * Updated Add command (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/78), [\#80](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/80))
-
+  * Refactor code to enhance readability from existing code, AddressBook - Level 3 (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/78)).
+  * Refactor Add command to match ForgetfulNUS (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/78), [\#80](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/80)).
+  * Enhance Add command and Edit command to only take in one value for relevant prefixes (Pull requests [\#233](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/233)).
+  * Enhance difficulty tags and gender tags such they extend from a Predefined tag class for a more OOP solution (Pull requests [\#131](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/131)).
+  
 * **Documentation**:
   * User Guide:
-    * Add documentation for the features `add` and `find` [\#72]()
-    * Minor tweaks to existing documentation of Commonly used commands: [\#74]()
+    * Ensure that User Guide was cohesive throughout the project.
+    * Add documentation for the features `add`, `edit`, and `find` (Pull requests [\#135](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/135), [\#229](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/229)).
+    * Update existing documentation of Command summary (Pull requests [\#137](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/137)).
   * Developer Guide:
-    * Updated sequence diagram within the `Logic` component for the Add command.
-    * Updated class diagram within the `Model` component to reflect the additional tags.
-    * Added implementation details of the `PredefinedTags` feature.
-    * Added use cases for ForgetfulNUS
-    
+    * Ensure that the developer Guide was cohesive throughout the project.
+    * Added implementation details of the `PredefinedTags` feature (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/128)).
+    * Updated sequence diagram within the `Logic` component for the Add command (Pull requests [\#124](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/124)).
+    * Updated class diagram within the `Model` component to reflect the additional predefined tags. (Pull requests [\#239](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/239)).
+    * Added use cases for ForgetfulNUS (Pull requests [\#71](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/71)).
+  * README:
+    * Update README terminology to match our product (Pull requests [\#83](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/83)).
+  * Miscellaneous:
+    * Took charge of the demo for v1.2 and v1.3 ([v1.2](https://docs.google.com/document/d/1INOtnhYMQ-rDAKKScVn7QFwIudYHpcUPikhlMqYaj68/edit?usp=sharing), [v1.3](https://drive.google.com/file/d/1vByEjMQdAdeBqJNKbx9RumT3oKOSrerm/view?usp=sharing))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Reported bugs and suggestions for other teams in the class (examples with higher severity: [1](https://github.com/YangJiyu98/ped/issues/3), [2](https://github.com/YangJiyu98/ped/issues/6), [3](https://github.com/YangJiyu98/ped/issues/7), [4](https://github.com/YangJiyu98/ped/issues/2))
 
+* **Credits**:
+  * This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
