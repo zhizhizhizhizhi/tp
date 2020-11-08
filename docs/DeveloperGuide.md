@@ -146,6 +146,7 @@ The `Storage` component,
 ### <a name="common_classes"></a>Common classes
 
 Classes used by multiple components are in the `seedu.forgetfulnus.commons` package.
+
 --------------------------------------------------------------------------------------------------------------------
 ## <a name="implementation"></a>**Implementation**
 
@@ -326,7 +327,7 @@ Priority | As a... | I want to... | So that I...
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use Case: UC1- Add a flashcard**
+#### **Use Case: UC1 - Add a flashcard**
 
 **MSS:**
 
