@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Predefined tags.
   * What it does: Allows the user to add in predefined tags, difficulty and gender tags, for each flashcard. 
-  * Justification: This allows the users to categorize words specifically according to the German language. The gender tags also aids the users in understanding and learning the vocabulary.
+  * Justification: This allows the users to categorize words specifically according to the German language. The gender tags are also a significant part of the flashcard app as the German language may differ significantly from English in this aspect. This aids the users in understanding and learning the German vocabulary.
   * Highlights: This allowed a new form of sorting and grouping when integrated with my teammate's sorting feature.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=YangJiyu98&tabRepo=AY2021S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
