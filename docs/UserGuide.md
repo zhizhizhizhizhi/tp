@@ -25,6 +25,7 @@ can get your German revision done quickly and effectively.
         1. [End Testing](#end)
         1. [Random Test](#random)
         1. [View Past Scores](#scores)
+        1. [Reset Scores](#reset scores)
     1. [Navigate the glossary](#navigating)
         1. [Find a Flashcard](#find)
         1. [List All Flashcards](#list)
@@ -37,7 +38,7 @@ can get your German revision done quickly and effectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="qs"></a>1. Quick start
+## <a name="qs"></a>1. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -51,7 +52,7 @@ can get your German revision done quickly and effectively.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
   
-## <a name="cucmds"></a>2. Commonly used commands
+## <a name="cucmds"></a>2. Commonly Used Commands
   
    Here are some example commands you can try:
 
@@ -63,7 +64,8 @@ can get your German revision done quickly and effectively.
 
    * **`exit`** : Exits the app.
 
-Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for a full list of commands 
+with additional details.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,7 +153,7 @@ After entering this command, your app should look like this:
 
 ![delete-screenshot](images/delete-screenshot.png)
 
-#### <a name="clear"></a>3.1.4. Clear All Flashcards : `clear`
+#### <a name="clear"></a>3.1.4. Clear all Flashcards : `clear`
 
 Deletes all flashcards from the glossary permanently.
 
@@ -220,8 +222,11 @@ Note that screenshot might not look exactly the same on your end as flashcards a
 
 #### <a name="scores"></a>3.2.6. View Past Scores : `scores`
 
-Displays a history of scores from past quizzes, starting from the most recent round. The German phrases tested in these
-rounds are also listed for easy reference.
+Displays a history of scores from past quizzes. Along with each score, the 
+German phrases tested in the corresponding round are also listed. This way, you can
+identify groups of German phrases you struggle with, and track your progress.
+
+Format: `scores`
 
 <div markdown="block" class="alert alert-info">
 
@@ -229,12 +234,29 @@ rounds are also listed for easy reference.
 
 * For each unique list of German phrases, only the most recent score is saved. If you decide to test
 yourself on the same list again, your previous score will be overwritten.
-  
+* Scores are automatically saved after a quizzing round ends, and no further action on your part is needed.
 </div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about viewing scores:**<br>
+* For easy reference, scores are listed starting from the most recently added score.
+  In the case of re-testing yourself on the same list, the score is considered to be overwritten and not
+  added, so the original list position is retained. 
+</div>
+
 
 After entering this command, your app should look like this:
 
 ![scores-screenshot](images/scores-screenshot.png)
+
+#### <a name="reset scores"></a>3.2.7. Reset Scores : `reset scores`
+
+Permanently deletes the history of saved scores, including all scores saved in past sessions.
+
+Format: `reset scores`
+
+After entering this command, your app should look like this:
 
 ### <a name="navigating"></a>3.3. Navigate the glossary
 
@@ -296,7 +318,8 @@ Format: `help`
 
 #### <a name="exit"></a>3.4.2 Exit the program : `exit`
 
-Saves and exits the program.
+Saves and exits the program. If this command is used during a quizzing round, the score
+up to that point will be saved.
 
 Format: `exit`
 
@@ -328,6 +351,8 @@ Action | Format, Examples
 **Next phrase** | `next`
 **Try an answer** | `try <ATTEMPT>` <br> e.g., `try Tuesday`
 **End Quiz** | `end`
+**View Past Scores** | `scores`
+**Reset Scores** | `reset scores`
 **Find** | `find <GERMAN PHRASE>` <br> e.g., `find Vergesslichkeit`
 **List** | `list`
 **Sort** | `sort <PARAMETER>` <br> e.g., `sort english`
