@@ -1,6 +1,7 @@
 package seedu.forgetfulnus.logic.parser;
 
 import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_INVALID_MULTIPLE_PREFIX;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_FORGETFULNESS;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.ENGLISH_DESC_TABLE;
 import static seedu.forgetfulnus.logic.commands.CommandTestUtil.GERMAN_DESC_FORGETFULNESS;
@@ -75,11 +76,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + ENGLISH_DESC_TABLE
-                + INVALID_ENGLISH_PHRASE_DESC, EnglishPhrase.MESSAGE_CONSTRAINTS);
-
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code FlashCard} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_CHAPTER_ONE
@@ -89,9 +85,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY
                 + TAG_DESC_CHAPTER_ONE + TAG_DESC_HARD, Tag.MESSAGE_CONSTRAINTS);
 
-        // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_GERMAN_PHRASE_DESC + VALID_ENGLISH_PHRASE_FORGETFULNESS,
-                GermanPhrase.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -146,11 +139,21 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
+    public void parse_multipleRepeatedFields_throwsParseException() {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ENGLISH_DESC_FORGETFULNESS
-                + TAG_DESC_CHAPTER_ONE + ENGLISH_DESC_FORGETFULNESS + TAG_DESC_CHAPTER_ONE
-                + ENGLISH_DESC_TABLE + TAG_DESC_HARD;
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_CHAPTER_ONE
+                + ENGLISH_DESC_TABLE;
+
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_MULTIPLE_PREFIX);
+    }
+
+    @Test
+    public void parse_multipleRepeatedTagFields_acceptsAll() {
+        Index targetIndex = INDEX_FIRST_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + ENGLISH_DESC_TABLE
+                + TAG_DESC_CHAPTER_ONE + TAG_DESC_CHAPTER_ONE
+                + TAG_DESC_HARD;
 
         EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
                 .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
@@ -158,27 +161,6 @@ public class EditCommandParserTest {
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC
-                + ENGLISH_DESC_TABLE;
-        EditCommand.EditFlashCardDescriptor descriptor = new EditFlashCardDescriptorBuilder()
-                .withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_ENGLISH_PHRASE_DESC
-                + ENGLISH_DESC_TABLE;
-        descriptor = new EditFlashCardDescriptorBuilder().withEnglishPhrase(VALID_ENGLISH_PHRASE_TABLE)
-                .build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

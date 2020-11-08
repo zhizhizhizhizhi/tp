@@ -53,8 +53,10 @@ public class TryCommand extends Command {
             cr.setCardIndex(next.getCardIndex());
             return cr;
         }
-        return new CommandResult(INCORRECT_ATTEMPT + REENTER
+        CommandResult toReturn = new CommandResult(INCORRECT_ATTEMPT + REENTER
                 + flashCard.getGermanPhrase().toString());
+        toReturn.setCardIndex(model.getQuizModeIndex());
+        return toReturn;
     }
 
     @Override
