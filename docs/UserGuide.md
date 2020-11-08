@@ -25,7 +25,7 @@ can get your German revision done quickly and effectively.
         1. [End Testing](#end)
         1. [Random Test](#random)
         1. [View Past Scores](#scores)
-        1. [Reset Scores](#reset scores)
+        1. [Reset Scores](#reset_scores)
     1. [Navigate the glossary](#navigating)
         1. [Find a Flashcard](#find)
         1. [List All Flashcards](#list)
@@ -254,7 +254,7 @@ After entering this command, your app should look like this:
 
 ![scores-screenshot](images/scores-screenshot.png)
 
-#### <a name="reset scores"></a>3.2.7. Reset Scores : `reset scores`
+#### <a name="reset_scores"></a>3.2.7. Reset Scores : `reset scores`
 
 Permanently deletes the history of saved scores, including all scores saved in past sessions.
 
