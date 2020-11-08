@@ -18,6 +18,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.2`, `v1.2.1`, `v1.3`, `v1.4` (4 releases) on GitHub
+  * Took charge of the demo for v1.2 and v1.3 ([v1.2](https://docs.google.com/document/d/1INOtnhYMQ-rDAKKScVn7QFwIudYHpcUPikhlMqYaj68/edit?usp=sharing), [v1.3](https://drive.google.com/file/d/1vByEjMQdAdeBqJNKbx9RumT3oKOSrerm/view?usp=sharing)).
 
 * **Enhancements to existing features**:
   * Refactor code to enhance readability from existing code, AddressBook - Level 3 (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/78)).
@@ -37,9 +38,7 @@ Given below are my contributions to the project.
     * Updated class diagram within the `Model` component to reflect the additional predefined tags. (Pull requests [\#239](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/239)).
     * Added use cases for ForgetfulNUS (Pull requests [\#71](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/71)).
   * README:
-    * Update README terminology to match our product (Pull requests [\#83](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/83)).
-  * Miscellaneous:
-    * Took charge of the demo for v1.2 and v1.3 ([v1.2](https://docs.google.com/document/d/1INOtnhYMQ-rDAKKScVn7QFwIudYHpcUPikhlMqYaj68/edit?usp=sharing), [v1.3](https://drive.google.com/file/d/1vByEjMQdAdeBqJNKbx9RumT3oKOSrerm/view?usp=sharing))
+    * Update README terminology to match our product (Pull requests [\#83](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/83)).    
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (examples with higher severity: [1](https://github.com/YangJiyu98/ped/issues/3), [2](https://github.com/YangJiyu98/ped/issues/6), [3](https://github.com/YangJiyu98/ped/issues/7), [4](https://github.com/YangJiyu98/ped/issues/2))
