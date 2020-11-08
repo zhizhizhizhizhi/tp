@@ -28,15 +28,15 @@ Given below are my contributions to the project.
   
 * **Documentation**:
   * User Guide:
-    * Ensure that User Guide was cohesive throughout the project.
+    * Ensured that User Guide was cohesive throughout the project.
     * Add documentation for the features `add`, `edit`, and `find` (Pull requests [\#135](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/135), [\#229](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/229)).
     * Update existing documentation of Command summary (Pull requests [\#137](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/137)).
   * Developer Guide:
     * Ensure that the developer Guide was cohesive throughout the project.
-    * Added implementation details of the `PredefinedTags` feature (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/128)).
-    * Updated sequence diagram within the `Logic` component for the Add command (Pull requests [\#124](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/124)).
-    * Updated class diagram within the `Model` component to reflect the additional predefined tags. (Pull requests [\#239](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/239)).
-    * Added use cases for ForgetfulNUS (Pull requests [\#71](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/71)).
+    * Add implementation details of the `PredefinedTags` feature (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/128)).
+    * Update sequence diagram within the `Logic` component for the Add command (Pull requests [\#124](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/124)).
+    * Update class diagram within the `Model` component to reflect the additional predefined tags. (Pull requests [\#239](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/239)).
+    * Add use cases for ForgetfulNUS (Pull requests [\#71](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/71)).
   * README:
     * Update README terminology to match our product (Pull requests [\#83](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/83)).    
 
