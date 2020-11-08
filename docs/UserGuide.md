@@ -170,7 +170,8 @@ After entering this command, your app should look like this:
 ### <a name="test"></a>3.2. Test Yourself
 #### <a name="quiz"></a>3.2.1. Normal Test : `quiz`
 
-Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. The English translations for every flashcard are now hidden for the user to self-test. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards.
+Starts a round of vocabulary testing with all the flashcards that are currently in the glossary. The English translations for every flashcard will be hidden. You can use this command to test if you remember the definition corresponding to the German phrase on the flashcards. You start a quiz on any list that is displayed in the app i.e. lists that are the results of `find` or `sort`
+commands.
 
 Format: `quiz`
 
@@ -179,11 +180,11 @@ After entering this command, your app should look like this:
 ![quiz-screenshot](images/quiz-screenshot.png)
 
 #### <a name="try"></a>3.2.2. Try : `try`
-Compares the user attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, users will be prompted to try again or skip this card.
+Compares your attempt with the definition of the current flashcard. You can use this command when the app asks you to enter the definition on a flashcard. If the attempt is correct, the quiz will move on to the next flashcard. If the attempt is not correct, you will be prompted to try again or skip this card.
 
 Format: `try <ATTEMPT>`
 
-Example: 'try start'
+Example: `try start`
 
 After entering this command, your app should look like this:
 
