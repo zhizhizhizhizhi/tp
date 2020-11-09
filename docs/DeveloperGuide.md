@@ -523,8 +523,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. To simulate a missing file, delete the glossary.json JSON file in the data folder, then launch the program.<br>
+   1. To simulate a missing glossary file, delete the `glossary.json` JSON file in the data folder, then launch the program.<br>
       Expected: The program successfully launches containing the default sample data.
-      
-   1. To simulate a corrupted glossary file, edit the glossary.json JSON file to include incorrect JSON syntax. (e.g Add a line "this is invalid" to the bottom of the file).<br>
-      Expected: The program successfully launches containing the default sample data, and the old invalid glossary.json is overwritten.
+   1. To simulate a missing score file, delete the `scores.json` JSON file in the data folder, then launch the program.
+   Expected: The program successfully launches containing an empty score list.     
+   1. To simulate a corrupted glossary or score file, edit the `glossary.json` or `scores.json` JSON files to include incorrect JSON syntax. (e.g. Add a line "this is invalid" to the bottom of the file).<br>
+      Expected: The program successfully launches containing the default sample data, and the old invalid `glossary.json` or `scores.json` is overwritten.
