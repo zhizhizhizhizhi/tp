@@ -70,7 +70,7 @@ else else
 end
 
 opt Tags present
-   AddCommandParser -> Model
+   AddCommandParser -> Model : new Tag
    activate Model
 
    Model -> AddCommandParser
@@ -86,6 +86,12 @@ deactivate Model
 create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
+
+AddCommand -> Model : new Order
+activate Model
+
+Model -> AddCommand
+Deactivate Model
 
 AddCommand --> AddCommandParser : a
 deactivate AddCommand
