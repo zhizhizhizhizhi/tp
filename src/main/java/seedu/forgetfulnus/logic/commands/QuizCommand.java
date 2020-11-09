@@ -5,6 +5,8 @@ import static seedu.forgetfulnus.commons.core.Messages.MESSAGE_QUIZ_ALREADY_STAR
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -28,12 +30,14 @@ public class QuizCommand extends Command {
     public static final String TRY_COMMAND_REMINDER = "Type in try <your answer> and enter.";
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;
+    private static Logger logger = Logger.getLogger("Quiz");
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
         if (lastShownList.size() == 0) {
+            logger.log(Level.INFO, "No flashcard in list");
             return new CommandResult(NO_FLASHCARD_MESSAGE);
         }
         ListIterator<FlashCard> iterator = lastShownList.listIterator();
@@ -45,6 +49,7 @@ public class QuizCommand extends Command {
         }
         model.updateFilteredPhraseList();
         model.setQuizMode(true);
+        logger.log(Level.INFO, "Quiz starting...");
         return new CommandResult(String.format(MESSAGE_SUCCESS) + FIRST_CARD
                 + lastShownList.get(model.getQuizModeIndex()).getGermanPhrase().toString() + "\n"
                 + TRY_COMMAND_REMINDER);

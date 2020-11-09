@@ -1,5 +1,6 @@
 package seedu.forgetfulnus.ui;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ public class FlashCardListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<FlashCard> flashCardListView;
+
 
     /**
      * Creates a {@code FlashCardListPanel} with the given {@code ObservableList}.
@@ -42,12 +44,15 @@ public class FlashCardListPanel extends UiPart<Region> {
      */
     public FlashCardListPanel scrollTo(int index) {
         if (index >= 3) {
+            logger.log(Level.INFO, "Scrolling to: " + index);
             flashCardListView.scrollTo(index - 2);
             return new FlashCardListPanel(flashCardListView);
         } else if (index == 0) {
+            logger.log(Level.INFO, "Scrolling to: " + 0);
             flashCardListView.scrollTo(0);
             return new FlashCardListPanel(flashCardListView);
         }
+        logger.log(Level.INFO, "Is scrolled to: " + index);
         return this;
     }
 

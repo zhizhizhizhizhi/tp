@@ -3,6 +3,8 @@ package seedu.forgetfulnus.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.model.Model;
 import seedu.forgetfulnus.model.flashcard.FlashCard;
@@ -18,6 +20,7 @@ public class EndQuizCommand extends Command {
     public static final String QUIZ_MODE_REMINDER = "You are currently not in quiz mode.";
 
     private static final CommandType type = CommandType.QUIZ_MODE;
+    private static Logger logger = Logger.getLogger("End Quiz");
 
     @Override
     public CommandResult execute(Model model) {
@@ -37,6 +40,8 @@ public class EndQuizCommand extends Command {
             model.saveScore();
             model.setQuizMode(false);
             model.updateFilteredPhraseList(unused -> true);
+            logger.log(Level.INFO, "Quiz ended. Score: " + model.getQuizScore()
+                    + " Total questions: " + model.getQuizTotalQuestions());
             return new CommandResult(String.format(MESSAGE_SUCCESS
                             + " Your score: %s / %s",
                     model.getQuizScore(), model.getQuizTotalQuestions()));
