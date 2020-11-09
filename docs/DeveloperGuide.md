@@ -18,11 +18,11 @@ AddressBook-Level3 project created by the [SE-EDU initiative](https://se-educati
     1. [Storage Component](#storage_component)
     1. [Common Classes](#common_classes)
 1. [**Implementation**](#implementation)
-    1. [[Implemented] Predefined Tags](#predefined_tags)
-    1. [[Implemented] Quizzing](#quizzing)
-    1. [[Implemented] Random Quizzing](#random)
-    1. [[Implemented] Scoring](#scoring)
-    1. [[Implemented] Sorting](#sorting)
+    1. [Predefined Tags](#predefined_tags)
+    1. [Quizzing](#quizzing)
+    1. [Random Quizzing](#random)
+    1. [Scoring](#scoring)
+    1. [Sorting](#sorting)
 1. [**Documentation, Logging, Testing, Configuration, Dev-Ops**](#documentation_etc)
 1. [**Appendix: Requirements**](#requirements)
     1. [Product scope](#product_scope)
@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.forgetfulnus.commons` pack
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### <a name="predefined_tags"></a>\[Implemented\] Predefined Tags
+### <a name="predefined_tags"></a> Predefined Tags
 
 This feature is facilitated by `PredefinedTags`, `DifficultyTag` and `GenderTag`.
 
@@ -174,7 +174,7 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 
 For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not display anything for a `NONE` state.
 
-### <a name="quizzing"></a>\[Implemented\] Quizzing
+### <a name="quizzing"></a> Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
 
 It implements the following operations:
@@ -211,7 +211,7 @@ Quizzing also works in tandem with `find` and `sort` features, allowing users to
 
 During quizzing, only `try`, `next` and `end` commands are allowed to be used. All other commands except `help` and `exit` will remind the user that they are in quiz mode and to end the quiz first before using any other commands.
 
-### <a name="random"></a>\[Implemented\] Random Quizzing
+### <a name="random"></a> Random Quizzing
 
 This feature is facilitated by `RandomQuizCommand` and `RandomQuizCommandParser` and `Model`.
 
@@ -244,7 +244,7 @@ The following activity diagram summarises what happens when a user executes the 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
 
-### <a name="scoring"></a>\[Implemented\] Scoring
+### <a name="scoring"></a> Scoring
 
 The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
 
@@ -258,7 +258,7 @@ These operations are exposed in the Model interface as `Model#addScore()`, `Mode
 
 The following sequence diagram shows how the score is saved:
 
-### <a name="sorting"></a>\[Implemented\] Sorting
+### <a name="sorting"></a> Sorting
 
 The Sort feature is implemented as a way for users to further customise their view of the glossary and make it easier for them to find phrases they want.
 
