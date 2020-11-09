@@ -25,6 +25,11 @@ Class EnglishPhrase
 Class UniqueFlashCardList
 }
 
+Package Score {
+Class Score
+Class UniqueScoreList
+}
+
 Package Tag {
 Class Tag
 }
@@ -49,6 +54,9 @@ FlashCard *--> Difficulty
 FlashCard *--> Gender
 FlashCard *--> Order
 FlashCard *--> "*" Tag
+
+UniqueScoreList o-left-> "*" Score
+Score *--> "1..*" FlashCard
 
 GermanPhrase -[hidden]right-> EnglishPhrase
 EnglishPhrase -[hidden]right-> Difficulty

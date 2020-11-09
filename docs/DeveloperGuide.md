@@ -140,10 +140,15 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-2/tp/tree/master/src/main/java/seedu/forgetfulnus/storage/Storage.java)
 
-The `Storage` component,
+The Storage component,
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 * can save the user scores data in json format and read it back.
+
+`JsonAdaptedFlashCard` and `JsonAdaptedScore` are Json-friendly versions of 
+the `Model`’s respective `FlashCard` and `Score` classes. Similarly, `JsonScoreList` and 
+`JsonSerializableGlossary` are Json-friendly versions of the `Model`’s respective `UniqueFlashCardList` and `UniqueScoreList` classes. These Json-friendly classes handle Json serialization and deserialization, so glossary and score data can be saved and read from their respective .json files.
 
 ### <a name="common_classes"></a>Common Classes
 
@@ -243,20 +248,47 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+### <a name="scoring"></a>\[Implemented\] Saving Score History
 
-### <a name="scoring"></a> Scoring
+This feature saves scores from previous rounds of quizzing. It is facilitated by classes in the `Command`, `Model` and `Storage` components.
 
-The proposed feature saves scores from previous iterations of the quiz mode, which can be accessed by the user with the `ViewScoreCommand`. Scores are saved as percentage of questions answered correctly in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
+A list of past scores is saved in a local file, which is exposed in the `Storage` interface as `Storage#getScoreFilePath()`.
 
-Each time the quiz mode is entered and ended, a score is calculated as a percentage of correct answers input by the user and encapsulated by a `Score` object. The `Score` is added to a `ScoreList`, where the following methods are implemented:
+Scores are encapsulated in the `Model` by `Score` objects, which store scoring information that can be retrieved from the following methods:
 
-`ScoreList#addScore()`
-`ScoreList#getScores()`
-`ScoreList#deleteScores()`
+* `Score#getScore()` - Returns the number of flashcards answered correctly in the quizzing round
+* `Score#getNumQuestions()` - Returns the number of flashcards tested in the quizzing round
+* `Score#getFlashcards()` - Returns a list of flashcards tested in the quizzing round
 
-These operations are exposed in the Model interface as `Model#addScore()`, `Model#getScores()` and `Model#deleteScores()` respectively.
+Each time the quiz mode is entered and ended, a `Score` object is created and added to a `ScoreList`, where the following methods are implemented:
 
-The following sequence diagram shows how the score is saved:
+* `ScoreList#addScore()`
+* `ScoreList#getScoreList()`
+
+The scores can be retrieved and viewed by entering the `scores` command. The following sequence diagram
+summarises how retrieving the scores works:
+
+![RandomQuizSequenceDiagram](images/RandomQuizSequenceDiagram.png)
+
+#### Design Considerations:
+
+Storing `Flashcard`s in each `Score`:
+
+* **Current Implementation**: Each `Score` object contains a list of each `Flashcard` tested in a round. 
+This is a potentially storage-intensive feature that could result in the same flashcard being saved in 
+multiple scores. This would cause duplication of data in the `scores.json` data storage file.
+* **Alternative**: Currently, the only score information displayed to the user on use of the 
+`scores` command are:
+    * Number of flashcards answered correctly
+    * Number of flashcards tested
+    * List of German phrases tested
+    
+    Therefore, each `Score` object could just store a list of German phrases tested (as Strings) instead of a list of `Flashcard`s. This reduces storage use as each `Flashcard` object contains additional data fields that are not used in the score history feature, like tags.
+
+* **Justification for Current Implementation**: Storing all `Flashcard`s allows possible future extensions of the score history feature, such as:
+    * A feature to test all flashcards associated with a particular score, allowing users to improve their performance
+    * A feature to display whether each flashcard was answered correctly in a particular round of quizzing. Storing `Flashcard`s allows this information to easily be added to each `Flashcard` as a data field.
+
 
 ### <a name="sorting"></a> Sorting
 
@@ -408,8 +440,8 @@ Priority | As a... | I want to... | So that I...
 **MSS:**
 
 1. User requests to start self-testing.
-2. ForgetfulNUS displays a german word.
-3. User inputs the corresponding english translation.
+2. ForgetfulNUS displays a German word.
+3. User inputs the corresponding English translation.
 4. ForgetfulNUS displays the results of User's answer.
 
     Steps 2-4 are repeated until there are no more words to be tested.    
@@ -417,6 +449,14 @@ Priority | As a... | I want to... | So that I...
    Use case ends.
 
 **Extensions:**
+
+- 2a. User chooses to skip the German word.
+    
+    -2a1. ForgetfulNUS displays the next German word.
+    
+- 3a. User inputs the wrong English translation.
+
+    - 3a1. ForgetfulNUS prompts the user to try again.
 
 - 4a. At any time, User chooses to stop self-testing.
 
@@ -441,6 +481,35 @@ Priority | As a... | I want to... | So that I...
     
     - 1a2. User enters another command.
     
+   Use case ends.
+   
+#### **Use case: UC6 - Self-testing with specified number of randomised Flashcards**
+
+**MSS:**
+
+1. User requests to start random self-testing with specified number of flashcards.
+2. ForgetfulNUS displays a random German word.
+3. User inputs the corresponding English translation.
+4. ForgetfulNUS displays the results of User's answer.
+
+    Steps 2-4 are repeated until the number of flashcards tested has hit the number specified by the user.    
+
+   Use case ends.
+
+**Extensions:**
+
+- 2a. User chooses to skip the German word.
+    
+    -2a1. ForgetfulNUS displays the next random German word.
+    
+- 3a. User inputs the wrong English translation.
+
+    - 3a1. ForgetfulNUS prompts the user to try again.
+
+- 4a. At any time, User chooses to stop self-testing.
+
+   - 4a1. ForgetfulNUS stops self-testing.
+
    Use case ends.
 
 ### Non-Functional Requirements
@@ -541,12 +610,35 @@ testers are expected to do more *exploratory* testing.
    1. Other sorting parameters to try: `english`, `latest`, `easytohard`, `reversegerman`, `...`<br>
       Expected: Glossary is successfully sorted according to the parameter input. Original glossary is also sorted. Filtered glossary still shown.
       
+### <a name="viewing_scores"></a> Viewing Past Scores
+
+1.  Viewing a non-empty score list
+    1. Prerequisites: 
+        * List all flashcards using the `list` command. 
+        * Multiple flashcards in the glossary. For simplicity, the flashcard with German phrase ‘vergesslichkeit’ and English phrase ‘forgetfulness’ should not already exist in the glossary. 
+        * For simplicity, let the score list be empty (easily done through `reset scores`).
+   
+    1. Test case: `quiz` -> `end quiz` -> `scores` <br>
+    Expected: The score and German phrases tested in this attempt are shown.
+    
+    1. [To be executed immediately after (b)] Test case: `add e/forgetfulness g/vergesslichkeit` -> `quiz` -> `end quiz` -> `scores` <br>
+    Expected: The score and German phrases tested in this attempt are shown at the top of the list, above the previous attempt.
+
+    1. [To be executed immediately after (c)] Test case: `sort latest` -> `delete 1` -> `quiz` -> `end quiz` -> `scores` <br>
+    Expected: The list of flashcards tested is the same as in (b), so this score is considered a duplicate. The score list displayed will remain the same as in ©.
+
+1. Viewing an empty score list
+    1. Prerequisites: Score list is empty (easily done through `reset scores`)
+    1. Test case: `scores` <br>
+    Expected: A message is shown stating that no past scores have been saved.
+    
 ### <a name="saving_data"></a>Saving Data
 
 1. Dealing with missing/corrupted data files
 
-   1. To simulate a missing file, delete the glossary.json JSON file in the data folder, then launch the program.<br>
+   1. To simulate a missing glossary file, delete the `glossary.json` JSON file in the data folder, then launch the program.<br>
       Expected: The program successfully launches containing the default sample data.
-      
-   1. To simulate a corrupted glossary file, edit the glossary.json JSON file to include incorrect JSON syntax. (e.g Add a line "this is invalid" to the bottom of the file).<br>
-      Expected: The program successfully launches containing the default sample data, and the old invalid glossary.json is overwritten.
+   1. To simulate a missing score file, delete the `scores.json` JSON file in the data folder, then launch the program.
+   Expected: The program successfully launches containing an empty score list.     
+   1. To simulate a corrupted glossary or score file, edit the `glossary.json` or `scores.json` JSON files to include incorrect JSON syntax. (e.g. Add a line "this is invalid" to the bottom of the file).<br>
+      Expected: The program successfully launches containing the default sample data, and the old invalid `glossary.json` or `scores.json` is overwritten.

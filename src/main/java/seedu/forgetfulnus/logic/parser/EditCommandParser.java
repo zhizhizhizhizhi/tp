@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.commons.core.index.Index;
 import seedu.forgetfulnus.logic.commands.EditCommand;
@@ -27,6 +29,8 @@ import seedu.forgetfulnus.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
+    private static Logger logger = Logger.getLogger("EditCommandParserLogger");
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -34,10 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer
-                        .tokenize(args, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_DIFFICULTY_TAG,
-                                PREFIX_GENDER_TAG, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_DIFFICULTY_TAG, PREFIX_GENDER_TAG, PREFIX_TAG);
 
         Index index;
 
@@ -51,6 +53,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             checkMultiplePrefix(argMultimap, PREFIX_GERMAN_PHRASE, PREFIX_ENGLISH_PHRASE, PREFIX_DIFFICULTY_TAG,
                     PREFIX_GENDER_TAG);
         } catch (ParseException pe) {
+            logger.log(Level.INFO, "Multiple prefix detected.");
             throw new ParseException(MESSAGE_INVALID_MULTIPLE_PREFIX);
         }
 
@@ -69,14 +72,14 @@ public class EditCommandParser implements Parser<EditCommand> {
                             argMultimap.getValue(PREFIX_DIFFICULTY_TAG).get()));
         }
         if (argMultimap.getValue(PREFIX_GENDER_TAG).isPresent()) {
-            editFlashCardDescriptor
-                    .setGenderTag((GenderTag) ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
+            editFlashCardDescriptor.setGenderTag((GenderTag) ParserUtil.parsePredefinedTag(PREFIX_GENDER_TAG,
                             argMultimap.getValue(PREFIX_GENDER_TAG).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFlashCardDescriptor::setTags);
         editFlashCardDescriptor.setOrder(null);
 
         if (!editFlashCardDescriptor.isAnyFieldEdited()) {
+            logger.log(Level.INFO, "Flashcard not edited.");
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
@@ -94,7 +97,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
     }
-
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.

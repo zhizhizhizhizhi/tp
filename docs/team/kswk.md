@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kswk&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+    * Managed releases `v1.2`, `v1.2.1`, `v1.3`, `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
     * Contributed to the refactoring of Address Book - Level 3 to ForgetfulNUS [#87](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/87)
@@ -27,7 +27,7 @@ Given below are my contributions to the project.
     * About Us:
         * Updated individual details of team members. [#56](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/56)
     * User Guide:
-        * Added screenshots of the UI and various features displayed. [#134](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/134)
+        * Added and updated screenshots of the UI and various features displayed. [#134](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/134), [#237](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/237)
         * Added documentation for the `random` feature. [#117](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/117)
         * Ensured that the formatting was consistent throughout the document.
     * Developer Guide:
@@ -40,6 +40,7 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed : [PRs](https://github.com/AY2021S1-CS2103T-W16-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akswk)
+    * Reported bugs and suggestions for other teams in the cohort: [Bug Reports](https://github.com/kswk/ped/issues)
 
 * **Credits**:
     * This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.

@@ -27,12 +27,12 @@ class DifficultyTag {
 
 class FlashCard
 
-PredefinedTag <|-- DifficultyTag
-PredefinedTag <|-- GenderTag
 FlashCard *--> "1" DifficultyTag : > contains
 FlashCard *--> "1" GenderTag : > contains
 Comparable <|.. DifficultyTag
-FlashCard -[hidden]-> PredefinedTag
+DifficultyTag --|> PredefinedTag
+GenderTag --|> PredefinedTag
+
 
 
 
