@@ -22,7 +22,7 @@ can get your German revision done quickly and effectively.
         1. [Normal Test](#quiz) : `quiz`
         1. [Try](#try) : `try`
         1. [Next](#next) : `next`
-        1. [End Testing](#end) : `end`
+        1. [End Test](#end) : `end`
         1. [Random Test](#random) : `random`
         1. [View Past Scores](#scores) `scores`
         1. [Reset Scores](#reset_scores) `reset scores`
