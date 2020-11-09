@@ -28,4 +28,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs and suggestions for other teams ([examples](https://github.com/zhizhizhizhizhi/ped/issues))
+  
+* **Credits**:
+  * This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
 

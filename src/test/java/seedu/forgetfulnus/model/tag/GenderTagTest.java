@@ -29,11 +29,13 @@ public class GenderTagTest {
         assertTrue(GenderTag.isValidGenderTag("F")); // F gender tag
         assertTrue(GenderTag.isValidGenderTag("NEUTRAL")); // Neutral gender tag
         assertTrue(GenderTag.isValidGenderTag("none")); // none gender tag
-        assertTrue(GenderTag.isValidGenderTag(" NoNe ")); // none gender tag with whitespace
+        assertTrue(GenderTag.isValidGenderTag(" none ")); // none gender tag with whitespace
+        assertTrue(GenderTag.isValidGenderTag("NoNe")); // none gender tag case insensitive
 
         //invalid gender tags
         assertFalse(GenderTag.isValidGenderTag("NONBINARY")); // invalid gender tag
         assertFalse(GenderTag.isValidGenderTag("2")); // invalid gender tag
+        assertFalse(GenderTag.isValidGenderTag(" ")); // invalid gender tag
     }
 }
 
