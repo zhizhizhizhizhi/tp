@@ -7,6 +7,10 @@ title: Tan Jia Wei Joe's Project Portfolio Page
 
 ForgetfulNUS is a flashcard application designed to assist students in learning the German Language, specifically those undertaking the NUS modules LAG1201 and LAG2201, as a memory aid for vocabulary.
 
+Responsibilities for the project: 
+* Developer
+* Documentation overall-in-charge
+
 Given below are my contributions to the project.
 
 * **New Feature**: Ability to sort the glossary according to the parameter input by the user.

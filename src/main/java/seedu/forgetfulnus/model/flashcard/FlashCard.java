@@ -139,9 +139,11 @@ public class FlashCard {
                 .append("\nDifficulty: ")
                 .append(getDifficultyTag())
                 .append("\nGender: ")
-                .append(getGenderTag())
-                .append("\nTags: ");
-        getTags().forEach(builder::append);
+                .append(getGenderTag());
+        if (getTags().size() != 0) {
+            builder.append("\nTags: ");
+            getTags().forEach(builder::append);
+        }
         return builder.toString();
     }
 
