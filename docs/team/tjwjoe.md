@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tjwjoe&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
+  * Managed releases `v1.2`, `v1.2.1`, `v1.3`, `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Performed significant refactoring of the original AB3 code at the start of the project to make it suit our product. [\#90](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/90)
@@ -31,11 +31,14 @@ Given below are my contributions to the project.
     * Improved and maintained formatting for the User Guide throughout the project (Pull Requests [\#142](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/142) [\#219](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/219)).
     * Wrote usage guide for `sort` feature. [\#121](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/121)
   * Developer Guide:
-    * Added some User Stories [\#68](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/68)
+    * Added some User Stories and Use Cases [\#68](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/68) [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)
     * Removed irrelevant information from AddressBook3's original Developer Guide [\#147](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/147)
     * Added documentation for the `sort` feature, inclusive of diagrams. [\#121](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/121)
+    * Updated Appendix - Manual Testing section with more manual tests [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)
+    * Improved and maintained formatting for the Developer Guide throughout the project [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)
 
 * **Community**:
+  * Reviewed Pull Requests from teammates [PRs](https://github.com/AY2021S1-CS2103T-W16-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
   * Reported bugs and suggestions for other teams in the cohort (examples: [1](https://github.com/tjwjoe/ped/issues/13), [2](https://github.com/tjwjoe/ped/issues/14), [3](https://github.com/tjwjoe/ped/issues/7))
   
 * **Credits**:
