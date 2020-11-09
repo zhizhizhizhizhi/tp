@@ -34,7 +34,7 @@ public class RandomQuizCommand extends Command {
 
     public static final String FIRST_CARD = " Enter the definition of: ";
 
-    public static final String TRY_COMMAND_REMINDER = "Type in try <your answer> and enter.";
+    public static final String TRY_COMMAND_REMINDER = "Type in: try <ATTEMPT> and enter.";
 
 
     private static final CommandType type = CommandType.NOT_QUIZ_MODE;

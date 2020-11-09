@@ -21,7 +21,7 @@ public class TryCommand extends Command {
     public static final String CORRECT_ATTEMPT = "Correct! ";
 
     public static final String INCORRECT_ATTEMPT = "Not correct. "
-            + "Enter 'try <english phrase>' to try again "
+            + "Enter: 'try <ATTEMPT>' to try again "
             + "or 'next' to skip to next card.";
 
     public static final String REENTER = "\nEnter the definition of: ";
