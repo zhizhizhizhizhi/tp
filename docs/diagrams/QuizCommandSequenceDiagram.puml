@@ -24,8 +24,14 @@ create QuizCommand
 GlossaryParser -> QuizCommand
 activate QuizCommand
 
+QuizCommand --> GlossaryParser
+deactivate QuizCommand
+
 GlossaryParser --> LogicManager
 deactivate GlossaryParser
+
+LogicManager -> QuizCommand : executeWithChecks()
+activate QuizCommand
 
 QuizCommand -> Model : resetQuiz()
 activate Model
