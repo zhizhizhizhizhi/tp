@@ -107,10 +107,10 @@ public class MainApp extends Application {
             }
             return scoreListOptional.orElseGet(ScoreList::new);
         } catch (DataConversionException e) {
-            logger.warning("Glossary data file not in the correct format. Will be starting with an empty Glossary");
+            logger.warning("Score data file not in the correct format. Will be starting with an empty score list");
             return new ScoreList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the glossary file. Will be starting with an empty Glossary");
+            logger.warning("Problem while reading from the score file. Will be starting with an empty score list");
             return new ScoreList();
         }
     }
