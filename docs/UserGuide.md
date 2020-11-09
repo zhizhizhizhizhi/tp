@@ -366,10 +366,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **Clear** | `clear`
 **Start Normal Quiz** | `quiz`
-**Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
-**Next phrase** | `next`
 **Try an answer** | `try <ATTEMPT>` <br> e.g., `try Tuesday`
+**Next phrase** | `next`
 **End Quiz** | `end`
+**Start Random Quiz** | `random <NUMBER>` <br> e.g., `random 5`
 **View Past Scores** | `scores`
 **Reset Scores** | `reset scores`
 **Find** | `find <GERMAN PHRASE>` <br> e.g., `find Vergesslichkeit`
