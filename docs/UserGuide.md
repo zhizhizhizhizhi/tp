@@ -19,7 +19,7 @@ can get your German revision done quickly and effectively.
         1. [Delete a Flashcard](#delete) : `delete`
         1. [Clear All Flashcards](#clear) : `clear`
     1. [Test Yourself](#test)
-        1. [Normal Test](#quiz) : `clear`
+        1. [Normal Test](#quiz) : `quiz`
         1. [Try](#try) : `try`
         1. [Next](#next) : `next`
         1. [End Testing](#end) : `end`
