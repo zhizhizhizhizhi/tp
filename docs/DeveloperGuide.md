@@ -408,8 +408,8 @@ Priority | As a... | I want to... | So that I...
 **MSS:**
 
 1. User requests to start self-testing.
-2. ForgetfulNUS displays a german word.
-3. User inputs the corresponding english translation.
+2. ForgetfulNUS displays a German word.
+3. User inputs the corresponding English translation.
 4. ForgetfulNUS displays the results of User's answer.
 
     Steps 2-4 are repeated until there are no more words to be tested.    
@@ -417,6 +417,14 @@ Priority | As a... | I want to... | So that I...
    Use case ends.
 
 **Extensions:**
+
+- 2a. User chooses to skip the German word.
+    
+    -2a1. ForgetfulNUS displays the next German word.
+    
+- 3a. User inputs the wrong English translation.
+
+    - 3a1. ForgetfulNUS prompts the user to try again.
 
 - 4a. At any time, User chooses to stop self-testing.
 
@@ -441,6 +449,35 @@ Priority | As a... | I want to... | So that I...
     
     - 1a2. User enters another command.
     
+   Use case ends.
+   
+#### **Use case: UC6 - Self-testing with specified number of randomised Flashcards**
+
+**MSS:**
+
+1. User requests to start random self-testing with specified number of flashcards.
+2. ForgetfulNUS displays a random German word.
+3. User inputs the corresponding English translation.
+4. ForgetfulNUS displays the results of User's answer.
+
+    Steps 2-4 are repeated until the number of flashcards tested has hit the number specified by the user.    
+
+   Use case ends.
+
+**Extensions:**
+
+- 2a. User chooses to skip the German word.
+    
+    -2a1. ForgetfulNUS displays the next random German word.
+    
+- 3a. User inputs the wrong English translation.
+
+    - 3a1. ForgetfulNUS prompts the user to try again.
+
+- 4a. At any time, User chooses to stop self-testing.
+
+   - 4a1. ForgetfulNUS stops self-testing.
+
    Use case ends.
 
 ### Non-Functional Requirements
