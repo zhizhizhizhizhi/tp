@@ -329,7 +329,7 @@ Priority | As a... | I want to... | So that I...
 --- | ---------- | --------- | ---- |
 *** | user |add a flashcard with German phrase and meaning | can refer it or use it to test myself later.
 *** | user | list out all the flashcards with index | can look through the phrases and their meanings to study.
-*** | user | delete a flash card by index | remove flashcards that I deem irrelevant.
+*** | user | delete a flash card by index | can remove flashcards that I deem irrelevant.
 *** | user | test myself with the flashcards | can be quizzed on the phrases and their meanings.
 ** | user | my flashcards to be saved (storage) | can use them when I next launch the app.
 ** | user | to sort my flashcards in certain ways | can navigate the glossary more easily.
