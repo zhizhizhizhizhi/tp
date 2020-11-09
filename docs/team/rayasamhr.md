@@ -55,3 +55,4 @@ Here are my contributions to this project:
     * Added implementation details of the `scores` feature. (Pull requests [\#122](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/122))
     * Added non-functional requirements and glossary 
     based on team discussion (Pull request [\#72](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/72))
+    
