@@ -3,6 +3,8 @@ package seedu.forgetfulnus.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.commons.core.Messages;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
@@ -26,6 +28,8 @@ public class TryCommand extends Command {
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
+    private static Logger logger = Logger.getLogger("Try");
+
     private final String attempt;
 
     /**
@@ -42,20 +46,25 @@ public class TryCommand extends Command {
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
         int index = model.getQuizModeIndex();
         if (index < 0 || index >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Out of bound index: " + index);
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
         FlashCard flashCard = lastShownList.get(index);
         assert (flashCard != null);
+        logger.log(Level.INFO, "Expected: "
+                + flashCard.getEnglishPhrase().toString() + " Actual: " + attempt);
         if (flashCard.getEnglishPhrase().isCorrectAttempt(attempt)) {
             model.updateWithCorrectAttempt();
             CommandResult next = new NextCommand().executeWithChecks(model);
             CommandResult cr = new CommandResult(CORRECT_ATTEMPT + next.toString());
             cr.setCardIndex(next.getCardIndex());
+            logger.log(Level.INFO, "Correct!");
             return cr;
         }
         CommandResult toReturn = new CommandResult(INCORRECT_ATTEMPT + REENTER
                 + flashCard.getGermanPhrase().toString());
         toReturn.setCardIndex(model.getQuizModeIndex());
+        logger.log(Level.INFO, "Wrong");
         return toReturn;
     }
 

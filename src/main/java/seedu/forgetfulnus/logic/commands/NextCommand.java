@@ -3,6 +3,8 @@ package seedu.forgetfulnus.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.forgetfulnus.commons.core.Messages;
 import seedu.forgetfulnus.logic.commands.exceptions.CommandException;
@@ -24,12 +26,15 @@ public class NextCommand extends Command {
 
     private static final CommandType type = CommandType.QUIZ_MODE;
 
+    private static Logger logger = Logger.getLogger("Next");
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String germanWord;
         List<FlashCard> lastShownList = model.getFilteredFlashCardList();
         int index = model.getQuizModeIndex();
+        logger.log(Level.INFO, "Model index: " + model.getQuizModeIndex());
         if (index < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         } else if (index < lastShownList.size() - 1) {
