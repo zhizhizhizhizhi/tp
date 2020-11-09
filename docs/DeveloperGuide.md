@@ -26,6 +26,7 @@ title: Developer Guide
 1. [**Appendix: Instructions for Manual Testing**](#manual_testing)
     1. [Launching and Shutting Down](#launch_shutdown)
     1. [Deleting a Flashcard](#deleting_a_flashcard)
+    1. [Sorting Flashcards](#sorting_flashcards)
     1. [Saving Data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------

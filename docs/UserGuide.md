@@ -14,25 +14,25 @@ can get your German revision done quickly and effectively.
 1. [Commonly used Commands](#cucmds)
 1. [Features](#features)
     1. [Edit the glossary](#editing)
-        1. [Add a Flashcard](#add)
-        1. [Edit a Flashcard](#edit)
-        1. [Delete a Flashcard](#delete)
-        1. [Clear All Flashcards](#clear)
+        1. [Add a Flashcard](#add) : `add`
+        1. [Edit a Flashcard](#edit) : `edit`
+        1. [Delete a Flashcard](#delete) : `delete`
+        1. [Clear All Flashcards](#clear) : `clear`
     1. [Test Yourself](#test)
-        1. [Normal Test](#quiz)
-        1. [Try](#try)
-        1. [Next](#next)
-        1. [End Testing](#end)
-        1. [Random Test](#random)
-        1. [View Past Scores](#scores)
-        1. [Reset Scores](#reset_scores)
+        1. [Normal Test](#quiz) : `clear`
+        1. [Try](#try) : `try`
+        1. [Next](#next) : `next`
+        1. [End Testing](#end) : `end`
+        1. [Random Test](#random) : `random`
+        1. [View Past Scores](#scores) `scores`
+        1. [Reset Scores](#reset_scores) `reset scores`
     1. [Navigate the glossary](#navigating)
-        1. [Find a Flashcard](#find)
-        1. [List All Flashcards](#list)
-        1. [Sort All Flashcards](#sort)
+        1. [Find a Flashcard](#find) `find`
+        1. [List All Flashcards](#list) `list`
+        1. [Sort All Flashcards](#sort) `sort`
     1. [Miscellaneous Commands](#misc)
-        1. [Help](#help)
-        1. [Exit](#exit)
+        1. [Help](#help) `help`
+        1. [Exit](#exit) `exit`
 1. [FAQ](#faq)
 1. [Command Summary](#cmdsum)
 

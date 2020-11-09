@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * Updated Command Summary with new features [#\142](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/142)
     * Updated FAQ and added Help Command [#\142](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/142)
   * Developer Guide:
-    * Added some User Stories and Use Cases [\#68](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/68) [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)
+    * Added some User Stories and Use Cases [\#68](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/68) [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)  [#\240](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/240)
     * Removed irrelevant information from AddressBook3's original Developer Guide [\#147](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/147)
     * Added documentation for the `sort` feature, inclusive of diagrams. [\#121](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/121)
     * Updated Appendix - Manual Testing section with more manual tests [\#238](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/238)
