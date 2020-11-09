@@ -316,9 +316,17 @@ Priority | As a... | I want to... | So that I...
 --- | ---------- | --------- | ---- |
 *** | user |add a flashcard with German phrase and meaning | can refer it or use it to test myself later.
 *** | user | list out all the flashcards with index | can look through the phrases and their meanings to study.
-*** | user | delete a flash card by index
+*** | user | delete a flash card by index | remove flashcards that I deem irrelevant.
 *** | user | test myself with the flashcards | can be quizzed on the phrases and their meanings.
 ** | user | my flashcards to be saved (storage) | can use them when I next launch the app.
+** | user | to sort my flashcards in certain ways | can navigate the glossary more easily.
+** | user | test myself with a randomised quiz | can do a quick quiz to jog my memory.
+** | user | edit an existing flashcard's fields | can make any changes to existing flashcards if I want to.
+** | user | search for a specific flashcard | can find a specific flashcard more easily.
+** | user | save the scores of my previous quizzes | can keep track of my progress easily.
+** | user | reset the glossary | can start from scratch with my own personalised data.
+* | user | be reminded to quiz myself daily | can be reminded to consistently put in effort to revise.
+* | user | hard reset my score history | can start over from scratch.
 
 ### <a name="use_cases"></a>Use Cases
 
@@ -494,7 +502,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting the glossary while all flashcards are being shown
    
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the glossary.
 
    1. Test case: `sort german`<br>
       Expected: Glossary is sorted according to alphabetical order of the German phrases.
