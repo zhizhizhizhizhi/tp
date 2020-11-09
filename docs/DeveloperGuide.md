@@ -180,7 +180,7 @@ The proposed quiz feature for users to test their vocabulary is facilitated by `
 It implements the following operations:
 
 * `Glossary#quiz(Model)` — Starts the quizzing with the displayed flashcard list.
-* `Glossary#next(Model)` — Attempt to type the correct English definition of the German phrase on the current flashcard.
+* `Glossary#try(Model)` — Attempt to type the correct English definition of the German phrase on the current flashcard.
 * `Glossary#next(Model)` — Skips the current flashcard under test.
 * `Glossary#end(Model)` — Ends the quiz.
 
