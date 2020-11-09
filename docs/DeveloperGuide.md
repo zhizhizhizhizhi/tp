@@ -165,7 +165,7 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
-For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not output anything for a `NONE` state.
+For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not display anything for a `NONE` state.
 
 ### <a name="quizzing"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
@@ -198,6 +198,10 @@ The following activity diagram outlines the process of quizzing:
 The following sequence diagram shows how the quiz operation works:
 
 ![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
+
+Quizzing also works in tandem with `find` and `sort` features, allowing users to limit the phrases tested and change the order of testing.
+
+During quizzing, only `try`, `next` and `end` commands are allowed to be used. All other commands except `help` and `exit` will remind the user that they are in quiz mode and to end the quiz first before using any other commands.
 
 ### <a name="random"></a>\[Implemented\] Random Quizzing
 
@@ -248,9 +252,9 @@ The following sequence diagram shows how the score is saved:
 
 ### <a name="sorting"></a>\[Implemented\] Sorting
 
-The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
+The Sort feature is implemented as a way for users to further customise their view of the glossary and make it easier for them to find phrases they want.
 
-Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user.
+Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` and `GlossaryParser` to parse the parameters input by the user.
 This is in line with the original AddressBook3's Command pattern.
 
 `SortCommand` relies on several pre-defined `Comparator` objects to execute the sorting, one of which is selected for use when
@@ -437,6 +441,7 @@ Priority | As a... | I want to... | So that I...
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 3. German diacritics (eg. ä) should be fully supported in being saved and displayed by the UI.
 4. Verification of user input in testing mode should not take more than 2 seconds.
+5. Navigating the glossary should not be tedious for the user.
 
 ### <a name="glossary"></a>Glossary
 
