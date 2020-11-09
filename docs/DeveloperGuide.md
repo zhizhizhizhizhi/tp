@@ -2,6 +2,13 @@
 layout: page
 title: Developer Guide
 ---
+
+ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
+and German 2 (LAG2201) in NUS to practise and test their vocabulary, optimised
+for use via a Command Line Interface (CLI). * This project is based on the 
+AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+## Table of Contents
 1. [**Setting Up, Getting Started**](#setup)
 1. [**Design**](#design)
     1. [Architecture](#architecture)
