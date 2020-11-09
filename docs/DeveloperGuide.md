@@ -2,6 +2,13 @@
 layout: page
 title: Developer Guide
 ---
+
+ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
+and German 2 (LAG2201) in NUS to practise and test their vocabulary, optimised
+for use via a Command Line Interface (CLI). * This project is based on the 
+AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+## Table of Contents
 1. [**Setting Up, Getting Started**](#setup)
 1. [**Design**](#design)
     1. [Architecture](#architecture)
@@ -26,6 +33,7 @@ title: Developer Guide
 1. [**Appendix: Instructions for Manual Testing**](#manual_testing)
     1. [Launching and Shutting Down](#launch_shutdown)
     1. [Deleting a Flashcard](#deleting_a_flashcard)
+    1. [Sorting Flashcards](#sorting_flashcards)
     1. [Saving Data](#saving_data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -164,7 +172,7 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
-For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not output anything for a `NONE` state.
+For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not display anything for a `NONE` state.
 
 ### <a name="quizzing"></a>\[Implemented\] Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
@@ -197,6 +205,10 @@ The following activity diagram outlines the process of quizzing:
 The following sequence diagram shows how the quiz operation works:
 
 ![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
+
+Quizzing also works in tandem with `find` and `sort` features, allowing users to limit the phrases tested and change the order of testing.
+
+During quizzing, only `try`, `next` and `end` commands are allowed to be used. All other commands except `help` and `exit` will remind the user that they are in quiz mode and to end the quiz first before using any other commands.
 
 ### <a name="random"></a>\[Implemented\] Random Quizzing
 
@@ -247,9 +259,9 @@ The following sequence diagram shows how the score is saved:
 
 ### <a name="sorting"></a>\[Implemented\] Sorting
 
-The Sort feature is implemented as a way for users to further customise the glossary and make it easier for them to find phrases they want.
+The Sort feature is implemented as a way for users to further customise their view of the glossary and make it easier for them to find phrases they want.
 
-Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` to parse the parameters input by the user.
+Sorting is implemented as a `SortCommand` class which extends from the abstract `Command` class and makes use of a `SortCommandParser` and `GlossaryParser` to parse the parameters input by the user.
 This is in line with the original AddressBook3's Command pattern.
 
 `SortCommand` relies on several pre-defined `Comparator` objects to execute the sorting, one of which is selected for use when
@@ -316,9 +328,17 @@ Priority | As a... | I want to... | So that I...
 --- | ---------- | --------- | ---- |
 *** | user |add a flashcard with German phrase and meaning | can refer it or use it to test myself later.
 *** | user | list out all the flashcards with index | can look through the phrases and their meanings to study.
-*** | user | delete a flash card by index
+*** | user | delete a flash card by index | remove flashcards that I deem irrelevant.
 *** | user | test myself with the flashcards | can be quizzed on the phrases and their meanings.
 ** | user | my flashcards to be saved (storage) | can use them when I next launch the app.
+** | user | to sort my flashcards in certain ways | can navigate the glossary more easily.
+** | user | test myself with a randomised quiz | can do a quick quiz to jog my memory.
+** | user | edit an existing flashcard's fields | can make any changes to existing flashcards if I want to.
+** | user | search for a specific flashcard | can find a specific flashcard more easily.
+** | user | save the scores of my previous quizzes | can keep track of my progress easily.
+** | user | reset the glossary | can start from scratch with my own personalised data.
+* | user | be reminded to quiz myself daily | can be reminded to consistently put in effort to revise.
+* | user | hard reset my score history | can start over from scratch.
 
 ### <a name="use_cases"></a>Use Cases
 
@@ -428,6 +448,7 @@ Priority | As a... | I want to... | So that I...
 2. A user with above average typing speed for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 3. German diacritics (eg. ä) should be fully supported in being saved and displayed by the UI.
 4. Verification of user input in testing mode should not take more than 2 seconds.
+5. Navigating the glossary should not be tedious for the user.
 
 ### <a name="glossary"></a>Glossary
 
@@ -494,7 +515,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting the glossary while all flashcards are being shown
    
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the glossary.
 
    1. Test case: `sort german`<br>
       Expected: Glossary is sorted according to alphabetical order of the German phrases.
